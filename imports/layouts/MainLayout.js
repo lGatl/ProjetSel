@@ -1,6 +1,6 @@
  import React from 'react';
  import HeaderS from '../components/Header.js';
-import Footer from '../components/Footer.js';
+import Footer from '../components/Footer.js'; //voyez, j'importe mon fameux Footer
 import MenuS from '../components/Menu.js';
 
 
@@ -14,7 +14,7 @@ import MenuS from '../components/Menu.js';
 	 	{content}
 	</div>
 
-     <Footer></Footer>
+     <Footer></Footer>{/*et la je dit au Footer de s'inserer ici*/}
 
    </div>
  );
