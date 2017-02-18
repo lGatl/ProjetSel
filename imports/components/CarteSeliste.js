@@ -1,6 +1,11 @@
 import React, {Component} from 'react'
-import { Card, Icon, Image, Dropdown } from 'semantic-ui-react'
+import { Card, Icon, Image, Dropdown, Rating } from 'semantic-ui-react'
 import MenuDeroulant from './MenuDeroulant.js';
+
+
+
+
+
 
 
 
@@ -20,7 +25,7 @@ export default class CartesSeliste extends Component {
 					<Card.Header>
 						Jean Bon
 					</Card.Header>
-							<span >*****</span>
+							<Rating icon='star' defaultRating={3} maxRating={4} />
 					<Card.Description>
 						Categiorie offre:
 						<ul>

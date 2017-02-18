@@ -1,4 +1,11 @@
 import React, {Component} from 'react';
+import { Grid, Segment } from 'semantic-ui-react'
+import MesInfos from '../components/monCompte/MesInfos.js'
+import MonReleve from '../components/monCompte/MonReleve.js'
+import MenuMonCompt from '../components/monCompte/MenuMonCompt.js'
+
+import DepotAnnonce from '../components/monCompte/DepotAnnonce.js'
+
 
 export default class Moncompte extends Component {
 	render(){
@@ -6,7 +13,16 @@ export default class Moncompte extends Component {
 
 			<div className="">
 				<h1>Mon Compte</h1>
+				 <Grid>
+					 <Grid.Column width={3}>
+						<MenuMonCompt></MenuMonCompt> <br/>
+						<MenuMonCompt></MenuMonCompt>
+					</Grid.Column>
 
+					<Grid.Column width={10}>
+					<DepotAnnonce></DepotAnnonce>
+					</Grid.Column>
+				</Grid>
 			</div>
 		);
 	}

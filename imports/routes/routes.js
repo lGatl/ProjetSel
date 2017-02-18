@@ -12,6 +12,7 @@ import {mount} from 'react-mounter';
  import LesSelistes from '../pages/LesSelistes.js';
  import MonCompte from '../pages/MonCompte.js';
 
+
  FlowRouter.route('/', {
 	 name: 'acceuil',
 	 action: function() {
