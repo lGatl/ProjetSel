@@ -3,7 +3,7 @@ import {Segment} from 'semantic-ui-react'
 
 
 
-export default class Titre extends Component {
+export default class Titre1 extends Component {
 	render(){
 		return (
 

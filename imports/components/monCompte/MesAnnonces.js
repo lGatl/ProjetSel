@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ExtraitAnnonce from './ExtraitAnnonce.js'
-import Titre from './Titre.js'
+import Titre1 from './Titre1.js'
 
 export default class MesAnnonces extends Component {
 
@@ -8,7 +8,7 @@ export default class MesAnnonces extends Component {
 
 		return (
 			<div>
-				<Titre></Titre>
+				<Titre1></Titre1>
 				<ExtraitAnnonce></ExtraitAnnonce>
 				<br/>
 				<ExtraitAnnonce></ExtraitAnnonce>

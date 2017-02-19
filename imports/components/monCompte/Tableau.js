@@ -5,7 +5,7 @@ export default class Tableau extends Component {
 	render(){
 		return (
 
-			<Table stackable>
+			<Table striped>
 				<Table.Header>
 					<Table.Row>
 						<Table.HeaderCell>Date</Table.HeaderCell>
@@ -24,6 +24,30 @@ export default class Tableau extends Component {
 						<Table.Cell>Cours de Cuisine</Table.Cell>
 						<Table.Cell>500</Table.Cell>
 					</Table.Row>
+					<Table.Row>
+						<Table.Cell>02/02/2017</Table.Cell>
+						<Table.Cell>Jean Bon</Table.Cell>
+						<Table.Cell>Cuisine</Table.Cell>
+						<Table.Cell>Cours de Cuisine</Table.Cell>
+						<Table.Cell>500</Table.Cell>
+					</Table.Row>
+
+					<Table.Row>
+						<Table.Cell>02/02/2017</Table.Cell>
+						<Table.Cell>Jean Bon</Table.Cell>
+						<Table.Cell>Cuisine</Table.Cell>
+						<Table.Cell>Cours de Cuisine</Table.Cell>
+						<Table.Cell>500</Table.Cell>
+					</Table.Row>
+
+					<Table.Row>
+						<Table.Cell>02/02/2017</Table.Cell>
+						<Table.Cell>Jean Bon</Table.Cell>
+						<Table.Cell>Cuisine</Table.Cell>
+						<Table.Cell>Cours de Cuisine</Table.Cell>
+						<Table.Cell>500</Table.Cell>
+					</Table.Row>
+
 
 				</Table.Body>
 			</Table>

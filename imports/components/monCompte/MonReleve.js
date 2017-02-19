@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Titre from './Titre.js'
+import Titre1 from './Titre1.js'
 import Tableau from './Tableau.js'
 import Solde from './Solde.js'
 
@@ -10,9 +10,9 @@ export default class MonReleve extends Component {
 
 			<div>
 				<Solde></Solde> <br/> <br/><br/>
-				<Titre></Titre>
+				<Titre1></Titre1>
 				<Tableau></Tableau>
-				<Titre></Titre>
+				<Titre1></Titre1>
 				<Tableau></Tableau>
 			</div>
 

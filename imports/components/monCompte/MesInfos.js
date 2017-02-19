@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Titre from './Titre.js'
+import Titre1 from './Titre1.js'
 import Lister from './Lister.js'
 
 
@@ -10,9 +10,9 @@ export default class MesInfos extends Component {
 
 
 			<div>
-				<Titre></Titre>
+				<Titre1></Titre1>
 				<Lister></Lister>
-				<Titre></Titre>
+				<Titre1></Titre1>
 				<Lister></Lister>
 			</div>
 

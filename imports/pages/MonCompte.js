@@ -6,6 +6,8 @@ import MenuMonCompt from '../components/monCompte/MenuMonCompt.js'
 
 import DepotAnnonce from '../components/monCompte/DepotAnnonce.js'
  import MesAnnonces from '../components/monCompte/MesAnnonces.js'
+  import Statistiques from '../components/monCompte/Statistiques.js'
+  import Configuration from '../components/monCompte/Configuration.js'
 
 
 export default class Moncompte extends Component {
@@ -21,7 +23,7 @@ export default class Moncompte extends Component {
 					</Grid.Column>
 
 					<Grid.Column width={10}>
-					<MesAnnonces>	</MesAnnonces>
+					<Configuration></Configuration>
 					</Grid.Column>
 				</Grid>
 			</div>
