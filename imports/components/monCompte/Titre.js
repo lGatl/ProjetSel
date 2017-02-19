@@ -8,7 +8,7 @@ export default class Titre extends Component {
 		return (
 
 			<Segment>
-				Mes Informations
+				<h2>Mes Informations</h2>
 			</Segment>
 
 		);

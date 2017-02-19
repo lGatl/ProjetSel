@@ -5,6 +5,7 @@ import MonReleve from '../components/monCompte/MonReleve.js'
 import MenuMonCompt from '../components/monCompte/MenuMonCompt.js'
 
 import DepotAnnonce from '../components/monCompte/DepotAnnonce.js'
+ import MesAnnonces from '../components/monCompte/MesAnnonces.js'
 
 
 export default class Moncompte extends Component {
@@ -20,7 +21,7 @@ export default class Moncompte extends Component {
 					</Grid.Column>
 
 					<Grid.Column width={10}>
-					<DepotAnnonce></DepotAnnonce>
+					<MesAnnonces>	</MesAnnonces>
 					</Grid.Column>
 				</Grid>
 			</div>
