@@ -8,6 +8,8 @@ import DepotAnnonce from '../components/monCompte/DepotAnnonce.js'
  import MesAnnonces from '../components/monCompte/MesAnnonces.js'
   import Statistiques from '../components/monCompte/Statistiques.js'
   import Configuration from '../components/monCompte/Configuration.js'
+  import Categories from '../components/monCompte/Categories.js'
+  import GererActu from '../components/monCompte/GererActu.js'
 
 
 export default class Moncompte extends Component {
@@ -23,7 +25,7 @@ export default class Moncompte extends Component {
 					</Grid.Column>
 
 					<Grid.Column width={10}>
-					<Configuration></Configuration>
+					<Categories></Categories>
 					</Grid.Column>
 				</Grid>
 			</div>

@@ -7,7 +7,7 @@ export default class Titre2 extends Component {
 	render(){
 		return (
 
-			<Segment>
+			<Segment compact>
 				<h3>Titre2</h3>
 			</Segment>
 
