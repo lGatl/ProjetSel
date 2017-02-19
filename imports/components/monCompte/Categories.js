@@ -19,7 +19,7 @@ export default class Categories extends Component {
 			<div>
 				<Titre1></Titre1>
 					<Input labelPosition='right' type='text' placeholder='Nom de la Categorie'>
-					<Label basic>Nom de la Categorie : </Label>
+					<Label basic>Nom de la Categorie :  </Label>
 					<input />
 					<Button>Valider</Button>
 				</Input>
