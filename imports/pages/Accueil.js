@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Titre from '../components/Titre.js'
+import Titre from '../components/duplicata/AjoutArticle.js'
 
 export default class Accueil extends Component {
 	render(){

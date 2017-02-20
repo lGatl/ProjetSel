@@ -25,7 +25,7 @@ export default class Moncompte extends Component {
 					</Grid.Column>
 
 					<Grid.Column width={10}>
-					<Categories></Categories>
+					<MesAnonces></MesAnonces>
 					</Grid.Column>
 				</Grid>
 			</div>
