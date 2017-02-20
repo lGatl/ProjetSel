@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import { Grid, Segment } from 'semantic-ui-react'
+
 import MesInfos from '../components/monCompte/MesInfos.js'
 import MonReleve from '../components/monCompte/MonReleve.js'
 import MenuMonCompt from '../components/monCompte/MenuMonCompt.js'
-
 import DepotAnnonce from '../components/monCompte/DepotAnnonce.js'
  import MesAnnonces from '../components/monCompte/MesAnnonces.js'
   import Statistiques from '../components/monCompte/Statistiques.js'
@@ -25,7 +25,7 @@ export default class Moncompte extends Component {
 					</Grid.Column>
 
 					<Grid.Column width={10}>
-					<MesAnonces></MesAnonces>
+					<MesAnnonces></MesAnnonces>
 					</Grid.Column>
 				</Grid>
 			</div>
