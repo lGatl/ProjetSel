@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Pages from '../components/Pages.js'
 
 export default class Actualites extends Component {
 	render(){
@@ -6,6 +7,7 @@ export default class Actualites extends Component {
 
 			<div className="">
 				<h1>Actualites</h1>
+        <Pages/>
 
 			</div>
 		);

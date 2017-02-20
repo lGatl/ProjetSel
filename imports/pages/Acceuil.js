@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import FormInscription from '../components/FormInscription.js'
 
 export default class Acceuil extends Component {
 	render(){
@@ -6,7 +7,7 @@ export default class Acceuil extends Component {
 
 			<div className="">
 				<h1>Acceuil</h1>
-
+				<FormInscription/>
 			</div>
 		);
 	}
