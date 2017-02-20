@@ -2,10 +2,10 @@ import React, {Component} from 'react'
 
 import { Dropdown, Button, Form, Input, TextArea,Icon,Label} from 'semantic-ui-react'
 
-import Titre1 from './Titre1.js'
-import Titre2 from './Titre2.js'
+import Titre1 from '../Titre1.js'
+import Titre2 from '../Titre2.js'
 
-import Tableau from './Tableau.js'
+import Tableau from '../Tableau.js'
 
 export default class Categories extends Component {
 	constructor(){

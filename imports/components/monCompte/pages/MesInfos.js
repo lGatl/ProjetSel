@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import Titre1 from './Titre1.js'
-import Lister from './Lister.js'
+import Titre1 from '../Titre1.js'
+import Lister from '../Lister.js'
 
 
 

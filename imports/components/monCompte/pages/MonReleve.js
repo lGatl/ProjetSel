@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import Titre1 from './Titre1.js'
-import Tableau from './Tableau.js'
-import Solde from './Solde.js'
+import Titre1 from '../Titre1.js'
+import Tableau from '../Tableau.js'
+import Solde from '../Solde.js'
 
 export default class MonReleve extends Component {
 	render(){

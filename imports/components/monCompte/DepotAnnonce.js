@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-
 import { Button, Form, Input, Select, TextArea,Image,Label } from 'semantic-ui-react'
+
+/*Depot Offre et Depot Demande*/
 
 const categories = [
 	{ key: 'm', text: 'Male', value: 'male' },
@@ -20,7 +21,7 @@ const products = [
 	{ key: 'socks', text: 'Socks', value: 'socks' },
 ]
 
-export default class FormExampleOnSubmit extends Component {
+export default class DepotAnnonce extends Component {
 	constructor(){
 		super()
 		this.state = { formData: {} }

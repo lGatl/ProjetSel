@@ -1,15 +1,20 @@
 import React, {Component} from 'react';
 import { Grid, Segment } from 'semantic-ui-react'
 
-import MesInfos from '../components/monCompte/MesInfos.js'
-import MonReleve from '../components/monCompte/MonReleve.js'
 import MenuMonCompt from '../components/monCompte/MenuMonCompt.js'
-import DepotAnnonce from '../components/monCompte/DepotAnnonce.js'
- import MesAnnonces from '../components/monCompte/MesAnnonces.js'
-  import Statistiques from '../components/monCompte/Statistiques.js'
-  import Configuration from '../components/monCompte/Configuration.js'
-  import Categories from '../components/monCompte/Categories.js'
-  import GererActu from '../components/monCompte/GererActu.js'
+
+import Categories from '../components/monCompte/pages/Categories.js'
+import Configuration from '../components/monCompte/pages/Configuration.js'
+import DepotDemande from '../components/monCompte/pages/DepotDemande.js'
+import DepotOffre from '../components/monCompte/pages/DepotOffre.js'
+import GererActu from '../components/monCompte/pages/GererActu.js'
+import GererAnnonces from '../components/monCompte/pages/GererAnnonces.js'
+import MesDemandes from '../components/monCompte/pages/MesDemandes.js'
+import MesInfos from '../components/monCompte/pages/MesInfos.js'
+import MesOffres from '../components/monCompte/pages/MesOffres.js'
+import MesPropositions from '../components/monCompte/pages/MesPropositions.js'
+import MonReleve from '../components/monCompte/pages/MonReleve.js'
+import Statistiques from '../components/monCompte/pages/Statistiques.js'
 
 
 export default class Moncompte extends Component {
@@ -25,7 +30,7 @@ export default class Moncompte extends Component {
 					</Grid.Column>
 
 					<Grid.Column width={10}>
-					<MesAnnonces></MesAnnonces>
+					<MesPropositions></MesPropositions>
 					</Grid.Column>
 				</Grid>
 			</div>
