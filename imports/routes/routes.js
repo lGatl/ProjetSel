@@ -4,7 +4,7 @@ import {FlowRouter} from 'meteor/kadira:flow-router-ssr';
 import {mount} from 'react-mounter';
 
  import {MainLayout} from '../layouts/MainLayout.js';
- import Acceuil from '../pages/Acceuil.js';
+ import Accueil from '../pages/Accueil.js';
  import Actualites from '../pages/Actualites.js';
   import Annonces from '../pages/Annonces.js';
  import Contacts from '../pages/Contacts.js';
@@ -14,9 +14,9 @@ import {mount} from 'react-mounter';
 
 
  FlowRouter.route('/', {
-	 name: 'acceuil',
+	 name: 'accueil',
 	 action: function() {
-		 mount(MainLayout, {content: <Acceuil />});
+		 mount(MainLayout, {content: <Accueil />});
 	 }
  });
 
