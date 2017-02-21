@@ -4,49 +4,46 @@ import { Input, Menu } from 'semantic-ui-react'
 export default class MenuMonCompt extends Component {
 
  constructor(){
-  super()
-  this.state = { activeItem: 'inbox' }
+	super()
+	this.state = { activeItem: 'inbox' }
 
-  this.handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+	this.handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
 
  }
 
-  render() {
-    const { activeItem } = this.state
+	render() {
+		const { activeItem } = this.state
 
-    return (
-      <Menu vertical size='tiny'>
-      <Menu.Item header>Mon Compte</Menu.Item>
-        <Menu.Item name='MesInformations' active={activeItem === 'MesInformations'} onClick={this.handleItemClick}>
+		return (
+			<Menu vertical size='tiny'>
+				<Menu.Item header>Mon Compte</Menu.Item>
 
-          MesInformations
-        </Menu.Item>
+				<Menu.Item name='MesInformations' active={activeItem === 'MesInformations'} onClick={this.handleItemClick}>
+					Mes Informations
+				</Menu.Item>
 
-        <Menu.Item name='MonReleveDeCompte' active={activeItem === 'MonReleveDeCompte'} onClick={this.handleItemClick}>
+				<Menu.Item name='MonReleveDeCompte' active={activeItem === 'MonReleveDeCompte'} onClick={this.handleItemClick}>
+						Mon Releve De Compte
+				</Menu.Item>
 
-          MonReleveDeCompte
-        </Menu.Item>
+				<Menu.Item name='DeposezUneOffre' active={activeItem === 'DeposezUneOffre'} onClick={this.handleItemClick}>
+						Deposez Une Offre
+				</Menu.Item>
 
-        <Menu.Item name='DeposezUneOffre' active={activeItem === 'DeposezUneOffre'} onClick={this.handleItemClick}>
+				<Menu.Item name='MesOffres' active={activeItem === 'MesOffres'} onClick={this.handleItemClick}>
+					 Mes Offres
+				</Menu.Item>
 
-          DeposezUneOffre
-        </Menu.Item>
+				<Menu.Item name='MesDemandes' active={activeItem === 'MesDemandes'} onClick={this.handleItemClick}>
+						Mes Demandes
+				</Menu.Item>
 
-        <Menu.Item name='MesOffres' active={activeItem === 'MesOffres'} onClick={this.handleItemClick}>
+				<Menu.Item name='MesPropositions' active={activeItem === 'MesPropositions'} onClick={this.handleItemClick}>
+						Mes Propositions
+				</Menu.Item>
 
-          MesOffres
-        </Menu.Item>
-        <Menu.Item name='MesDemandes' active={activeItem === 'MesDemandes'} onClick={this.handleItemClick}>
-
-          MesDemandes
-        </Menu.Item>
-        <Menu.Item name='MesPropositions' active={activeItem === 'MesPropositions'} onClick={this.handleItemClick}>
-
-          MesPropositions
-        </Menu.Item>
-
-      </Menu>
-    )
-  }
+			</Menu>
+		)
+	}
 }

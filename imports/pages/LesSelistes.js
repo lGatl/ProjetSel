@@ -14,6 +14,7 @@ export default class LesSelistes extends Component {
 					<MenuDeroulant></MenuDeroulant>
 					<MenuDeroulant></MenuDeroulant>
 					<MenuDeroulant></MenuDeroulant>
+					<MenuDeroulant></MenuDeroulant>
 				</Segment>
 				 <Card.Group>
 				 	<CarteSeliste></CarteSeliste>
