@@ -2,19 +2,9 @@ import React, {Component} from 'react'
 import { Card, Icon, Image, Dropdown, Rating } from 'semantic-ui-react'
 import MenuDeroulant from './MenuDeroulant.js';
 
-
-
-
-
-
-
-
+/* pour la page Les Selisete*/
 
 export default class CartesSeliste extends Component {
-
-
-
-
 
 	render(){
 

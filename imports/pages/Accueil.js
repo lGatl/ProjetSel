@@ -1,5 +1,8 @@
-import React, {Component} from 'react';
-import Titre from '../components/duplicata/AjoutArticle.js'
+import React, {Component} from 'react'
+import Titre from '../components/Titre.js'
+import AnnonceDesc from '../components/AnnonceDesc.js'
+
+
 
 export default class Accueil extends Component {
 	render(){
@@ -7,7 +10,8 @@ export default class Accueil extends Component {
 
 			<div className="">
 				<h1>Accueil</h1>
-				<Titre/>
+
+			<AnnonceDesc></AnnonceDesc>
 			</div>
 		);
 	}
