@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Container, Header, Image } from 'semantic-ui-react'
+import { Segment, Header, Image } from 'semantic-ui-react'
 
 export default class DernièreActuAnnonce extends Component {
 
@@ -7,13 +7,13 @@ export default class DernièreActuAnnonce extends Component {
 
  	return(
 		<div>
-		    <Container>
+		    <Segment compact>
 		      	<Header as='h2'>Titre</Header>
 		      	<Image src='/assets/images/wireframe/image.png' size='small' wrapped />
 		      	<Image src='/assets/images/wireframe/image.png' size='small' wrapped />
 		      	<Image src='/assets/images/wireframe/image.png' size='small' wrapped />
 		      	<Image src='/assets/images/wireframe/image.png' size='small' wrapped />
-		    </Container>
+		    </Segment>
 		</div>
 		);
 	}
