@@ -8,7 +8,7 @@ export default class Statistiques extends Component {
 
 
 			<div>
-				<Titre1></Titre1>
+				<Titre1 nom="Statstiques"></Titre1>
 				<Tableau></Tableau>
 			</div>
 

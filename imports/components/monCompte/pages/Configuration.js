@@ -10,7 +10,7 @@ export default class Statistiques extends Component {
 
 
 			<div>
-				<Titre1></Titre1>
+				<Titre1 nom="Configuration"></Titre1>
 				<Tableau></Tableau>
 				<Button>Valider</Button>
 			</div>

@@ -1,12 +1,17 @@
-import React from 'react'
-import { Segment } from 'semantic-ui-react'
+import React, {Component} from 'react'
+import {Segment} from 'semantic-ui-react'
 
-const Titre = () => (
+
+
+export default class Titre extends Component {
+	render(){
+		return (
 	<div>
-		<Segment textAlign='center' inverted color='orange' compact padded floated = 'left' basic>
-			<h1>Je suis le titre de chaque page !</h1>
+		<Segment textAlign='center' inverted color='orange' compact padded basic>
+			<h1>{this.props.nom}</h1>
 		</Segment>
 	</div>
 )
+}
+}
 
-export default Titre

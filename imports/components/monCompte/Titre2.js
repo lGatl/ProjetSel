@@ -8,7 +8,7 @@ export default class Titre2 extends Component {
 		return (
 
 			<Segment compact>
-				<h3>Titre2</h3>
+				<h3>{this.props.nom}</h3>
 			</Segment>
 
 		);

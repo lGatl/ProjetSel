@@ -25,6 +25,7 @@ export default class Moncompte extends Component {
 				"Mes informations",
 				"Mon relevé de comte",
 				"Deposez une offre",
+				"Deposez une demande",
 				"Mes Offres",
 				"Mes Demandes",
 				"Mes Propositons"
@@ -43,10 +44,11 @@ export default class Moncompte extends Component {
 			this.setState({nom:nom})
 		}
 		page(nom){
-			console.log(nom)
+
 				if(nom.name=="Mes informations")		{return(<MesInfos></MesInfos>)}
 				if(nom.name=="Mon relevé de comte")	{return( <MonReleve></MonReleve>)}
 				if(nom.name=="Deposez une offre")	{return(<DepotOffre></DepotOffre>)}
+				if(nom.name=="Deposez une demande")	{return(<DepotDemande></DepotDemande>)}
 				if(nom.name=="Mes Offres")			{return(<MesOffres></MesOffres>)}
 				if(nom.name=="Mes Demandes")		{return(<MesDemandes></MesDemandes>)}
 				if(nom.name=="Mes Propositons")		{return(<MesPropositions></MesPropositions>)}

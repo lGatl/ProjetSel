@@ -10,7 +10,7 @@ export default class MesAnnonces extends Component {
 
 		return (
 			<div>
-				<Titre1></Titre1>
+				<Titre1 nom={this.props.titre}></Titre1>
 				<ExtraitAnnonce></ExtraitAnnonce>
 				<br/>
 				<ExtraitAnnonce></ExtraitAnnonce>

@@ -10,9 +10,9 @@ export default class MonReleve extends Component {
 
 			<div>
 				<Solde></Solde> <br/> <br/><br/>
-				<Titre1></Titre1>
+				<Titre1 nom="Liste des debits"></Titre1>
 				<Tableau></Tableau>
-				<Titre1></Titre1>
+				<Titre1 nom="Liste des credits"></Titre1>
 				<Tableau></Tableau>
 			</div>
 

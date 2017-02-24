@@ -5,6 +5,11 @@ import MenuDeroulant from './MenuDeroulant.js';
 /* pour la page Les Selisete*/
 
 export default class CartesSeliste extends Component {
+constructor(){
+	super()
+	this.actions=["Valider","Refuser","Editer","Suspendre","Admin","Moderateur","Ajouter seugnettes","Supprimer"]
+}
+
 
 	render(){
 
@@ -22,7 +27,7 @@ export default class CartesSeliste extends Component {
 							<li>Mecanique</li>
 							<li>Cuisine</li>
 						 </ul> <strong>best friends</strong>
-							<MenuDeroulant></MenuDeroulant>
+							<MenuDeroulant donnees={this.actions}></MenuDeroulant>
 					</Card.Description>
 				</Card.Content>
 				<Card.Content extra>

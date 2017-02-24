@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Form, Input, Select, TextArea,Image,Label } from 'semantic-ui-react'
-
+import Titre1 from './Titre1.js'
 /*Depot Offre et Depot Demande*/
 
 const categories = [
@@ -40,7 +40,7 @@ export default class DepotAnnonce extends Component {
 		return (
 			<div>
 
-				<h2>Deposer une Offre</h2>
+				<Titre1 nom={this.props.titre}></Titre1>
 				<br/>
 				<Label size='large' >Votre Offre</Label>
 				<br/> <br/>

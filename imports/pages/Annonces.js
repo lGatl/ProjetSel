@@ -5,18 +5,20 @@ import {Segment} from 'semantic-ui-react';
 import MenuDeroulant from '../components/MenuDeroulant.js';
 import EncartAnnonce from '../components/EncartAnnonce.js';
 import Onglets from '../components/Onglets.js'
+import Filtres from '../components/Filtres.js'
+
+
 
 export default class Annonces extends Component {
+
 	render(){
 		return (
 
 			<div className="">
-			<h1>Annonces</h1>
+			<br/>
+
 			<Segment>
-				<MenuDeroulant></MenuDeroulant>
-				<MenuDeroulant></MenuDeroulant>
-				<MenuDeroulant></MenuDeroulant>
-				<MenuDeroulant></MenuDeroulant>
+			<Filtres></Filtres>
 			</Segment>
 				<Onglets></Onglets>
 				<EncartAnnonce></EncartAnnonce>

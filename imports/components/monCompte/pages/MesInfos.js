@@ -10,9 +10,9 @@ export default class MesInfos extends Component {
 
 
 			<div>
-				<Titre1></Titre1>
+				<Titre1 nom="Mes Informations"></Titre1>
 				<Lister></Lister>
-				<Titre1></Titre1>
+				<Titre1 nom="Mes Seugnettes"></Titre1>
 				<Lister></Lister>
 			</div>
 

@@ -8,7 +8,7 @@ export default class DepotDemande extends Component {
 	render() {
 
 		return (
-			<DepotAnnonce></DepotAnnonce>
+			<DepotAnnonce  titre="Deposer une Demande"></DepotAnnonce>
 		)
 	}
 }

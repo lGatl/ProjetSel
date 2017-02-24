@@ -9,23 +9,27 @@ export default class MenuDeroulant extends Component {
 
 constructor(){
 	super()
-		this.stateOptions = [
-		{ key: '0', value: 'valider', text: 'Valider' },
-		{key: '1', value: 'refuser', text: 'Refuser'},
-		{ key: '2', value: 'editer', text: 'Editer' },
-		{key: '3', value: 'suspendre', text: 'Suspendre'},
-		{ key: '4', value: 'roleAdmin', text: 'Role Admin' },
-		{key: '5', value: 'roleModerateur', text: 'Role Moderateur'},
-		{ key: '6', value: 'ajouterSeugnettes', text: 'Ajouter Seugnettes' },
-		{key: '7', value: 'supprimer', text: 'Supprimer'},
-
-		]
+		this.stateOptions = [];
+		this.stateTitre = '';
+	}
+	remplir(donnees,cle){
+		var i=0
+		donnees.map((donnee)=>{
+			if(i>0){
+				this.stateOptions.push({ key: donnee, value:donnee, text: donnee })
+			}else{
+				this.stateTitre=donnee
+			}
+			i++
+		})
 	}
 
 	render(){
 
+		if(this.props.donnees){this.remplir(this.props.donnees,this.props.cle)}
+
 		return (
-			<Dropdown placeholder='Actions' search selection options={this.stateOptions} />
+			<Dropdown placeholder={this.stateTitre} search selection options={this.stateOptions} />
 		);
 	}
 }

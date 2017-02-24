@@ -4,6 +4,7 @@ import { Dropdown, Button, Form, Input, TextArea,Icon} from 'semantic-ui-react'
 
 import Titre1 from '../Titre1.js'
 import Titre2 from '../Titre2.js'
+import MenuDeroulant from '../../MenuDeroulant.js';
 
 import Tableau from '../Tableau.js'
 
@@ -11,7 +12,7 @@ export default class GererActu extends Component {
 	constructor(){
 		super()
 
-
+		this.actions=["Actions","Editer","Desactiver"]
 		this.stateOptions = [ { key: '0', value: '0', text: 'Alabama' },{ key: '1', value: '1', text: 'Alabama' }  ]
 	}
 
@@ -20,10 +21,10 @@ export default class GererActu extends Component {
 
 
 			<div>
-				<Titre1></Titre1>
-				 <Dropdown placeholder='State' search selection options={this.stateOptions} />
+				<Titre1 nom="Liste des Articles"></Titre1>
+				 <MenuDeroulant donnees={this.actions}></MenuDeroulant>
 				<Tableau></Tableau>
-				<Titre2></Titre2>
+				<Titre2 nom="Ajouter un Nouvel Article"></Titre2>
 				<Form onSubmit={this.handleSubmit}>
 
 

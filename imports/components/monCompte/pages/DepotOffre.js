@@ -8,7 +8,7 @@ export default class DepotOffre extends Component {
 	render() {
 
 		return (
-			<DepotAnnonce></DepotAnnonce>
+			<DepotAnnonce titre="Deposer une Offre"></DepotAnnonce>
 		)
 	}
 }
