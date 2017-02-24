@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Segment, Header, Image } from 'semantic-ui-react'
 
-export default class DernièreActuAnnonce extends Component {
+export default class DerniereActuAnnonce extends Component {
 
  render(){
 

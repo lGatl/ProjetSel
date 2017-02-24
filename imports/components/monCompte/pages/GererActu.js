@@ -11,10 +11,54 @@ import Tableau from '../Tableau.js'
 export default class GererActu extends Component {
 	constructor(){
 		super()
+			this.state={
+			articles:[],
+			article:{}
+		}
+		this.nvlArticle={
+			title:"",
+			description:""
+		}
 
 		this.actions=["Actions","Editer","Desactiver"]
 		this.stateOptions = [ { key: '0', value: '0', text: 'Alabama' },{ key: '1', value: '1', text: 'Alabama' }  ]
 	}
+
+viderInput(){
+			this.nvlArticle={
+			title:"",
+			description:""
+		}
+			document.getElementsByClassName('inputAj')[0].getElementsByTagName('input')[0].value=""
+			document.getElementsByClassName('inputAj')[1].getElementsByTagName('textarea')[0].value=""
+
+	}
+
+	miseEnVarDes(e){
+		e.preventDefault();
+		this.nvlArticle.description=e.target.value
+
+	}
+	miseEnVarTitre(e){
+		e.preventDefault();
+		this.nvlArticle.title=e.target.value
+	}
+
+	ajoutArticle(e){
+		e.preventDefault();
+		if(this.nvlArticle.titre=="" || this.nvlArticle.description==""){
+			console.log("remplir les champs")
+		}else{
+			Meteor.call('ajoutArticle', this.nvlArticle ,(err,res)=>{
+				if(err){
+					console.log('aye!')
+				}else{
+					this.viderInput()
+				}
+			})
+		}
+	}
+
 
 	render(){
 		return (
@@ -28,16 +72,16 @@ export default class GererActu extends Component {
 				<Form onSubmit={this.handleSubmit}>
 
 
-					<Form.Input label="Titre de l'annonce" name='titreDeLAnnonce' placeholder='Choisissez un titre' />
+					<Form.Input className="inputAj"  label="Titre de l'article" name='titreDeLArticle' placeholder='Choisissez un titre'  onChange={this.miseEnVarTitre.bind(this)}/>
 
-					<Form.TextArea name='DescriptionDeLArticle' label="description de l'article" placeholder="Decrire l'article" rows='3' />
+					<Form.TextArea className="inputAj"  name='DescriptionDeLArticle' label="description de l'article" placeholder="Decrire l'article" rows='3' onChange={this.miseEnVarDes.bind(this)} />
 					<h4>Inserer une piece jointe</h4>
 					<br/>
 					<Icon size ='huge' name='camera'/>
     					<Icon size ='huge'  name='paste'  />
 					<br/>
 					<br/>
-					<Button primary type='submit'>Valider</Button>
+					<Button type='Envoyer' onClick={this.ajoutArticle.bind(this)}>Creer</Button>
 
 				</Form>
 			</div>

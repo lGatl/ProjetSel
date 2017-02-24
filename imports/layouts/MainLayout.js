@@ -2,6 +2,7 @@
  import HeaderS from '../components/Header.js';
 import Footer from '../components/Footer.js'; //voyez, j'importe mon fameux Footer
 import MenuS from '../components/Menu.js';
+import DerniereActuAnnonce from '../components/DerniereActuAnnonce.js';
 import { Grid } from 'semantic-ui-react'
 
  export const MainLayout = ({ content }) => (
@@ -18,6 +19,8 @@ import { Grid } from 'semantic-ui-react'
 			</div>
 		</Grid.Column>
 		<Grid.Column width={3}>
+			<DerniereActuAnnonce></DerniereActuAnnonce>
+
 		</Grid.Column>
 	 </Grid>
 
