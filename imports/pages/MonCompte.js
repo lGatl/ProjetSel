@@ -18,19 +18,61 @@ import Statistiques from '../components/monCompte/pages/Statistiques.js'
 
 
 export default class Moncompte extends Component {
+		constructor(){
+			super()
+			this.state={nom:""}
+			this.menuMonCompte=[
+				"Mes informations",
+				"Mon relevé de comte",
+				"Deposez une offre",
+				"Mes Offres",
+				"Mes Demandes",
+				"Mes Propositons"
+			];
+			this.menuAdministrationTitre="Mon Compte"
+			this.menuAdministration=[
+				"Gerer les annonces",
+				"Categories",
+				"Gerer les actualités",
+				"Configuration",
+				"Statistiques"
+			];
+		}
+
+		contenu(nom){
+			this.setState({nom:nom})
+		}
+		page(nom){
+			console.log(nom)
+				if(nom.name=="Mes informations")		{return(<MesInfos></MesInfos>)}
+				if(nom.name=="Mon relevé de comte")	{return( <MonReleve></MonReleve>)}
+				if(nom.name=="Deposez une offre")	{return(<DepotOffre></DepotOffre>)}
+				if(nom.name=="Mes Offres")			{return(<MesOffres></MesOffres>)}
+				if(nom.name=="Mes Demandes")		{return(<MesDemandes></MesDemandes>)}
+				if(nom.name=="Mes Propositons")		{return(<MesPropositions></MesPropositions>)}
+				if(nom.name=="Gerer les annonces")	{return(<GererAnnonces></GererAnnonces>)}
+				if(nom.name=="Categories")			{return( <Categories></Categories>)}
+				if(nom.name=="Gerer les actualités")	{return(<GererActu></GererActu>)}
+				if(nom.name=="Configuration")			{return(<Configuration></Configuration>)}
+				if(nom.name=="Statistiques")			{return(<Statistiques></Statistiques>)}
+
+
+		}
+
 	render(){
+
 		return (
 
 			<div className="">
 				<h1>Mon Compte</h1>
 				 <Grid>
 					 <Grid.Column width={3}>
-						<MenuMonCompt></MenuMonCompt> <br/>
-						<MenuMonCompt></MenuMonCompt>
+						<MenuMonCompt contenu={this.contenu.bind(this)} titre="Mon Compte" menuMonCompte={this.menuMonCompte}></MenuMonCompt> <br/>
+						<MenuMonCompt contenu={this.contenu.bind(this)} titre="Administration" menuMonCompte={this.menuAdministration}></MenuMonCompt>
 					</Grid.Column>
 
 					<Grid.Column width={10}>
-					<MesPropositions></MesPropositions>
+						{this.page(this.state.nom)}
 					</Grid.Column>
 				</Grid>
 			</div>

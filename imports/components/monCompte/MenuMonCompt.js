@@ -7,43 +7,33 @@ export default class MenuMonCompt extends Component {
 	super()
 	this.state = { activeItem: 'inbox' }
 
-	this.handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+	this.handleItemClick = (e, { name }) => {
 
+	this.setState({ activeItem: name })
+	this.props.contenu({name})
+}
 
  }
 
 	render() {
-		const { activeItem } = this.state
+
+		const { activeItem } = this.state;
+		const menuItem= this.props.menuMonCompte.map((menuM)=>{
+			return(
+				<Menu.Item key={menuM} name={menuM} active={activeItem ===menuM} onClick={this.handleItemClick} />
+			)
+		})
+
 
 		return (
+			<div>
 			<Menu vertical size='tiny'>
-				<Menu.Item header>Mon Compte</Menu.Item>
+				<Menu.Item header>{this.props.titre}</Menu.Item>
 
-				<Menu.Item name='MesInformations' active={activeItem === 'MesInformations'} onClick={this.handleItemClick}>
-					Mes Informations
-				</Menu.Item>
-
-				<Menu.Item name='MonReleveDeCompte' active={activeItem === 'MonReleveDeCompte'} onClick={this.handleItemClick}>
-						Mon Releve De Compte
-				</Menu.Item>
-
-				<Menu.Item name='DeposezUneOffre' active={activeItem === 'DeposezUneOffre'} onClick={this.handleItemClick}>
-						Deposez Une Offre
-				</Menu.Item>
-
-				<Menu.Item name='MesOffres' active={activeItem === 'MesOffres'} onClick={this.handleItemClick}>
-					 Mes Offres
-				</Menu.Item>
-
-				<Menu.Item name='MesDemandes' active={activeItem === 'MesDemandes'} onClick={this.handleItemClick}>
-						Mes Demandes
-				</Menu.Item>
-
-				<Menu.Item name='MesPropositions' active={activeItem === 'MesPropositions'} onClick={this.handleItemClick}>
-						Mes Propositions
-				</Menu.Item>
+					{menuItem}
 
 			</Menu>
-		)
+			</div>
+			)
 	}
 }
