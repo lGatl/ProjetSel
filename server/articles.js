@@ -15,5 +15,12 @@ Meteor.methods({
 
 	},
 	ajoutArticle:(nvlArticle)=>{Articles.insert({title:nvlArticle.title,description:nvlArticle.description})},
-	supprimArticle:(id)=>{Articles.remove({_id:id})}
+	supprimArticle:(id)=>{Articles.remove({_id:id})},
+
+	utilisateur: ()=>{
+
+		return(Meteor.user)
+	}
+
+
 });

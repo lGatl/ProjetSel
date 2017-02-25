@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Menu, Segment } from 'semantic-ui-react'
+import {LoginButtons} from 'meteor/okgrow:accounts-ui-react'
 
 
 export default class MenuS extends Component {
@@ -25,8 +26,8 @@ export default class MenuS extends Component {
 					<Menu.Item name='MonCompte' href='/monCompte'   active={activeItem === 'MonCompte'} onClick={this.handleItemClick} />
 					<Menu.Item name='LesSelistes' href='/lesSelistes'   active={activeItem === 'LesSelistes'} onClick={this.handleItemClick} />
 
-					<Menu.Menu position='right'>
-						<Menu.Item name='logout' active={activeItem === 'logout'} onClick={this.handleItemClick} />
+					<Menu.Menu >
+						<Menu.Item ><LoginButtons></LoginButtons></Menu.Item>
 					</Menu.Menu>
 				</Menu>
 

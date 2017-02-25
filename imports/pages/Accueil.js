@@ -7,11 +7,16 @@ import GoogleMap from '../components/GoogleMap.js'
 
 
 export default class Accueil extends Component {
+
+
+
 	render(){
+
 		return (
 			<div>
 			<br/>
 				<Titre nom="Bienvenu Jean-Paul! Partagez bien, services et savoirs... et creez des liens"></Titre>
+
 				<br/>
 
 					<div >
