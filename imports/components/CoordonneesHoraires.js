@@ -3,15 +3,19 @@ import { Segment, Header } from 'semantic-ui-react'
 
 export default class CoordonneesHoraires extends Component {
 
- render(){
 
- 	return(
-		<div>
-		    <Segment compact>
-		      <Header as='h2'>Titre</Header>
-		      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas dolore rerum repellat nostrum similique recusandae odio ut aut rem dolorum!</p>
-		    </Segment>
-		</div>
+
+	render(){
+
+		return(
+			<div>
+			    <Segment compact>
+			    	<Header as='h2'>{this.props.contenu.titre}</Header>
+			    	<p>
+				{this.props.contenu.details.map((detail) => <span key={detail}>{detail} <br/></span>)}
+				</p>
+			    </Segment>
+			</div>
 		);
 	}
 }
