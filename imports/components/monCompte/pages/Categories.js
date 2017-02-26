@@ -1,18 +1,26 @@
 import React, {Component} from 'react'
 
-import { Dropdown, Button, Form, Input, TextArea,Icon,Label} from 'semantic-ui-react'
+import { Button, Form, Input, TextArea,Icon,Label} from 'semantic-ui-react'
 
 import Titre1 from '../Titre1.js'
 import Titre2 from '../Titre2.js'
-import MenuDeroulant from '../../MenuDeroulant.js';
+import TableauActions from '../TableauActions.js'
 
-import Tableau from '../Tableau.js'
+
 
 export default class Categories extends Component {
 	constructor(){
 		super()
-		this.actions=["Actions","Editer","Desactiver"]
-		this.stateOptions = [ { key: '0', value: '0', text: 'Editer' },{ key: '1', value: '1', text: 'Desactiver' }  ]
+			this.categ={
+			titres:["Categories","Offres","Demandes"],
+			contenu:[
+						["Cuisine","5","1"],
+						["Bricolage","5","1"],
+						["Chippendales","5","1"]
+					],
+			actions:["Actions","Editer","Desactiver"]
+		}
+
 	}
 
 	render(){
@@ -27,8 +35,9 @@ export default class Categories extends Component {
 				</Input>
 
 				<Titre1 nom="Liste des categories"></Titre1>
-				<MenuDeroulant donnees={this.actions}></MenuDeroulant>
-				<Tableau></Tableau>
+
+				<TableauActions donnees={this.categ}></TableauActions>
+				<Button type='Envoyer'>Appliquer</Button>
 			</div>
 
 		);
