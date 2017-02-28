@@ -12,24 +12,28 @@ constructor(){
 		this.stateOptions = [];
 		this.stateTitre = '';
 	}
-	remplir(donnees,cle){
-		var i=0
-		donnees.map((donnee)=>{
+	remplir(donnees){
+		this.stateOptions=[]
+		donnees.map((donnee,i)=>{
 			if(i>0){
-				this.stateOptions.push({ key: donnee, value:donnee, text: donnee })
+				this.stateOptions.push({ key:i, value:donnee, text: donnee })
+
 			}else{
 				this.stateTitre=donnee
 			}
-			i++
 		})
 	}
+	test(e){
 
+		if(this.props.etatDrop&&typeof(this.props.id)==='number'){this.props.etatDrop(e,this.props.id)}
+
+	}
 	render(){
 
-		if(this.props.donnees){this.remplir(this.props.donnees,this.props.cle)}
+		if(this.props.donnees){this.remplir(this.props.donnees)}
 
 		return (
-			<Dropdown placeholder={this.stateTitre} search selection options={this.stateOptions} />
+			<Dropdown placeholder={this.stateTitre} search selection options={this.stateOptions}  onChange={this.test.bind(this)} />
 		);
 	}
 }

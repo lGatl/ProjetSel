@@ -12,7 +12,8 @@ export default class GererActu extends Component {
 		super()
 			this.state={
 			articles:[],
-			article:{}
+			article:{},
+			boutonSelect:[]
 		}
 		this.nvlArticle={
 			title:"",
@@ -21,17 +22,26 @@ export default class GererActu extends Component {
 
 		this.actu={
 			titres:["Date","nom"],
-			contenu:[
-						["12/04/2017","titre"],
-						["12/04/2017","titre"],
-						["12/04/2017","titre"]
-					],
+			contenu:[],
 			actions:["Actions","Editer","Desactiver","Supprimer"]
+
 		}
 
+
+	}
+	etatDrop(tableau){
+
+		this.setState({boutonSelect:tableau})
+
+	}
+	remplirTableau(){
+		this.actu.contenu=[]
+		this.state.articles.map((article)=>{
+			this.actu.contenu.push(["12/12/2012",article.title])
+		})
 	}
 
-viderInput(){
+	viderInput(){
 			this.nvlArticle={
 			title:"",
 			description:""
@@ -61,24 +71,75 @@ viderInput(){
 					console.log('aye!')
 				}else{
 					this.viderInput()
+					this.getArticles()
+					this.remplirTableau()
 				}
 			})
 		}
 	}
+		supprimeArticle(aSuppr){
 
+			Meteor.call('supprimArticle', aSuppr ,(err,res)=>{
+				if(err){
+				}else{
+
+				}
+			})
+		}
+	supprime(e){
+		e.preventDefault()
+		this.state.boutonSelect.map((bt,i)=>{
+			if(bt=="Supprimer"){this.supprimeArticle(this.state.articles[i]._id)}
+		})
+		this.getArticles()
+	}
+
+
+getArticle(id){
+	Meteor.call('etArticle', id ,(err,res)=>{
+		if(err){
+			Bert.alert({
+				title:"erreur",
+				message:err.message,
+				type:'danger'
+			})
+		}else{
+			this.setState({article: res})
+			}
+		}
+	)
+}
+
+getArticles(){
+	Meteor.call('listeArticles', (err,res)=>{
+		if(err){
+			console.log(err )
+		}else{
+			this.setState({articles  : res})
+
+		}
+	})
+
+
+}
+componentWillMount(){
+	this.getArticles();
+	this.getArticle("je suis  un titre")
+}
 
 	render(){
+		this.remplirTableau()
 		return (
 
 
 			<div>
 				<Titre1 nom="Liste des Articles"></Titre1>
 
-				<TableauActions donnees={this.actu}></TableauActions>
-				<Button type='Envoyer'>Appliquer</Button>
+				<TableauActions donnees={this.actu} etatDrop={this.etatDrop.bind(this)}></TableauActions>
+				<Button type='Envoyer' onClick={this.supprime.bind(this)}>Appliquer</Button>
 
 				<Titre2 nom="Ajouter un Nouvel Article"></Titre2>
-				<Form onSubmit={this.handleSubmit}>
+				<Form  onSubmit={this.handleSubmit}>
 
 
 					<Form.Input className="inputAj"  label="Titre de l'article" name='titreDeLArticle' placeholder='Choisissez un titre'  onChange={this.miseEnVarTitre.bind(this)}/>

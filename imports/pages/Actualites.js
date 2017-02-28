@@ -19,18 +19,7 @@ export default class Actualites extends Component {
 
 
 
-	supprimeArticle(e){
 
-		Meteor.call('supprimArticle', e.target.id ,(err,res)=>{
-			if(err){
-
-			}else{
-				this.getArticles()
-
-				}
-		}
-	)
-	}
 componentWillMount(){
 	this.getArticles();
 	this.getArticle("je suis  un titre")
@@ -70,7 +59,7 @@ getArticles(){
 			<br/>
 				<Titre nom="Actualitées"></Titre>
 				{this.state.articles.map( (article)=>{return(
-					 <EncartActu key={article._id} donnees={article} suppr={this.supprimeArticle.bind(this)}></EncartActu>
+					 <EncartActu key={article._id} donnees={article} ></EncartActu>
 				)}
 				)}
 

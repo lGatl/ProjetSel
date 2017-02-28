@@ -14,7 +14,7 @@ export default class EncartActu extends Component {
 		    	<Image src='/assets/images/wireframe/image.png' size='small' wrapped />
 		      	<Header as='h2'>{article.title}</Header>
 		      	<p>{article.description}</p>
-		      	<Button type='Envoyer' id={article._id} onClick={suppr}>Supprimer</Button>
+
 		    </Segment>
 		</div>
 		);
