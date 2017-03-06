@@ -55,7 +55,7 @@ export default class Moncompte extends Component {
 				if(nom.name=="Gerer les annonces")	{return(<GererAnnonces></GererAnnonces>)}
 				if(nom.name=="Categories")			{return( <Categories></Categories>)}
 				if(nom.name=="Gerer les actualités")	{return(<GererActu></GererActu>)}
-				if(nom.name=="Configuration")			{return(<Configuration></Configuration>)}
+				if(nom.name=="Configuration")		{return(<Configuration></Configuration>)}
 				if(nom.name=="Statistiques")			{return(<Statistiques></Statistiques>)}
 
 

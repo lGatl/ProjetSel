@@ -6,7 +6,7 @@ export default class EncartActu extends Component {
 
  render(){
  		article=this.props.donnees
- 		suppr=this.props.suppr
+
 
  	return(
 		<div>

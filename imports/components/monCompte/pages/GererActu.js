@@ -10,12 +10,10 @@ import TableauActions from '../TableauActions.js'
 export default class GererActu extends Component {
 	constructor(){
 		super()
-			this.state={
+		this.state={
 			articles:[],
 			article:{},
-			boutonSelect:[]
-		}
-		this.nvlArticle={
+			boutonSelect:[],
 			title:"",
 			description:""
 		}
@@ -42,31 +40,25 @@ export default class GererActu extends Component {
 	}
 
 	viderInput(){
-			this.nvlArticle={
+		this.setState({
 			title:"",
 			description:""
-		}
-			document.getElementsByClassName('inputAj')[0].getElementsByTagName('input')[0].value=""
-			document.getElementsByClassName('inputAj')[1].getElementsByTagName('textarea')[0].value=""
-
+		})
 	}
 
-	miseEnVarDes(e){
+	miseEnVar(e){
 		e.preventDefault();
-		this.nvlArticle.description=e.target.value
-
-	}
-	miseEnVarTitre(e){
-		e.preventDefault();
-		this.nvlArticle.title=e.target.value
+		this.setState({
+			[e.target.name]:e.target.value
+		})
 	}
 
 	ajoutArticle(e){
 		e.preventDefault();
-		if(this.nvlArticle.titre=="" || this.nvlArticle.description==""){
+		if(this.state.titre=="" || this.state.description==""){
 			console.log("remplir les champs")
 		}else{
-			Meteor.call('ajoutArticle', this.nvlArticle ,(err,res)=>{
+			Meteor.call('ajoutArticle', this.state ,(err,res)=>{
 				if(err){
 					console.log('aye!')
 				}else{
@@ -116,15 +108,12 @@ getArticles(){
 			console.log(err )
 		}else{
 			this.setState({articles  : res})
-
 		}
 	})
-
-
 }
 componentWillMount(){
 	this.getArticles();
-	this.getArticle("je suis  un titre")
+
 }
 
 	render(){
@@ -136,15 +125,27 @@ componentWillMount(){
 				<Titre1 nom="Liste des Articles"></Titre1>
 
 				<TableauActions donnees={this.actu} etatDrop={this.etatDrop.bind(this)}></TableauActions>
+
 				<Button type='Envoyer' onClick={this.supprime.bind(this)}>Appliquer</Button>
 
 				<Titre2 nom="Ajouter un Nouvel Article"></Titre2>
 				<Form  onSubmit={this.handleSubmit}>
 
 
-					<Form.Input className="inputAj"  label="Titre de l'article" name='titreDeLArticle' placeholder='Choisissez un titre'  onChange={this.miseEnVarTitre.bind(this)}/>
+					<Form.Input className="inputAj"
+						label="Titre de l'article"
+						name='title'
+						placeholder='Choisissez un titre'
+						value={this.state.title}
+						onChange={this.miseEnVar.bind(this)}/>
 
-					<Form.TextArea className="inputAj"  name='DescriptionDeLArticle' label="description de l'article" placeholder="Decrire l'article" rows='3' onChange={this.miseEnVarDes.bind(this)} />
+					<Form.TextArea className="inputAj"
+						name='description'
+						label="Description de l'article"
+						value={this.state.description}
+						placeholder="Decrire l'article"
+						rows='3'
+						onChange={this.miseEnVar.bind(this)} />
 					<h4>Inserer une piece jointe</h4>
 					<br/>
 					<Icon size ='huge' name='camera'/>

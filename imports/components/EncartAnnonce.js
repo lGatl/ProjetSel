@@ -18,7 +18,7 @@ export default class EncartAnnonce extends Component {
 							</Grid.Column>
 							<Grid.Column width={6}>
 								<Card.Header>
-									Titre de mon Annonce
+									Titre de l'Annonce
 								</Card.Header>
 								<br/>
 								<Card.Meta>

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 
 import {Segment} from 'semantic-ui-react';
 
-import MenuDeroulant from '../components/MenuDeroulant.js';
 import EncartAnnonce from '../components/EncartAnnonce.js';
 import Onglets from '../components/Onglets.js'
 import Filtres from '../components/Filtres.js'

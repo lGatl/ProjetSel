@@ -9,8 +9,9 @@ export default class MenuDeroulant extends Component {
 
 constructor(){
 	super()
+		this.state={text:""}
 		this.stateOptions = [];
-		this.stateTitre = '';
+		this.stateTitre ='';
 	}
 	remplir(donnees){
 		this.stateOptions=[]
@@ -24,16 +25,20 @@ constructor(){
 		})
 	}
 	test(e){
-
+		this.setState({text:e.target.text})
 		if(this.props.etatDrop&&typeof(this.props.id)==='number'){this.props.etatDrop(e,this.props.id)}
-
 	}
+
 	render(){
 
 		if(this.props.donnees){this.remplir(this.props.donnees)}
 
 		return (
-			<Dropdown placeholder={this.stateTitre} search selection options={this.stateOptions}  onChange={this.test.bind(this)} />
+			<Dropdown placeholder={this.stateTitre}
+						search selection
+						options={this.stateOptions}
+						text={this.state.text}
+						onChange={this.test.bind(this)} />
 		);
 	}
 }

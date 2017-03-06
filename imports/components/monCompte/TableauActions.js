@@ -7,7 +7,6 @@ export default class Tableau extends Component {
 		constructor(){
 		super()
 
-			this.actions=[];
 			this.menu=[];
 			this.state={menu:[]};
 			this.nbl=0
@@ -22,7 +21,7 @@ export default class Tableau extends Component {
 			this.setState({menu:this.menu})
 		}
 	render(){
-				this.actions=this.props.donnees.actions
+
 		return (
 
 			<Table className='tableauAction' striped>
@@ -41,7 +40,14 @@ export default class Tableau extends Component {
 
 							<Table.Row id={i} key={i}>
 								{ligne.map((cellule,j)=><Table.Cell key={j}>{cellule}</Table.Cell>)}
-								<Table.Cell> <MenuDeroulant etatDrop={this.etatDrop.bind(this)} donnees={this.actions} id={i}></MenuDeroulant></Table.Cell>
+								<Table.Cell>
+									<MenuDeroulant
+										texte={""}
+										etatDrop={this.etatDrop.bind(this)}
+										donnees={this.props.donnees.actions}
+										id={i}>
+									</MenuDeroulant>
+								</Table.Cell>
 							</Table.Row>
 						)
 					})
