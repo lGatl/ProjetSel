@@ -14,12 +14,23 @@ Meteor.methods({
 		return Articles.findOne({title : "je suis  un titre"});
 
 	},
-	ajoutArticle:(nvlArticle)=>{Articles.insert({title:nvlArticle.title,description:nvlArticle.description})},
+	ajoutArticle:(nvlArticle)=>{
+		if (Meteor.userId()){
+			if(nvlArticle.title.length>1&&nvlArticle.description.length>1){
+				Articles.insert({title:nvlArticle.title,description:nvlArticle.description})
+			}
+		}else{return false}
+	},
 	supprimArticle:(id)=>{Articles.remove({_id:id})},
 
 	utilisateur: ()=>{
+			if (Meteor.userId()){
+				return true
+			}else{
+				return false
+			}
 
-		return(Meteor.user)
+
 	}
 
 

@@ -8,7 +8,23 @@ import GoogleMap from '../components/GoogleMap.js'
 
 export default class Accueil extends Component {
 
+getuser(){
+	console.log('a')
+/*	Meteor.call('utilisateur' ,(err,res)=>{
+		console.log(err,res)
+		if(err){
+			console.log("erezrezr")
 
+		}else{
+			console.log("eretretreter")
+			console.log(res)
+			}
+		}
+	)*/
+}
+	componentWillMount(){
+		this.getuser()
+	}
 
 	render(){
 

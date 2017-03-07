@@ -55,24 +55,45 @@ export default class GererActu extends Component {
 
 	ajoutArticle(e){
 		e.preventDefault();
-		if(this.state.titre=="" || this.state.description==""){
-			console.log("remplir les champs")
-		}else{
+
+		if(this.state.title && this.state.description){
+
 			Meteor.call('ajoutArticle', this.state ,(err,res)=>{
-				if(err){
-					console.log('aye!')
+				if(err||res==false){
+					Bert.alert({
+						title:"Erreur",
+						message:"Impossible d'ajouter l'article" ,
+						type:'error'
+					})
 				}else{
 					this.viderInput()
 					this.getArticles()
 					this.remplirTableau()
+
+					Bert.alert({
+						title:"Article sauvegardé",
+						message:"Votre article "+this.state.title+" a été sauvegardé" ,
+						type:'success'
+					})
 				}
 			})
-		}
+		}else{
+					Bert.alert({
+						title:"Donnée manquantes",
+						message:"Veuillez remplir les champs" ,
+						type:'info'
+					})
+			}
 	}
 		supprimeArticle(aSuppr){
 
 			Meteor.call('supprimArticle', aSuppr ,(err,res)=>{
 				if(err){
+					Bert.alert({
+						title:"Erreur",
+						message:"Impossible de supprimer l'atricle" ,
+						type:'error'
+					})
 				}else{
 
 				}
@@ -80,8 +101,26 @@ export default class GererActu extends Component {
 		}
 	supprime(e){
 		e.preventDefault()
+		var j=0
+		var s=""
 		this.state.boutonSelect.map((bt,i)=>{
-			if(bt=="Supprimer"){this.supprimeArticle(this.state.articles[i]._id)}
+
+			if(bt=="Supprimer"){
+				j++
+				this.supprimeArticle(this.state.articles[i]._id)
+			}
+
+					if(j>1){message= "Vos articles ont été supprimés";s="s"}else if(j==1){
+					message= "Votre article a été supprimé"
+					}
+
+
+					Bert.alert({
+						title:"Article"+s+" supprimé"+s,
+						message:message,
+						type:'success'
+					})
+
 		})
 		this.getArticles()
 	}
