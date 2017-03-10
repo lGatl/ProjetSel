@@ -56,6 +56,12 @@ export default class FormContact extends Component {
 	maj(){
 		this.setState({courriel:this.courriel})
 	}
+	mail(e){
+		e.preventDefault()
+		Meteor.call('mail',(err,res)=>{
+			if(err){console.log('reretrterreretrete')}else{console.log('ok')}
+		})
+	}
 
 	render(){
 		return(
@@ -67,7 +73,8 @@ export default class FormContact extends Component {
 					<Form.Input label="Téléphone" id="tel" placeholder='Téléphone' onChange={this.miseEnVarTel.bind(this)}/>
 					<Form.TextArea id='sujet' label='Motif de votre message' placeholder='motif' rows='1' onChange={this.miseEnVarSujet.bind(this)}/>
 					<Form.TextArea id='message' label='Votre message' placeholder='Votre message' rows='3' onChange={this.miseEnVarMessage.bind(this)}/>
-					<Button type='submit' href={
+					<Button type='submit'
+					href={
 						"mailto:tornade.50@hotmail.fr?subject=" +
 						this.state.courriel.sujet +
 						"&body=" + "Prénom et Nom : " +
@@ -85,3 +92,4 @@ export default class FormContact extends Component {
 	}
 }
 
+/**/

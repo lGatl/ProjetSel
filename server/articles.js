@@ -30,16 +30,26 @@ Meteor.methods({
 		}else{return false}
 	},
 	supprimArticle:(id)=>{Articles.remove({_id:id})},
-
-	utilisateur: ()=>{
-			if (Meteor.userId()){
-				return true
-			}else{
-				return false
-			}
-
-
+	utilisateurs:()=>{
+		var id=Meteor.userId()
+		var utilisateurs=Meteor.users.find().fetch()
+		var ut={}
+		console.log(id,utilisateurs)
+		utilisateurs.map((utilisateur)=>{
+			if(utilisateur._id==id){ut=utilisateur}
+		})
+		console.log(ut)
+				return(ut)
+		},
+	mail:()=>{
+		Email.send({
+		to: "to.gat55@live.fr",
+		from: "from.gat55@live.fr",
+		subject: "Example Email",
+		text: "The contents of our email in plain text.",
+	});
 	}
+
 
 
 });

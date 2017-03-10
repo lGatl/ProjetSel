@@ -7,31 +7,40 @@ import GoogleMap from '../components/GoogleMap.js'
 
 
 export default class Accueil extends Component {
-
+constructor(){
+	super()
+	this.state={mail:{}}
+}
 getuser(){
 
-/*	Meteor.call('utilisateur' ,(err,res)=>{
-		console.log(err,res)
+	Meteor.call('utilisateurs' ,(err,res)=>{
+
 		if(err){
 			console.log("erezrezr")
 
 		}else{
-			console.log("eretretreter")
-			console.log(res)
+
+			this.setState({mail  : res})
+
 			}
 		}
-	)*/
+	)
 }
 	componentWillMount(){
 		this.getuser()
+
 	}
 
 	render(){
-
+		var nom="Futur Seliste"
+		if(this.state.mail.emails){
+			nom=this.state.mail.emails[0].address
+			nom=nom.slice(0, nom.indexOf("@",0))
+		}
 		return (
 			<div>
 			<br/>
-				<Titre nom="Bienvenu Jean-Paul! Partagez bien, services et savoirs... et creez des liens"></Titre>
+				<Titre nom={"Bienvenu "+nom+"! Partagez bien, services et savoirs... et creez des liens"}></Titre>
 
 				<br/>
 
