@@ -5,15 +5,14 @@ export default class EncartActu extends Component {
 
 
  render(){
- 		article=this.props.donnees
-
-
  	return(
 		<div>
 		    <Segment compact>
 		    	<Image src='/assets/images/wireframe/image.png' size='small' wrapped />
-		      	<Header as='h2'>{article.title}</Header>
-		      	<p>{article.description}</p>
+		      	<a href={"/articles/"+this.props.donnees.title}>
+		      		<Header as='h2'>{this.props.donnees.title}</Header>
+		      	</a>
+		      	<p>{this.props.donnees.description.slice(0, 50)+" ..."}</p>
 
 		    </Segment>
 		</div>

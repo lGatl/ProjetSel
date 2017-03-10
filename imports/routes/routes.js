@@ -11,6 +11,8 @@ import {mount} from 'react-mounter';
   import Kesako from '../pages/Kesako.js';
  import LesSelistes from '../pages/LesSelistes.js';
  import MonCompte from '../pages/MonCompte.js';
+  import  Actu from '../components/Actu.js';
+
 
 
  FlowRouter.route('/', {
@@ -56,3 +58,10 @@ FlowRouter.route('/lesSelistes', {
 		 mount(MainLayout, {content: <LesSelistes />});
 	 }
  });
+FlowRouter.route('/articles/:titre', {
+  name: 'home',
+  action: function (params) {
+    mount(MainLayout, { content: <Actu titre={params.titre} /> });
+  },
+});
+

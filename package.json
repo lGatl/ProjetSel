@@ -18,6 +18,7 @@
     "react-dom": "^15.4.2",
     "react-komposer": "^2.0.0",
     "react-mounter": "^1.2.0",
+    "react-rte": "^0.11.0",
     "react-swiper-dy": "^1.1.2",
     "semantic-ui-react": "^0.64.7",
     "swiper": "^3.4.1",

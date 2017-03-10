@@ -9,6 +9,9 @@ Meteor.methods({
 	/*throw new Metheor.Error(500, "Desolé")*/
 	return Articles.find().fetch()
 	},
+	getArticle: (titre)=>{
+		return Articles.findOne({title: titre});
+	},
 	etArticle: (id)=>{
 
 		return Articles.findOne({title : "je suis  un titre"});
