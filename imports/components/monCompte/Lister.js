@@ -9,17 +9,24 @@ export default class Lister extends Component {
 
 			<Segment>
 				<List>
-					<List.Item>NOM</List.Item>
-					<List.Item>PRENOM</List.Item>
-					<List.Item>MAIL</List.Item>
-					<List.Item>ADRESSE POSTALE</List.Item>
-					<List.Item>TELEPHONE</List.Item><br/>
-					<List.Item>COMPAGNIE D'ASSURANCE RESPONSABILITE CIVILE</List.Item>
-					<List.Item>DATE DE VALIDITE</List.Item><br/>
-					<List.Item>(données du formulaire d'inscription)</List.Item><br/>
-					<List.Item>
-						Note: <Rating icon='star' defaultRating={3} maxRating={4} />
-					</List.Item>
+					{
+						this.props.donnees.map((donnee,i)=>{
+								cle=Object.keys(donnee)[0]
+								val=donnee[cle]
+									titre=cle
+									cle=="resp"?titre="Responsabilité Civile":
+									cle=="dateVal"?titre="Date de Validité":""
+
+
+								if(cle!="note"){return(<List.Item key = {i}>{titre +": "+val}</List.Item>)}
+									if(cle=="note"){return(<List.Item key={i}>Note: <Rating icon='star' defaultRating={val} maxRating={4} /></List.Item>)}
+
+					})
+					}
+
+
+					<br/>
+
 
 				</List>
 			</Segment>

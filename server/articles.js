@@ -34,11 +34,11 @@ Meteor.methods({
 		var id=Meteor.userId()
 		var utilisateurs=Meteor.users.find().fetch()
 		var ut={}
-		console.log(id,utilisateurs)
+
 		utilisateurs.map((utilisateur)=>{
 			if(utilisateur._id==id){ut=utilisateur}
 		})
-		console.log(ut)
+
 				return(ut)
 		},
 	mail:()=>{
