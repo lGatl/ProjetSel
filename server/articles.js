@@ -17,6 +17,11 @@ Meteor.methods({
 		return Articles.findOne({title : "je suis  un titre"});
 
 	},
+	testConnex:()=>{
+		if (Meteor.userId()){
+			return true
+		}else{return false}
+	},
 	ajoutArticle:(nvlArticle)=>{
 		if (Meteor.userId()){
 			if(nvlArticle.title.length>1&&nvlArticle.description.length>1){

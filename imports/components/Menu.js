@@ -6,29 +6,59 @@ import {LoginButtons} from 'meteor/okgrow:accounts-ui-react'
 export default class MenuS extends Component {
 	constructor(){
 		super()
-		this.state = { activeItem: 'Acceuil' }
+		this.state = {
+			activeItem: 'Acceuil',
+			listeMenu:[]
+		}
 
-		this.handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+		this.listeMenu= [
+				{titre:"Acceuil",href:"/"},
+				{titre:"Kesako",href:"/kesako"},
+				{titre:"Annonces",href:"/annonces"},
+				{titre:"Actualites",href:"/actualites"},
+				{titre:"Contacts",href:"/contacts"},
+				{titre:"MonCompte",href:"/monCompte"},
+				{titre:"LesSelistes",href:"/lesSelistes"}
+			]
+
+
 	}
+		handleItemClick (e, { name }){
 
+		this.setState({ activeItem: name })}
+		testConnex(e){
+			if(e){e.preventDefault()}
+			Meteor.call("testConnex", (err,res)=>{
+				if(err){
+					this.setState({listeMenu:this.listeMenu.slice(0, 5)})
+				}else{
+					if(!res){
+						this.setState({listeMenu:this.listeMenu.slice(0, 5)})
+					}else{this.setState({listeMenu:this.listeMenu})}}
+			})
+		}
+
+			componentWillMount(){
+				this.testConnex()
+			}
 
 	render(){
 		 const { activeItem } = this.state
 		return (
 
-			<div>
+			<div >
 				<Menu pointing secondary>
-					<Menu.Item name='Acceuil' href='/'   active={activeItem === 'Acceuil'} onClick={this.handleItemClick} />
-					<Menu.Item name='Kesako' href='/kesako'  active={activeItem === 'Kesako'} onClick={this.handleItemClick} />
-					<Menu.Item name='Annonces' href='/annonces' active={activeItem === 'Annonces'} onClick={this.handleItemClick} />
-					<Menu.Item name='Actualites'  href='/actualites'  active={activeItem === 'Actualites'} onClick={this.handleItemClick} />
-					<Menu.Item name='Contacts' href='/contacts'   active={activeItem === 'Contacts'} onClick={this.handleItemClick} />
-					<Menu.Item name='MonCompte' href='/monCompte'   active={activeItem === 'MonCompte'} onClick={this.handleItemClick} />
-					<Menu.Item name='LesSelistes' href='/lesSelistes'   active={activeItem === 'LesSelistes'} onClick={this.handleItemClick} />
+					{
+						this.state.listeMenu.map((it,i)=>{
+							return(
+								<Menu.Item name={it.titre} href={it.href} key={i}  active={activeItem === it.titre} onClick={this.handleItemClick.bind(this)} />
 
-					<Menu.Menu >
-						<Menu.Item ><LoginButtons></LoginButtons></Menu.Item>
-					</Menu.Menu>
+							)
+						})
+					}
+
+
+					<Menu.Item><LoginButtons ></LoginButtons></Menu.Item>
 				</Menu>
 
 
