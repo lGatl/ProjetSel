@@ -16,8 +16,8 @@ export default class MonReleve extends Component {
 		this.receveur={
 			titres:["Date","Nom Prenom du Receveur","Categorie","Titre de l'annonceur","Nombre de seugnettes"],
 			contenu:[
-						["02/02/2017","Jean Bon","Cuisine","Cours de Cuisine","500"],
-						["02/02/2017","Jean Bon","Cuisine","Cours de Cuisine","500"]
+						["02/02/2017","Jean Bddon","Cucdce","Caaaaasine","5004"],
+						["02/02/2017","Jean Bcdcdon","sfdsfsde","Cdcdsfcdscdscsdisine","545"]
 					],
 			actions:["Actions","Editer","Desactiver","Supprimer"]
 		}

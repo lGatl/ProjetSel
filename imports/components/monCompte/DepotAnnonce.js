@@ -4,60 +4,128 @@ import Titre1 from './Titre1.js'
 /*Depot Offre et Depot Demande*/
 
 const categories = [
-	{ key: 'm', text: 'Male', value: 'male' },
-	{ key: 'f', text: 'Female', value: 'female' },
-]
-
-const products = [
-	{ key: 'hat', text: 'Hat', value: 'hat' },
-	{ key: 'scarf', text: 'Scarf', value: 'scarf' },
-	{ key: 'jacket', text: 'Jacket', value: 'jacket' },
-	{ key: 't_shirt', text: 'T-Shirt', value: 't_shirt' },
-	{ key: 'gloves', text: 'Gloves', value: 'gloves' },
-	{ key: 'watch', text: 'Watch', value: 'watch' },
-	{ key: 'belt', text: 'Belt', value: 'belt' },
-	{ key: 'pants', text: 'Pants', value: 'pants' },
-	{ key: 'shoes', text: 'Shoes', value: 'shoes' },
-	{ key: 'socks', text: 'Socks', value: 'socks' },
+	{ key: 'h', text: 'Homme', value: 'homme' },
+	{ key: 'f', text: 'Femme', value: 'femme' },
 ]
 
 export default class DepotAnnonce extends Component {
 	constructor(){
 		super()
-		this.state = { formData: {} }
+		this.state = {
+			type:"",
+			titreDeLAnnonce:"",
+			descriptionDeLAnnonce:"",
+			informationDeContact:"",
+			dateDeFin:""
+		}
 
-	this.handleChange = (e, { value }) => this.setState({ value })
+		this.handleChange = (e, { value }) => {
+			this.setState({categorie:value })
+		}
+	}
 
-	this.handleSubmit = (e, { formData }) => {
+	componentWillMount(){
+		this.setState({type:this.props.type})
+	}
+
+	valider(e){
 		e.preventDefault()
-		this.setState({ formData })
+		this.ajoutAnnonce()
 	}
+	change(e){
+			this.setState({
+				[e.target.name]:e.target.value
+			})
 	}
+
+	ajoutAnnonce(){
+
+		Meteor.call('ajoutAnnonce', this.state ,(err,res)=>{
+			if(err||res==false){
+				Bert.alert({
+					title:"Erreur",
+					message:"Impossible d'ajouter l'article" ,
+					type:'error'
+				})
+			}else{
+
+				Bert.alert({
+					title:"Article sauvegardé",
+					message:"Votre annonce "+this.state.titreDeLAnnonce+" a été sauvegardé" ,
+					type:'success'
+				})
+			}
+		})
+
+	}
+
 
 
 	render() {
-		const { formData, value } = this.state
+
 		return (
 			<div>
 
-				<Titre1 nom={this.props.titre}></Titre1>
+				<Titre1 nom={"Deposer une "+this.props.type}></Titre1>
 				<br/>
-				<Label size='large' >Votre Offre</Label>
+				<Label size='large' >{"Votre "+this.props.type}</Label>
 				<br/> <br/>
-				<Form onSubmit={this.handleSubmit}>
+				<Form >
 
 
-					<Form.Select label='Categorie' name='categorie' options={categories} placeholder='Categorie' />
-					<Form.Input label="Titre de l'annonce" name='titreDeLAnnonce' placeholder='Choisissez un titre' />
+					<Form.Select
+						label='Categorie'
+						name='categorie'
+						options={categories}
+						placeholder='Categorie'
+						onChange={this.handleChange}
+						value={this.state.categorie}
+						/>
+					<Form.Input
+						label="Titre de l'annonce"
+						name='titreDeLAnnonce'
+						placeholder='Choisissez un titre'
+						onChange={this.change.bind(this)}
+						value={this.state.titreDeLAnnonce}
+					/>
 
-					<Form.TextArea name='DescriptionDeLAnnonce' label="description de l'annonce" placeholder='Presentez votre offre' rows='3' />
-					<Form.TextArea name='InformationDeContact' label='Information de Contact' placeholder='tel, adresse, mail, ...' rows='3' />
-						<Form.Input label="Date de fin" name='dateDeFin' placeholder='Date de fin' />
-					<Image src='/assets/images/wireframe/image.png' size='small' />
-					<Image src='/assets/images/wireframe/image.png' size='small' />
-					<Image src='/assets/images/wireframe/image.png' size='small' />
+					<Form.TextArea
+						name='descriptionDeLAnnonce'
+						label="Description de l'annonce"
+						placeholder='Presentez votre offre'
+						rows='3'
+						onChange={this.change.bind(this)}
+						value={this.state.descriptionDeLAnnonce}
+					/>
+					<Form.TextArea
+						name='informationDeContact'
+						label='Information de Contact'
+						placeholder='tel, adresse, mail, ...'
+						rows='3'
+						onChange={this.change.bind(this)}
+						value={this.state.informationDeContact}
+					/>
+					<Form.Input
+						label="Date de fin"
+						name='dateDeFin'
+						placeholder='Date de fin'
+						onChange={this.change.bind(this)}
+						value={this.state.dateDeFin}
+						/>
+					<Image
+						src='/assets/images/wireframe/image.png'
+						size='small'
+					/>
+					<Image
+						src='/assets/images/wireframe/image.png'
+						size='small'
+					/>
+					<Image
+						src='/assets/images/wireframe/image.png'
+						size='small'
+					/>
 
-					<Button primary type='submit'>Submit</Button>
+					<Button primary type='submit' onClick={this.valider.bind(this)}>Valider</Button>
 
 				</Form>
 			</div>

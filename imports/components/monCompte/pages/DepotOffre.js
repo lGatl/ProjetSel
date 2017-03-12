@@ -4,11 +4,17 @@ import DepotAnnonce from '../DepotAnnonce.js'
 
 
 export default class DepotOffre extends Component {
+	constructor(){
+		super()
+		this.state={type:"offre"}
+	}
+
+
 
 	render() {
 
 		return (
-			<DepotAnnonce titre="Deposer une Offre"></DepotAnnonce>
+			<DepotAnnonce type={this.state.type}></DepotAnnonce>
 		)
 	}
 }
