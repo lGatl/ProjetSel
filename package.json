@@ -6,22 +6,21 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
-    "babel-runtime": "6.18.0",
-    "bcrypt": "^1.0.2",
+    "babel-runtime": "^6.20.0",
     "classnames": "^2.2.5",
-    "faker": "^3.1.0",
     "i": "^0.3.5",
     "lodash": "^4.17.4",
-    "meteor-node-stubs": "~0.2.0",
-    "npm": "^4.1.2",
+    "meteor-node-stubs": "~0.2.4",
+    "node-pre-gyp": "^0.6.33",
+    "npm": "^4.4.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-komposer": "^2.0.0",
     "react-mounter": "^1.2.0",
     "react-rte": "^0.11.0",
     "react-swiper-dy": "^1.1.2",
-    "semantic-ui-react": "^0.64.7",
-    "swiper": "^3.4.1",
+    "semantic-ui-react": "^0.67.1",
+    "swiper": "^3.4.2",
     "url": "^0.11.0"
   }
 }
