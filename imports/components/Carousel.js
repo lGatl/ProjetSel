@@ -29,13 +29,13 @@ export default class Carousel extends Component {
 
         <ReactSwiper ref="reactSwiper" swipeOptions={{}}>
               <div style={style}>
-                <EncartAnnonce></EncartAnnonce>
+
               </div>
               <div style={style}>
-                <EncartAnnonce></EncartAnnonce>
+
               </div>
               <div style={style}>
-                <EncartAnnonce></EncartAnnonce>
+
               </div>
         </ReactSwiper>
         <div>

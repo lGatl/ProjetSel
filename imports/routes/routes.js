@@ -1,17 +1,18 @@
 
-import React, {Component } from 'react';
-import {FlowRouter} from 'meteor/kadira:flow-router-ssr';
-import {mount} from 'react-mounter';
+	import React, {Component } from 'react';
+	import {FlowRouter} from 'meteor/kadira:flow-router-ssr';
+	import {mount} from 'react-mounter';
 
- import {MainLayout} from '../layouts/MainLayout.js';
- import Accueil from '../pages/Accueil.js';
- import Actualites from '../pages/Actualites.js';
-  import Annonces from '../pages/Annonces.js';
- import Contacts from '../pages/Contacts.js';
-  import Kesako from '../pages/Kesako.js';
- import LesSelistes from '../pages/LesSelistes.js';
- import MonCompte from '../pages/MonCompte.js';
-  import  Actu from '../components/Actu.js';
+	import {MainLayout} from '../layouts/MainLayout.js';
+	import Accueil from '../pages/Accueil.js';
+	import Actualites from '../pages/Actualites.js';
+	import Annonces from '../pages/Annonces.js';
+	import Contacts from '../pages/Contacts.js';
+	import Kesako from '../pages/Kesako.js';
+	import LesSelistes from '../pages/LesSelistes.js';
+	import MonCompte from '../pages/MonCompte.js';
+	import  Actu from '../components/Actu.js';
+	import  AnnonceDesc from '../components/AnnonceDesc.js';
 
 
 
@@ -35,10 +36,10 @@ FlowRouter.route('/annonces', {
 	 }
  });
 FlowRouter.route('/actualites', {
-   name: 'actualites',
-   action: function() {
-     mount(MainLayout, {content: <Actualites />});
-   }
+	 name: 'actualites',
+	 action: function() {
+		 mount(MainLayout, {content: <Actualites />});
+	 }
  });
 FlowRouter.route('/contacts', {
 	 name: 'contacts',
@@ -59,9 +60,15 @@ FlowRouter.route('/lesSelistes', {
 	 }
  });
 FlowRouter.route('/articles/:titre', {
-  name: 'home',
-  action: function (params) {
-    mount(MainLayout, { content: <Actu titre={params.titre} /> });
-  },
+	name: 'home',
+	action: function (params) {
+		mount(MainLayout, { content: <Actu titre={params.titre} /> });
+	},
+});
+FlowRouter.route('/annonces/:titre', {
+	name: 'home',
+	action: function (params) {
+		mount(MainLayout, { content: <AnnonceDesc titre={params.titre} /> });
+	},
 });
 

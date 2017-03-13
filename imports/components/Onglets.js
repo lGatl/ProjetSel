@@ -19,9 +19,9 @@ constructor(){
 		return (
 			<div>
 				<Menu attached='top' tabular>
-					<Menu.Item name='bio' active={activeItem === 'bio'} onClick={this.handleItemClick} />
-					<Menu.Item name='photos' active={activeItem === 'photos'} onClick={this.handleItemClick} />
-					<Menu.Item name='graphie' active={activeItem === 'graphie'} onClick={this.handleItemClick} />
+					<Menu.Item name='toutes' active={activeItem === 'toutes'} onClick={this.handleItemClick} />
+					<Menu.Item name='offres' active={activeItem === 'offres'} onClick={this.handleItemClick} />
+					<Menu.Item name='demandes' active={activeItem === 'demandes'} onClick={this.handleItemClick} />
 
 				</Menu>
 

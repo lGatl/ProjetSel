@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Card,Image,Grid,Label } from 'semantic-ui-react'
+import { Card,Image,Grid,Label,Header } from 'semantic-ui-react'
 
 /*Pour la page Annonces*/
 
@@ -8,8 +8,9 @@ export default class EncartAnnonce extends Component {
 
 	render() {
 
+
 		return (
-			<div>
+			<div >
 				 <Card fluid>
 
 						<Grid >
@@ -18,14 +19,19 @@ export default class EncartAnnonce extends Component {
 							</Grid.Column>
 							<Grid.Column width={6}>
 								<Card.Header>
-									Titre de l'Annonce
+									{this.props.donnees.type}+" - "+{this.props.donnees.categorie}
 								</Card.Header>
+
+								<a href={"/annonces/"+this.props.donnees.titreDeLAnnonce}><Header as="h2" >
+									{this.props.donnees.titreDeLAnnonce}
+								</Header></a>
+
 								<br/>
 								<Card.Meta>
-									Description
+									{this.props.donnees.descriptionDeLAnnonce.slice(0, 50)+" ..."}
 								</Card.Meta>
 								<Card.Description>
-									Date de mise en ligne
+									{this.props.donnees.dateDeFin}
 								</Card.Description>
 
 

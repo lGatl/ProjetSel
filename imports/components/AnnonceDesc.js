@@ -4,12 +4,38 @@ import Titre1 from './monCompte/Titre1.js'
 import { Rating, Button, Table, Icon, Image as ImageComponent, Item, Label } from 'semantic-ui-react'
 
 export default class AnnonceDesc extends Component {
+
+	constructor(){
+		super();
+		this.state={};
+	}
+
+	getAnnonce(titre){
+		Meteor.call('getAnnonce',titre,(err,res)=>{
+			console.log(res)
+			if(err){
+				Bert.alert({
+					title:"Erreur",
+					message:err.message,
+					type: 'danger'
+				})
+			}else{
+				this.setState(res)
+
+			}
+		})
+	}
+	componentWillMount(){
+		this.getAnnonce(this.props.titre)
+
+	}
+
 	render(){
 		return(
 
 				<Segment>
-					<Segment.Group horizontal basic>
-						<Segment basic>
+					<Segment.Group horizontal >
+						<Segment >
 								<Item>
 									<Item.Image src='https://placehold.it/200x200' />
 								</Item>
@@ -17,7 +43,7 @@ export default class AnnonceDesc extends Component {
 									<Table celled>
 										<Table.Header>
 											<Table.Row>
-												<Table.HeaderCell>Catégorie</Table.HeaderCell>
+												<Table.HeaderCell>{this.state.categorie}</Table.HeaderCell>
 												<Table.HeaderCell></Table.HeaderCell>
 											</Table.Row>
 										</Table.Header>
@@ -28,8 +54,8 @@ export default class AnnonceDesc extends Component {
 												<Table.Cell>**/**/****</Table.Cell>
 											</Table.Row>
 											<Table.Row>
-												<Table.Cell>Date de fin</Table.Cell>
-												<Table.Cell>**/**/****</Table.Cell>
+												<Table.Cell>Date de Fin</Table.Cell>
+												<Table.Cell>{this.state.dateDeFin}</Table.Cell>
 											</Table.Row>
 											<Table.Row>
 												<Table.Cell>Statut</Table.Cell>
@@ -38,9 +64,9 @@ export default class AnnonceDesc extends Component {
 										</Table.Body>
 									</Table>
 							</Segment>
-						<Segment basic>
-							<Titre1/>
-							<span>Description de l'annonce</span>
+						<Segment >
+							<Titre1 nom={this.state.titreDeLAnnonce}/>
+							<span>{this.state.descriptionDeLAnnonce}</span>
 						</Segment>
 					</Segment.Group>
 
