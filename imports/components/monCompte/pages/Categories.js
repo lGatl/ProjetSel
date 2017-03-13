@@ -32,8 +32,7 @@ export default class Categories extends Component {
 							name="titreDeLaCategorie"
 							type='text'
 							placeholder='Nom de la Categorie'
-							onChange={this.change.bind(this)}
-							value={this.state.titreDeLaCategorie}
+
 							>
 					<Label basic>Nom de la Categorie :  </Label>
 					<input />
