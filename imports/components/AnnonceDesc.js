@@ -12,7 +12,6 @@ export default class AnnonceDesc extends Component {
 
 	getAnnonce(titre){
 		Meteor.call('getAnnonce',titre,(err,res)=>{
-			console.log(res)
 			if(err){
 				Bert.alert({
 					title:"Erreur",

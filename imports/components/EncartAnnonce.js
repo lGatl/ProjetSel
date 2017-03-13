@@ -19,7 +19,7 @@ export default class EncartAnnonce extends Component {
 							</Grid.Column>
 							<Grid.Column width={6}>
 								<Card.Header>
-									{this.props.donnees.type}+" - "+{this.props.donnees.categorie}
+									{this.props.donnees.type+" - "+this.props.donnees.categorie}
 								</Card.Header>
 
 								<a href={"/annonces/"+this.props.donnees.titreDeLAnnonce}><Header as="h2" >

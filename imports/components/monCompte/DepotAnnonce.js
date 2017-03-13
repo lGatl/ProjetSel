@@ -13,7 +13,6 @@ export default class DepotAnnonce extends Component {
 		super()
 		this.state = {
 			type:"",
-
 			titreDeLAnnonce:"",
 			descriptionDeLAnnonce:"",
 			informationDeContact:"",
@@ -32,6 +31,15 @@ export default class DepotAnnonce extends Component {
 	valider(e){
 		e.preventDefault()
 		this.ajoutAnnonce()
+		this.setState( {
+			type:"",
+			categorie:"",
+			titreDeLAnnonce:"",
+			descriptionDeLAnnonce:"",
+			informationDeContact:"",
+			dateDeFin:""
+		})
+
 	}
 	change(e){
 			this.setState({
@@ -40,7 +48,6 @@ export default class DepotAnnonce extends Component {
 	}
 
 	ajoutAnnonce(){
-		console.log(this.state)
 		Meteor.call('ajoutAnnonce', this.state ,(err,res)=>{
 			if(err||res==false){
 				Bert.alert({
