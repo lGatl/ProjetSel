@@ -9,6 +9,7 @@ import TableauActions from '../TableauActions.js'
 
 
 export default class Categories extends Component {
+
 	constructor(){
 		super()
 			this.categ={
@@ -20,7 +21,6 @@ export default class Categories extends Component {
 					],
 			actions:["Actions","Editer","Desactiver"]
 		}
-
 	}
 
 	render(){
@@ -28,7 +28,13 @@ export default class Categories extends Component {
 
 			<div>
 				<Titre1 nom="Creer une Categorie"></Titre1>
-					<Input labelPosition='right' type='text' placeholder='Nom de la Categorie'>
+					<Input labelPosition='right'
+							name="titreDeLaCategorie"
+							type='text'
+							placeholder='Nom de la Categorie'
+							onChange={this.change.bind(this)}
+							value={this.state.titreDeLaCategorie}
+							>
 					<Label basic>Nom de la Categorie :  </Label>
 					<input />
 					<Button>Valider</Button>
@@ -36,8 +42,8 @@ export default class Categories extends Component {
 
 				<Titre1 nom="Liste des categories"></Titre1>
 
-				<TableauActions donnees={this.categ}></TableauActions>
-				<Button type='Envoyer'>Appliquer</Button>
+				<TableauActions donnees={this.categ} ></TableauActions>
+				<Button type='Envoyer' >Appliquer</Button>
 			</div>
 
 		);

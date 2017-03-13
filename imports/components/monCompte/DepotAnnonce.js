@@ -21,7 +21,6 @@ export default class DepotAnnonce extends Component {
 
 		this.handleChange = (e,{value}) => this.setState({categorie:value })
 
-
 	}
 
 	componentWillMount(){

@@ -16,7 +16,7 @@
 
 		ajoutAnnonce:(nvlAnnonce)=>{
 			console.log(nvlAnnonce)
-	/*		if (Meteor.userId()){*/
+			if (Meteor.userId()){
 					Annonces.insert({
 						categorie:nvlAnnonce.categorie,
 						type: nvlAnnonce.type,
@@ -25,7 +25,7 @@
 						informationDeContact: nvlAnnonce.informationDeContact,
 						dateDeFin: nvlAnnonce.dateDeFin
 					})
-		/*	}else{return false}*/
+			}else{return false}
 		}
 	})
 
