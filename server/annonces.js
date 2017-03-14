@@ -13,7 +13,7 @@
 		getAnnonce: (titre)=>{
 			return Annonces.findOne({titreDeLAnnonce: titre});
 		},
-
+		supprimeAnnonce:(id)=>{Annonces.remove({_id:id})},
 		ajoutAnnonce:(nvlAnnonce)=>{
 			console.log(nvlAnnonce)
 			if (Meteor.userId()){

@@ -14,19 +14,15 @@ export default class GererActu extends Component {
 			articles:[],
 			article:{},
 			boutonSelect:[],
-			title:"",
-			description:""
 		}
 
 		this.actu={
 			titres:["Date","nom"],
 			contenu:[],
 			actions:{titre:"Actions",contenu:["Editer","Desactiver","Supprimer"]}
-
 		}
-
-
 	}
+
 	etatDrop(tableau){
 
 		this.setState({boutonSelect:tableau})
@@ -122,36 +118,21 @@ export default class GererActu extends Component {
 					})
 
 		})
+		setState({boutonSelect:[]})
 		this.getArticles()
 	}
 
-
-getArticle(id){
-	Meteor.call('etArticle', id ,(err,res)=>{
-		if(err){
-			Bert.alert({
-				title:"erreur",
-				message:err.message,
-				type:'danger'
-			})
-		}else{
-			this.setState({article: res})
+	getArticles(){
+		Meteor.call('listeArticles', (err,res)=>{
+			if(err){
+				console.log(err )
+			}else{
+				this.setState({articles  : res})
 			}
-		}
-	)
-}
-
-getArticles(){
-	Meteor.call('listeArticles', (err,res)=>{
-		if(err){
-			console.log(err )
-		}else{
-			this.setState({articles  : res})
-		}
-	})
-}
-componentWillMount(){
-	this.getArticles();
+		})
+	}
+	componentWillMount(){
+		this.getArticles();
 
 }
 
