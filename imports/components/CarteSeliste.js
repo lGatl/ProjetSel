@@ -7,7 +7,7 @@ import MenuDeroulant from './MenuDeroulant.js';
 export default class CartesSeliste extends Component {
 constructor(){
 	super()
-	this.actions=["Valider","Refuser","Editer","Suspendre","Admin","Moderateur","Ajouter seugnettes","Supprimer"]
+	this.actions={titre:"actions",contenu:["Valider","Refuser","Editer","Suspendre","Admin","Moderateur","Ajouter seugnettes","Supprimer"]}
 }
 
 

@@ -17,7 +17,7 @@ export default class LesSelistes extends Component {
 				<Titre nom="Les Selistes"></Titre>
 					<Filtres></Filtres>
 				 <Card.Group>
-				 	<CarteSeliste> </CarteSeliste>
+					<CarteSeliste> </CarteSeliste>
 				 	<CarteSeliste> </CarteSeliste>
 				 	<CarteSeliste> </CarteSeliste>
 				 	<CarteSeliste> </CarteSeliste>

@@ -1,44 +1,54 @@
 
 import React, {Component} from 'react'
-import {  Dropdown } from 'semantic-ui-react'
+import {  Select} from 'semantic-ui-react'
 
 
 export default class MenuDeroulant extends Component {
-/*import { stateOptions } from '../common'*/
-// stateOptions = [ { key: 'AL', value: 'AL', text: 'Alabama' }, ...  ]
 
-constructor(){
-	super()
-		this.state={text:""}
-		this.stateOptions = [];
-		this.stateTitre ='';
+	constructor(){
+		super()
+
+		this.state={
+			titre:"",
+			valeur:"",
+			contenu:[],
+			nom:""
+		}
+		this.handleChange = (e,{value}) =>this.etatDrop(value)
+
+
 	}
-	remplir(donnees){
-		this.stateOptions=[]
-		donnees.map((donnee,i)=>{
-			if(i>0){
-				this.stateOptions.push({ key:i, value:donnee, text: donnee })
+	etatDrop(val){
+			 if(this.props.etatDrop){this.props.etatDrop(val,this.state.nom)}
+			 this.setState({valeur:val})
+	}
 
-			}else{
-				this.stateTitre=donnee
-			}
+	componentWillMount(){
+
+		var contenu =[]
+		this.props.donnees.contenu.map((conten,i)=>{
+			contenu.push({ key:i, value: conten, text: conten })
+		})
+
+		this.setState({
+			titre:this.props.donnees.titre,
+			valeur:"",
+			nom:this.props.nom,
+			contenu:contenu
 		})
 	}
-	test(e){
-		this.setState({text:e.target.text})
-		if(this.props.etatDrop&&typeof(this.props.id)==='number'){this.props.etatDrop(e,this.props.id)}
-	}
-
+	componentDidMount(){
+			this.props.etat={valeur:this.state.valeur,id:this.state.nom}
+		}
 	render(){
-
-		if(this.props.donnees){this.remplir(this.props.donnees)}
-
 		return (
-			<Dropdown placeholder={this.stateTitre}
-						search selection
-						options={this.stateOptions}
-						text={this.state.text}
-						onChange={this.test.bind(this)} />
+			<Select
+				label={this.state.titre}
+				options={this.state.contenu}
+				placeholder={this.state.titre}
+				onChange={this.handleChange}
+				value={this.state.valeur}
+			/>
 		);
 	}
 }

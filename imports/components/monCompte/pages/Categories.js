@@ -19,7 +19,7 @@ export default class Categories extends Component {
 						["Bricolage","5","1"],
 						["Chippendales","5","1"]
 					],
-			actions:["Actions","Editer","Desactiver"]
+			actions:{titre:"Actions",contenu:["Editer","Desactiver"]}
 		}
 	}
 

@@ -9,9 +9,9 @@ export default class GererAnnonces extends Component {
 constructor(){
                 super()
 
-                this.categories=["Categories :","Cuisine","Mecanique"]
-                this.etat=["Etat","Valider","En Attente","Refuser"]
-                this.type=["Type","Offre","Demande"]
+                this.categories={titre:"Categories :",contenu:["Cuisine","Mecanique"]}
+                this.etat={titre:"Etat",contenu:["Valider","En Attente","Refuser"]}
+                this.type={titre:"Type",contenu:["Offre","Demande"]}
 
 
                 this.annonces={
@@ -21,7 +21,7 @@ constructor(){
 						["02/02/2017","Jean Bon","Demande","Cuisine","Cours de cuisine"],
 						["02/02/2017","Jean Bon","Demande","Cuisine","Cours de cuisine"],
 					],
-			actions:["Actions","Valider","Editer","Refuser","Supprimer"]
+			actions:{titre:"Actions",contenu:["Valider","Editer","Refuser","Supprimer"]}
 		}
             }
 

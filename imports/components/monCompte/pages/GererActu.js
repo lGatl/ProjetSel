@@ -21,7 +21,7 @@ export default class GererActu extends Component {
 		this.actu={
 			titres:["Date","nom"],
 			contenu:[],
-			actions:["Actions","Editer","Desactiver","Supprimer"]
+			actions:{titre:"Actions",contenu:["Editer","Desactiver","Supprimer"]}
 
 		}
 
@@ -30,6 +30,7 @@ export default class GererActu extends Component {
 	etatDrop(tableau){
 
 		this.setState({boutonSelect:tableau})
+
 
 	}
 	remplirTableau(){
@@ -113,7 +114,6 @@ export default class GererActu extends Component {
 					if(j>1){message= "Vos articles ont été supprimés";s="s"}else if(j==1){
 					message= "Votre article a été supprimé"
 					}
-
 
 					Bert.alert({
 						title:"Article"+s+" supprimé"+s,

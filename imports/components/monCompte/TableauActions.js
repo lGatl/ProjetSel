@@ -3,22 +3,17 @@ import React, {Component} from 'react'
 import { Table } from 'semantic-ui-react'
 import MenuDeroulant from '../MenuDeroulant.js';
 
-export default class Tableau extends Component {
+export default class Tableau1ction extends Component {
 		constructor(){
 		super()
-
-			this.menu=[];
-			this.state={menu:[]};
-			this.nbl=0
+			this.state={tabl:[]}
+			this.tabl=[]
 		}
-		etatDrop(e,i){
-				this.menu[i]=e.target.textContent
-				this.setState({menu:this.menu})
-				if(this.props.etatDrop){this.props.etatDrop(this.state.menu)}
-			}
 
-		componentDidMount(){
-			this.setState({menu:this.menu})
+		etatDrop(v,id){
+			this.tabl[id]=v
+			this.setState({tabl:this.tabl})
+			if(this.props.etatDrop){this.props.etatDrop(this.tabl)}
 		}
 	render(){
 
@@ -34,6 +29,7 @@ export default class Tableau extends Component {
 
 				<Table.Body>
 				{
+
 					this.props.donnees.contenu.map((ligne,i)=>{
 
 						return(
@@ -45,8 +41,9 @@ export default class Tableau extends Component {
 										texte={""}
 										etatDrop={this.etatDrop.bind(this)}
 										donnees={this.props.donnees.actions}
-										id={i}>
-									</MenuDeroulant>
+										nom={i}
+										/>
+
 								</Table.Cell>
 							</Table.Row>
 						)
