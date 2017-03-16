@@ -66,8 +66,6 @@ export default class DepotAnnonce extends Component {
 
 	}
 
-
-
 	render() {
 
 		return (

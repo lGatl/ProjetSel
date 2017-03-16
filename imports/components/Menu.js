@@ -18,7 +18,8 @@ export default class MenuS extends Component {
 				{titre:"Actualites",href:"/actualites"},
 				{titre:"Contacts",href:"/contacts"},
 				{titre:"MonCompte",href:"/monCompte"},
-				{titre:"LesSelistes",href:"/lesSelistes"}
+				{titre:"LesSelistes",href:"/lesSelistes"},
+				{titre:"CreerUnCompte",href:"/creerUnCompte"}
 			]
 
 
@@ -30,10 +31,12 @@ export default class MenuS extends Component {
 			if(e){e.preventDefault()}
 			Meteor.call("testConnex", (err,res)=>{
 				if(err){
-					this.setState({listeMenu:this.listeMenu.slice(0, 5)})
+					/*this.setState({listeMenu:this.listeMenu.slice(0, 5)})*/
+					this.setState({listeMenu:this.listeMenu})
 				}else{
 					if(!res){
-						this.setState({listeMenu:this.listeMenu.slice(0, 5)})
+						/*this.setState({listeMenu:this.listeMenu.slice(0, 5)})*/
+						this.setState({listeMenu:this.listeMenu})
 					}else{this.setState({listeMenu:this.listeMenu})}}
 			})
 		}

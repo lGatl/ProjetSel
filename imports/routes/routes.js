@@ -4,6 +4,10 @@
 	import {mount} from 'react-mounter';
 
 	import {MainLayout} from '../layouts/MainLayout.js';
+	import {MainLayoutActu} from '../layouts/MainLayoutActu.js';
+	import {MainLayoutAnnonce} from '../layouts/MainLayoutAnnonce.js';
+	import {MainLayoutActuAnn} from '../layouts/MainLayoutActuAnn.js';
+
 	import Accueil from '../pages/Accueil.js';
 	import Actualites from '../pages/Actualites.js';
 	import Annonces from '../pages/Annonces.js';
@@ -11,6 +15,8 @@
 	import Kesako from '../pages/Kesako.js';
 	import LesSelistes from '../pages/LesSelistes.js';
 	import MonCompte from '../pages/MonCompte.js';
+	import CreerUnCompte from '../pages/CreerUnCompte.js'
+
 	import  Actu from '../components/Actu.js';
 	import  AnnonceDesc from '../components/AnnonceDesc.js';
 
@@ -19,32 +25,32 @@
  FlowRouter.route('/', {
 	 name: 'accueil',
 	 action: function() {
-		 mount(MainLayout, {content: <Accueil />});
+		 mount(MainLayoutActu, {content: <Accueil />});
 	 }
  });
 
 FlowRouter.route('/kesako', {
 	 name: 'kesako',
 	 action: function() {
-		 mount(MainLayout, {content: <Kesako />});
+		 mount(MainLayoutActuAnn, {content: <Kesako />});
 	 }
  });
 FlowRouter.route('/annonces', {
 	 name: 'annonces',
 	 action: function() {
-		 mount(MainLayout, {content: <Annonces />});
+		 mount(MainLayoutActu, {content: <Annonces />});
 	 }
  });
 FlowRouter.route('/actualites', {
 	 name: 'actualites',
 	 action: function() {
-		 mount(MainLayout, {content: <Actualites />});
+		 mount(MainLayoutAnnonce, {content: <Actualites />});
 	 }
  });
 FlowRouter.route('/contacts', {
 	 name: 'contacts',
 	 action: function() {
-		 mount(MainLayout, {content: <Contacts />});
+		 mount(MainLayoutActuAnn, {content: <Contacts />});
 	 }
  });
 FlowRouter.route('/monCompte', {
@@ -57,6 +63,12 @@ FlowRouter.route('/lesSelistes', {
 	 name: 'lesSelistes',
 	 action: function() {
 		 mount(MainLayout, {content: <LesSelistes />});
+	 }
+ });
+FlowRouter.route('/creerUnCompte', {
+	 name: 'creerUnCompte',
+	 action: function() {
+		 mount(MainLayout, {content: <CreerUnCompte />});
 	 }
  });
 FlowRouter.route('/articles/:titre', {
