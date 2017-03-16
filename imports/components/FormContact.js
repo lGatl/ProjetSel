@@ -5,7 +5,7 @@ export default class FormContact extends Component {
 
 	constructor(){
 		super()
-		this.courriel={
+		this.state={
 			prenom:"",
 			nom:"",
 			mail:"",
@@ -13,83 +13,76 @@ export default class FormContact extends Component {
 			sujet:"",
 			message:""
 		}
-
-		this.state={courriel:this.courriel}
 	}
 
-	miseEnVarNom(e){
+	change(e){
 		e.preventDefault();
-		this.courriel.nom=e.target.value
-		this.maj()
-	}
-
-	miseEnVarPrenom(e){
-		e.preventDefault();
-		this.courriel.prenom=e.target.value
-		this.maj()
-	}
-
-	miseEnVarMail(e){
-		e.preventDefault();
-		this.courriel.mail=e.target.value
-		this.maj()
-	}
-
-	miseEnVarTel(e){
-		e.preventDefault();
-		this.courriel.tel=e.target.value
-		this.maj()
-	}
-
-	miseEnVarSujet(e){
-		e.preventDefault();
-		this.courriel.sujet=e.target.value
-		this.maj()
-	}
-
-	miseEnVarMessage(e){
-		e.preventDefault();
-		this.courriel.message=e.target.value
-		this.maj()
-	}
-
-	maj(){
-		this.setState({courriel:this.courriel})
-	}
-	mail(e){
-		e.preventDefault()
-		Meteor.call('mail',(err,res)=>{
-			if(err){console.log('reretrterreretrete')}else{console.log('ok')}
-		})
-	}
+		this.setState({[e.target.name]:e.target.value});
+	};
 
 	render(){
 		return(
 			 <Form id="contact">
 				<label><h1>Formulaire de Contact</h1></label>
-					<Form.Input label="Nom" id="nom" placeholder='Nom' onChange={this.miseEnVarNom.bind(this)} />
-					<Form.Input label="Prénom" id="prenom" placeholder='Prénom' onChange={this.miseEnVarPrenom.bind(this)}/>
-					<Form.Input label="Email" id="mail" placeholder='exemple@exemple.com' onChange={this.miseEnVarMail.bind(this)}/>
-					<Form.Input label="Téléphone" id="tel" placeholder='Téléphone' onChange={this.miseEnVarTel.bind(this)}/>
-					<Form.TextArea id='sujet' label='Motif de votre message' placeholder='motif' rows='1' onChange={this.miseEnVarSujet.bind(this)}/>
-					<Form.TextArea id='message' label='Votre message' placeholder='Votre message' rows='3' onChange={this.miseEnVarMessage.bind(this)}/>
-					<Button type='submit'
-					href={
-						"mailto:tornade.50@hotmail.fr?subject=" +
-						this.state.courriel.sujet +
-						"&body=" + "Prénom et Nom : " +
-						this.state.courriel.prenom +
-						this.state.courriel.nom +
+					<Form.Input
+							label="Nom"
+							name="nom"
+							placeholder='Nom'
+							onChange={this.change.bind(this)}
+							value={this.state.nom}
+					/>
+					<Form.Input
+							label="Prénom"
+							name="prenom"
+							placeholder='Prénom'
+							onChange={this.change.bind(this)}
+							value={this.state.prenom}
+					/>
+					<Form.Input
+							label="Email"
+							name="mail"
+							placeholder='exemple@exemple.com'
+							onChange={this.change.bind(this)}
+							value={this.state.mail}
+					/>
+					<Form.Input
+							label="Téléphone"
+							name="tel"
+							placeholder='Téléphone'
+							onChange={this.change.bind(this)}
+							value={this.state.tel}
+					/>
+					<Form.TextArea
+							name='sujet'
+							label='Motif de votre message'
+							placeholder='motif'
+							rows='1'
+							onChange={this.change.bind(this)}
+							value={this.state.sujet}
+					/>
+					<Form.TextArea
+							name='message'
+							label='Votre message'
+							placeholder='Votre message'
+							rows='3'
+							onChange={this.change.bind(this)}
+							value={this.state.message}
+					/>
+					<Button type='submit' href={
+						"mailto:0_never_forever_0@live.fr?subject=" +
+						this.state.sujet +
+						"&body=" + "Nom et Prénom : " +
+						this.state.nom + " " +
+						this.state.prenom +
 						 "%0A" + "Email : " +
-						 this.state.courriel.mail +
+						 this.state.mail +
 						 "%0A" +"Téléphone : " +
-						 this.state.courriel.tel +
+						 this.state.tel +
 						 "%0A" +"Message : " +
-						 this.state.courriel.message
+						 this.state.message
 					}>Envoyer</Button>
 			</Form>
 			)
 	}
 }
 
-/**/

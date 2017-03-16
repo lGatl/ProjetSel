@@ -137,4 +137,4 @@ export default class CreerUnCompte extends Component {
 	}
 }
 
-/**/
+
