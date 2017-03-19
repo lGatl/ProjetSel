@@ -29,27 +29,7 @@ Meteor.methods({
 			}
 		}else{return false}
 	},
-	supprimArticle:(id)=>{Articles.remove({_id:id})},
-	utilisateurs:()=>{
-		var id=Meteor.userId()
-		var utilisateurs=Meteor.users.find().fetch()
-		var ut={}
-
-		utilisateurs.map((utilisateur)=>{
-			if(utilisateur._id==id){ut=utilisateur}
-		})
-
-				return(ut)
-		},
-	mail:()=>{
-		Email.send({
-		to: "to.gat55@live.fr",
-		from: "from.gat55@live.fr",
-		subject: "Example Email",
-		text: "The contents of our email in plain text.",
-	});
-	}
-
+	supprimArticle:(id)=>{Articles.remove({_id:id})}
 
 
 });

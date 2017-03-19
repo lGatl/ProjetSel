@@ -15,7 +15,7 @@
 	import Kesako from '../pages/Kesako.js';
 	import LesSelistes from '../pages/LesSelistes.js';
 	import MonCompte from '../pages/MonCompte.js';
-	import CreerUnCompte from '../pages/CreerUnCompte.js'
+	import CreerUnComptePublic from '../pages/CreerUnComptePublic.js';
 
 	import  Actu from '../components/Actu.js';
 	import  AnnonceDesc from '../components/AnnonceDesc.js';
@@ -68,7 +68,7 @@ FlowRouter.route('/lesSelistes', {
 FlowRouter.route('/creerUnCompte', {
 	 name: 'creerUnCompte',
 	 action: function() {
-		 mount(MainLayout, {content: <CreerUnCompte />});
+		 mount(MainLayout, {content: <CreerUnComptePublic />});
 	 }
  });
 FlowRouter.route('/articles/:titre', {

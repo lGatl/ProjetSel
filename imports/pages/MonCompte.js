@@ -15,6 +15,8 @@ import MesOffres from '../components/monCompte/pages/MesOffres.js'
 import MesPropositions from '../components/monCompte/pages/MesPropositions.js'
 import MonReleve from '../components/monCompte/pages/MonReleve.js'
 import Statistiques from '../components/monCompte/pages/Statistiques.js'
+import GererUnCompte from "../components/monCompte/pages/GererUnCompte.js"
+
 
 
 export default class Moncompte extends Component {
@@ -36,7 +38,8 @@ export default class Moncompte extends Component {
 				"Categories",
 				"Gerer les actualités",
 				"Configuration",
-				"Statistiques"
+				"Statistiques",
+				"Gerer les comptes"
 			];
 		}
 
@@ -55,9 +58,9 @@ export default class Moncompte extends Component {
 				if(nom.name=="Gerer les annonces")	{return(<GererAnnonces></GererAnnonces>)}
 				if(nom.name=="Categories")			{return( <Categories></Categories>)}
 				if(nom.name=="Gerer les actualités")	{return(<GererActu></GererActu>)}
-				if(nom.name=="Configuration")		{return(<Configuration></Configuration>)}
+				if(nom.name=="Configuration")			{return(<Configuration></Configuration>)}
 				if(nom.name=="Statistiques")			{return(<Statistiques></Statistiques>)}
-
+				if(nom.name=="Gerer les comptes")	{return(<GererUnCompte></GererUnCompte>)}
 
 		}
 
