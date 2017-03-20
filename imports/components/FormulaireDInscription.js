@@ -117,6 +117,9 @@ export default class CreerUnCompte extends Component {
 		})
 		if(this.props.remiseA0){this.props.remiseA0()}
 	}
+	nePasModifier(){
+		if(this.props.remiseA0){this.props.remiseA0()}
+	}
 	componentWillMount() {
 				if(this.props.donnees){
 
@@ -192,6 +195,7 @@ export default class CreerUnCompte extends Component {
 				return(<div>
 					<Button type='submit' onClick={this.changeCompte.bind(this)}>Modifier ce Compte</Button>
 					<Button type='submit' onClick={this.supprimeCompte.bind(this)}>Supprimer ce Compte</Button>
+					<Button type='submit' onClick={this.nePasModifier.bind(this)}>Ne pas Modifier</Button>
 				</div>)
 			}
 			if(this.props.action=="creer"){
