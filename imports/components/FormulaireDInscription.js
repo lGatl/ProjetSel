@@ -1,10 +1,16 @@
 import React, {Component} from 'react'
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form,Select } from 'semantic-ui-react'
 
 export default class CreerUnCompte extends Component {
 
 	constructor(){
 		super()
+		this.roles=[
+			{ key: 'in', value: 'in', text: 'inscrit' },
+			{ key: 'se', value: 'se', text: 'selliste' },
+			{ key: 'mo', value: 'mo', text: 'moderateur' },
+			{ key: 'ad', value: 'ad', text: 'admin' }
+		]
 		this.state={
 			username:"",
 			email:"",
@@ -20,73 +26,82 @@ export default class CreerUnCompte extends Component {
 			soldeSeugnette:0,
 			totalCredits:0,
 			totalDebits:0,
-			role:["inscrit","selliste","moderateur","admin"]
+			role:""
 		}
-
+		this.handleChange = (e,{value}) =>this.etatDrop(value)
 	}
-
 	change(e){
 		e.preventDefault()
 		this.setState({[e.target.name]:e.target.value})
 		if(e.target.name=="email"){this.setState({username:e.target.value})}
 	}
+
+	etatDrop(val){
+			 this.setState({role:val})
+	}
+	recupState(){
+		return(
+			{
+				username:this.state.username,
+				email:this.state.email,
+				password:this.state.password,
+				profile:{
+					prenom:this.state.prenom,
+					nom:this.state.nom,
+					tel:this.state.tel,
+					adresse:this.state.adresse,
+					respC:this.state.respC,
+					dateValRespC:this.state.dateValRespC,
+					note:this.state.note,
+					soldeSeugnette:this.state.soldeSeugnette,
+					totalCredits:this.state.totalCredits,
+					totalDebits:this.state.totalDebits,
+					role:this.state.role
+				}
+			}
+		)
+	}
+
 	changeCompte(e){
 		e.preventDefault()
-		Meteor.call("sauvegardeUtilisateur",{
-
-			username:this.state.username,
-			email:this.state.email,
-			password:this.state.password,
-			profile:{
-				prenom:this.state.prenom,
-				nom:this.state.nom,
-				tel:this.state.tel,
-				adresse:this.state.adresse,
-				respC:this.state.respC,
-				dateValRespC:this.state.dateValRespC,
-				note:this.state.note,
-				soldeSeugnette:this.state.soldeSeugnette,
-				totalCredits:this.state.totalCredits,
-				totalDebits:this.state.totalDebits,
-				role:this.state.role
-			}
-		}, (err)=>{
+		Meteor.call("sauvegardeUtilisateur",this.recupState(), (err)=>{
 			if(err){
 				Bert.alert({
 					title:"Erreur",
-					message:"Impossible d'enregistrer ce compte" ,
+					message:"Impossible de sauvegarder ces modifications" ,
 					type:'error'}
 			)}else{
 				Bert.alert({
-					title:"Compte enregistré",
-					message:"Votre compte "+this.state.username+" a été enregistré" ,
+					title:"Sauvegarde effectuée",
+					message:"Vos modifications sur "+this.state.username+" ont été sauvegardées" ,
 					type:'success'
 				})
 			}
 		})
 		if(this.props.remiseA0){this.props.remiseA0()}
 	}
+	supprimeCompte(e){
+		e.preventDefault()
+		Meteor.call("supprimeUtilisateur",this.recupState(), (err)=>{
+			if(err){
+				Bert.alert({
+					title:"Erreur",
+					message:"Impossible de supprimer ce compte utilisateur "+this.state.username,
+					type:'error'}
+			)}else{
+				Bert.alert({
+					title:"Suppression Effectuée",
+					message:"Ce compte utilisateur "+this.state.username+" a été supprimé" ,
+					type:'success'
+				})
+			}
+		})
+		if(this.props.remiseA0){this.props.remiseA0()}
+	}
+
 	creerCompte(e){
 		e.preventDefault()
-		Accounts.createUser({
-
-			username:this.state.username,
-			email:this.state.email,
-			password:this.state.password,
-			profile:{
-				prenom:this.state.prenom,
-				nom:this.state.nom,
-				tel:this.state.tel,
-				adresse:this.state.adresse,
-				respC:this.state.respC,
-				dateValRespC:this.state.dateValRespC,
-				note:this.state.note,
-				soldeSeugnette:this.state.soldeSeugnette,
-				totalCredits:this.state.totalCredits,
-				totalDebits:this.state.totalDebits,
-				role:this.state.role
-			}
-		}, (err)=>{
+		Accounts.createUser(this.recupState(), (err)=>{
 			if(err){
 				Bert.alert({
 					title:"Erreur",
@@ -104,7 +119,6 @@ export default class CreerUnCompte extends Component {
 	}
 	componentWillMount() {
 				if(this.props.donnees){
-						console.log(this.props.donnees)
 
 					this.setState({
 						username:this.props.donnees.username,
@@ -126,6 +140,36 @@ export default class CreerUnCompte extends Component {
 					})
 				}
 		}
+	role(){
+		if(this.props.acces){
+			if(this.props.acces=="admin"){
+				return(
+					<Select
+						label="Role"
+						options={this.roles}
+						placeholder="role"
+						onChange={this.handleChange}
+						value={this.state.role}
+					/>
+				)
+			}
+		}
+	}
+
+	solde(){
+		if(this.props.acces){
+			if(this.props.acces=="admin"){
+				return(
+					<Form.Input
+						label="Solde des Seugnettes"
+						name="soldeSeugnette"
+						onChange={this.change.bind(this)}
+						value={this.state.soldeSeugnette}
+					/>
+				)
+			}
+		}
+	}
 	pass(){
 		if(this.props.action){
 			if(this.props.action=="creer"){
@@ -145,7 +189,10 @@ export default class CreerUnCompte extends Component {
 	boutonAAff(){
 		if(this.props.action){
 			if(this.props.action=="editer"){
-				return(<Button type='submit' onClick={this.changeCompte.bind(this)}>Modifier ce Compte</Button>)
+				return(<div>
+					<Button type='submit' onClick={this.changeCompte.bind(this)}>Modifier ce Compte</Button>
+					<Button type='submit' onClick={this.supprimeCompte.bind(this)}>Supprimer ce Compte</Button>
+				</div>)
 			}
 			if(this.props.action=="creer"){
 				return(<Button type='submit' onClick={this.creerCompte.bind(this)}>Creer ce Compte</Button>)
@@ -210,8 +257,11 @@ export default class CreerUnCompte extends Component {
 						onChange={this.change.bind(this)}
 						value={this.state.dateValRespC}
 					/>
+					{this.solde()}
+					{this.role()}
 
 			</Form>
+			<br/>
 			{this.boutonAAff()}
 			</div>
 

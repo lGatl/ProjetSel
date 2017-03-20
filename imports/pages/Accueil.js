@@ -33,6 +33,7 @@ getuser(){
 
 	render(){
 		var nom="Futur Seliste"
+		console.log("this.state.mail", this.state.mail);
 		if(this.state.mail.emails){
 			nom=this.state.mail.emails[0].address
 			nom=nom.slice(0, nom.indexOf("@",0))

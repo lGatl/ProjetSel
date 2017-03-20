@@ -93,6 +93,7 @@ export default class SearchExampleStandard extends Component {
 							/>
 
 							{this.state.Comp}
+							<br/>
 							{this.bouton()}
 
 					</div>

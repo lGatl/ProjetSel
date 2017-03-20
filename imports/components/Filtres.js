@@ -10,7 +10,7 @@ constructor(){
                 this.categories={titre:"Categories :",contenu:["Cuisine","Mecanique"]}
                 this.distances={titre:"Distances :",contenu:["0-5 km","5-10 km"]}
                 this.recent={titre:"Les plus recents :",contenu:["< 1 semaine","< 2 semaines"]}
-                this.type={titre:"Type offre/demande :",contenu:[,"offre","demande"]}
+                this.type={titre:"Type offre/demande :",contenu:["offre","demande"]}
             }
 
     render(){
