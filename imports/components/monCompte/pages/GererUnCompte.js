@@ -20,11 +20,6 @@ export default class SearchExampleStandard extends Component {
 			if(this.state.Comp==""){
 				this.setState({ value: result.title, Comp:<FormulaireDInscription action={"editer"} acces={"admin"} remiseA0={this.remiseA0.bind(this)} donnees={this.reponse[result.key]}/>})
 			}else{this.setState({Comp:""})}
-
-
-
-
-
 		}
 
 		this.handleSearchChange = (e, value) => {

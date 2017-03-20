@@ -10,7 +10,7 @@
 		getCategorie: (titre)=>{
 			return Categories.findOne({titreDeLaCategorie: titre});
 		},
-
+		supprimeCategorie:(id)=>{Categories.remove({_id:id})},
 		ajoutCategorie:(nvlCategorie)=>{
 			console.log(nvlCategorie)
 			if (Meteor.userId()){
