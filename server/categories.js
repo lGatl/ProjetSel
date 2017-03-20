@@ -1,10 +1,7 @@
-	const Categories = new Mongo.Collection("Categories")
+	const Categories = new Mongo.Collection("categories")
 
 	Meteor.methods({
-		listeCategorie:()=>{
-			console.log('ListeCategories été appelé')
-			return Articles.find().fetch()
-		},
+
 		listeCategories:()=>{
 			console.log('ListeCategories a été appelé')
 
@@ -17,10 +14,7 @@
 		ajoutCategorie:(nvlCategorie)=>{
 			console.log(nvlCategorie)
 			if (Meteor.userId()){
-					Categories.insert({
-						categorie:nvlCategorie.nom,
-						type: nvlCategorie.action,
-					})
+					Categories.insert(nvlCategorie)
 			}else{return false}
 		}
 	})

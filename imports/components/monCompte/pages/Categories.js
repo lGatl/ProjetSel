@@ -12,15 +12,60 @@ export default class Categories extends Component {
 
 	constructor(){
 		super()
+			this.state={categ:""}
 			this.categ={
 			titres:["Categories","Offres","Demandes"],
-			contenu:[
-						["Cuisine","5","1"],
-						["Bricolage","5","1"],
-						["Chippendales","5","1"]
-					],
+			contenu:[],
 			actions:{titre:"Actions",contenu:["Editer","Desactiver"]}
 		}
+	}
+	componentWillMount(){
+		this.listeCategories()
+	}
+	change(e){
+		e.preventDefault()
+		this.setState({categ:e.target.value})
+
+	}
+
+	ajoutCategorie(){
+			var obj={"categorie":[this.state.categ,0,0]}
+		Meteor.call('ajoutCategorie',obj,(err,res)=>{
+			if(err){
+				Bert.alert({
+					title:"Erreur",
+					message:"Impossible d'ajouter cette Categorie" ,
+					type:'error'
+				})
+			}else{
+				Bert.alert({
+					title:"Categorie ajoutée",
+					message:"La Categorie "+this.state.categ+" a bien été ajoutée",
+					type:'success'
+				})
+			}
+		})
+	}
+	listeCategories(){
+		Meteor.call('listeCategories',(err,res)=>{
+			if(err){
+				Bert.alert({
+					title:"Erreur",
+					message:"Impossible de recuperer la liste des Categories" ,
+					type:'error'
+			})
+			}else{
+					tab=[]
+
+				res.map((cat)=>{
+					tab.push(cat.categorie)
+				})
+
+				this.categ.contenu=tab
+
+			}
+		})
+
 	}
 
 	render(){
@@ -32,11 +77,12 @@ export default class Categories extends Component {
 							name="titreDeLaCategorie"
 							type='text'
 							placeholder='Nom de la Categorie'
-
+							value={this.state.categ}
+							onChange={this.change.bind(this)}
 							>
 					<Label basic>Nom de la Categorie :  </Label>
 					<input />
-					<Button>Valider</Button>
+					<Button type='submit' onClick={this.ajoutCategorie.bind(this)}>Creer</Button>
 				</Input>
 
 				<Titre1 nom="Liste des categories"></Titre1>
