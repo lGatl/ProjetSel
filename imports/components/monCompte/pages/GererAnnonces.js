@@ -24,14 +24,27 @@ export default class GererAnnonces extends Component {
 			actions:{titre:"Actions",contenu:["Valider","Editer","Refuser","Supprimer"]}
 		}
 	}
+	videState(){
+		this.setState({
+			annonces:[],
+			boutonSelect:[],
+			title:"",
+			description:""
+		})
+	}
 	etatDrop(tableau){
 
 		this.setState({boutonSelect:tableau})
 	}
 	remplirTableau(){
+
 		this.annonces.contenu=[]
 		this.state.annonces.map((annonce)=>{
-		this.annonces.contenu.push(["12/12/2012","Jean Bon",annonce.type,annonce.categorie,annonce.titreDeLAnnonce])
+			this.annonces.contenu.push({
+				tableau:["12/12/2012","Jean Bon",annonce.type,annonce.categorie,annonce.titreDeLAnnonce],
+				etat: annonce.etat
+			})
+
 		})
 	}
 
@@ -62,8 +75,21 @@ export default class GererAnnonces extends Component {
 				}
 			})
 		}
-	supprime(e){
+		sauveModifEtat(){
+		this.state.boutonSelect.map((et,i)=>{
+			var aSauv={}
+			if(et){
+				var aSauv=this.state.annonces[i]
+				aSauv.etat=et
+
+				Meteor.call('sauvegardeAnnonces',aSauv,(err,res)=>{
+				})
+			}
+		})
+	}
+	appliquer(e){
 		e.preventDefault()
+		this.sauveModifEtat()
 		var j=0
 		var s=""
 		this.state.boutonSelect.map((bt,i)=>{
@@ -71,9 +97,7 @@ export default class GererAnnonces extends Component {
 			if(bt=="Supprimer"){
 				j++
 				this.supprimeAnnonce(this.state.annonces[i]._id)
-			}
-
-					if(j>1){message= "Vos Annonces ont été supprimés";s="s"}else if(j==1){
+				if(j>1){message= "Vos Annonces ont été supprimés";s="s"}else if(j==1){
 					message= "Votre Annonce a été supprimé"
 					}
 
@@ -82,9 +106,12 @@ export default class GererAnnonces extends Component {
 						message:message,
 						type:'success'
 					})
+			}
+
+
 
 		})
-		setState({boutonSelect:[]})
+		this.videState()
 		this.getAnnonces()
 	}
 
@@ -93,13 +120,15 @@ export default class GererAnnonces extends Component {
 			if(err){
 				console.log(err )
 			}else{
+
 				this.setState({annonces  : res})
+
+
 			}
 		})
 	}
 	componentWillMount(){
 		this.getAnnonces();
-
 }
 
 	render(){
@@ -111,7 +140,7 @@ export default class GererAnnonces extends Component {
 				 <MenuDeroulant donnees={this.etat}></MenuDeroulant>
 				 <MenuDeroulant donnees={this.type}></MenuDeroulant>
 				<TableauActions donnees= {this.annonces} etatDrop={this.etatDrop.bind(this)}></TableauActions>
-				 <Button type='Envoyer' onClick={this.supprime.bind(this)}>Appliquer</Button>
+				 <Button type='Envoyer' onClick={this.appliquer.bind(this)}>Appliquer</Button>
 			</div>
 
 		);

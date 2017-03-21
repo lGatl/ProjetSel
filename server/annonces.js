@@ -15,7 +15,6 @@
 		},
 		supprimeAnnonce:(id)=>{Annonces.remove({_id:id})},
 		ajoutAnnonce:(nvlAnnonce)=>{
-			console.log(nvlAnnonce)
 			if (Meteor.userId()){
 					Annonces.insert({
 						categorie:nvlAnnonce.categorie,
@@ -23,9 +22,14 @@
 						titreDeLAnnonce: nvlAnnonce.titreDeLAnnonce,
 						descriptionDeLAnnonce: nvlAnnonce.descriptionDeLAnnonce,
 						informationDeContact: nvlAnnonce.informationDeContact,
-						dateDeFin: nvlAnnonce.dateDeFin
+						dateDeFin: nvlAnnonce.dateDeFin,
+						etat: nvlAnnonce.etat
 					})
 			}else{return false}
-		}
+		},
+		sauvegardeAnnonces:(aSauver)=>{
+			annonces=Annonces.findOne({"titreDeLAnnonce": aSauver.titreDeLAnnonce})
+		Annonces.update({_id:annonces._id},{$set:aSauver})
+	}
 	})
 

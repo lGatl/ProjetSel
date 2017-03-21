@@ -36,6 +36,7 @@ export default class MenuDeroulant extends Component {
 			nom:this.props.nom,
 			contenu:contenu
 		})
+		if(this.props.val){this.setState({valeur:this.props.val})}
 	}
 	componentDidMount(){
 			this.props.etat={valeur:this.state.valeur,id:this.state.nom}

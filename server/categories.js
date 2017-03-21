@@ -16,6 +16,10 @@
 			if (Meteor.userId()){
 					Categories.insert(nvlCategorie)
 			}else{return false}
-		}
+		},
+		sauvegardeCategories:(aSauver)=>{
+			categories=Categories.findOne({"categorie": aSauver.categorie})
+		Categories.update({_id:categories._id},{$set:aSauver})
+	}
 	})
 

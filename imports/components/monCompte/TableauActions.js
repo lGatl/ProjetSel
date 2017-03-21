@@ -35,10 +35,11 @@ export default class Tableau1ction extends Component {
 						return(
 
 							<Table.Row id={i} key={i}>
-								{ligne.map((cellule,j)=><Table.Cell key={j}>{cellule}</Table.Cell>)}
+								{ligne.tableau.map((cellule,j)=><Table.Cell key={j}>{cellule}</Table.Cell>)}
 								<Table.Cell>
 									<MenuDeroulant
 										texte={""}
+										val={ligne.etat}
 										etatDrop={this.etatDrop.bind(this)}
 										donnees={this.props.donnees.actions}
 										nom={i}

@@ -16,7 +16,8 @@ export default class DepotAnnonce extends Component {
 			titreDeLAnnonce:"",
 			descriptionDeLAnnonce:"",
 			informationDeContact:"",
-			dateDeFin:""
+			dateDeFin:"",
+			etat:"Valider"
 		}
 
 		this.handleChange = (e,{value}) => this.setState({categorie:value })
@@ -36,7 +37,8 @@ export default class DepotAnnonce extends Component {
 			titreDeLAnnonce:"",
 			descriptionDeLAnnonce:"",
 			informationDeContact:"",
-			dateDeFin:""
+			dateDeFin:"",
+			etat:"Valider"
 		})
 
 	}
