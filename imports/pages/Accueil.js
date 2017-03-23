@@ -7,6 +7,7 @@ import GoogleMap from '../components/GoogleMap.js'
 
 
 export default class Accueil extends Component {
+
 constructor(){
 	super()
 	this.state={mail:{}}
@@ -32,6 +33,7 @@ getuser(){
 	}
 
 	render(){
+
 		var nom="Futur Seliste"
 		if(this.state.mail.emails){
 			nom=this.state.mail.emails[0].address

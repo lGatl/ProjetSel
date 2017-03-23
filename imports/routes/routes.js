@@ -4,9 +4,6 @@
 	import {mount} from 'react-mounter';
 
 	import {MainLayout} from '../layouts/MainLayout.js';
-	import {MainLayoutActu} from '../layouts/MainLayoutActu.js';
-	import {MainLayoutAnnonce} from '../layouts/MainLayoutAnnonce.js';
-	import {MainLayoutActuAnn} from '../layouts/MainLayoutActuAnn.js';
 
 	import Accueil from '../pages/Accueil.js';
 	import Actualites from '../pages/Actualites.js';
@@ -25,62 +22,62 @@
  FlowRouter.route('/', {
 	 name: 'accueil',
 	 action: function() {
-		 mount(MainLayoutActu, {content: <Accueil />});
+		 mount(MainLayout, {content: <Accueil layout="actu"/>});
 	 }
  });
 
 FlowRouter.route('/kesako', {
 	 name: 'kesako',
 	 action: function() {
-		 mount(MainLayoutActuAnn, {content: <Kesako />});
+		 mount(MainLayout, {content: <Kesako layout="tout"/>});
 	 }
  });
 FlowRouter.route('/annonces', {
 	 name: 'annonces',
 	 action: function() {
-		 mount(MainLayoutActu, {content: <Annonces />});
+		 mount(MainLayout, {content: <Annonces layout="actu"/>});
 	 }
  });
 FlowRouter.route('/actualites', {
 	 name: 'actualites',
 	 action: function() {
-		 mount(MainLayoutAnnonce, {content: <Actualites />});
+		 mount(MainLayout, {content: <Actualites layout="annonce"/>});
 	 }
  });
 FlowRouter.route('/contacts', {
 	 name: 'contacts',
 	 action: function() {
-		 mount(MainLayoutActuAnn, {content: <Contacts />});
+		 mount(MainLayout, {content: <Contacts layout="tout"/>});
 	 }
  });
 FlowRouter.route('/monCompte', {
 	 name: 'monCompte',
 	 action: function() {
-		 mount(MainLayout, {content: <MonCompte />});
+		 mount(MainLayout, {content: <MonCompte layout="simple"/>});
 	 }
  });
 FlowRouter.route('/lesSelistes', {
 	 name: 'lesSelistes',
 	 action: function() {
-		 mount(MainLayout, {content: <LesSelistes />});
+		 mount(MainLayout, {content: <LesSelistes layout="simple"/>});
 	 }
  });
 FlowRouter.route('/creerUnCompte', {
 	 name: 'creerUnCompte',
 	 action: function() {
-		 mount(MainLayout, {content: <CreerUnComptePublic />});
+		 mount(MainLayout, {content: <CreerUnComptePublic layout="simple"/>});
 	 }
  });
 FlowRouter.route('/articles/:titre', {
 	name: 'home',
 	action: function (params) {
-		mount(MainLayout, { content: <Actu titre={params.titre} /> });
+		mount(MainLayout, { content: <Actu titre={params.titre} layout="simple"/> });
 	},
 });
 FlowRouter.route('/annonces/:titre', {
 	name: 'home',
 	action: function (params) {
-		mount(MainLayout, { content: <AnnonceDesc titre={params.titre} /> });
+		mount(MainLayout, { content: <AnnonceDesc titre={params.titre} layout="simple"/> });
 	},
 });
 
