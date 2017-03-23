@@ -15,7 +15,7 @@ export default class DepotAnnonce extends Component {
 			descriptionDeLAnnonce:"",
 			informationDeContact:"",
 			dateDeFin:"",
-			etat:"Valider",
+			etat:"En Attente",
 			categories:[],
 			categorie:""
 		}
@@ -57,7 +57,7 @@ export default class DepotAnnonce extends Component {
 			descriptionDeLAnnonce:"",
 			informationDeContact:"",
 			dateDeFin:"",
-			etat:"Valider",
+			etat:"En Attente",
 			categories:[],
 			categorie:""
 		})

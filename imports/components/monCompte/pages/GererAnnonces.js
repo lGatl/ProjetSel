@@ -21,7 +21,7 @@ export default class GererAnnonces extends Component {
 		this.annonces={
 			titres:["Dates","Nom Prenom","Types","Categorie","Titre de l'Annonce"],
 			contenu:[],
-			actions:{titre:"Actions",contenu:["Valider","Editer","Refuser","Supprimer"]}
+			actions:{titre:"Actions",contenu:["Valider","En Attente","Refuser","Supprimer"]}
 		}
 	}
 	videState(){

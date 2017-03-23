@@ -58,10 +58,11 @@ getArticles(){
 			<div className="">
 			<br/>
 				<Titre nom="Actualitées"></Titre>
-				{this.state.articles.map( (article)=>{return(
-					 <EncartActu key={article._id} donnees={article} ></EncartActu>
-				)}
-				)}
+				{this.state.articles.map( (article)=>{
+					if(article.etat=="Editer"){return(
+						 <EncartActu key={article._id} donnees={article} ></EncartActu>
+					)}
+				})}
 
 					<br/>
         				<Pages/>

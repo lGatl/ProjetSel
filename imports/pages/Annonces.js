@@ -43,10 +43,11 @@ export default class Annonces extends Component {
 				{
 
 					this.state.annonces.map((annonce,i)=>{
-						return(
 
-								<EncartAnnonce key={i} donnees={annonce}></EncartAnnonce>
-							)
+						if(annonce.etat=="Valider"){return(
+							<EncartAnnonce key={i} donnees={annonce}></EncartAnnonce>
+						)}
+
 					})
 				}
 
