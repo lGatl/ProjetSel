@@ -3,21 +3,21 @@ import { Button, Form, Input, Select, TextArea,Image,Label } from 'semantic-ui-r
 import Titre1 from './Titre1.js'
 /*Depot Offre et Depot Demande*/
 
-const categories = [
-	{ key: 'h', text: 'Homme', value: 'homme' },
-	{ key: 'f', text: 'Femme', value: 'femme' },
-]
+
 
 export default class DepotAnnonce extends Component {
 	constructor(){
 		super()
+
 		this.state = {
 			type:"",
 			titreDeLAnnonce:"",
 			descriptionDeLAnnonce:"",
 			informationDeContact:"",
 			dateDeFin:"",
-			etat:"Valider"
+			etat:"Valider",
+			categories:[],
+			categorie:""
 		}
 
 		this.handleChange = (e,{value}) => this.setState({categorie:value })
@@ -26,22 +26,44 @@ export default class DepotAnnonce extends Component {
 
 	componentWillMount(){
 		this.setState({type:this.props.type})
+		this.getCategories()
 	}
+	getCategories(){
+		Meteor.call('listeCategories',(err,res)=>{
+			if(err){
+				Bert.alert({
+					title:"Erreur",
+					message:"Impossible de recuperer les Categories" ,
+					type:'error'
+			})
+			}else{
 
+				var cate=[]
+				res.map((cat)=>{
+					if(cat.etat=="Editer"){
+						cate.push({ key:cat.categorie, text: cat.categorie, value: cat.categorie })
+					}
+				})
+				this.setState({categories:cate})
+			}
+		})
+	}
 	valider(e){
 		e.preventDefault()
 		this.ajoutAnnonce()
 		this.setState( {
 			type:"",
-			categorie:"",
 			titreDeLAnnonce:"",
 			descriptionDeLAnnonce:"",
 			informationDeContact:"",
 			dateDeFin:"",
-			etat:"Valider"
+			etat:"Valider",
+			categories:[],
+			categorie:""
 		})
-
+		this.getCategories()
 	}
+
 	change(e){
 			this.setState({
 				[e.target.name]:e.target.value
@@ -83,7 +105,7 @@ export default class DepotAnnonce extends Component {
 					<Form.Select
 						label='Categorie'
 						name='categorie'
-						options={categories}
+						options={this.state.categories}
 						placeholder='Categorie'
 						onChange={this.handleChange}
 						value={this.state.categorie}
