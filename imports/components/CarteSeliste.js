@@ -37,7 +37,7 @@ constructor(){
 					</Card.Description>
 				</Card.Content>
 				<Card.Content extra>
-					Ancienneté : {((Date.parse(Date())-Date.parse(this.props.utilisateur.createdAt))/(3600000*24)).toFixed(1)+"jours"}
+					Ancienneté : {((Date.parse(Date())-Date.parse(this.props.utilisateur.createdAt))/(3600000*24)).toFixed(2)+"jours"}
 				</Card.Content>
 			</Card>
 		);

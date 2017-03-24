@@ -12,13 +12,21 @@ export default class Annonces extends Component {
 
 	constructor(){
 		super()
-		this.state={annonces:[]}
+		this.state={
+			annonces:[],
+			actif:"toutes"
+		}
 	}
 
 	componentWillMount(){
 		this.getAnnonces()
-	}
 
+
+	}
+	recup(actif){
+		this.setState({actif:actif})
+
+	}
 	getAnnonces(){
 
 	Meteor.call('listeAnnonces', (err,res)=>{
@@ -29,8 +37,9 @@ export default class Annonces extends Component {
 		}
 	})
 }
-	render(){
 
+
+	render(){
 		return (
 
 			<div className="">
@@ -39,15 +48,25 @@ export default class Annonces extends Component {
 			<Segment>
 			<Filtres></Filtres>
 			</Segment>
-				<Onglets></Onglets>
+				<Onglets recup={this.recup.bind(this)}></Onglets>
 				{
-
 					this.state.annonces.map((annonce,i)=>{
+						if(annonce.etat=="Valider"){
+							if(this.state.actif=="toutes"){
+								return(<EncartAnnonce key={i} donnees={annonce}></EncartAnnonce>)
+							}
 
-						if(annonce.etat=="Valider"){return(
-							<EncartAnnonce key={i} donnees={annonce}></EncartAnnonce>
-						)}
-
+							if(this.state.actif=="offres"){
+								if(annonce.type=="offre"){
+									return(<EncartAnnonce key={i} donnees={annonce}></EncartAnnonce>)
+								}
+							}
+							if(this.state.actif=="demandes"){
+								if(annonce.type=="demande"){
+									return(<EncartAnnonce key={i} donnees={annonce}></EncartAnnonce>)
+								}
+							}
+						}
 					})
 				}
 

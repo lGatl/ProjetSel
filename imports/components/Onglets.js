@@ -6,8 +6,11 @@ export default class Onglets extends Component {
 constructor(){
 	super()
 
-	this.state = { activeItem: 'bio' }
-	this.handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+	this.state = { activeItem: 'toutes' }
+	this.handleItemClick = (e, { name }) => {
+		this.setState({ activeItem: name })
+		this.props.recup(name)
+	}
 }
 
 
@@ -19,9 +22,9 @@ constructor(){
 		return (
 			<div>
 				<Menu attached='top' tabular>
-					<Menu.Item name='toutes' active={activeItem === 'toutes'} onClick={this.handleItemClick} />
-					<Menu.Item name='offres' active={activeItem === 'offres'} onClick={this.handleItemClick} />
-					<Menu.Item name='demandes' active={activeItem === 'demandes'} onClick={this.handleItemClick} />
+					<Menu.Item name='toutes' active={activeItem === 'toutes'} onClick={this.handleItemClick.bind(this)} />
+					<Menu.Item name='offres' active={activeItem === 'offres'} onClick={this.handleItemClick.bind(this)} />
+					<Menu.Item name='demandes' active={activeItem === 'demandes'} onClick={this.handleItemClick.bind(this)} />
 
 				</Menu>
 
