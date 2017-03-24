@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Card, Icon, Image, Dropdown, Rating } from 'semantic-ui-react'
+import { Card, Icon, Image, Dropdown, Rating,Label } from 'semantic-ui-react'
 import MenuDeroulant from './MenuDeroulant.js';
 
 /* pour la page Les Selisete*/
@@ -12,26 +12,32 @@ constructor(){
 
 
 	render(){
+			var role=""
+			if(this.props.utilisateur.profile.role){
+				if(this.props.utilisateur.profile.role=="se"){role="Selliste"}
+				if(this.props.utilisateur.profile.role=="ad"){role="Administreteur"}
+				if(this.props.utilisateur.profile.role=="mo"){role="Moderateur"}
 
+			}
 		return (
 			<Card >
 				 <Card.Content>
 					<Image floated='left' size='tiny' src='http://semantic-ui.com/images/avatar/large/steve.jpg' />
 					<Card.Header>
-						Jean Bon
+						{this.props.utilisateur.profile.prenom+" "+this.props.utilisateur.profile.nom}
 					</Card.Header>
-							<Rating icon='star' defaultRating={3} maxRating={4} />
+							<Rating icon='star' defaultRating={this.props.utilisateur.profile.note} maxRating={4} />
 					<Card.Description>
 						Categiorie offre:
 						<ul>
 							<li>Mecanique</li>
 							<li>Cuisine</li>
-						 </ul> <strong>best friends</strong>
-							<MenuDeroulant donnees={this.actions}></MenuDeroulant>
+						 </ul> <strong>Role</strong>
+							<Label>{role}</Label>
 					</Card.Description>
 				</Card.Content>
 				<Card.Content extra>
-					Ancienneté : 6 mois
+					Ancienneté : {((Date.parse(Date())-Date.parse(this.props.utilisateur.createdAt))/(3600000*24)).toFixed(1)+"jours"}
 				</Card.Content>
 			</Card>
 		);

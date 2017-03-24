@@ -7,34 +7,53 @@ import Lister from '../Lister.js'
 export default class MesInfos extends Component {
 	constructor(){
 		super()
+		this.state={
+			mesInfos:[],
+			mesSeugnettes:[]
+		}
 
-		this.mesInfos=[
-			{Nom:"Bon"},
-			{Prenom:"Jean"},
-			{Mail:"mail"},
-			{Adresse:"adresse"},
-			{Telephonne:"03/45/78/78/45"},
-			{resp:"oui"},
-			{dateVal:"14/45/4568"},
-			{note:2}
-		]
-		this.mesSeugnettes=[
-				{solde:10000},
-				{totalCredit:800000},
-				{totalDebit:955555}
-		]
+
 	}
+	utConnecte(){
 
+		Meteor.call('utilisateur' ,(err,res)=>{
 
+			if(err){
+				console.log("err")
+			}else{
+
+				this.setState({mesInfos:[
+					{Nom:res.profile.nom},
+					{Prenom:res.profile.prenom},
+					{Mail:res.emails[0].address},
+					{Adresse:res.profile.adresse},
+					{Telephonne:res.profile.tel},
+					{resp:res.profile.respC},
+					{dateVal:res.profile.dateValRespC},
+					{note:res.profile.note}
+				]})
+				this.setState({mesSeugnettes:[
+				{solde:res.profile.soldeSeugnette},
+				{totalCredit:res.profile.totalCredits},
+				{totalDebit:res.profile.totalDebits}
+					]})
+			}
+		})
+	}
+	componentWillMount(){
+		this.utConnecte()
+
+	}
 	render(){
+
 		return (
 
 
 			<div>
 				<Titre1 nom="Mes Informations"></Titre1>
-				<Lister donnees={this.mesInfos}></Lister>
+				<Lister donnees={this.state.mesInfos}></Lister>
 				<Titre1 nom="Mes Seugnettes"></Titre1>
-				<Lister donnees={this.mesSeugnettes}></Lister>
+				<Lister donnees={this.state.mesSeugnettes}></Lister>
 			</div>
 
 		);

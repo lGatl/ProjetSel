@@ -10,39 +10,33 @@ export default class Accueil extends Component {
 
 constructor(){
 	super()
-	this.state={mail:{}}
+	this.state={nom:"Futur Seliste"}
 }
-getuser(){
+utConnecte(){
 
-	Meteor.call('utilisateurs' ,(err,res)=>{
+	Meteor.call('utilisateur' ,(err,res)=>{
 
 		if(err){
-			console.log("erezrezr")
-
+			console.log("err")
 		}else{
-
-			this.setState({mail  : res})
-
+				this.setState({nom : res.profile.prenom})
 			}
 		}
 	)
 }
 	componentWillMount(){
-		this.getuser()
+		this.utConnecte()
 
 	}
 
 	render(){
 
-		var nom="Futur Seliste"
-		if(this.state.mail.emails){
-			nom=this.state.mail.emails[0].address
-			nom=nom.slice(0, nom.indexOf("@",0))
-		}
+
+
 		return (
 			<div>
 			<br/>
-				<Titre nom={"Bienvenu "+nom+"! Partagez bien, services et savoirs... et creez des liens"}></Titre>
+				<Titre nom={"Bienvenu "+this.state.nom+"! Partagez bien, services et savoirs... et creez des liens"}></Titre>
 
 				<br/>
 

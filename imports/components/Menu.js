@@ -4,6 +4,7 @@ import {LoginButtons} from 'meteor/okgrow:accounts-ui-react'
 
 
 export default class MenuS extends Component {
+
 	constructor(){
 		super()
 		this.state = {
@@ -24,6 +25,7 @@ export default class MenuS extends Component {
 
 
 	}
+
 		handleItemClick (e, { name }){
 
 		this.setState({ activeItem: name })}
