@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-
-import { Dropdown, Button, Form, Input, TextArea,Icon} from 'semantic-ui-react'
+import {markdown} from 'markdown';
+import { Dropdown, Button, Form, Input, TextArea,Icon,Segment,Label} from 'semantic-ui-react'
 
 import Titre1 from '../Titre1.js'
 import Titre2 from '../Titre2.js'
@@ -16,7 +16,8 @@ export default class GererActu extends Component {
 			boutonSelect:[],
 			title:"",
 			description:"",
-			etat:"Editer"
+			etat:"Editer",
+			html:""
 		}
 
 		this.actu={
@@ -61,6 +62,9 @@ export default class GererActu extends Component {
 		this.setState({
 			[e.target.name]:e.target.value
 		})
+		if(e.target.name=='description'){
+   	   	this.setState({html: markdown.toHTML(e.target.value)})
+    }
 	}
 
 	ajoutArticle(e){
@@ -199,9 +203,13 @@ export default class GererActu extends Component {
     					<Icon size ='huge'  name='paste'  />
 					<br/>
 					<br/>
+					<Label>Rendu</Label>
+					<Segment dangerouslySetInnerHTML={ {__html: this.state.html} }>
+     					 </Segment>
 					<Button type='Envoyer' onClick={this.ajoutArticle.bind(this)}>Creer</Button>
 
 				</Form>
+
 			</div>
 
 		);
