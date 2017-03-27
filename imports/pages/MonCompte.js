@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Grid, Segment } from 'semantic-ui-react'
+import {createContainer} from 'meteor/react-meteor-data';
 
 import MenuMonCompt from '../components/monCompte/MenuMonCompt.js'
 
@@ -19,7 +20,7 @@ import GererUnCompte from "../components/monCompte/pages/GererUnCompte.js"
 
 
 
-export default class Moncompte extends Component {
+class MonCompt extends Component {
 		constructor(){
 			super()
 			this.state={nom:""}
@@ -65,8 +66,8 @@ export default class Moncompte extends Component {
 		}
 
 	render(){
-
-		return (
+			if(this.props.loggedin){
+				return (
 
 			<div className="">
 				<h1>Mon Compte</h1>
@@ -82,5 +83,17 @@ export default class Moncompte extends Component {
 				</Grid>
 			</div>
 		);
+
+		}else{
+			return(<div>Vous devez vous connecter pour pouvoir acceder à cette page</div>)
+
+	}
 	}
 }
+ var MonCompte = createContainer( ()=>{
+	 return {
+		 loggedin: Meteor.userId()
+	 };
+ } , MonCompt );
+
+ export default MonCompte;

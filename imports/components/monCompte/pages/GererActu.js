@@ -118,7 +118,6 @@ export default class GererActu extends Component {
 				aSauv.etat=et
 
 				Meteor.call('sauvegardeArticles',aSauv,(err,res)=>{
-					console.log("rtretree")
 				})
 			}
 		})

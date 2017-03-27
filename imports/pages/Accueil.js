@@ -1,45 +1,28 @@
 import React, {Component} from 'react'
 import Titre from '../components/Titre.js'
 import Carousel from '../components/Carousel.js'
-
+import {createContainer} from 'meteor/react-meteor-data';
 import GoogleMap from '../components/GoogleMap.js'
+import {loggedin,usrCo,getUsrCo} from '../API/API.js'
 
+class Accuei extends Component {
 
-
-export default class Accueil extends Component {
-
-constructor(){
-	super()
-	this.state={nom:"Futur Seliste"}
+componentWillMount(){
+	if(loggedin){getUsrCo()}
 }
-utConnecte(){
-
-	Meteor.call('utilisateur' ,(err,res)=>{
-
-		if(err){
-			console.log("err")
-		}else{
-				this.setState({nom : res.profile.prenom})
-			}
-		}
-	)
-}
-	componentWillMount(){
-		this.utConnecte()
-
-	}
 
 	render(){
 
-
+		prenom="Futur Seliste"
+		if(this.props.prenom){prenom=this.props.prenom}
 
 		return (
 			<div>
+
+
 			<br/>
-				<Titre nom={"Bienvenu "+this.state.nom+"! Partagez bien, services et savoirs... et creez des liens"}></Titre>
-
+				<Titre nom={"Bienvenu "+prenom+"! Partagez bien, services et savoirs... et creez des liens"}></Titre>
 				<br/>
-
 					<div >
 					<Carousel></Carousel>
 					</div>
@@ -52,3 +35,11 @@ utConnecte(){
 		);
 	}
 }
+
+ export default Accueil = createContainer( ()=>{
+ 	if(usrCo.get().profile){
+ 		return {prenom:usrCo.get().profile.prenom };
+ 	}else{return {prenom:"" };}
+
+ } , Accuei );
+

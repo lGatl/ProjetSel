@@ -23,7 +23,8 @@
 						descriptionDeLAnnonce: nvlAnnonce.descriptionDeLAnnonce,
 						informationDeContact: nvlAnnonce.informationDeContact,
 						dateDeFin: nvlAnnonce.dateDeFin,
-						etat: nvlAnnonce.etat
+						etat: nvlAnnonce.etat,
+						utilisateur:nvlAnnonce.utilisateur
 					})
 			}else{return false}
 		},

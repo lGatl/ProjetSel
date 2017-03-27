@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {createContainer} from 'meteor/react-meteor-data';
+
 import CarteSeliste from '../components/CarteSeliste.js';
 import { Card } from 'semantic-ui-react'
 import { Segment } from 'semantic-ui-react'
@@ -7,10 +9,16 @@ import Filtres from '../components/Filtres.js'
 
 
 
-export default class LesSelistes extends Component {
+class LesSeliste extends Component {
 	constructor(){
 	super()
-	this.state={utilisateurs:[]}
+	this.state={
+		utilisateurs:[],
+		option:[
+				{titre:"Categories :",contenu:["Cuisine","Mecanique"]},
+				{titre:"Distances :",contenu:["0-5 km","5-10 km"]},
+				{titre:"Les plus recents :",contenu:["< 1 semaine","< 2 semaines"]}]
+		}
 	}
 	componentWillMount(){
 		Meteor.call('utilisateurs',(err,res)=>{
@@ -24,26 +32,39 @@ export default class LesSelistes extends Component {
 	}
 
 	render(){
-		return (
-
-			<div className="">
-				<Titre nom="Les Selistes"></Titre>
-					<Filtres></Filtres>
-				 <Card.Group>
-				 {
-
-				 	this.state.utilisateurs.map((utilisateur,i)=>{
-						return(
-								<CarteSeliste utilisateur={utilisateur} key={i}> </CarteSeliste>
-							)
-					 })
-				 }
+		if(this.props.loggedin){
+				return (
 
 
-				 </Card.Group>
+					<div className="">
+						<Titre nom="Les Selistes"></Titre>
+							<Filtres option={this.state.option}></Filtres>
+						 <Card.Group>
+						 {
+
+						 	this.state.utilisateurs.map((utilisateur,i)=>{
+								return(
+										<CarteSeliste utilisateur={utilisateur} key={i}> </CarteSeliste>
+									)
+							 })
+						 }
 
 
-			</div>
-		);
+						 </Card.Group>
+
+
+					</div>
+				);
+		}else{
+			return(<div>Vous devez vous connecter pour pouvoir acceder à cette page</div>)
+
+		}
 	}
 }
+ var LesSelistes = createContainer( ()=>{
+	 return {
+		 loggedin: Meteor.userId()
+	 };
+ } , LesSeliste );
+
+ export default LesSelistes;

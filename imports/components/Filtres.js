@@ -8,14 +8,12 @@ export default class Filtres extends Component {
 	constructor(){
 		super()
 		this.state={
-			options:[
-				{titre:"Categories :",contenu:["Cuisine","Mecanique"]},
-				{titre:"Distances :",contenu:["0-5 km","5-10 km"]},
-				{titre:"Les plus recents :",contenu:["< 1 semaine","< 2 semaines"]}
-			]
+			options:[]
 		}
 	}
-
+	componentWillMount(){
+		this.setState({options:this.props.option})
+	}
 	render(){
 
 		return (

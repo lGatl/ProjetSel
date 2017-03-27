@@ -1,5 +1,5 @@
 
-
+import{log}from'../API/API.js'
 	const categories=()=>{
 		Meteor.call('listeCategories',(err,res)=>{
 			if(err){console.log("errcat"," ",err)}else{
@@ -37,15 +37,21 @@
 		})
 	}
 
-	const annonces=()=>{
+	const annonces=(id)=>{
+
+
 		Meteor.call('listeAnnonces', (err,res)=>{
 			if(err){console.log("errann"," ",err)}else{
+				var utilisateur
+
 				if(res.length==0){
 					var obj=[
-						{categorie : "cuisine", type : "offre", titreDeLAnnonce : "500 couverts", descriptionDeLAnnonce : "Besoin d'un cuisinier capable de gerer 500 couverts!", informationDeContact : "monmail@gmal.com", dateDeFin : "1/15/5477", etat : "Valider" },
-						{categorie : "mecanique", type : "demande", titreDeLAnnonce : "Vidange", descriptionDeLAnnonce : "Qui veut venir me faire une petite vidange ?? ", informationDeContact : "tonmail@talmal.fr", dateDeFin : "25/45/9845", etat : "Editer" },
-						{categorie : "informatique", type : "offre", titreDeLAnnonce : "Ecran Bleu", descriptionDeLAnnonce : ":'( Je ne comprend pas qqn peut venir m'aider?", informationDeContact : "sonmail@caramal.rf", dateDeFin : "01/23/4567", etat : "Valider" },
-						{categorie : "cheval", type : "demande", titreDeLAnnonce : "Pour steak", descriptionDeLAnnonce : "Nourrit a l'herbe toute sa vie, massé chaque jour", informationDeContact : "notremail@wanadoo.fr", dateDeFin : "98/76/5432", etat : "Refuser" }
+
+					{categorie : "cuisine", type : "offre", titreDeLAnnonce : "500 couverts", descriptionDeLAnnonce : "Besoin d'un cuisinier capable de gerer 500 couverts!", informationDeContact : "monmail@gmal.com", dateDeFin : "1/15/5477", etat : "Valider",utilisateur:id},
+						{categorie : "mecanique", type : "demande", titreDeLAnnonce : "Vidange", descriptionDeLAnnonce : "Qui veut venir me faire une petite vidange ?? ", informationDeContact : "tonmail@talmal.fr", dateDeFin : "25/45/9845", etat : "En Attente",utilisateur:id },
+						{categorie : "informatique", type : "offre", titreDeLAnnonce : "Ecran Bleu", descriptionDeLAnnonce : ":'( Je ne comprend pas qqn peut venir m'aider?", informationDeContact : "sonmail@caramal.rf", dateDeFin : "01/23/4567", etat : "Valider",utilisateur:id },
+						{categorie : "cheval", type : "demande", titreDeLAnnonce : "Pour steak", descriptionDeLAnnonce : "Nourrit a l'herbe toute sa vie, massé chaque jour", informationDeContact : "notremail@wanadoo.fr", dateDeFin : "98/76/5432", etat : "Refuser",utilisateur:id }
+
 					]
 					obj.map((ob)=>{
 					Meteor.call('ajoutAnnonce',ob,(erre,resp)=>console.log("annonce fictive cree"))
@@ -136,19 +142,37 @@
 					obj.map((ob)=>{
 					Accounts.createUser(ob,(erre,resp)=>console.log("utilisateur ",ob.username," pass:12345 fictif créé"))
 					})
+					connexion()
+					FlowRouter.go('/');
+					annoncess()
+
 				}
 			}
 		})
+
+	}
+
+const connexion=()=>{
+
+		log("alf.extratrestre@mangechat.fr", "12345")
+
 	}
 
 
 
+const annoncess=(id)=>{
+	Meteor.call('utilisateur',(err,res)=>{
+		if(err){
+			console.log(err)
+		}else{
+				if(res){annonces(res._id)}else{console.log("doit etre connecté pour generer auto des annonces")}
+		}
+	})
+}
 
 
 
-
-
+utilisateur()
 categories()
 articles()
-annonces()
-utilisateur()
+annoncess()

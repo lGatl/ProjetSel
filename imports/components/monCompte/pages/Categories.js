@@ -106,8 +106,6 @@ export default class Categories extends Component {
 		this.setState({boutonSelect:tableau})
 	}
 	sauveModifEtat(){
-		console.log(this.state.boutonSelect)
-		console.log(this.state.categ.contenu)
 		this.state.boutonSelect.map((et,i)=>{
 			var aSauv={}
 			if(et){
@@ -115,7 +113,6 @@ export default class Categories extends Component {
 				aSauv={categorie:this.state.categ.contenu[i].tableau[0],etat:et}
 
 				Meteor.call('sauvegardeCategories',aSauv,(err,res)=>{
-					console.log("zerezrzrez")
 				})
 			}
 		})

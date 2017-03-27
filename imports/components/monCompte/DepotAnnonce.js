@@ -15,6 +15,7 @@ export default class DepotAnnonce extends Component {
 			descriptionDeLAnnonce:"",
 			informationDeContact:"",
 			dateDeFin:"",
+			utilisateur:"",
 			etat:"En Attente",
 			categories:[],
 			categorie:""
@@ -27,6 +28,16 @@ export default class DepotAnnonce extends Component {
 	componentWillMount(){
 		this.setState({type:this.props.type})
 		this.getCategories()
+		this.connecte()
+	}
+	connecte(){
+		Meteor.call('utilisateur',(err,res)=>{
+			if(err){
+
+			}else{
+				if(res){this.setState({utilisateur:res._id})}
+			}
+		})
 	}
 	getCategories(){
 		Meteor.call('listeCategories',(err,res)=>{
@@ -59,7 +70,8 @@ export default class DepotAnnonce extends Component {
 			dateDeFin:"",
 			etat:"En Attente",
 			categories:[],
-			categorie:""
+			categorie:"",
+			utilisateur:""
 		})
 		this.getCategories()
 	}

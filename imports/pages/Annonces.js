@@ -14,7 +14,11 @@ export default class Annonces extends Component {
 		super()
 		this.state={
 			annonces:[],
-			actif:"toutes"
+			actif:"toutes",
+			option:[
+				{titre:"Categories :",contenu:["Cuisine","Mecanique"]},
+				{titre:"Distances :",contenu:["0-5 km","5-10 km"]},
+				{titre:"Les plus recents :",contenu:["< 1 semaine","< 2 semaines"]}]
 		}
 	}
 
@@ -46,7 +50,7 @@ export default class Annonces extends Component {
 			<br/>
 
 			<Segment>
-			<Filtres></Filtres>
+			<Filtres option={this.state.option}></Filtres>
 			</Segment>
 				<Onglets recup={this.recup.bind(this)}></Onglets>
 				{

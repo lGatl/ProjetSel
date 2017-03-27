@@ -13,6 +13,7 @@
 	import LesSelistes from '../pages/LesSelistes.js';
 	import MonCompte from '../pages/MonCompte.js';
 	import CreerUnComptePublic from '../pages/CreerUnComptePublic.js';
+	import Connexion from '../pages/Connexion.js'
 
 	import  Actu from '../components/Actu.js';
 	import  AnnonceDesc from '../components/AnnonceDesc.js';
@@ -66,6 +67,12 @@ FlowRouter.route('/creerUnCompte', {
 	 name: 'creerUnCompte',
 	 action: function() {
 		 mount(MainLayout, {content: <CreerUnComptePublic layout="simple"/>});
+	 }
+ });
+FlowRouter.route('/connexion', {
+	 name: 'connexion',
+	 action: function() {
+		 mount(MainLayout, {content: <Connexion layout="simple"/>});
 	 }
  });
 FlowRouter.route('/articles/:titre', {

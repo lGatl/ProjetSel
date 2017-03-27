@@ -16,6 +16,10 @@ Meteor.methods({
 		var connecteID=Meteor.userId()
 		connecte=Meteor.users.findOne({_id: connecteID})
 		return connecte
+	},
+	test:(a)=>{
+		connecte=Meteor.users.findOne({_id: a})
+		return connecte
 	}
 
 })

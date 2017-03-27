@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import { Button, Form,Select } from 'semantic-ui-react'
+import {createContainer} from 'meteor/react-meteor-data';
 
-export default class CreerUnCompte extends Component {
+class CreerUnCompt extends Component {
 
 	constructor(){
 		super()
@@ -116,7 +117,9 @@ export default class CreerUnCompte extends Component {
 			}
 		})
 		if(this.props.remiseA0){this.props.remiseA0()}
+			if(this.props.acces=="public"){FlowRouter.go('/')}
 	}
+
 	nePasModifier(){
 		if(this.props.remiseA0){this.props.remiseA0()}
 	}
@@ -201,10 +204,14 @@ export default class CreerUnCompte extends Component {
 			if(this.props.action=="creer"){
 				return(<Button type='submit' onClick={this.creerCompte.bind(this)}>Creer ce Compte</Button>)
 			}
+
 		}
 	}
 
 	render(){
+		if(this.props.loggedin&&this.props.acces=="public"){
+			return(<div>Vous etes deja connecté!!</div>)
+		}else{
 		return(
 			<div>
 			 <Form id="contact">
@@ -270,7 +277,15 @@ export default class CreerUnCompte extends Component {
 			</div>
 
 			)
+		}
 	}
 }
 
 
+ var CreerUnCompte = createContainer( ()=>{
+	 return {
+		 loggedin: Meteor.userId()
+	 };
+ } , CreerUnCompt );
+
+ export default CreerUnCompte;
