@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Menu, Segment } from 'semantic-ui-react'
 import {createContainer} from 'meteor/react-meteor-data';
+import {usr} from '../API/API.js'
 
 class MenuSS extends Component {
 
@@ -22,27 +23,11 @@ class MenuSS extends Component {
 				{titre:"Deconnexion",href:"/",doitlog:"oui"}
 		]
 	}
-	logout(){
-		Meteor.logout((err)=>{
-			if(err){
-				Bert.alert({
-					title:"Erreur réseau ",
-					message: "Nous n'avons pas pu vous déconnecter",
-					type: 'danger'
-				});
-			} else {
-				Bert.alert({
-					title:"Déconnexion",
-					message: "Vous êtes maintenant déconnecté",
-					type: 'success'
-				});
-			}
-		});
-	}
+
 
 	handleItemClick (e, { name }){
 		if(name=="Deconnexion"){
-			this.logout()
+			usr.deco()
 			this.setState({ activeItem: "Acceuil" })
 		}
 		this.setState({ activeItem: name })
@@ -88,8 +73,9 @@ class MenuSS extends Component {
 }
  var MenuS = createContainer( ()=>{
 	 return {
-		 loggedin: Meteor.userId()
+		loggedin:usr.logged.get()
 	 };
+
  } , MenuSS );
 
  export default MenuS;

@@ -1,16 +1,10 @@
 
-export const loggedin =  new ReactiveVar(Meteor.userId())
-export const usrCo = new ReactiveVar({})
-
-export const getUsrCo=()=>{
-Meteor.call('test',Meteor.userId(),(err,res)=>{
-	if(err){}else{
-		if(res){usrCo.set(res)}}
-})
-}
-
-export const log =(usr,pass)=>{
-	Meteor.loginWithPassword(usr,pass,(err) => {
+export const usr={
+	loggedin : new ReactiveVar(Meteor.userId()),
+	logged 	: new ReactiveVar(),
+	 usrCo 	: new ReactiveVar({profile:{prenom:"Futur Seliste"}}),
+	 co 		: function(usr,pass){
+		Meteor.loginWithPassword(usr,pass,(err) => {
 			if(err){
 				Bert.alert({
 					message: err.reason,
@@ -21,8 +15,39 @@ export const log =(usr,pass)=>{
 					message: "Vous êtes connecté",
 					type: 'success'
 				});
-
-				getUsrCo()
+				this.logged.set(true)
+				this.getUsrCo()
 			}
 		});
+
+	},
+	getUsrCo:function(){
+		usr.usrCo.set({profile:{prenom:"Futur Seliste"}})
+		Meteor.call('test',Meteor.userId(),(err,res)=>{
+			if(err){}else{
+				if(res){this.usrCo.set(res)}}
+			})
+	},
+	 deco  : function(){
+		Meteor.logout((err)=>{
+			if(err){
+				Bert.alert({
+					title:"Erreur réseau ",
+					message: "Nous n'avons pas pu vous déconnecter",
+					type: 'danger'
+				});
+			} else {
+				Bert.alert({
+					title:"Déconnexion",
+					message: "Vous êtes maintenant déconnecté",
+					type: 'success'
+				});
+				this.usrCo.set({profile:{prenom:"Futur Seliste"}})
+			}
+		});
+
+		this.logged.set(false)
+	}
 }
+if(usr.loggedin.get()){usr.logged.set(true)}else{usr.logged.set(false)}
+if(usr.logged.get()){usr.getUsrCo()}else{usr.usrCo.set({profile:{prenom:"Futur Seliste"}})}

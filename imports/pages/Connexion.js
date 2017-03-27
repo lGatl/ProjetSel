@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {createContainer} from 'meteor/react-meteor-data';
 import{log}from'../API/API.js'
 import {Form, Button } from 'semantic-ui-react';
+import {usr} from '../API/API.js'
 
 
 
@@ -24,11 +25,12 @@ class Connexio extends Component {
 
 	handleSubmit(e){
 		e.preventDefault();
-		log(this.state.email, this.state.pass)
+		usr.co(this.state.email, this.state.pass)
+		FlowRouter.go('/');
 	}
 
 	render(){
-		if(this.props.loggedin){
+		if(this.props.logged){
 			return(<div>Vous etes deja connecté!!!!</div>)
 		}else{
 			return(
@@ -55,7 +57,7 @@ class Connexio extends Component {
 
  var Connexion = createContainer( ()=>{
 	 return {
-		 loggedin: Meteor.userId()
+		 logged: usr.logged.get()
 	 };
  } , Connexio );
 

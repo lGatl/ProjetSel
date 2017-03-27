@@ -1,5 +1,5 @@
 
-import{log}from'../API/API.js'
+import{usr}from'../API/API.js'
 	const categories=()=>{
 		Meteor.call('listeCategories',(err,res)=>{
 			if(err){console.log("errcat"," ",err)}else{
@@ -143,7 +143,7 @@ import{log}from'../API/API.js'
 					Accounts.createUser(ob,(erre,resp)=>console.log("utilisateur ",ob.username," pass:12345 fictif créé"))
 					})
 					connexion()
-					FlowRouter.go('/');
+
 					annoncess()
 
 				}
@@ -154,7 +154,7 @@ import{log}from'../API/API.js'
 
 const connexion=()=>{
 
-		log("alf.extratrestre@mangechat.fr", "12345")
+		usr.co("alf.extratrestre@mangechat.fr", "12345")
 
 	}
 

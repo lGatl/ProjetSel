@@ -3,25 +3,19 @@ import Titre from '../components/Titre.js'
 import Carousel from '../components/Carousel.js'
 import {createContainer} from 'meteor/react-meteor-data';
 import GoogleMap from '../components/GoogleMap.js'
-import {loggedin,usrCo,getUsrCo} from '../API/API.js'
+import {usr} from '../API/API.js'
 
 class Accuei extends Component {
 
-componentWillMount(){
-	if(loggedin){getUsrCo()}
-}
 
 	render(){
-
-		prenom="Futur Seliste"
-		if(this.props.prenom){prenom=this.props.prenom}
 
 		return (
 			<div>
 
 
 			<br/>
-				<Titre nom={"Bienvenu "+prenom+"! Partagez bien, services et savoirs... et creez des liens"}></Titre>
+				<Titre nom={"Bienvenu "+this.props.prenom+"! Partagez bien, services et savoirs... et creez des liens"}></Titre>
 				<br/>
 					<div >
 					<Carousel></Carousel>
@@ -37,9 +31,8 @@ componentWillMount(){
 }
 
  export default Accueil = createContainer( ()=>{
- 	if(usrCo.get().profile){
- 		return {prenom:usrCo.get().profile.prenom };
- 	}else{return {prenom:"" };}
+
+ 	return{prenom:usr.usrCo.get().profile.prenom}
 
  } , Accuei );
 
