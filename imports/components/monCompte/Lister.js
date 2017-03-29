@@ -14,11 +14,15 @@ export default class Lister extends Component {
 								cle=Object.keys(donnee)[0]
 								val=donnee[cle]
 									titre=cle
-									cle=="resp"?titre="Responsabilité Civile":
-									cle=="dateVal"?titre="Date de Validité":""
+									cle=="resp"?titre="Responsabilité civile":
+									cle=="dateVal"?titre="Date de Validité":
+									cle=="Prenom"?titre="Prénom":
+									cle=="Telephone"?titre="Téléphone":
+									cle=="totalCredit"?titre="Total crédit":
+									cle=="totalDebit"?titre="Total débit":""
 
 
-								if(cle!="note"){return(<List.Item key = {i}>{titre +": "+val}</List.Item>)}
+								if(cle!="note"){return(<List.Item key = {i}>{titre +" : "+val}</List.Item>)}
 									if(cle=="note"){return(<List.Item key={i}>Note: <Rating icon='star' defaultRating={val} maxRating={4} /></List.Item>)}
 
 					})

@@ -21,13 +21,13 @@ import {usr} from '../../../API/usr.js'
 					{Prenom:this.props.usr.profile.prenom},
 					{Mail:this.props.usr.emails[0].address},
 					{Adresse:this.props.usr.profile.adresse},
-					{Telephonne:this.props.usr.profile.tel},
+					{Telephone:this.props.usr.profile.tel},
 					{resp:this.props.usr.profile.respC},
 					{dateVal:this.props.usr.profile.dateValRespC},
 					{note:this.props.usr.profile.note}
 				]})
 				this.setState({mesSeugnettes:[
-				{solde:this.props.usr.profile.soldeSeugnette},
+				{Solde:this.props.usr.profile.soldeSeugnette},
 				{totalCredit:this.props.usr.profile.totalCredits},
 				{totalDebit:this.props.usr.profile.totalDebits}
 					]})

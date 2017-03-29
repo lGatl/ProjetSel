@@ -16,12 +16,12 @@ class GererAnnonce extends Component {
 			title:"",
 			description:""
 		}
-			this.categories={titre:"Categories :",contenu:["Cuisine","Mecanique"]}
+			this.categories={titre:"Catégories :",contenu:["Cuisine","Mecanique"]}
 			this.etat={titre:"Etat",contenu:["Valider","En Attente","Refuser"]}
 			this.type={titre:"Type",contenu:["Offre","Demande"]}
 
 		this.annonces={
-			titres:["Dates","Nom Prenom","Types","Categorie","Titre de l'Annonce"],
+			titres:["Date","Séliste","Type","Catégorie","Titre de l'annonce"],
 			contenu:[],
 			actions:{titre:"Actions",contenu:["Valider","En Attente","Refuser","Supprimer"]}
 		}
@@ -111,7 +111,7 @@ class GererAnnonce extends Component {
 		this.remplirTableau(this.props.annonces.liste)
 		return (
 			<div>
-				<Titre1 nom="Liste des Annonces"></Titre1>
+				<Titre1 nom="Liste des annonces"></Titre1>
 				 <MenuDeroulant donnees={this.categories}></MenuDeroulant>
 				 <MenuDeroulant donnees={this.etat}></MenuDeroulant>
 				 <MenuDeroulant donnees={this.type}></MenuDeroulant>

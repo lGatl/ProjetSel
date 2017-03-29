@@ -22,7 +22,7 @@ import {menu} from '../API/menu.js'
 		}
 	}
 	componentWillMount(){
-		this.props.setActif('Contacts')
+		this.props.setActif('Contact')
 	}
 
 	render(){

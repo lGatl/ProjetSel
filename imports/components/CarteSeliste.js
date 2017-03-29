@@ -14,8 +14,8 @@ constructor(){
 	render(){
 			var role=""
 			if(this.props.utilisateur.profile.role){
-				if(this.props.utilisateur.profile.role=="se"){role="Selliste"}
-				if(this.props.utilisateur.profile.role=="ad"){role="Administreteur"}
+				if(this.props.utilisateur.profile.role=="se"){role="Seliste"}
+				if(this.props.utilisateur.profile.role=="ad"){role="Administrateur"}
 				if(this.props.utilisateur.profile.role=="mo"){role="Moderateur"}
 
 			}
@@ -28,9 +28,9 @@ constructor(){
 					</Card.Header>
 							<Rating icon='star' defaultRating={this.props.utilisateur.profile.note} maxRating={4} />
 					<Card.Description>
-						Categiorie offre:
+						Catégiorie offre:
 						<ul>
-							<li>Mecanique</li>
+							<li>Mécanique</li>
 							<li>Cuisine</li>
 						 </ul> <strong>Role</strong>
 							<Label>{role}</Label>

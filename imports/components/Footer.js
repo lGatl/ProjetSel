@@ -19,11 +19,11 @@ export default class Footer extends Component {
 			<footer>
 				 <Segment inverted color='red' basic>
 				 	<p>
-					 	Site d'échange Local de la ville de Damvillers, 6 rue des Remparts 55150 DAMVILLERS
+					 	Système d'Echange Local de la Croix Rouge de Damvillers, 6 rue des Remparts 55150 DAMVILLERS
 					 	<img className="logo" src='images/TwitterBird.png'/>
   						<img className="logo" src='images/Facebook.png' />
 					 	<br/><br/>
-					 	<span id='tailletext'>Création du site par WebOGreen 2017</span>
+					 	<span id='tailletext'>Création du site par WebOgreen 2017</span>
 				 	</p>
 
   				</Segment>

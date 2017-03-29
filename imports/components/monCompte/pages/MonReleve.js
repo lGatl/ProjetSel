@@ -7,14 +7,14 @@ export default class MonReleve extends Component {
 	constructor(){
 		super()
 		this.donneur={
-			titres:["Date","Nom Prenom du Donneur","Categorie","Titre de l'annonceur","Nombre de seugnettes"],
+			titres:["Date","Donneur","Catégorie","Titre de l'annonce","Nombre de seugnettes"],
 			contenu:[
 						["02/02/2017","Jean Bon","Cuisine","Cours de Cuisine","500"],
 						["02/02/2017","Jean Bon","Cuisine","Cours de Cuisine","500"]
 					]
 		}
 		this.receveur={
-			titres:["Date","Nom Prenom du Receveur","Categorie","Titre de l'annonceur","Nombre de seugnettes"],
+			titres:["Date","Receveur","Catégorie","Titre de l'annonce","Nombre de seugnettes"],
 			contenu:[
 						["02/02/2017","Jean Bddon","Cucdce","Caaaaasine","5004"],
 						["02/02/2017","Jean Bcdcdon","sfdsfsde","Cdcdsfcdscdscsdisine","545"]
@@ -28,9 +28,9 @@ export default class MonReleve extends Component {
 
 			<div>
 				<Solde></Solde> <br/> <br/><br/>
-				<Titre1 nom="Liste des debits"></Titre1>
+				<Titre1 nom="Liste des débits"></Titre1>
 				<Tableau donnees={this.donneur}></Tableau>
-				<Titre1 nom="Liste des credits"></Titre1>
+				<Titre1 nom="Liste des crédits"></Titre1>
 				<Tableau donnees={this.receveur}></Tableau>
 
 			</div>

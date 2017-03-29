@@ -6,7 +6,7 @@ import {menu} from '../API/menu.js'
 class CreerUnComptePubli extends Component {
 
 	componentWillMount(){
-		this.props.setActif('CreerUnCompte')
+		this.props.setActif('Creer un compte')
 	}
 
 	render(){

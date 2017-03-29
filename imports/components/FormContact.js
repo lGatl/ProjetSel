@@ -23,7 +23,7 @@ export default class FormContact extends Component {
 	render(){
 		return(
 			 <Form id="contact">
-				<label><h1>Formulaire de Contact</h1></label>
+				<label><h1>Formulaire de contact</h1></label>
 					<Form.Input
 							label="Nom"
 							name="nom"
@@ -54,8 +54,8 @@ export default class FormContact extends Component {
 					/>
 					<Form.TextArea
 							name='sujet'
-							label='Motif de votre message'
-							placeholder='motif'
+							label='Objet de votre message'
+							placeholder='Objet de votre message'
 							rows='1'
 							onChange={this.change.bind(this)}
 							value={this.state.sujet}

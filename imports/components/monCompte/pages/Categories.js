@@ -14,7 +14,7 @@ export default class Categories extends Component {
 			boutonSelect:[],
 			categorie:"",
 			categ:{
-				titres:["Categories","Offres","Demandes"],
+				titres:["Catégorie","Offre","Demande"],
 				contenu:[],
 				actions:{titre:"Actions",contenu:["Editer","Desactiver","Supprimer"]}
 			}
@@ -26,7 +26,7 @@ export default class Categories extends Component {
 			boutonSelect:[],
 			categorie:"",
 			categ:{
-				titres:["Categories","Offres","Demandes"],
+				titres:["Catégorie","Offre","Demande"],
 				contenu:[],
 				actions:{titre:"Actions",contenu:["Editer","Desactiver","Supprimer"]}
 			},
@@ -79,7 +79,7 @@ export default class Categories extends Component {
 				})
 
 				this.setState({categ:{
-					titres:["Categories","Offres","Demandes"],
+					titres:["Catégorie","Offre","Demande"],
 					contenu:tab,
 					actions:{titre:"Actions",contenu:["Editer","Desactiver","Supprimer"]}
 				}})
@@ -153,20 +153,20 @@ export default class Categories extends Component {
 		return (
 
 			<div>
-				<Titre1 nom="Creer une Categorie"></Titre1>
+				<Titre1 nom="Créer une catégorie"></Titre1>
 					<Input labelPosition='right'
 							name="titreDeLaCategorie"
 							type='text'
-							placeholder='Nom de la Categorie'
+							placeholder='Nom de la catégorie'
 							value={this.state.categorie}
 							onChange={this.change.bind(this)}
 							>
-					<Label basic>Nom de la Categorie :  </Label>
+					<Label basic>Nom de la catégorie :  </Label>
 					<input />
 					<Button type='submit' onClick={this.ajoutCategorie.bind(this)}>Creer</Button>
 				</Input>
 
-				<Titre1 nom="Liste des categories"></Titre1>
+				<Titre1 nom="Liste des catégories"></Titre1>
 
 				<TableauActions donnees={this.state.categ} etatDrop={this.etatDrop.bind(this)}></TableauActions>
 				<Button type='Envoyer' onClick={this.appliquer.bind(this)}>Appliquer</Button>

@@ -23,7 +23,7 @@ export default class Statistiques extends Component {
 
 
 			<div>
-				<Titre1 nom="Statstiques"></Titre1>
+				<Titre1 nom="Statistiques"></Titre1>
 				<Tableau donnees={this.stats}></Tableau>
 			</div>
 

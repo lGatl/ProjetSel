@@ -11,11 +11,11 @@ import { Grid } from 'semantic-ui-react'
  	var Annonce=""
  	var Actu=""
  	if(content.props.layout=="simple"){Contenu=(<div>{content}</div>)}else{
- 		if(content.props.layout=="annonce"){Annonce=(<DerniereActuAnnonce titre="annonce"></DerniereActuAnnonce>)}
- 		if(content.props.layout=="actu"){Actu=(<DerniereActuAnnonce titre="actu"></DerniereActuAnnonce>)}
+ 		if(content.props.layout=="annonce"){Annonce=(<DerniereActuAnnonce titre="Annonces"></DerniereActuAnnonce>)}
+ 		if(content.props.layout=="actu"){Actu=(<DerniereActuAnnonce titre="Actualités"></DerniereActuAnnonce>)}
  		if(content.props.layout=="tout"){
- 			Annonce=(<DerniereActuAnnonce titre="annonce"></DerniereActuAnnonce>)
- 			Actu=(<DerniereActuAnnonce titre="actu"></DerniereActuAnnonce>)
+ 			Annonce=(<DerniereActuAnnonce titre="Annonces"></DerniereActuAnnonce>)
+ 			Actu=(<DerniereActuAnnonce titre="Actualités"></DerniereActuAnnonce>)
  		}
  		Contenu=(
 	 		<Grid>

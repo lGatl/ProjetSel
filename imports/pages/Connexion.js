@@ -41,7 +41,7 @@ class Connexio extends Component {
 						name="email"
 						onChange={this.handleChange.bind(this)}
 						value={this.state.email}
-						label="Courriel"
+						label="email"
 						placeholder="mon@mail.com" />
 					<Form.Input
 						name="pass"

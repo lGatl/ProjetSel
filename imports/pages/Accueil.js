@@ -22,7 +22,7 @@ componentWillMount(){
 
 
 			<br/>
-				<Titre nom={"Bienvenu "+this.props.prenom+"! Partagez bien, services et savoirs... et creez des liens"}></Titre>
+				<Titre nom={"Bienvenue "+this.props.prenom+"!  Partagez des services et des savoirs... Créez des liens"}></Titre>
 				<br/>
 					<div >
 						<Grid>
@@ -33,7 +33,7 @@ componentWillMount(){
 
 					</div>
 					<br/>
-				<Titre nom="Trouvez un Sel pres de chez vous! C'est simple avec la carte des Selistes"></Titre>
+				<Titre nom="Trouvez un SEL près de chez vous ! C'est simple avec la carte des sélistes"></Titre>
 				<br/>
 
 				<GoogleMap></GoogleMap>

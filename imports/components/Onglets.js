@@ -27,10 +27,6 @@ constructor(){
 					<Menu.Item name='demandes' active={activeItem === 'demandes'} onClick={this.handleItemClick.bind(this)} />
 
 				</Menu>
-
-				<Segment attached='bottom'>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores fugiat harum officia, numquam molestias inventore enim rem nisi? Omnis praesentium voluptatum delectus aliquid, laboriosam autem pariatur reprehenderit totam quod consequatur.
-				</Segment>
 			</div>
 		)
 	}

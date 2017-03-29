@@ -2,7 +2,7 @@
 export const usr={
 	loggedin : new ReactiveVar(Meteor.userId()),
 	logged 	: new ReactiveVar(),
-	 usrCo 	: new ReactiveVar({profile:{prenom:"Futur Seliste"}}),
+	 usrCo 	: new ReactiveVar({profile:{prenom:"futur séliste"}}),
 	 co 		: function(usr,pass){
 		Meteor.loginWithPassword(usr,pass,(err) => {
 			if(err){

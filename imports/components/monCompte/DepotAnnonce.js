@@ -88,7 +88,7 @@ class DepotAnnonc extends Component {
 		return (
 			<div>
 
-				<Titre1 nom={"Deposer une "+this.props.type}></Titre1>
+				<Titre1 nom={"Déposer une "+this.props.type}></Titre1>
 				<br/>
 				<Label size='large' >{"Votre "+this.props.type}</Label>
 				<br/> <br/>
@@ -96,10 +96,10 @@ class DepotAnnonc extends Component {
 
 
 					<Form.Select
-						label='Categorie'
+						label='Catégorie'
 						name='categorie'
 						options={this.state.categories}
-						placeholder='Categorie'
+						placeholder='Catégorie'
 						onChange={this.handleChange}
 						value={this.state.categorie}
 						/>
@@ -121,7 +121,7 @@ class DepotAnnonc extends Component {
 					/>
 					<Form.TextArea
 						name='informationDeContact'
-						label='Information de Contact'
+						label='Information de contact'
 						placeholder='tel, adresse, mail, ...'
 						rows='3'
 						onChange={this.change.bind(this)}

@@ -14,10 +14,10 @@ class MenuSS extends Component {
 				{titre:"Kesako",href:"/kesako",doitlog:"non"},
 				{titre:"Annonces",href:"/annonces",doitlog:"non"},
 				{titre:"Actualites",href:"/actualites",doitlog:"non"},
-				{titre:"Contacts",href:"/contacts",doitlog:"non"},
+				{titre:"Contact",href:"/contacts",doitlog:"non"},
 				{titre:"MonCompte",href:"/monCompte",doitlog:"oui"},
 				{titre:"LesSelistes",href:"/lesSelistes",doitlog:"oui"},
-				{titre:"CreerUnCompte",href:"/creerUnCompte",doitlog:"sans"},
+				{titre:"Creer un compte",href:"/creerUnCompte",doitlog:"sans"},
 				{titre:"Connexion",href:"/connexion",doitlog:"sans"},
 				{titre:"Deconnexion",href:"/",doitlog:"oui"}
 		]

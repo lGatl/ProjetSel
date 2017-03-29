@@ -9,48 +9,57 @@ import ReactSwiper from 'react-swiper-dy';
 
 export default class Carousel extends Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.prev = this.prev.bind(this);
     this.next = this.next.bind(this);
   }
+
   next() {
     this.refs.reactSwiper.next();
   }
   prev() {
     this.refs.reactSwiper.prev();
   }
-  render() {
-      const style = {
+
+  obj(anns){
+       const style = {
       height: '300px',
       width: '100%',
     };
-    return (
+   if( anns){
+    return(
       <div>
-
-        <ReactSwiper ref="reactSwiper" swipeOptions={{}}>
-
-            {
-
-              this.props.liste.map((annonce,i)=>{
+      <ReactSwiper ref="reactSwiper" swipeOptions={{}}>
+          {anns.map((annonce,i)=>{
                 if(annonce){
                  return(
-
                 <div key={i}style={style} >
                   <EncartAnnonce donnees={annonce}></EncartAnnonce>
                 </div>
-
               )}
-
             })
-
-            }
-        </ReactSwiper>
-
-        <div>
+        }
+    </ReactSwiper>
           <Button  onClick={this.prev}>Prev</Button>
           <Button  onClick={this.next}>Next</Button>
-        </div>
+          </div>
+  )}
+}
+
+  render() {
+
+      obj=this.obj( this.props.liste)
+
+    return (
+      <div>
+
+
+
+            {
+              obj
+            }
+
       </div>
     );
   }

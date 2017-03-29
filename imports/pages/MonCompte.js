@@ -31,7 +31,7 @@ class MonCompt extends Component {
 			this.state={nom:""}
 			this.menuMonCompte=[
 				"Mes informations",
-				"Mon relevé de comte",
+				"Mon relevé de compte",
 				"Deposez une offre",
 				"Deposez une demande",
 				"Mes Offres",
@@ -55,9 +55,9 @@ class MonCompt extends Component {
 		page(nom){
 
 				if(nom.name=="Mes informations")		{return(<MesInfos></MesInfos>)}
-				if(nom.name=="Mon relevé de comte")	{return( <MonReleve></MonReleve>)}
+				if(nom.name=="Mon relevé de compte"){return( <MonReleve></MonReleve>)}
 				if(nom.name=="Deposez une offre")	{return(<DepotOffre></DepotOffre>)}
-				if(nom.name=="Deposez une demande")	{return(<DepotDemande></DepotDemande>)}
+				if(nom.name=="Deposez une demande"){return(<DepotDemande></DepotDemande>)}
 				if(nom.name=="Mes Offres")			{return(<MesOffres></MesOffres>)}
 				if(nom.name=="Mes Demandes")		{return(<MesDemandes></MesDemandes>)}
 				if(nom.name=="Mes Propositons")		{return(<MesPropositions></MesPropositions>)}

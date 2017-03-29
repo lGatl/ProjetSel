@@ -8,7 +8,7 @@ class CreerUnCompt extends Component {
 		super()
 		this.roles=[
 			{ key: 'in', value: 'in', text: 'inscrit' },
-			{ key: 'se', value: 'se', text: 'selliste' },
+			{ key: 'se', value: 'se', text: 'seliste' },
 			{ key: 'mo', value: 'mo', text: 'moderateur' },
 			{ key: 'ad', value: 'ad', text: 'admin' }
 		]
@@ -41,6 +41,7 @@ class CreerUnCompt extends Component {
 			 this.setState({role:val})
 	}
 	recupState(){
+
 		return(
 			{
 				username:this.state.username,
@@ -54,10 +55,10 @@ class CreerUnCompt extends Component {
 					respC:this.state.respC,
 					dateValRespC:this.state.dateValRespC,
 					note:this.state.note,
-					soldeSeugnette:this.state.soldeSeugnette,
+					soldeSeugnette:this.props.acces=="public"?"120":this.state.soldeSeugnette,
 					totalCredits:this.state.totalCredits,
 					totalDebits:this.state.totalDebits,
-					role:this.state.role
+					role:this.props.acces=="public"?"se":this.state.role
 				}
 			}
 		)
@@ -102,6 +103,7 @@ class CreerUnCompt extends Component {
 
 	creerCompte(e){
 		e.preventDefault()
+
 		Accounts.createUser(this.recupState(), (err)=>{
 			if(err){
 				Bert.alert({
@@ -196,28 +198,30 @@ class CreerUnCompt extends Component {
 		if(this.props.action){
 			if(this.props.action=="editer"){
 				return(<div>
-					<Button type='submit' onClick={this.changeCompte.bind(this)}>Modifier ce Compte</Button>
-					<Button type='submit' onClick={this.supprimeCompte.bind(this)}>Supprimer ce Compte</Button>
-					<Button type='submit' onClick={this.nePasModifier.bind(this)}>Ne pas Modifier</Button>
+					<Button type='submit' onClick={this.changeCompte.bind(this)}>Editer ce compte</Button>
+					<Button type='submit' onClick={this.supprimeCompte.bind(this)}>Supprimer ce compte</Button>
+					<Button type='submit' onClick={this.nePasModifier.bind(this)}>Ne pas modifier</Button>
 				</div>)
 			}
 			if(this.props.action=="creer"){
-				return(<Button type='submit' onClick={this.creerCompte.bind(this)}>Creer ce Compte</Button>)
+				return(<Button type='submit' onClick={this.creerCompte.bind(this)}>Valider</Button>)
 			}
 
 		}
 	}
 
 	render(){
+		titre=""
+		if(this.props.action=="editer"){titre=<h1>Editer un Compte</h1>}else{titre=<h1>Crer un Compte</h1>}
 		if(this.props.loggedin&&this.props.acces=="public"){
 			return(<div>Vous etes deja connecté!!</div>)
 		}else{
 		return(
 			<div>
 			 <Form id="contact">
-				<label><h1>Creer un Compte</h1></label>
+				<label>{titre}</label>
 					<Form.Input
-						label="Courriel"
+						label="Email"
 						name="email"
 						placeholder='exemple@exemple.com'
 						onChange={this.change.bind(this)}

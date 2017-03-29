@@ -19,7 +19,7 @@ export default class ExtraitAnnonce extends Component {
 							</Grid.Column>
 							<Grid.Column width={6}>
 								<Card.Header>
-									Titre de mon Annonce
+									Titre de mon annonce
 								</Card.Header>
 								<br/>
 								<Card.Meta>
@@ -40,7 +40,7 @@ export default class ExtraitAnnonce extends Component {
 
 									<div className='ui two buttons'>
 										<Button  color='green'>Approuver</Button>
-										<Button color='red'>Decliner</Button>
+										<Button color='red'>Décliner</Button>
 									</div>
 								</Card.Content>
 							</Grid.Column>

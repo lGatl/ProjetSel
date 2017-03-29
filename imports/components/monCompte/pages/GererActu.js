@@ -16,14 +16,14 @@ export default class GererActu extends Component {
 			boutonSelect:[],
 			title:"",
 			description:"",
-			etat:"Editer",
+			etat:"Publier",
 			html:""
 		}
 
 		this.actu={
-			titres:["Date","nom"],
+			titres:["Date","Titre"],
 			contenu:[],
-			actions:{titre:"Actions",contenu:["Editer","Desactiver","Supprimer"]}
+			actions:{titre:"Actions",contenu:["Publier","Desactiver","Supprimer"]}
 		}
 	}
 	videState(){
@@ -173,18 +173,18 @@ export default class GererActu extends Component {
 
 
 			<div>
-				<Titre1 nom="Liste des Articles"></Titre1>
+				<Titre1 nom="Liste des actualités"></Titre1>
 
 				<TableauActions donnees={this.actu} etatDrop={this.etatDrop.bind(this)}></TableauActions>
 
 				<Button type='Envoyer' onClick={this.appliquer.bind(this)}>Appliquer</Button>
 
-				<Titre2 nom="Ajouter un Nouvel Article"></Titre2>
+				<Titre2 nom="Ajouter une nouvelle actualité"></Titre2>
 				<Form  onSubmit={this.handleSubmit}>
 
 
 					<Form.Input className="inputAj"
-						label="Titre de l'article"
+						label="Titre de l'ctualité"
 						name='title'
 						placeholder='Choisissez un titre'
 						value={this.state.title}
@@ -192,12 +192,12 @@ export default class GererActu extends Component {
 
 					<Form.TextArea className="inputAj"
 						name='description'
-						label="Description de l'article"
+						label="Description de l'actualité"
 						value={this.state.description}
 						placeholder="Decrire l'article"
 						rows='3'
 						onChange={this.miseEnVar.bind(this)} />
-					<h4>Inserer une piece jointe</h4>
+					<h4>Insérer une piece jointe</h4>
 					<br/>
 					<Icon size ='huge' name='camera'/>
     					<Icon size ='huge'  name='paste'  />
@@ -206,7 +206,7 @@ export default class GererActu extends Component {
 					<Label>Rendu</Label>
 					<Segment dangerouslySetInnerHTML={ {__html: this.state.html} }>
      					 </Segment>
-					<Button type='Envoyer' onClick={this.ajoutArticle.bind(this)}>Creer</Button>
+					<Button type='Envoyer' onClick={this.ajoutArticle.bind(this)}>Créer</Button>
 
 				</Form>
 

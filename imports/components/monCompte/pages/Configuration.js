@@ -8,7 +8,7 @@ export default class Statistiques extends Component {
 	constructor(){
 		super()
 		this.config={
-			titres:["colonne1","colonne2"],
+			titres:["Données","Description"],
 			contenu:[
 						["120","nb de seugnettes"],
 						["utilisateur suppr","nom affiché pour les utilisateurs supprimés"],
