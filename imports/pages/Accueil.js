@@ -1,13 +1,17 @@
 import React, {Component} from 'react'
 import Titre from '../components/Titre.js'
 import Carousel from '../components/Carousel.js'
-import {createContainer} from 'meteor/react-meteor-data';
+
 import GoogleMap from '../components/GoogleMap.js'
+import {createContainer} from 'meteor/react-meteor-data';
 import {usr} from '../API/usr.js'
+import {menu} from '../API/menu.js'
 
 class Accuei extends Component {
 
-
+componentWillMount(){
+	this.props.setActif('Accueil')
+}
 	render(){
 
 		return (
@@ -32,7 +36,10 @@ class Accuei extends Component {
 
  export default Accueil = createContainer( ()=>{
 
- 	return{prenom:usr.usrCo.get().profile.prenom}
+ 	return{
+ 		prenom:usr.usrCo.get().profile.prenom,
+ 		setActif:menu.setActif
+ 			}
 
  } , Accuei );
 

@@ -5,10 +5,11 @@ import {Segment} from 'semantic-ui-react';
 import EncartAnnonce from '../components/EncartAnnonce.js';
 import Onglets from '../components/Onglets.js'
 import Filtres from '../components/Filtres.js'
+import {createContainer} from 'meteor/react-meteor-data';
+import {menu} from '../API/menu.js'
 
 
-
-export default class Annonces extends Component {
+class Annonce extends Component {
 
 	constructor(){
 		super()
@@ -24,6 +25,7 @@ export default class Annonces extends Component {
 
 	componentWillMount(){
 		this.getAnnonces()
+		this.props.setActif('Annonces')
 
 
 	}
@@ -79,3 +81,10 @@ export default class Annonces extends Component {
 		);
 	}
 }
+ export default Annonces = createContainer( ()=>{
+
+ 	return{
+ 		setActif:menu.setActif
+ 			}
+
+ } , Annonce );

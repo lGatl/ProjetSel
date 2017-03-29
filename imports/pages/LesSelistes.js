@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {createContainer} from 'meteor/react-meteor-data';
 
 import CarteSeliste from '../components/CarteSeliste.js';
 import { Card } from 'semantic-ui-react'
 import { Segment } from 'semantic-ui-react'
 import Titre from '../components/Titre.js'
 import Filtres from '../components/Filtres.js'
-
+import {createContainer} from 'meteor/react-meteor-data';
+import {menu} from '../API/menu.js'
 
 
 class LesSeliste extends Component {
@@ -21,6 +21,7 @@ class LesSeliste extends Component {
 		}
 	}
 	componentWillMount(){
+		this.props.setActif('LesSelistes')
 		Meteor.call('utilisateurs',(err,res)=>{
 			if(err){
 				console.log(err)
@@ -63,7 +64,8 @@ class LesSeliste extends Component {
 }
  var LesSelistes = createContainer( ()=>{
 	 return {
-		 loggedin: Meteor.userId()
+		 loggedin: Meteor.userId(),
+		 setActif:menu.setActif
 	 };
  } , LesSeliste );
 

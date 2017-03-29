@@ -2,16 +2,15 @@ import React, { Component } from 'react'
 import { Menu, Segment } from 'semantic-ui-react'
 import {createContainer} from 'meteor/react-meteor-data';
 import {usr} from '../API/usr.js'
+import {menu} from '../API/menu.js'
 
 class MenuSS extends Component {
 
 	constructor(){
 		super()
-		this.state = {
-			activeItem: 'Acceuil',
-		}
+
 		this.listeMenu=[
-				{titre:"Acceuil",href:"/",doitlog:"non"},
+				{titre:"Accueil",href:"/",doitlog:"non"},
 				{titre:"Kesako",href:"/kesako",doitlog:"non"},
 				{titre:"Annonces",href:"/annonces",doitlog:"non"},
 				{titre:"Actualites",href:"/actualites",doitlog:"non"},
@@ -28,13 +27,11 @@ class MenuSS extends Component {
 	handleItemClick (e, { name }){
 		if(name=="Deconnexion"){
 			usr.deco()
-			this.setState({ activeItem: "Acceuil" })
 		}
-		this.setState({ activeItem: name })
-
 	}
 
 	render(){
+
 			var liste=[]
 			if(this.props.loggedin){
 				this.listeMenu.map((it,i)=>{
@@ -52,7 +49,7 @@ class MenuSS extends Component {
 				})
 			}
 
-		 const { activeItem } = this.state
+
 		return (
 
 
@@ -60,7 +57,7 @@ class MenuSS extends Component {
 					{
 						liste.map((it,i)=>{
 							return(
-								<Menu.Item name={it.titre} href={it.href} key={i}  active={activeItem === it.titre} onClick={this.handleItemClick.bind(this)} />
+								<Menu.Item name={it.titre} href={it.href} key={i}  active={it.titre === this.props.actifMenu} onClick={this.handleItemClick.bind(this)} />
 							)
 						})
 					}
@@ -72,8 +69,12 @@ class MenuSS extends Component {
 	}
 }
  var MenuS = createContainer( ()=>{
+
 	 return {
-		loggedin:usr.logged.get()
+		loggedin:usr.logged.get(),
+		actifMenu:menu.actif.get()
+
+
 	 };
 
  } , MenuSS );

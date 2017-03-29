@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import FormContact from '../components/FormContact.js';
 import CoordonneesHoraires from '../components/CoordonneesHoraires.js';
+import {createContainer} from 'meteor/react-meteor-data';
+import {menu} from '../API/menu.js'
 
-export default class Contacts extends Component {
+ class Contact extends Component {
 	constructor(){
 		super()
 		this.infos={
@@ -19,7 +21,9 @@ export default class Contacts extends Component {
 			details:["Mardi de 13h30 à 16h30 et le Vendredi de 10 h à 12h."]
 		}
 	}
-
+	componentWillMount(){
+		this.props.setActif('Contacts')
+	}
 
 	render(){
 		return (
@@ -33,3 +37,10 @@ export default class Contacts extends Component {
 		);
 	}
 }
+ export default Contacts = createContainer( ()=>{
+
+ 	return{
+ 		setActif:menu.setActif
+ 			}
+
+ } , Contact );

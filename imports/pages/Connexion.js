@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
-import {createContainer} from 'meteor/react-meteor-data';
-import {Form, Button } from 'semantic-ui-react';
-import {usr} from '../API/usr.js'
 
+import {Form, Button } from 'semantic-ui-react'
+import {createContainer} from 'meteor/react-meteor-data';
+import {usr} from '../API/usr.js'
+import {menu} from '../API/menu.js'
 
 
 class Connexio extends Component {
@@ -14,7 +15,9 @@ class Connexio extends Component {
 			pass: ""
 		};
 	}
-
+	componentWillMount(){
+		this.props.setActif('Connexion')
+	}
 	handleChange(e){
 		e.preventDefault();
 		this.setState({
@@ -56,7 +59,8 @@ class Connexio extends Component {
 
  var Connexion = createContainer( ()=>{
 	 return {
-		 logged: usr.logged.get()
+		 logged: usr.logged.get(),
+		 setActif:menu.setActif
 	 };
  } , Connexio );
 

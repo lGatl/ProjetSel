@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Grid, Segment } from 'semantic-ui-react'
-import {createContainer} from 'meteor/react-meteor-data';
 
 import MenuMonCompt from '../components/monCompte/MenuMonCompt.js'
 
@@ -18,9 +17,15 @@ import MonReleve from '../components/monCompte/pages/MonReleve.js'
 import Statistiques from '../components/monCompte/pages/Statistiques.js'
 import GererUnCompte from "../components/monCompte/pages/GererUnCompte.js"
 
+import {createContainer} from 'meteor/react-meteor-data';
+import {menu} from '../API/menu.js'
 
 
 class MonCompt extends Component {
+
+	componentWillMount(){
+		this.props.setActif('MonCompte')
+	}
 		constructor(){
 			super()
 			this.state={nom:""}
@@ -92,7 +97,8 @@ class MonCompt extends Component {
 }
  var MonCompte = createContainer( ()=>{
 	 return {
-		 loggedin: Meteor.userId()
+		 loggedin: Meteor.userId(),
+		 setActif:menu.setActif
 	 };
  } , MonCompt );
 

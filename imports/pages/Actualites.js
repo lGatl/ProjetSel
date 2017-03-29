@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import Pages from '../components/Pages.js'
 import Titre from '../components/Titre.js'
 import EncartActu from '../components/EncartActu.js'
+import {createContainer} from 'meteor/react-meteor-data';
+import {menu} from '../API/menu.js'
 
-
-export default class Actualites extends Component {
+class Actualite extends Component {
 	constructor(){
 		super()
 			this.state={
@@ -23,6 +24,7 @@ export default class Actualites extends Component {
 componentWillMount(){
 	this.getArticles();
 	this.getArticle("je suis  un titre")
+	this.props.setActif('Actualites')
 }
 
 getArticle(id){
@@ -71,3 +73,10 @@ getArticles(){
 		);
 	}
 }
+ export default Actualites = createContainer( ()=>{
+
+ 	return{
+ 		setActif:menu.setActif
+ 			}
+
+ } , Actualite );

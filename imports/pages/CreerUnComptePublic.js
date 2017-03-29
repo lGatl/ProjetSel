@@ -1,7 +1,13 @@
 import React, {Component} from 'react'
 import FormulaireDInscription from "../components/FormulaireDInscription.js"
+import {createContainer} from 'meteor/react-meteor-data';
+import {menu} from '../API/menu.js'
 
-export default class CreerUnComptePublic extends Component {
+class CreerUnComptePubli extends Component {
+
+	componentWillMount(){
+		this.props.setActif('CreerUnCompte')
+	}
 
 	render(){
 		return(
@@ -9,5 +15,13 @@ export default class CreerUnComptePublic extends Component {
 			)
 	}
 }
+
+ export default CreerUnComptePublic = createContainer( ()=>{
+
+ 	return{
+ 		setActif:menu.setActif
+ 			}
+
+ } , CreerUnComptePubli );
 
 
