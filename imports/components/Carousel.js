@@ -6,6 +6,7 @@ import 'swiper/dist/css/swiper.css';
 import ReactSwiper from 'react-swiper-dy';
 
 
+
 export default class Carousel extends Component {
 
   constructor(props) {
@@ -20,24 +21,32 @@ export default class Carousel extends Component {
     this.refs.reactSwiper.prev();
   }
   render() {
-    const style = {
+      const style = {
       height: '300px',
-      width: '800px',
+      width: '100%',
     };
     return (
       <div>
 
         <ReactSwiper ref="reactSwiper" swipeOptions={{}}>
-              <div style={style}>
 
-              </div>
-              <div style={style}>
+            {
 
-              </div>
-              <div style={style}>
+              this.props.liste.map((annonce,i)=>{
+                if(annonce){
+                 return(
 
-              </div>
+                <div key={i}style={style} >
+                  <EncartAnnonce donnees={annonce}></EncartAnnonce>
+                </div>
+
+              )}
+
+            })
+
+            }
         </ReactSwiper>
+
         <div>
           <Button  onClick={this.prev}>Prev</Button>
           <Button  onClick={this.next}>Next</Button>
