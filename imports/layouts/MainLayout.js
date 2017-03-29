@@ -19,12 +19,12 @@ import { Grid } from 'semantic-ui-react'
  		}
  		Contenu=(
 	 		<Grid>
-			<Grid.Column width={13}>
+			<Grid.Column mobile={16} tablet={13} computer={13}>
 				<div id="content">
 				 	{content}
 				</div>
 			</Grid.Column>
-			<Grid.Column width={3}>
+			<Grid.Column mobile={0} tablet={3} computer={3}>
 				{Annonce}
 				{Actu}
 
