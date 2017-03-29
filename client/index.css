@@ -1,0 +1,29 @@
+header{
+
+}
+
+.logoSel{
+  width: 100px;
+  height: 100px;
+  float:left;
+  margin-left: 5px;
+}
+body{
+
+}
+
+footer{
+	margin-top:15px;
+  text-align: center;
+}
+
+.logo{
+	width:35px;
+	height:35px;
+	float:right;
+	margin-right:5px;
+}
+#tailletext{
+  font-size: 0.8em;
+}
+

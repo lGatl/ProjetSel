@@ -10,15 +10,22 @@ export default class Footer extends Component {
 	render(){//cette fonction est obligatoint pour un composent react
 		//on peut faire des calculs ici ils vont se realiser des qu'il faut actualiser, ... ils doivent donc etre legers
 		//Dans return, on doit mettre du jsx,
-		////les commentaires html ne fonctionnent pas
-		//  les commentaires js nomplu sauf si on fait ca
+		//les commentaires html ne fonctionnent pas
+		//les commentaires js nomplu sauf si on fait ca
 
 		return (
 
 
 			<footer>
-				 <Segment textAlign='center'>
-  					 Ca c'est le Footer du site
+				 <Segment inverted color='red' basic>
+				 	<p>
+					 	Site d'échange Local de la ville de Damvillers, 6 rue des Remparts 55150 DAMVILLERS
+					 	<img className="logo" src='images/TwitterBird.png'/>
+  						<img className="logo" src='images/Facebook.png' />
+					 	<br/><br/>
+					 	<span id='tailletext'>Création du site par WebOGreen 2017</span>
+				 	</p>
+
   				</Segment>
 			</footer>
 

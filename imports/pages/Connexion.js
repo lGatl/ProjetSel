@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import {createContainer} from 'meteor/react-meteor-data';
-import{log}from'../API/API.js'
 import {Form, Button } from 'semantic-ui-react';
-import {usr} from '../API/API.js'
+import {usr} from '../API/usr.js'
 
 
 
@@ -26,7 +25,7 @@ class Connexio extends Component {
 	handleSubmit(e){
 		e.preventDefault();
 		usr.co(this.state.email, this.state.pass)
-		FlowRouter.go('/');
+
 	}
 
 	render(){

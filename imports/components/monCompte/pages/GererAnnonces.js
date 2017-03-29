@@ -4,8 +4,10 @@ import { Button} from 'semantic-ui-react'
 import Titre1 from '../Titre1.js'
 import MenuDeroulant from '../../MenuDeroulant.js';
 import TableauActions from '../TableauActions.js'
+import {createContainer} from 'meteor/react-meteor-data';
+import {annonces} from '../../../API/annonces.js'
 
-export default class GererAnnonces extends Component {
+class GererAnnonce extends Component {
 	constructor(){
 		super()
 		this.state={
@@ -36,10 +38,10 @@ export default class GererAnnonces extends Component {
 
 		this.setState({boutonSelect:tableau})
 	}
-	remplirTableau(){
+	remplirTableau(ann){
 
 		this.annonces.contenu=[]
-		this.state.annonces.map((annonce)=>{
+		ann.map((annonce)=>{
 			this.annonces.contenu.push({
 				tableau:["12/12/2012","Jean Bon",annonce.type,annonce.categorie,annonce.titreDeLAnnonce],
 				etat: annonce.etat
@@ -62,28 +64,15 @@ export default class GererAnnonces extends Component {
 		})
 	}
 
-		supprimeAnnonce(aSuppr){
-			Meteor.call('supprimeAnnonce', aSuppr ,(err,res)=>{
-				if(err){
-					Bert.alert({
-						title:"Erreur",
-						message:"Impossible de supprimer l'annonce" ,
-						type:'error'
-					})
-				}else{
 
-				}
-			})
-		}
 		sauveModifEtat(){
 		this.state.boutonSelect.map((et,i)=>{
 			var aSauv={}
 			if(et){
 				var aSauv=this.state.annonces[i]
 				aSauv.etat=et
+				this.props.annonces.sauve(aSauv)
 
-				Meteor.call('sauvegardeAnnonces',aSauv,(err,res)=>{
-				})
 			}
 		})
 	}
@@ -96,43 +85,30 @@ export default class GererAnnonces extends Component {
 
 			if(bt=="Supprimer"){
 				j++
-				this.supprimeAnnonce(this.state.annonces[i]._id)
+				this.props.annonces.supprime(this.state.annonces[i]._id)
 				if(j>1){message= "Vos Annonces ont été supprimés";s="s"}else if(j==1){
 					message= "Votre Annonce a été supprimé"
-					}
+				}
 
-					Bert.alert({
-						title:"Annonce"+s+" supprimé"+s,
-						message:message,
-						type:'success'
-					})
+				Bert.alert({
+					title:"Annonce"+s+" supprimé"+s,
+					message:message,
+					type:'success'
+				})
 			}
 
-
-
-		})
-		this.videState()
-		this.getAnnonces()
-	}
-
-	getAnnonces(){
-		Meteor.call('listeAnnonces', (err,res)=>{
-			if(err){
-				console.log(err )
-			}else{
-
-				this.setState({annonces  : res})
-
-
-			}
 		})
 	}
+
+
+
 	componentWillMount(){
-		this.getAnnonces();
-}
+		this.setState({annonces  :  this.props.annonces.liste})
+	}
 
 	render(){
-		this.remplirTableau()
+
+		this.remplirTableau(this.props.annonces.liste)
 		return (
 			<div>
 				<Titre1 nom="Liste des Annonces"></Titre1>
@@ -146,3 +122,14 @@ export default class GererAnnonces extends Component {
 		);
 	}
 }
+export default GererAnnonces = createContainer( ()=>{
+
+ 	return{
+ 		annonces:{
+ 			liste:annonces.liste.get(),
+ 			sauve:annonces.sauve,
+ 			supprime:annonces.supprime,
+ 		}
+ 	}
+
+ } , GererAnnonce );

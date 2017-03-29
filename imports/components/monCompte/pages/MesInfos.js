@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 import Titre1 from '../Titre1.js'
 import Lister from '../Lister.js'
+import {createContainer} from 'meteor/react-meteor-data';
+import {usr} from '../../../API/usr.js'
 
 
-
-export default class MesInfos extends Component {
+ class MesInfo extends Component {
 	constructor(){
 		super()
 		this.state={
@@ -14,35 +15,26 @@ export default class MesInfos extends Component {
 
 
 	}
-	utConnecte(){
-
-		Meteor.call('utilisateur' ,(err,res)=>{
-
-			if(err){
-				console.log("err")
-			}else{
-
+	recup(){
 				this.setState({mesInfos:[
-					{Nom:res.profile.nom},
-					{Prenom:res.profile.prenom},
-					{Mail:res.emails[0].address},
-					{Adresse:res.profile.adresse},
-					{Telephonne:res.profile.tel},
-					{resp:res.profile.respC},
-					{dateVal:res.profile.dateValRespC},
-					{note:res.profile.note}
+					{Nom:this.props.usr.profile.nom},
+					{Prenom:this.props.usr.profile.prenom},
+					{Mail:this.props.usr.emails[0].address},
+					{Adresse:this.props.usr.profile.adresse},
+					{Telephonne:this.props.usr.profile.tel},
+					{resp:this.props.usr.profile.respC},
+					{dateVal:this.props.usr.profile.dateValRespC},
+					{note:this.props.usr.profile.note}
 				]})
 				this.setState({mesSeugnettes:[
-				{solde:res.profile.soldeSeugnette},
-				{totalCredit:res.profile.totalCredits},
-				{totalDebit:res.profile.totalDebits}
+				{solde:this.props.usr.profile.soldeSeugnette},
+				{totalCredit:this.props.usr.profile.totalCredits},
+				{totalDebit:this.props.usr.profile.totalDebits}
 					]})
-			}
-		})
+
 	}
 	componentWillMount(){
-		this.utConnecte()
-
+		this.recup()
 	}
 	render(){
 
@@ -61,4 +53,8 @@ export default class MesInfos extends Component {
 }
 
 
+ export default MesInfos = createContainer( ()=>{
 
+ 	return{usr:usr.usrCo.get()}
+
+ } , MesInfo );

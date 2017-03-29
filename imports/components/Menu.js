@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Menu, Segment } from 'semantic-ui-react'
 import {createContainer} from 'meteor/react-meteor-data';
-import {usr} from '../API/API.js'
+import {usr} from '../API/usr.js'
 
 class MenuSS extends Component {
 
@@ -55,8 +55,8 @@ class MenuSS extends Component {
 		 const { activeItem } = this.state
 		return (
 
-			<div >
-				<Menu pointing secondary>
+
+				<Menu pointing secondary inverted color='red'>
 					{
 						liste.map((it,i)=>{
 							return(
@@ -67,7 +67,7 @@ class MenuSS extends Component {
 				</Menu>
 
 
-			</div>
+
 		);
 	}
 }

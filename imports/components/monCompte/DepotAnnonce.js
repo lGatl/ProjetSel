@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Button, Form, Input, Select, TextArea,Image,Label } from 'semantic-ui-react'
 import Titre1 from './Titre1.js'
-/*Depot Offre et Depot Demande*/
+import {createContainer} from 'meteor/react-meteor-data';
+import {annonces} from '../../API/annonces.js'
 
 
-
-export default class DepotAnnonce extends Component {
+class DepotAnnonc extends Component {
 	constructor(){
 		super()
 
@@ -61,7 +61,7 @@ export default class DepotAnnonce extends Component {
 	}
 	valider(e){
 		e.preventDefault()
-		this.ajoutAnnonce()
+		this.props.annonces.ajout(this.state)
 		this.setState( {
 			type:"",
 			titreDeLAnnonce:"",
@@ -82,25 +82,6 @@ export default class DepotAnnonce extends Component {
 			})
 	}
 
-	ajoutAnnonce(){
-		Meteor.call('ajoutAnnonce', this.state ,(err,res)=>{
-			if(err||res==false){
-				Bert.alert({
-					title:"Erreur",
-					message:"Impossible d'ajouter l'article" ,
-					type:'error'
-				})
-			}else{
-
-				Bert.alert({
-					title:"Article sauvegardé",
-					message:"Votre annonce "+this.state.titreDeLAnnonce+" a été sauvegardé" ,
-					type:'success'
-				})
-			}
-		})
-
-	}
 
 	render() {
 
@@ -174,4 +155,15 @@ export default class DepotAnnonce extends Component {
 	}
 }
 
+export default DepotAnnonce = createContainer( ()=>{
 
+ 	return{
+ 		annonces:{
+ 			liste:annonces.liste.get(),
+ 			sauve:annonces.sauve,
+ 			supprime:annonces.supprime,
+ 			ajout:annonces.ajout
+ 		}
+ 	}
+
+ } , DepotAnnonc );

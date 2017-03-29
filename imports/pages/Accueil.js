@@ -3,7 +3,7 @@ import Titre from '../components/Titre.js'
 import Carousel from '../components/Carousel.js'
 import {createContainer} from 'meteor/react-meteor-data';
 import GoogleMap from '../components/GoogleMap.js'
-import {usr} from '../API/API.js'
+import {usr} from '../API/usr.js'
 
 class Accuei extends Component {
 

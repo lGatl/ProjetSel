@@ -1,5 +1,6 @@
 
-import{usr}from'../API/API.js'
+import{usr}from'../API/usr.js'
+import{annonces}from'../API/annonces.js'
 	const categories=()=>{
 		Meteor.call('listeCategories',(err,res)=>{
 			if(err){console.log("errcat"," ",err)}else{
@@ -37,7 +38,7 @@ import{usr}from'../API/API.js'
 		})
 	}
 
-	const annonces=(id)=>{
+	const annoncs=(id)=>{
 
 
 		Meteor.call('listeAnnonces', (err,res)=>{
@@ -54,7 +55,7 @@ import{usr}from'../API/API.js'
 
 					]
 					obj.map((ob)=>{
-					Meteor.call('ajoutAnnonce',ob,(erre,resp)=>console.log("annonce fictive cree"))
+					annonces.ajout(ob)
 					})
 				}
 			}
@@ -165,7 +166,7 @@ const annoncess=(id)=>{
 		if(err){
 			console.log(err)
 		}else{
-				if(res){annonces(res._id)}else{console.log("doit etre connecté pour generer auto des annonces")}
+				if(res){annoncs(res._id)}else{console.log("doit etre connecté pour generer auto des annonces")}
 		}
 	})
 }

@@ -17,6 +17,7 @@ export const usr={
 				});
 				this.logged.set(true)
 				this.getUsrCo()
+				FlowRouter.go('/');
 			}
 		});
 
@@ -51,3 +52,5 @@ export const usr={
 }
 if(usr.loggedin.get()){usr.logged.set(true)}else{usr.logged.set(false)}
 if(usr.logged.get()){usr.getUsrCo()}else{usr.usrCo.set({profile:{prenom:"Futur Seliste"}})}
+
+
