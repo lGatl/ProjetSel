@@ -7,6 +7,7 @@ import Onglets from '../components/Onglets.js'
 import Filtres from '../components/Filtres.js'
 import {createContainer} from 'meteor/react-meteor-data';
 import {menu} from '../API/menu.js'
+import {annonces} from '../API/annonces.js'
 
 
 class Annonce extends Component {
@@ -35,13 +36,9 @@ class Annonce extends Component {
 	}
 	getAnnonces(){
 
-	Meteor.call('listeAnnonces', (err,res)=>{
-		if(err){
-			console.log(err )
-		}else{
-			this.setState({annonces  : res})
-		}
-	})
+
+
+
 }
 
 
@@ -56,7 +53,7 @@ class Annonce extends Component {
 			</Segment>
 				<Onglets recup={this.recup.bind(this)}></Onglets>
 				{
-					this.state.annonces.map((annonce,i)=>{
+					this.props.liste.map((annonce,i)=>{
 						if(annonce.etat=="Valider"){
 							if(this.state.actif=="toutes"){
 								return(<EncartAnnonce key={i} donnees={annonce}></EncartAnnonce>)
@@ -74,6 +71,7 @@ class Annonce extends Component {
 							}
 						}
 					})
+
 				}
 
 
@@ -84,7 +82,7 @@ class Annonce extends Component {
  export default Annonces = createContainer( ()=>{
 
  	return{
- 		setActif:menu.setActif
- 			}
-
+ 		setActif:menu.setActif,
+ 		liste:annonces.liste.get()
+	}
  } , Annonce );

@@ -7,7 +7,7 @@ export const annonces={
 			}else{
 				if(res){
 
-					annonces.liste.set(res)
+					annonces.liste.set(res.reverse())
 
 				}
 			}

@@ -6,7 +6,7 @@ import GoogleMap from '../components/GoogleMap.js'
 import {createContainer} from 'meteor/react-meteor-data';
 import {usr} from '../API/usr.js'
 import {menu} from '../API/menu.js'
-
+import {annonces} from '../API/annonces.js'
 class Accuei extends Component {
 
 componentWillMount(){
