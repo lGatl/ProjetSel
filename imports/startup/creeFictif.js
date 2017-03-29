@@ -155,7 +155,7 @@ import{annonces}from'../API/annonces.js'
 
 const connexion=()=>{
 
-		usr.co("alf.@extratrestre.fr", "12345")
+		usr.co("alf@extratrestre.fr", "12345")
 
 	}
 
