@@ -121,12 +121,12 @@ import{annonces}from'../API/annonces.js'
 							}
 						},
 						{
-							username:"alf.extratrestre@mangechat.fr",
-							email:"alf.extratrestre@mangechat.fr",
+							username:"alf@extratrestre.fr",
+							email:"alf@extratrestre.fr",
 							password:"12345",
 							profile:{
 								prenom:"Alf",
-								nom:"Inconnu",
+								nom:"CéUnMistère",
 								tel:"01.23.45.67.89",
 								adresse:"5 je ne sais plus 55000TRESBIEN",
 								respC:true,
@@ -155,7 +155,7 @@ import{annonces}from'../API/annonces.js'
 
 const connexion=()=>{
 
-		usr.co("alf.extratrestre@mangechat.fr", "12345")
+		usr.co("alf.@extratrestre.fr", "12345")
 
 	}
 
