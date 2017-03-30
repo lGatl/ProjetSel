@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Card,Image,Grid,Label,Header } from 'semantic-ui-react'
+import { Card,Image,Grid,Label,Header,Segment } from 'semantic-ui-react'
 
 /*Pour la page Annonces*/
 
@@ -17,7 +17,7 @@ export default class EncartAnnonce extends Component {
 							<Grid.Column width={4}>
 								<Image floated='left' size='medium' src='http://semantic-ui.com/images/avatar/large/steve.jpg' />
 							</Grid.Column>
-							<Grid.Column width={6}>
+							<Grid.Column width={8}>
 								<Card.Header>
 									{this.props.donnees.type+" - "+this.props.donnees.categorie}
 								</Card.Header>
@@ -36,11 +36,11 @@ export default class EncartAnnonce extends Component {
 
 
 							</Grid.Column>
-							<Grid.Column width={6}>
 
-							<Label circular size='massive' color={'yellow'} key={'0'}></Label>
 
-							</Grid.Column>
+							<Label circular size='massive' color={'yellow'} key={'0'} attached="top right"></Label>
+
+
 						</Grid>
 					</Card>
 

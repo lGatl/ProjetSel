@@ -78,13 +78,13 @@ FlowRouter.route('/connexion', {
 FlowRouter.route('/articles/:titre', {
 	name: 'home',
 	action: function (params) {
-		mount(MainLayout, { content: <Actu titre={params.titre} layout="simple"/> });
+		mount(MainLayout, { content: <Actu titre={params.titre} layout="annonce"/> });
 	},
 });
 FlowRouter.route('/annonces/:titre', {
 	name: 'home',
 	action: function (params) {
-		mount(MainLayout, { content: <AnnonceDesc titre={params.titre} layout="simple"/> });
+		mount(MainLayout, { content: <AnnonceDesc titre={params.titre} layout="actu"/> });
 	},
 });
 

@@ -24,14 +24,7 @@ componentWillMount(){
 			<br/>
 				<Titre nom={"Bienvenue "+this.props.prenom+"!  Partagez des services et des savoirs... Créez des liens"}></Titre>
 				<br/>
-					<div >
-						<Grid>
-						<Grid.Column width="16">
 						<Carousel liste={this.props.liste.slice(0,3)}></Carousel>
-						</Grid.Column>
-						</Grid>
-
-					</div>
 					<br/>
 				<Titre nom="Trouvez un SEL près de chez vous ! C'est simple avec la carte des sélistes"></Titre>
 				<br/>
