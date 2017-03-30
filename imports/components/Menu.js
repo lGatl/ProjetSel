@@ -53,7 +53,7 @@ class MenuSS extends Component {
 		return (
 
 
-				<Menu stackable pointing secondary inverted color='red'>
+				<Menu reversed stackable pointing secondary inverted color='red'>
 					{
 						liste.map((it,i)=>{
 							return(

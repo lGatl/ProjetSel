@@ -28,7 +28,7 @@ export default class MenuMonCompt extends Component {
 
 		return (
 			<div>
-			<Menu vertical size='tiny'>
+			<Menu fluid vertical >
 				<Menu.Item header>{this.props.titre}</Menu.Item>
 
 					{menuItem}

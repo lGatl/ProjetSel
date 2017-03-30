@@ -14,10 +14,10 @@ export default class ExtraitAnnonce extends Component {
 				 <Card fluid>
 
 						<Grid >
-							<Grid.Column width={4}>
+							<Grid.Column mobile={4} tablet={4} computer={4}>
 								<Image floated='left' size='medium' src='http://semantic-ui.com/images/avatar/large/steve.jpg' />
 							</Grid.Column>
-							<Grid.Column width={6}>
+							<Grid.Column mobile={12} tablet={6} computer={6}>
 								<Card.Header>
 									Titre de mon annonce
 								</Card.Header>
@@ -31,20 +31,21 @@ export default class ExtraitAnnonce extends Component {
 
 
 							</Grid.Column>
-							<Grid.Column width={6}>
+							<Grid.Column mobile={12} tablet={6} computer={6} verticalAlign="bottom">
 
-							<Label circular size='massive' color={'yellow'} key={'0'}></Label>
+
 
 							<Card.Content extra>
-							<br/>
 
-									<div className='ui two buttons'>
+									<div className='ui two buttons' >
 										<Button  color='green'>Approuver</Button>
 										<Button color='red'>Décliner</Button>
 									</div>
 								</Card.Content>
 							</Grid.Column>
+							<Label circular size='massive' color={'yellow'} key={'0'} attached="top right"></Label>
 						</Grid>
+
 					</Card>
 
 			</div>

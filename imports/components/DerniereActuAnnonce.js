@@ -7,8 +7,8 @@ export default class DerniereActuAnnonce extends Component {
 
  	return(
 		<div>
-		    <Segment compact>
-		      	<Header as='h2'>{this.props.titre}</Header>
+		    <Segment >
+		      	<Header as='h2' textAlign="center">{this.props.titre}</Header>
 		      	<Image src='/assets/images/wireframe/image.png' size='small' wrapped />
 		      	<Image src='/assets/images/wireframe/image.png' size='small' wrapped />
 		      	<Image src='/assets/images/wireframe/image.png' size='small' wrapped />
