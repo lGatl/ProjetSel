@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import FormContact from '../components/FormContact.js';
 import CoordonneesHoraires from '../components/CoordonneesHoraires.js';
 import {createContainer} from 'meteor/react-meteor-data';
+import { Grid } from 'semantic-ui-react'
 import {menu} from '../API/menu.js'
 
  class Contact extends Component {
@@ -27,10 +28,18 @@ import {menu} from '../API/menu.js'
 
 	render(){
 		return (
+			<div>
+			<Grid>
+				<Grid.Column mobile={16} tablet={10} computer={10}>
+					<CoordonneesHoraires contenu={this.infos}></CoordonneesHoraires>
+				</Grid.Column>
+				<Grid.Column  mobile={16} tablet={6} computer={6} >
+					<CoordonneesHoraires contenu={this.horaires}></CoordonneesHoraires>
+				</Grid.Column>
+		 	</Grid>
 
-			<div className="">
-			<CoordonneesHoraires contenu={this.infos}></CoordonneesHoraires>
-			<CoordonneesHoraires contenu={this.horaires}></CoordonneesHoraires>
+
+
 				<FormContact></FormContact>
 
 			</div>

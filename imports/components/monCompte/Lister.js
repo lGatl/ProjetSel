@@ -23,7 +23,7 @@ export default class Lister extends Component {
 
 
 								if(cle!="note"){return(<List.Item key = {i}>{titre +" : "+val}</List.Item>)}
-									if(cle=="note"){return(<List.Item key={i}>Note: <Rating icon='star' defaultRating={val} maxRating={4} /></List.Item>)}
+									if(cle=="note"){return(<List.Item key={i}>Note: <Rating icon='star' disabled rating={val} maxRating={5} /></List.Item>)}
 
 					})
 					}

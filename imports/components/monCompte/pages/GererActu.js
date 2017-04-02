@@ -145,7 +145,13 @@ class GererAct extends Component {
 						contenu:this.props.article.liste.map((art,i)=>{
 							var date = new Date(art.date)
 							return(
-								{tableau:[date.getUTCDate()+"/"+(date.getUTCMonth() + 1) +"/"+date.getUTCFullYear(),art.title],etat: this.state.etat[i]}
+								{
+									tableau:[
+										date.getUTCDate()+"/"+(date.getUTCMonth() + 1) +"/"+date.getUTCFullYear(),
+										art.title
+									],
+									etat: this.state.etat[i]
+								}
 							)
 						}),
 

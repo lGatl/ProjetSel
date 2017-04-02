@@ -9,9 +9,9 @@ export default class CoordonneesHoraires extends Component {
 
 		return(
 			<div>
-			    <Segment compact>
+			    <Segment textAlign="center" >
 			    	<Header as='h2'>{this.props.contenu.titre}</Header>
-			    	<p>
+			    	<p >
 				{this.props.contenu.details.map((detail) => <span key={detail}>{detail} <br/></span>)}
 				</p>
 			    </Segment>

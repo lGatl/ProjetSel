@@ -79,7 +79,7 @@ export default class AnnonceDesc extends Component {
 
 							<Table.Body>
 								<Table.Row>
-									<Table.Cell>John Doe <Rating icon='star' defaultRating={3} maxRating={4} /></Table.Cell>
+									<Table.Cell>John Doe <Rating icon='star' disabled rating={3} maxRating={4} /></Table.Cell>
 								</Table.Row>
 								<Table.Row>
 									<Table.Cell>john.doe@gmail.com</Table.Cell>

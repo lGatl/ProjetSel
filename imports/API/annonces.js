@@ -1,5 +1,6 @@
 
 	const liste=new ReactiveVar([])
+	const rev=new ReactiveVar([])
 	const recup=(cbk)=>{
 		Meteor.call('listeAnnonces',Meteor.userId(),(err,res)=>{
 			if(err){
@@ -7,8 +8,8 @@
 				console.log('erreur dans recup')
 			}else{
 				if(res){
-
 					liste.set(res)
+					rev.set(res.reverse())
 					cbk(res)
 				}
 			}
@@ -60,5 +61,6 @@ export const annonces={
 	recup,
 	sauve,
 	supprime,
+	rev,
 	ajout
 }

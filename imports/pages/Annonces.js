@@ -78,6 +78,6 @@ class Annonce extends Component {
 
  	return{
  		setActif:menu.setActif,
- 		liste:annonces.liste.get().reverse()
+ 		liste:annonces.rev.get()
 	}
  } , Annonce );
