@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Button, Form,Select } from 'semantic-ui-react'
+import { Button, Form,Select,Rating } from 'semantic-ui-react'
 import {createContainer} from 'meteor/react-meteor-data';
 import {usr} from '../API/usr.js'
 
@@ -24,13 +24,16 @@ class CreerUnCompt extends Component {
 			adresse:"",
 			respC:false,
 			dateValRespC:"",
-			note:0,
-			soldeSeugnette:0,
+			note:5,
+			soldeSeugnette:120,
 			totalCredits:0,
 			totalDebits:0,
 			role:""
 		}
 		this.handleChange = (e,{value}) =>this.etatDrop(value)
+	}
+	changeNote(e,{name,rating}){
+		this.setState({[name]:rating})
 	}
 	change(e){
 		e.preventDefault()
@@ -55,7 +58,7 @@ class CreerUnCompt extends Component {
 					adresse:this.state.adresse,
 					respC:this.state.respC,
 					dateValRespC:this.state.dateValRespC,
-					note:this.state.note,
+					note:this.props.acces=="public"?5:this.state.note,
 					soldeSeugnette:this.props.acces=="public"?"120":this.state.soldeSeugnette,
 					totalCredits:this.state.totalCredits,
 					totalDebits:this.state.totalDebits,
@@ -73,42 +76,16 @@ class CreerUnCompt extends Component {
 	}
 	supprimeCompte(e){
 		e.preventDefault()
-		Meteor.call("supprimeUtilisateur",this.recupState(), (err)=>{
-			if(err){
-				Bert.alert({
-					title:"Erreur",
-					message:"Impossible de supprimer ce compte utilisateur "+this.state.username,
-					type:'error'}
-			)}else{
-				Bert.alert({
-					title:"Suppression Effectuée",
-					message:"Ce compte utilisateur "+this.state.username+" a été supprimé" ,
-					type:'success'
-				})
-			}
-		})
+		this.props.usr.supprimer(this.recupState())
 		if(this.props.remiseA0){this.props.remiseA0()}
 	}
 
 	creerCompte(e){
 		e.preventDefault()
 
-		Accounts.createUser(this.recupState(), (err)=>{
-			if(err){
-				Bert.alert({
-					title:"Erreur",
-					message:"Impossible d'enregistrer ce compte" ,
-					type:'error'}
-			)}else{
-				Bert.alert({
-					title:"Compte enregistré",
-					message:"Votre compte "+this.state.username+" a été enregistré" ,
-					type:'success'
-				})
-			}
-		})
+		this.props.usr.creer(this.recupState())
 		if(this.props.remiseA0){this.props.remiseA0()}
-			if(this.props.acces=="public"){FlowRouter.go('/')}
+		if(this.props.acces=="public"){FlowRouter.go('/')}
 	}
 
 	nePasModifier(){
@@ -167,6 +144,25 @@ class CreerUnCompt extends Component {
 			}
 		}
 	}
+
+		note(){
+		if(this.props.acces){
+			if(this.props.acces=="admin"){
+				return(
+					<Rating
+					label="note"
+					name="note"
+					icon='star'
+					rating={this.state.note}
+					maxRating={5}
+					onRate={this.changeNote.bind(this)}
+					/>
+
+				)
+			}
+		}
+	}
+
 	pass(){
 		if(this.props.action){
 			if(this.props.action=="creer"){
@@ -263,6 +259,8 @@ class CreerUnCompt extends Component {
 					/>
 					{this.solde()}
 					{this.role()}
+					<br/>
+					{this.note()}
 
 			</Form>
 			<br/>
@@ -279,7 +277,9 @@ class CreerUnCompt extends Component {
 	 return {
 	 	usr:{
 		 	logged: usr.logged.get(),
-			changeCompte:usr.changeCompte
+			changeCompte:usr.changeCompte,
+			creer:usr.creer,
+			supprimer:usr.supprimer
 	 	}
 	 };
  } , CreerUnCompt );

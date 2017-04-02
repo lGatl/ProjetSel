@@ -1,36 +1,30 @@
-export const articles={
-	liste:new ReactiveVar([]),
-	rev:new ReactiveVar([]),
-	recup:function(cbk){
+
+	const liste=new ReactiveVar([])
+	const rev=new ReactiveVar([])
+	const recup=(cbk)=>{
 		Meteor.call('listeArticles',Meteor.userId(),(err,res)=>{
 			if(err){
 				cbk(err)
 				console.log('erreur dans recup')
 			}else{
 				if(res){
-
-					articles.liste.set(res)
-					articles.rev.set(res.reverse())
+					liste.set(res)
+					rev.set(res.reverse())
 					cbk(res)
 				}
 			}
 		})
-	},
-	sauve:(aSauv)=>{
-
+	}
+	const sauve=(aSauv)=>{
 		Meteor.call('sauvegardeArticles',aSauv,(err,res)=>{
 			if(err){
-
 				console.log("err Sav")
-			}else{
-
-
-			}
+			}else{}
 
 		})
 
-	},
-	supprime:(aSuppr)=>{
+	}
+	const supprime=(aSuppr)=>{
 		Meteor.call('supprimeArticle', aSuppr ,(err,res)=>{
 			if(err){
 				Bert.alert({
@@ -38,13 +32,10 @@ export const articles={
 					message:"Impossible de supprimer l'article" ,
 					type:'error'
 				})
-			}else{
-
-			}
+			}else{}
 		})
-	},
-	ajout:(art,cbk)=>{
-
+	}
+	const ajout=(art,cbk)=>{
 		Meteor.call('ajoutArticle', art ,(err,res)=>{
 			if(err){
 				cbk(err)
@@ -54,19 +45,23 @@ export const articles={
 					type:'error'
 				})
 			}else{
-				articles.recup((res)=>{if(res){cbk(res)}else{}})
+				recup((res)=>{if(res){cbk(res)}else{}})
 				Bert.alert({
 					title:"Article sauvegardé",
 					message:"Votre article "+art.title+" a été sauvegardé" ,
 					type:'success'
 				})
-
-
 			}
 		})
-
 	}
 
-}
+recup((res)=>{if(res){}})
 
-articles.recup((res)=>{if(res){}})
+export const articles={
+	liste,
+	rev,
+	recup,
+	sauve,
+	supprime,
+	ajout
+}

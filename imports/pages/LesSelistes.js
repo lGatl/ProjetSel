@@ -24,20 +24,12 @@ class LesSeliste extends Component {
 		this.props.setActif('LesSelistes')
 
 	}
-	usrsget(usrs){
-		if(usrs){
-			var utilisateurs=usrs.map((utilisateur,i)=>{
-				return(
-					<CarteSeliste utilisateur={utilisateur} key={i}> </CarteSeliste>
-				)
-			})
-		}
-		return(utilisateurs)
-	}
+
 
 	render(){
 
 		if(this.props.logged){
+			if(this.props.usrs){
 				return (
 
 
@@ -45,12 +37,15 @@ class LesSeliste extends Component {
 						<Titre nom="Les sélistes"></Titre>
 							<Filtres option={this.state.option}></Filtres>
 						 <Card.Group>
-						 {this.usrsget(this.props.usrs)}
+						{
+							this.props.usrs.map((utilisateur,i)=><CarteSeliste utilisateur={utilisateur} key={i}> </CarteSeliste>)
+					}
 						 </Card.Group>
 
 
 					</div>
 				);
+			}else{return(<div></div>)}
 		}else{
 			return(<div>Vous devez vous connecter pour pouvoir acceder à cette page</div>)
 

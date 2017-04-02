@@ -1,6 +1,6 @@
-export const annonces={
-	liste:new ReactiveVar([]),
-	recup:function(cbk){
+
+	const liste=new ReactiveVar([])
+	const recup=(cbk)=>{
 		Meteor.call('listeAnnonces',Meteor.userId(),(err,res)=>{
 			if(err){
 				cbk(err)
@@ -8,13 +8,13 @@ export const annonces={
 			}else{
 				if(res){
 
-					annonces.liste.set(res)
+					liste.set(res)
 					cbk(res)
 				}
 			}
 		})
-	},
-	sauve:(aSauv)=>{
+	}
+	const sauve=(aSauv)=>{
 		Meteor.call('sauvegardeAnnonces',aSauv,(err,res)=>{
 			if(err){
 				console.log("err Sav")
@@ -22,9 +22,8 @@ export const annonces={
 			}
 
 		})
-
-	},
-	supprime:(aSuppr)=>{
+	}
+	const supprime=(aSuppr)=>{
 		Meteor.call('supprimeAnnonce', aSuppr ,(err,res)=>{
 			if(err){
 				Bert.alert({
@@ -35,8 +34,8 @@ export const annonces={
 			}else{
 			}
 		})
-	},
-	ajout:(ann)=>{
+	}
+	const ajout=(ann)=>{
 		Meteor.call('ajoutAnnonce', ann ,(err,res)=>{
 			if(err||res==false){
 				Bert.alert({
@@ -45,7 +44,7 @@ export const annonces={
 					type:'error'
 				})
 			}else{
-				annonces.recup((res)=>{if(res){}else{}})
+				recup((res)=>{if(res){}else{}})
 				Bert.alert({
 					title:"Annonce sauvegardé",
 					message:"Votre annonce "+ann.titreDeLAnnonce+" a été sauvegardé" ,
@@ -53,9 +52,13 @@ export const annonces={
 				})
 			}
 		})
-
 	}
 
+recup((res)=>{if(res){}})
+export const annonces={
+	liste,
+	recup,
+	sauve,
+	supprime,
+	ajout
 }
-
-annonces.recup((res)=>{if(res){}})
