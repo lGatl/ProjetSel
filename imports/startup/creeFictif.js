@@ -6,10 +6,10 @@ import{annonces}from'../API/annonces.js'
 			if(err){console.log("errcat"," ",err)}else{
 				if(res.length==0){
 					var obj=[
-						{categorie : "cuisine", etat : "Editer" },
+						{categorie : "cuisine", etat : "Publier" },
 						{categorie : "mecanique", etat : "Desactiver" },
-						{categorie : "chipendales", etat : "Editer" },
-						{categorie : "menage", etat : "Editer" }
+						{categorie : "chipendales", etat : "Publier" },
+						{categorie : "menage", etat : "Publier" }
 					]
 					obj.map((ob)=>{
 					Meteor.call('ajoutCategorie',ob,(erre,resp)=>console.log("categorie fictive crees"))
@@ -24,10 +24,10 @@ import{annonces}from'../API/annonces.js'
 			if(err){console.log("errart"," ",err)}else{
 				if(res.length==0){
 					var obj=[
-						{title : "Webogreen en folie", description : "C'est la formidable histoire d'une classe de formation web composée de super codeurs fou, qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Publier" },
-						{title : "un second article", description : "C'est la formidable histoire d'une classe de formation web composée de super codeurs fou, qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Publier" },
-						{title : "un autre article", description : "C'est la formidable histoire d'une classe de formation web composée de super codeurs fou, qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Desactiver" },
-						{title : "pas un autre article", description :"C'est la formidable histoire d'une classe de formation web composée de super codeurs fou, qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Publier" },
+						{title : "Webogreen en folie", description : "C'est la formidable histoire d'une classe de formation web composée de super codeurs fou, qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Publier",date:Date.now() },
+						{title : "un second article", description : "C'est la formidable histoire d'une classe de formation web composée de super codeurs fou, qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Publier" ,date:Date.now()},
+						{title : "un autre article", description : "C'est la formidable histoire d'une classe de formation web composée de super codeurs fou, qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Desactiver",date:Date.now() },
+						{title : "pas un autre article", description :"C'est la formidable histoire d'une classe de formation web composée de super codeurs fou, qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Publier",date:Date.now() },
 
 					]
 					obj.map((ob)=>{
@@ -38,32 +38,35 @@ import{annonces}from'../API/annonces.js'
 		})
 	}
 
-	const annoncs=(id)=>{
+	const annoncs=(username)=>{
 
 
 		Meteor.call('listeAnnonces', (err,res)=>{
+
 			if(err){console.log("errann"," ",err)}else{
 				var utilisateur
 
 				if(res.length==0){
 					var obj=[
 
-					{categorie : "cuisine", type : "offre", titreDeLAnnonce : "500 couverts", descriptionDeLAnnonce : "Besoin d'un cuisinier capable de gerer 500 couverts!", informationDeContact : "monmail@gmal.com", dateDeFin : "1/12/2017", etat : "Valider",utilisateur:id},
-						{categorie : "mecanique", type : "demande", titreDeLAnnonce : "Vidange", descriptionDeLAnnonce : "Qui veut venir me faire une petite vidange ?? ", informationDeContact : "tonmail@talmal.fr", dateDeFin : "25/04/2016", etat : "En Attente",utilisateur:id },
-						{categorie : "informatique", type : "offre", titreDeLAnnonce : "Ecran Bleu", descriptionDeLAnnonce : ":'( Je ne comprend pas qqn peut venir m'aider?", informationDeContact : "sonmail@caramal.rf", dateDeFin : "01/02/2018", etat : "Valider",utilisateur:id },
-						{categorie : "cheval", type : "demande", titreDeLAnnonce : "Pour steak", descriptionDeLAnnonce : "Nourrit a l'herbe toute sa vie, massé chaque jour", informationDeContact : "notremail@wanadoo.fr", dateDeFin : "15/12/2013", etat : "Refuser",utilisateur:id }
+					{categorie : "cuisine", type : "offre", titreDeLAnnonce : "500 couverts", descriptionDeLAnnonce : "Besoin d'un cuisinier capable de gerer 500 couverts!", informationDeContact : "monmail@gmal.com", dateDeFin : "1/12/2017", etat : "Valider",utilisateur:username},
+						{categorie : "mecanique", type : "demande", titreDeLAnnonce : "Vidange", descriptionDeLAnnonce : "Qui veut venir me faire une petite vidange ?? ", informationDeContact : "tonmail@talmal.fr", dateDeFin : "25/04/2016", etat : "En Attente",utilisateur:username },
+						{categorie : "informatique", type : "offre", titreDeLAnnonce : "Ecran Bleu", descriptionDeLAnnonce : ":'( Je ne comprend pas qqn peut venir m'aider?", informationDeContact : "sonmail@caramal.rf", dateDeFin : "01/02/2018", etat : "Valider",utilisateur:username },
+						{categorie : "cheval", type : "demande", titreDeLAnnonce : "Pour steak", descriptionDeLAnnonce : "Nourrit a l'herbe toute sa vie, massé chaque jour", informationDeContact : "notremail@wanadoo.fr", dateDeFin : "15/12/2013", etat : "Refuser",utilisateur:username }
 
 					]
 					obj.map((ob)=>{
-					annonces.ajout(ob)
+					Meteor.call('ajoutAnnonce',ob,(erre,resp)=>console.log("annonce fictif cree"))
 					})
 				}
 			}
 		})
 	}
 	const utilisateur=()=>{
-		Meteor.call('utilisateurs', (err,res)=>{
+
+		usr.getUsrs( (err,res)=>{
 			if(err){console.log("errut"," ",err)}else{
+
 				if(res.length==0){
 					var obj=[
 						{
@@ -155,21 +158,16 @@ import{annonces}from'../API/annonces.js'
 
 const connexion=()=>{
 
-		usr.co("alf@extratrestre.fr", "12345")
+		usr.co("alf@extratrestre.fr", "12345",(err)=>{if(err){}else{annoncess()}})
 
 	}
 
 
 
 const annoncess=(id)=>{
-	Meteor.call('utilisateur',(err,res)=>{
-		if(err){
-			console.log(err)
-		}else{
-				if(res){annoncs(res._id)}else{console.log("doit etre connecté pour generer auto des annonces")}
+	usr.getUsrCo((res)=>{	if(res){annoncs(res.username)}else{console.log("doit etre connecté pour generer auto des annonces")}})
+
 		}
-	})
-}
 
 
 

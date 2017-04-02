@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { Button, Form,Select } from 'semantic-ui-react'
 import {createContainer} from 'meteor/react-meteor-data';
+import {usr} from '../API/usr.js'
 
 class CreerUnCompt extends Component {
 
@@ -66,20 +67,8 @@ class CreerUnCompt extends Component {
 
 	changeCompte(e){
 		e.preventDefault()
-		Meteor.call("sauvegardeUtilisateur",this.recupState(), (err)=>{
-			if(err){
-				Bert.alert({
-					title:"Erreur",
-					message:"Impossible de sauvegarder ces modifications" ,
-					type:'error'}
-			)}else{
-				Bert.alert({
-					title:"Sauvegarde effectuée",
-					message:"Vos modifications sur "+this.state.username+" ont été sauvegardées" ,
-					type:'success'
-				})
-			}
-		})
+
+		this.props.usr.changeCompte(this.recupState())
 		if(this.props.remiseA0){this.props.remiseA0()}
 	}
 	supprimeCompte(e){
@@ -213,7 +202,7 @@ class CreerUnCompt extends Component {
 	render(){
 		titre=""
 		if(this.props.action=="editer"){titre=<h1>Editer un Compte</h1>}else{titre=<h1>Crer un Compte</h1>}
-		if(this.props.loggedin&&this.props.acces=="public"){
+		if(this.props.usr.logged&&this.props.acces=="public"){
 			return(<div>Vous etes deja connecté!!</div>)
 		}else{
 		return(
@@ -288,7 +277,10 @@ class CreerUnCompt extends Component {
 
  var CreerUnCompte = createContainer( ()=>{
 	 return {
-		 loggedin: Meteor.userId()
+	 	usr:{
+		 	logged: usr.logged.get(),
+			changeCompte:usr.changeCompte
+	 	}
 	 };
  } , CreerUnCompt );
 

@@ -25,7 +25,7 @@ class Annonce extends Component {
 	}
 
 	componentWillMount(){
-		this.getAnnonces()
+
 		this.props.setActif('Annonces')
 
 
@@ -34,12 +34,7 @@ class Annonce extends Component {
 		this.setState({actif:actif})
 
 	}
-	getAnnonces(){
 
-
-
-
-}
 
 
 	render(){
@@ -83,6 +78,6 @@ class Annonce extends Component {
 
  	return{
  		setActif:menu.setActif,
- 		liste:annonces.liste.get()
+ 		liste:annonces.liste.get().reverse()
 	}
  } , Annonce );

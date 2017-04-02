@@ -6,116 +6,128 @@ import MenuDeroulant from '../../MenuDeroulant.js';
 import TableauActions from '../TableauActions.js'
 import {createContainer} from 'meteor/react-meteor-data';
 import {annonces} from '../../../API/annonces.js'
+import {usr} from '../../../API/usr.js'
 
 class GererAnnonce extends Component {
 	constructor(){
 		super()
 		this.state={
-			annonces:[],
-			boutonSelect:[],
-			title:"",
-			description:""
+			etat:[]
 		}
 			this.categories={titre:"Catégories :",contenu:["Cuisine","Mecanique"]}
-			this.etat={titre:"Etat",contenu:["Valider","En Attente","Refuser"]}
 			this.type={titre:"Type",contenu:["Offre","Demande"]}
+			this.etat={titre:"Etat",contenu:["scddcd","dsdfdsfds"]}
+	}
 
-		this.annonces={
-			titres:["Date","Séliste","Type","Catégorie","Titre de l'annonce"],
-			contenu:[],
-			actions:{titre:"Actions",contenu:["Valider","En Attente","Refuser","Supprimer"]}
+
+		tableauActions(){
+
+		if(this.props.annonces.liste){
+
+			return(
+				<TableauActions
+					donnees={{
+						titres:["Date","Séliste","Type","Catégorie","Titre de l'annonce"],
+						contenu:this.props.annonces.liste.map((ann,i)=>{
+							return(
+								{tableau:[
+									"12/12/1122",
+									ann.utilisateur,
+									ann.type,
+									ann.categorie,
+									ann.titreDeLAnnonce
+								],etat: this.state.etat[i]}
+							)
+						}),
+
+						actions:{
+							titre:"Actions",
+							contenu:["Valider","En Attente","Refuser","Supprimer"]
+						}
+					}}
+					etatDrop={this.etatDrop.bind(this)}
+
+				></TableauActions>
+			)
 		}
 	}
-	videState(){
-		this.setState({
-			annonces:[],
-			boutonSelect:[],
-			title:"",
-			description:""
-		})
-	}
-	etatDrop(tableau){
+		supprimeAnnonce(aSuppr){
 
-		this.setState({boutonSelect:tableau})
-	}
-	remplirTableau(ann){
+			this.props.annonces.supprime(aSuppr)
+		}
 
-		this.annonces.contenu=[]
-		ann.map((annonce)=>{
-			this.annonces.contenu.push({
-				tableau:["12/12/2012","Jean Bon",annonce.type,annonce.categorie,annonce.titreDeLAnnonce],
-				etat: annonce.etat
-			})
-
-		})
-	}
-
-	viderInput(){
-		this.setState({
-			title:"",
-			description:""
-		})
-	}
-
-	miseEnVar(e){
-		e.preventDefault();
-		this.setState({
-			[e.target.name]:e.target.value
-		})
-	}
-
-
-		sauveModifEtat(){
-		this.state.boutonSelect.map((et,i)=>{
-			var aSauv={}
-			if(et){
-				var aSauv=this.state.annonces[i]
-				aSauv.etat=et
-				this.props.annonces.sauve(aSauv)
-
-			}
-		})
-	}
 	appliquer(e){
 		e.preventDefault()
-		this.sauveModifEtat()
 		var j=0
 		var s=""
-		this.state.boutonSelect.map((bt,i)=>{
-
-			if(bt=="Supprimer"){
+		var mot=" mis a jour "
+		var message= "Vos annonces ont été mis a jour"
+		this.state.etat.map((et,i)=>{
+			var aSauv={}
+			if(et=="Supprimer"){
 				j++
-				this.props.annonces.supprime(this.state.annonces[i]._id)
-				if(j>1){message= "Vos Annonces ont été supprimés";s="s"}else if(j==1){
-					message= "Votre Annonce a été supprimé"
-				}
+				this.supprimeAnnonce(this.props.annonces.liste[i]._id)
+			}else if(et){
+				var aSauv=this.props.annonces.liste[i]
+				aSauv.etat=et
 
-				Bert.alert({
-					title:"Annonce"+s+" supprimé"+s,
+				this.props.annonces.sauve(aSauv)
+			}
+		})
+		if(j>1){
+			message= "Vos annonces ont été supprimés"
+			s="s"
+			mot=" supprimés"
+		}else if(j==1){
+			message= "Votre annonce a été supprimé"
+			mot=" supprimé"
+		}
+		Bert.alert({
+					title:"annonce"+s+mot,
 					message:message,
 					type:'success'
 				})
-			}
 
+		this.props.annonces.recup((res)=>{
+			if(res){
+				this.initEtat(res)
+			}else{
+
+			}
+		})
+
+}
+	initEtat(res){
+		var tab=res.map((ann)=>ann.etat)
+		this.setState({etat:tab})
+	}
+
+	etatDrop(id,value){
+			var tab=this.state.etat
+			tab[id]=value
+			this.setState({etat:tab})
+	}
+	componentWillMount(){
+		this.props.annonces.recup((res)=>{
+			if(res){
+				this.initEtat(res)
+			}else{
+
+			}
 		})
 	}
 
 
-
-	componentWillMount(){
-		this.setState({annonces  :  this.props.annonces.liste})
-	}
-
 	render(){
 
-		this.remplirTableau(this.props.annonces.liste)
+
 		return (
 			<div>
 				<Titre1 nom="Liste des annonces"></Titre1>
 				 <MenuDeroulant donnees={this.categories}></MenuDeroulant>
 				 <MenuDeroulant donnees={this.etat}></MenuDeroulant>
 				 <MenuDeroulant donnees={this.type}></MenuDeroulant>
-				<TableauActions donnees= {this.annonces} etatDrop={this.etatDrop.bind(this)}></TableauActions>
+				{this.tableauActions()}
 				 <Button type='Envoyer' onClick={this.appliquer.bind(this)}>Appliquer</Button>
 			</div>
 
@@ -129,6 +141,10 @@ export default GererAnnonces = createContainer( ()=>{
  			liste:annonces.liste.get(),
  			sauve:annonces.sauve,
  			supprime:annonces.supprime,
+ 			recup:annonces.recup
+ 		},
+ 		usr:{
+ 			get:usr.getUsr
  		}
  	}
 

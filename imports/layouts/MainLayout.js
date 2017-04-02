@@ -24,7 +24,7 @@ import { Grid } from 'semantic-ui-react'
 				 	{content}
 				</div>
 			</Grid.Column>
-			<Grid.Column  mobile={16} tablet={3} computer={3}>
+			<Grid.Column  mobile={16} tablet={3} computer={3} >
 				{Annonce}
 				{Actu}
 

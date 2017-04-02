@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react';
-import { Header } from 'semantic-ui-react'
+import { Header,Image } from 'semantic-ui-react'
 
 export default class HeaderS extends Component {
 	render(){
@@ -9,8 +9,8 @@ export default class HeaderS extends Component {
 			<Header as='h2' icon textAlign='center' block>
 
 				<Header.Content>
-          <img className='logoSel' src='images/logo-seliste-1.png'/>
-					Header du Projet Sel
+          <Image floated="left" className='logoSel' src='images/logo-seliste-1.png'/>
+					La Croix Rouge de Damvillers <br/> vous présente son SEL
 				</Header.Content>
 
 			</Header>

@@ -27,7 +27,7 @@ class Connexio extends Component {
 
 	handleSubmit(e){
 		e.preventDefault();
-		usr.co(this.state.email, this.state.pass)
+		usr.co(this.state.email, this.state.pass,(res)=>{})
 
 	}
 
@@ -61,6 +61,7 @@ class Connexio extends Component {
 	 return {
 		 logged: usr.logged.get(),
 		 setActif:menu.setActif
+
 	 };
  } , Connexio );
 

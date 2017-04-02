@@ -5,148 +5,151 @@ import { Button, Form, Input, TextArea,Icon,Label} from 'semantic-ui-react'
 import Titre1 from '../Titre1.js'
 import Titre2 from '../Titre2.js'
 import TableauActions from '../TableauActions.js'
+import {categories} from '../../../API/categories.js'
+import {createContainer} from 'meteor/react-meteor-data';
 
-export default class Categories extends Component {
+class Categorie extends Component {
 
-	constructor(){
+		constructor(){
 		super()
 		this.state={
-			boutonSelect:[],
 			categorie:"",
-			categ:{
-				titres:["Catégorie","Offre","Demande"],
-				contenu:[],
-				actions:{titre:"Actions",contenu:["Editer","Desactiver","Supprimer"]}
-			}
-
+			etat:[]
 		}
 	}
-	videState(){
+
+
+
+	miseEnVar(e){
+		e.preventDefault();
 		this.setState({
-			boutonSelect:[],
-			categorie:"",
-			categ:{
-				titres:["Catégorie","Offre","Demande"],
-				contenu:[],
-				actions:{titre:"Actions",contenu:["Editer","Desactiver","Supprimer"]}
-			},
-
+			[e.target.name]:e.target.value
 		})
 	}
-	componentWillMount(){
-		this.listeCategories()
-	}
-	change(e){
-		e.preventDefault()
-		this.setState({categorie:e.target.value})
 
-	}
+	ajoutCategorie(e){
+		e.preventDefault();
 
-	ajoutCategorie(){
-			var obj={"categorie":this.state.categorie,etat:"Desactiver"}
-		Meteor.call('ajoutCategorie',obj,(err,res)=>{
-			if(err){
-				Bert.alert({
-					title:"Erreur",
-					message:"Impossible d'ajouter cette Categorie" ,
-					type:'error'
-				})
-			}else{
-				Bert.alert({
-					title:"Categorie ajoutée",
-					message:"La Categorie "+this.state.categorie+" a bien été ajoutée",
-					type:'success'
-				})
-			}
-		})
-		this.setState({categorie:""})
-		this.listeCategories()
-	}
+		if(this.state.categorie){
+			this.props.categorie.ajout(
+				{
+					categorie:this.state.categorie,
+					etat:"Desactiver"
+				}
+				,(res)=>{
 
-	listeCategories(){
-		Meteor.call('listeCategories',(err,res)=>{
-			if(err){
-				Bert.alert({
-					title:"Erreur",
-					message:"Impossible de recuperer les Categories" ,
-					type:'error'
+				if(res){
+					this.setState({
+							categorie:""
+					})
+					this.initEtat(res)
+				}else{
+
+
+				}
 			})
-			}else{
-				this.setState({categories:res})
-				tab=[]
-				res.map((cat)=>{
-					tab.push({tableau:[cat.categorie,0,0],etat:cat.etat})
-				})
 
-				this.setState({categ:{
-					titres:["Catégorie","Offre","Demande"],
-					contenu:tab,
-					actions:{titre:"Actions",contenu:["Editer","Desactiver","Supprimer"]}
-				}})
+		}else{
+					Bert.alert({
+						title:"Donnée manquantes",
+						message:"Veuillez remplir les champs" ,
+						type:'info'
+					})
 			}
-		})
+
+
 	}
+		supprimeCategorie(aSuppr){
 
-	supprimeCategorie(aSuppr){
+			this.props.categorie.supprime(aSuppr)
+		}
 
-		Meteor.call('supprimeCategorie', aSuppr ,(err,res)=>{
-			if(err){
-				Bert.alert({
-					title:"Erreur",
-					message:"Impossible de supprimer la categorie" ,
-					type:'error'
-				})
-			}else{
-
-			}
-		})
-	}
-
-	etatDrop(tableau){
-		this.setState({boutonSelect:tableau})
-	}
-	sauveModifEtat(){
-		this.state.boutonSelect.map((et,i)=>{
-			var aSauv={}
-			if(et){
-
-				aSauv={categorie:this.state.categ.contenu[i].tableau[0],etat:et}
-
-				Meteor.call('sauvegardeCategories',aSauv,(err,res)=>{
-				})
-			}
-		})
-	}
 	appliquer(e){
 		e.preventDefault()
-		this.sauveModifEtat()
-
 		var j=0
 		var s=""
-
-		this.state.boutonSelect.map((bt,i)=>{
-
-			if(bt=="Supprimer"){
+		var mot=" mis a jour "
+		var message= "Vos categories ont été mis a jour"
+		this.state.etat.map((et,i)=>{
+			var aSauv={}
+			if(et=="Supprimer"){
 				j++
-				this.supprimeCategorie(this.state.categories[i]._id)
-				if(j>1){message= "Vos Categories ont été supprimés";s="s"}else if(j==1){
-				message= "Votre Categorie a été supprimé"
-				}
+				this.supprimeCategorie(this.props.categorie.liste[i]._id)
+			}else if(et){
+				var aSauv=this.props.categorie.liste[i]
+				aSauv.etat=et
 
-				Bert.alert({
-					title:"Categorie"+s+" supprimé"+s,
+				this.props.categorie.sauve(aSauv)
+			}
+		})
+		if(j>1){
+			message= "Vos categories ont été supprimés"
+			s="s"
+			mot=" supprimés"
+		}else if(j==1){
+			message= "Votre categorie a été supprimé"
+			mot=" supprimé"
+		}
+		Bert.alert({
+					title:"categorie"+s+mot,
 					message:message,
 					type:'success'
 				})
+
+		this.props.categorie.recup((res)=>{
+			if(res){
+				this.initEtat(res)
+			}else{
+
 			}
 		})
 
+}
+	initEtat(res){
+		var tab=res.map((art)=>art.etat)
+		this.setState({etat:tab})
+	}
 
+	etatDrop(id,value){
+			var tab=this.state.etat
+			tab[id]=value
+			this.setState({etat:tab})
+	}
+	componentWillMount(){
+		this.props.categorie.recup((res)=>{
+			if(res){
+				this.initEtat(res)
+			}else{
 
-		this.videState()
-		this.setState({boutonSelect:[]})
-		this.listeCategories()
+			}
+		})
+	}
+	tableauActions(){
 
+		if(this.props.categorie.liste){
+
+			return(
+				<TableauActions
+					donnees={{
+						titres:["Catégorie","Offre","Demande"],
+						contenu:this.props.categorie.liste.map((cat,i)=>{
+
+							return(
+								{tableau:[cat.categorie,"0","0"],
+								etat: this.state.etat[i]}
+							)
+						}),
+
+						actions:{
+							titre:"Actions",
+							contenu:["Publier","Desactiver","Supprimer"]
+						}
+					}}
+					etatDrop={this.etatDrop.bind(this)}
+
+				></TableauActions>
+			)
+		}
 	}
 
 	render(){
@@ -159,7 +162,7 @@ export default class Categories extends Component {
 							type='text'
 							placeholder='Nom de la catégorie'
 							value={this.state.categorie}
-							onChange={this.change.bind(this)}
+							onChange={this.miseEnVar.bind(this)}
 							>
 					<Label basic>Nom de la catégorie :  </Label>
 					<input />
@@ -168,9 +171,23 @@ export default class Categories extends Component {
 
 				<Titre1 nom="Liste des catégories"></Titre1>
 
-				<TableauActions donnees={this.state.categ} etatDrop={this.etatDrop.bind(this)}></TableauActions>
+				{this.tableauActions()}
 				<Button type='Envoyer' onClick={this.appliquer.bind(this)}>Appliquer</Button>
 			</div>
 		);
 	}
 }
+export default Categories = createContainer( ()=>{
+
+ 	return{
+
+		categorie:{
+			liste:categories.liste.get(),
+			sauve:categories.sauve,
+			ajout:categories.ajout,
+			supprime:categories.supprime,
+			recup:categories.recup
+		}
+	 }
+ } , Categorie );
+

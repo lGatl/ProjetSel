@@ -12,12 +12,8 @@ Meteor.methods({
 		utilisateur=Meteor.users.findOne({"username": aSauver.username})
 		Meteor.users.update({_id:utilisateur._id},{$set:aSauver})
 	},
-	utilisateur:()=>{
-		var connecteID=Meteor.userId()
-		connecte=Meteor.users.findOne({_id: connecteID})
-		return connecte
-	},
-	test:(a)=>{
+
+	utilisateur:(a)=>{
 		connecte=Meteor.users.findOne({_id: a})
 		return connecte
 	}

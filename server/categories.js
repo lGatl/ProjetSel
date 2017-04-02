@@ -17,9 +17,9 @@
 					Categories.insert(nvlCategorie)
 			}else{return false}
 		},
-		sauvegardeCategories:(aSauver)=>{
+		sauvegardeCategorie:(aSauver)=>{
 			categories=Categories.findOne({"categorie": aSauver.categorie})
-		Categories.update({_id:categories._id},{$set:aSauver})
-	}
+			Categories.update({_id:categories._id},{$set:aSauver})
+		}
 	})
 

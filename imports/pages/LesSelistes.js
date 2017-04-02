@@ -7,13 +7,13 @@ import Titre from '../components/Titre.js'
 import Filtres from '../components/Filtres.js'
 import {createContainer} from 'meteor/react-meteor-data';
 import {menu} from '../API/menu.js'
+import {usr} from '../API/usr.js'
 
 
 class LesSeliste extends Component {
 	constructor(){
 	super()
 	this.state={
-		utilisateurs:[],
 		option:[
 				{titre:"Categories :",contenu:["Cuisine","Mecanique"]},
 				{titre:"Distances :",contenu:["0-5 km","5-10 km"]},
@@ -22,18 +22,22 @@ class LesSeliste extends Component {
 	}
 	componentWillMount(){
 		this.props.setActif('LesSelistes')
-		Meteor.call('utilisateurs',(err,res)=>{
-			if(err){
-				console.log(err)
-			}else{
-				this.setState({utilisateurs:res})
 
-			}
-		})
+	}
+	usrsget(usrs){
+		if(usrs){
+			var utilisateurs=usrs.map((utilisateur,i)=>{
+				return(
+					<CarteSeliste utilisateur={utilisateur} key={i}> </CarteSeliste>
+				)
+			})
+		}
+		return(utilisateurs)
 	}
 
 	render(){
-		if(this.props.loggedin){
+
+		if(this.props.logged){
 				return (
 
 
@@ -41,16 +45,7 @@ class LesSeliste extends Component {
 						<Titre nom="Les sélistes"></Titre>
 							<Filtres option={this.state.option}></Filtres>
 						 <Card.Group>
-						 {
-
-						 	this.state.utilisateurs.map((utilisateur,i)=>{
-								return(
-										<CarteSeliste utilisateur={utilisateur} key={i}> </CarteSeliste>
-									)
-							 })
-						 }
-
-
+						 {this.usrsget(this.props.usrs)}
 						 </Card.Group>
 
 
@@ -64,8 +59,9 @@ class LesSeliste extends Component {
 }
  var LesSelistes = createContainer( ()=>{
 	 return {
-		 loggedin: Meteor.userId(),
-		 setActif:menu.setActif
+		 logged: usr.logged.get(),
+		 setActif:menu.setActif,
+		 usrs:usr.usrs.get()
 	 };
  } , LesSeliste );
 

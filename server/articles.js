@@ -24,8 +24,8 @@ Meteor.methods({
 	},
 	ajoutArticle:(nvlArticle)=>{
 		if (Meteor.userId()){
-			if(nvlArticle.title.length>1&&nvlArticle.description.length>1){
-				Articles.insert({title:nvlArticle.title,description:nvlArticle.description,etat:nvlArticle.etat})
+			if(nvlArticle.title.length>0&&nvlArticle.description.length>0){
+				Articles.insert({title:nvlArticle.title,description:nvlArticle.description,etat:nvlArticle.etat,date:nvlArticle.date})
 			}
 		}else{return false}
 	},
@@ -34,7 +34,7 @@ Meteor.methods({
 			articles=Articles.findOne({"title": aSauver.title})
 		Articles.update({_id:articles._id},{$set:aSauver})
 	},
-	supprimArticle:(id)=>{Articles.remove({_id:id})}
+	supprimeArticle:(id)=>{Articles.remove({_id:id})}
 
 
 });

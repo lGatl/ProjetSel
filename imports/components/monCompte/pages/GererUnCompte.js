@@ -6,7 +6,7 @@ import Titre1 from '../Titre1.js'
 
 
 
-export default class SearchExampleStandard extends Component {
+export default class GererUnCompte extends Component {
 
 	constructor(){
 		super()

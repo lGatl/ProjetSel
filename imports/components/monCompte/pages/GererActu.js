@@ -1,61 +1,26 @@
 import React, {Component} from 'react'
 import {markdown} from 'markdown';
 import { Dropdown, Button, Form, Input, TextArea,Icon,Segment,Label} from 'semantic-ui-react'
+import {createContainer} from 'meteor/react-meteor-data';
+import {articles} from '../../../API/articles.js'
 
 import Titre1 from '../Titre1.js'
 import Titre2 from '../Titre2.js'
 
 import TableauActions from '../TableauActions.js'
 
-export default class GererActu extends Component {
+class GererAct extends Component {
 	constructor(){
 		super()
 		this.state={
-			articles:[],
-			article:{},
-			boutonSelect:[],
 			title:"",
 			description:"",
-			etat:"Publier",
-			html:""
-		}
-
-		this.actu={
-			titres:["Date","Titre"],
-			contenu:[],
-			actions:{titre:"Actions",contenu:["Publier","Desactiver","Supprimer"]}
+			etat:[],
+			html:"",
 		}
 	}
-	videState(){
-			this.setState({
-			articles:[],
-			article:{},
-			boutonSelect:[],
-			title:"",
-			description:"",
-			etat:"Editer"
-		})
-	}
-
-	etatDrop(tableau){
-
-		this.setState({boutonSelect:tableau})
 
 
-	}
-	remplirTableau(){
-		this.actu.contenu=[]
-		this.state.articles.map((article)=>{
-			this.actu.contenu.push({tableau:["12/12/2012",article.title],etat:article.etat})
-		})
-	}
-
-	viderInput(){
-		this.setState({
-			title:"",
-			description:""
-		})
-	}
 
 	miseEnVar(e){
 		e.preventDefault();
@@ -71,26 +36,28 @@ export default class GererActu extends Component {
 		e.preventDefault();
 
 		if(this.state.title && this.state.description){
+			this.props.article.ajout(
+				{
+					title:this.state.title,
+					description:this.state.description,
+					etat:"Desactiver",
+					date:Date.now()
 
-			Meteor.call('ajoutArticle', this.state ,(err,res)=>{
-				if(err||res==false){
-					Bert.alert({
-						title:"Erreur",
-						message:"Impossible d'ajouter l'article" ,
-						type:'error'
+				}
+				,(res)=>{
+
+				if(res){
+					this.setState({
+							title:"",
+							description:""
 					})
+					this.initEtat(res)
 				}else{
-					this.viderInput()
-					this.getArticles()
-					this.remplirTableau()
 
-					Bert.alert({
-						title:"Article sauvegardé",
-						message:"Votre article "+this.state.title+" a été sauvegardé" ,
-						type:'success'
-					})
+
 				}
 			})
+
 		}else{
 					Bert.alert({
 						title:"Donnée manquantes",
@@ -98,84 +65,111 @@ export default class GererActu extends Component {
 						type:'info'
 					})
 			}
+
+
 	}
 		supprimeArticle(aSuppr){
 
-			Meteor.call('supprimArticle', aSuppr ,(err,res)=>{
-				if(err){
-					Bert.alert({
-						title:"Erreur",
-						message:"Impossible de supprimer l'atricle" ,
-						type:'error'
-					})
-				}else{
-
-				}
-			})
+			this.props.article.supprime(aSuppr)
 		}
-	sauveModifEtat(){
 
-		this.state.boutonSelect.map((et,i)=>{
-			var aSauv={}
-			if(et){
-				var aSauv=this.state.articles[i]
-				aSauv.etat=et
-
-				Meteor.call('sauvegardeArticles',aSauv,(err,res)=>{
-				})
-			}
-		})
-	}
 	appliquer(e){
 		e.preventDefault()
 		var j=0
 		var s=""
-		this.sauveModifEtat()
-
-		this.state.boutonSelect.map((bt,i)=>{
-
-			if(bt=="Supprimer"){
+		var mot=" mis a jour "
+		var message= "Vos articles ont été mis a jour"
+		this.state.etat.map((et,i)=>{
+			var aSauv={}
+			if(et=="Supprimer"){
 				j++
-				this.supprimeArticle(this.state.articles[i]._id)
-				if(j>1){message= "Vos articles ont été supprimés";s="s"}else if(j==1){
-					message= "Votre article a été supprimé"
-					}
+				this.supprimeArticle(this.props.article.liste[i]._id)
+			}else if(et){
+				var aSauv=this.props.article.liste[i]
+				aSauv.etat=et
 
-				Bert.alert({
-					title:"Article"+s+" supprimé"+s,
+				this.props.article.sauve(aSauv)
+			}
+		})
+		if(j>1){
+			message= "Vos articles ont été supprimés"
+			s="s"
+			mot=" supprimés"
+		}else if(j==1){
+			message= "Votre article a été supprimé"
+			mot=" supprimé"
+		}
+		Bert.alert({
+					title:"Article"+s+mot,
 					message:message,
 					type:'success'
 				})
-			}
 
-		})
-		this.videState()
-		this.getArticles()
-	}
-
-	getArticles(){
-		Meteor.call('listeArticles', (err,res)=>{
-			if(err){
-				console.log(err )
+		this.props.article.recup((res)=>{
+			if(res){
+				this.initEtat(res)
 			}else{
-				this.setState({articles  : res})
+
 			}
 		})
-	}
-	componentWillMount(){
-		this.getArticles();
 
 }
+	initEtat(res){
+		var tab=res.map((art)=>art.etat)
+		this.setState({etat:tab})
+	}
+
+	etatDrop(id,value){
+			var tab=this.state.etat
+			tab[id]=value
+			this.setState({etat:tab})
+	}
+	componentWillMount(){
+		this.props.article.recup((res)=>{
+			if(res){
+				this.initEtat(res)
+			}else{
+
+			}
+		})
+	}
+	tableauActions(){
+
+		if(this.props.article.liste){
+
+
+			return(
+				<TableauActions
+					donnees={{
+						titres:["Date","Titre"],
+						contenu:this.props.article.liste.map((art,i)=>{
+							var date = new Date(art.date)
+							return(
+								{tableau:[date.getUTCDate()+"/"+(date.getUTCMonth() + 1) +"/"+date.getUTCFullYear(),art.title],etat: this.state.etat[i]}
+							)
+						}),
+
+						actions:{
+							titre:"Actions",
+							contenu:["Publier","Desactiver","Supprimer"]
+						}
+					}}
+					etatDrop={this.etatDrop.bind(this)}
+
+				></TableauActions>
+			)
+		}
+	}
 
 	render(){
-		this.remplirTableau()
+
 		return (
 
 
 			<div>
 				<Titre1 nom="Liste des actualités"></Titre1>
 
-				<TableauActions donnees={this.actu} etatDrop={this.etatDrop.bind(this)}></TableauActions>
+				{this.tableauActions()}
 
 				<Button type='Envoyer' onClick={this.appliquer.bind(this)}>Appliquer</Button>
 
@@ -184,7 +178,7 @@ export default class GererActu extends Component {
 
 
 					<Form.Input className="inputAj"
-						label="Titre de l'ctualité"
+						label="Titre de l'actualité"
 						name='title'
 						placeholder='Choisissez un titre'
 						value={this.state.title}
@@ -215,3 +209,16 @@ export default class GererActu extends Component {
 		);
 	}
 }
+export default GererActu = createContainer( ()=>{
+
+ 	return{
+
+		article:{
+			liste:articles.liste.get(),
+			sauve:articles.sauve,
+			ajout:articles.ajout,
+			supprime:articles.supprime,
+			recup:articles.recup
+		}
+	 }
+ } , GererAct );

@@ -1,14 +1,15 @@
 export const annonces={
 	liste:new ReactiveVar([]),
-	recup:function(){
+	recup:function(cbk){
 		Meteor.call('listeAnnonces',Meteor.userId(),(err,res)=>{
 			if(err){
+				cbk(err)
 				console.log('erreur dans recup')
 			}else{
 				if(res){
 
-					annonces.liste.set(res.reverse())
-
+					annonces.liste.set(res)
+					cbk(res)
 				}
 			}
 		})
@@ -18,8 +19,6 @@ export const annonces={
 			if(err){
 				console.log("err Sav")
 			}else{
-
-				annonces.recup()
 			}
 
 		})
@@ -34,7 +33,6 @@ export const annonces={
 					type:'error'
 				})
 			}else{
-					annonces.recup()
 			}
 		})
 	},
@@ -43,17 +41,16 @@ export const annonces={
 			if(err||res==false){
 				Bert.alert({
 					title:"Erreur",
-					message:"Impossible d'ajouter l'article" ,
+					message:"Impossible d'ajouter l'annonce" ,
 					type:'error'
 				})
 			}else{
-
+				annonces.recup((res)=>{if(res){}else{}})
 				Bert.alert({
-					title:"Article sauvegardé",
+					title:"Annonce sauvegardé",
 					message:"Votre annonce "+ann.titreDeLAnnonce+" a été sauvegardé" ,
 					type:'success'
 				})
-				annonces.recup()
 			}
 		})
 
@@ -61,4 +58,4 @@ export const annonces={
 
 }
 
-annonces.recup()
+annonces.recup((res)=>{if(res){}})
