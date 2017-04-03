@@ -54,11 +54,25 @@
 			}
 		})
 	}
+	const recup1=(titre,cbk)=>{
+		Meteor.call('getAnnonce',titre,(err,res)=>{
+			if(err){
+				Bert.alert({
+					title:"Erreur",
+					message:err.message,
+					type: 'danger'
+				})
+			}else{
+				cbk(err,res)
+			}
+		})
+	}
 
 recup((res)=>{if(res){}})
 export const annonces={
 	liste,
 	recup,
+	recup1,
 	sauve,
 	supprime,
 	rev,

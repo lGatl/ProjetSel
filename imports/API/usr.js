@@ -33,6 +33,13 @@
 				if(res){usrCo.set(res)}}
 			})
 	}
+	const recupNom=(utilisateur,cbk)=>{
+		Meteor.call('utilisateurNom',utilisateur,(err,res)=>{
+			if(err){}else{
+				cbk(err,res)
+			}
+		})
+	}
 	const getUsr=(id,cbk)=>{
 		Meteor.call('utilisateur',id,(err,res)=>{
 			if(err){}else{
@@ -136,6 +143,7 @@ export const usr={
 	usrCo,
 	usrs,
 	co,
+	recupNom,
 	getUsrCo,
 	getUsr,
 	deco,

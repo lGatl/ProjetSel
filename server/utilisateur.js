@@ -14,8 +14,12 @@ Meteor.methods({
 	},
 
 	utilisateur:(a)=>{
-		connecte=Meteor.users.findOne({_id: a})
-		return connecte
+		user=Meteor.users.findOne({_id: a})
+		return user
+	},
+	utilisateurNom:(a)=>{
+		user=Meteor.users.findOne({username: a})
+		return user
 	}
 
 })
