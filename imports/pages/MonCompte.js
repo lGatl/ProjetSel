@@ -19,12 +19,15 @@ import GererUnCompte from "../components/monCompte/pages/GererUnCompte.js"
 
 import {createContainer} from 'meteor/react-meteor-data';
 import {menu} from '../API/menu.js'
+import {usr} from '../API/usr.js'
 
 
 class MonCompt extends Component {
 
 	componentWillMount(){
 		this.props.setActif('MonCompte')
+		this.setState({nom:"Mes informations"})
+
 	}
 		constructor(){
 			super()
@@ -53,21 +56,21 @@ class MonCompt extends Component {
 			this.setState({nom:nom})
 		}
 		page(nom){
-
-				if(nom.name=="Mes informations")		{return(<MesInfos></MesInfos>)}
-				if(nom.name=="Mon relevé de compte"){return( <MonReleve></MonReleve>)}
-				if(nom.name=="Deposez une offre")	{return(<DepotOffre></DepotOffre>)}
-				if(nom.name=="Deposez une demande"){return(<DepotDemande></DepotDemande>)}
-				if(nom.name=="Mes Offres")			{return(<MesOffres></MesOffres>)}
-				if(nom.name=="Mes Demandes")		{return(<MesDemandes></MesDemandes>)}
-				if(nom.name=="Mes Propositons")		{return(<MesPropositions></MesPropositions>)}
-				if(nom.name=="Gerer les annonces")	{return(<GererAnnonces></GererAnnonces>)}
-				if(nom.name=="Categories")			{return( <Categories></Categories>)}
-				if(nom.name=="Gerer les actualités")	{return(<GererActu></GererActu>)}
-				if(nom.name=="Configuration")			{return(<Configuration></Configuration>)}
-				if(nom.name=="Statistiques")			{return(<Statistiques></Statistiques>)}
-				if(nom.name=="Gerer les comptes")	{return(<GererUnCompte></GererUnCompte>)}
-
+			if(this.props.usrCo.username){
+				if(nom=="Mes informations")		{return(<MesInfos></MesInfos>)}
+				if(nom=="Mon relevé de compte"){return( <MonReleve></MonReleve>)}
+				if(nom=="Deposez une offre")	{return(<DepotOffre></DepotOffre>)}
+				if(nom=="Deposez une demande"){return(<DepotDemande></DepotDemande>)}
+				if(nom=="Mes Offres")			{return(<MesOffres></MesOffres>)}
+				if(nom=="Mes Demandes")		{return(<MesDemandes></MesDemandes>)}
+				if(nom=="Mes Propositons")		{return(<MesPropositions></MesPropositions>)}
+				if(nom=="Gerer les annonces")	{return(<GererAnnonces></GererAnnonces>)}
+				if(nom=="Categories")			{return( <Categories></Categories>)}
+				if(nom=="Gerer les actualités")	{return(<GererActu></GererActu>)}
+				if(nom=="Configuration")			{return(<Configuration></Configuration>)}
+				if(nom=="Statistiques")			{return(<Statistiques></Statistiques>)}
+				if(nom=="Gerer les comptes")	{return(<GererUnCompte></GererUnCompte>)}
+			}
 		}
 
 	render(){
@@ -98,7 +101,9 @@ class MonCompt extends Component {
  var MonCompte = createContainer( ()=>{
 	 return {
 		 loggedin: Meteor.userId(),
-		 setActif:menu.setActif
+		 setActif:menu.setActif,
+		 usrCo:usr.usrCo.get()
+
 	 };
  } , MonCompt );
 

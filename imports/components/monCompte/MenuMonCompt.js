@@ -6,12 +6,12 @@ export default class MenuMonCompt extends Component {
 
  constructor(){
 	super()
-	this.state = { activeItem: 'inbox' }
+	this.state = { activeItem: 'Mes informations' }
 
 	this.handleItemClick = (e, { name }) => {
 
 	this.setState({ activeItem: name })
-	this.props.contenu({name})
+	this.props.contenu(name)
 }
 
  }

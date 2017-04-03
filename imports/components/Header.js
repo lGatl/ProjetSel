@@ -6,7 +6,7 @@ export default class HeaderS extends Component {
 	render(){
 		return (
 
-			<Header as='h2' icon textAlign='center' block>
+			<Header as='h2' icon textAlign='center'>
 
 				<Header.Content>
           <Image floated="left" className='logoSel' src='images/logo-seliste-1.png'/>

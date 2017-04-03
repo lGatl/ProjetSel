@@ -7,11 +7,11 @@ export default class Titre extends Component {
 	render(){
 		return (
 	<div>
-		<Segment textAlign='center' inverted color='red' compact padded basic>
-			<h1>{this.props.nom}</h1>
+		<Segment textAlign='center' compact padded basic>
+			<h1 className='TitrePage'>{this.props.nom}</h1>
 		</Segment>
 	</div>
-)
+    )
 }
 }
 
