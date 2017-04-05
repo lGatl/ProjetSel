@@ -35,6 +35,7 @@ class LesSeliste extends Component {
 
 					<div className="">
 						<Titre nom="Les sélistes"></Titre>
+						<hr/>
 							<Filtres option={this.state.option}></Filtres>
 						 <Card.Group>
 						{

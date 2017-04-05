@@ -9,10 +9,10 @@ export default class DerniereActuAnnonce extends Component {
 		<div>
 		    <Segment >
 		      	<Header as='h2' textAlign="center">{this.props.titre}</Header>
-		      	<Image src='/assets/images/wireframe/image.png' size='small' wrapped />
-		      	<Image src='/assets/images/wireframe/image.png' size='small' wrapped />
-		      	<Image src='/assets/images/wireframe/image.png' size='small' wrapped />
-		      	<Image src='/assets/images/wireframe/image.png' size='small' wrapped />
+		      	<Image src='/images/faitesundon.png' size='small' wrapped />
+		      	<Image src='/images/faitesundon.png' size='small' wrapped />
+		      	<Image src='/images/faitesundon.png' size='small' wrapped />
+		      	<Image src='/images/faitesundon.png' size='small' wrapped />
 		    </Segment>
 		</div>
 		);

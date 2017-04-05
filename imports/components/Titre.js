@@ -6,11 +6,9 @@ import {Segment} from 'semantic-ui-react'
 export default class Titre extends Component {
 	render(){
 		return (
-	<div>
-		<Segment textAlign='center' compact padded basic>
+		<Segment textAlign='center' basic>
 			<h1 className='TitrePage'>{this.props.nom}</h1>
 		</Segment>
-	</div>
     )
 }
 }

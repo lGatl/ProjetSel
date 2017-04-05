@@ -53,11 +53,11 @@ class MenuSS extends Component {
 		return (
 
 
-				<Menu className="ui grid middle centered aligned" reversed stackable pointing secondary inverted color='red'>
+				<Menu className="ui grid middle centered" reversed stackable pointing secondary inverted color='red'>
 					{
 						liste.map((it,i)=>{
 							return(
-								<Menu.Item name={it.titre} href={it.href} key={i}  active={it.titre === this.props.actifMenu} onClick={this.handleItemClick.bind(this)} />
+								<Menu.Item className="navbar" name={it.titre} href={it.href} key={i}  active={it.titre === this.props.actifMenu} onClick={this.handleItemClick.bind(this)} />
 							)
 						})
 					}

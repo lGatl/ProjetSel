@@ -22,11 +22,14 @@ componentWillMount(){
 
 
 			<br/>
-				<Titre nom={"Bienvenue "+this.props.prenom+"!  Partagez des services et des savoirs... Créez des liens"}></Titre>
+				<Titre nom={"Bienvenue "+this.props.prenom+ "!" } ></Titre>
+				<Titre nom={"Partagez des services et des savoirs... Créez des liens"}></Titre>
+				<hr />
 				<br/>
 						<Carousel liste={this.props.liste.slice(0,3)}></Carousel>
 					<br/>
 				<Titre nom="Trouvez un SEL près de chez vous ! C'est simple avec la carte des sélistes"></Titre>
+				<hr/>
 				<br/>
 
 				<GoogleMap></GoogleMap>

@@ -35,7 +35,7 @@ componentWillMount(){
 			<div className="">
 			<br/>
 				<Titre nom="Actualités"></Titre>
-
+					<hr/>
 						{this.props.articlesListe.map( (article)=>article.etat=="Publier"?<EncartActu key={article._id} donnees={article} ></EncartActu>:"")}
 
 					<br/>
