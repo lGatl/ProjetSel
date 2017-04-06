@@ -88,8 +88,13 @@ p {
 .segconnexion {
 	margin: 45px !important;
 }
-.footer{
 
-	bottom: 0px !important;
-	width: 100%;
+
+@media (min-height: 2000px) {
+	.cefooter{
+		position: absolute !important;
+		bottom: 0 !important;
+		width:100% !important;
+	}
 }
+

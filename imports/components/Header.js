@@ -3,10 +3,17 @@ import React, {Component} from 'react';
 import { Header,Image } from 'semantic-ui-react'
 
 export default class HeaderS extends Component {
+
+	componentWillMount(){
+	document.getElementsByClassName("header")
+		console.log("document.getElementsByClassName(\"header\")", document.getElementsByClassName("monheader"));
+
+	}
 	render(){
+
 		return (
 
-			<Header as='h2' icon textAlign='center'>
+			<Header as='h2' icon textAlign='center' className="monheader">
 
 				<Header.Content>
 
