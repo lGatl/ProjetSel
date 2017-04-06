@@ -8,7 +8,7 @@ export default class Titre extends Component {
 		return (
 		<Segment className="segtitre" textAlign='center' basic>
 			<h1 className='TitrePage'>{typeof (this.props.nom) == 'object'?this.props.nom.map((no,i) => <span key={i}>{no} <br/></span>):this.props.nom}</h1>
-					<br/>
+
 					<hr/>
 					<br/>
 		</Segment>

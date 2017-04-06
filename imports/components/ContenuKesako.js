@@ -1,5 +1,5 @@
 import React from 'react'
-import { Message, Image} from 'semantic-ui-react'
+import { Message, Image, Icon} from 'semantic-ui-react'
 import Titre from '../components/Titre.js'
 
 /*Pour la page kesako*/
@@ -14,9 +14,17 @@ const ContenuKesako = () => (
 				Les échanges sont valorisés au moyen d’un unité d’échange choisie par les membres du SEL.
 			    </p>
 
+			    <div className="ui grid middle centered">
+			    <a href="/images/cahier_des_charges_SEL_-_Feuille_1.pdf" target="_blank" > <Icon name='file pdf outline' size="big" color='red'/>RÈGLEMENT INTÉRIEUR</a>
+				<a href="/images/cahier_des_charges_SEL_-_Feuille_1.pdf" target="_blank" > <Icon name='file pdf outline' size="big" color='red'/>CHARTE</a>
+				<a href="/images/cahier_des_charges_SEL_-_Feuille_1.pdf" target="_blank" > <Icon name='file pdf outline' size="big" color='red'/>FICHE D'INSCRIPTION</a>
+		  		</div>
+
 		  </Message>
 		  <br/><br/>
 <Image centered src='images/pjsel.jpg'/>
+
+
 	</div>
 )
 

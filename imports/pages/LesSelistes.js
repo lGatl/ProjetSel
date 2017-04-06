@@ -33,7 +33,7 @@ class LesSeliste extends Component {
 				return (
 
 
-					<div id="selistespage">
+					<div>
 						<Titre nom="LES SÉLISTES"></Titre>
 
 							<Filtres option={this.state.option}></Filtres>

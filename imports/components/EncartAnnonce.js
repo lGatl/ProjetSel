@@ -22,7 +22,8 @@ export default class EncartAnnonce extends Component {
 									{this.props.donnees.type+" - "+this.props.donnees.categorie}
 								</Card.Header>
 
-								<a href={"/annonces/"+this.props.donnees.titreDeLAnnonce}><Header as="h2" >
+								<a href={"/annonces/"+this.props.donnees.titreDeLAnnonce}>
+								<Header as="h2" >
 									{this.props.donnees.titreDeLAnnonce}
 								</Header></a>
 

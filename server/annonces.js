@@ -22,9 +22,10 @@
 						titreDeLAnnonce: nvlAnnonce.titreDeLAnnonce,
 						descriptionDeLAnnonce: nvlAnnonce.descriptionDeLAnnonce,
 						informationDeContact: nvlAnnonce.informationDeContact,
-						dateDeFin: nvlAnnonce.dateDeFin,
 						etat: nvlAnnonce.etat,
-						utilisateur:nvlAnnonce.utilisateur
+						utilisateur:nvlAnnonce.utilisateur,
+						date:Date.now(),
+						dateDeFin: nvlAnnonce.dateDeFin
 					})
 			}else{return false}
 		},

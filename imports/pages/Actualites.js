@@ -32,7 +32,7 @@ componentWillMount(){
 
 		return (
 
-			<div className="">
+			<div>
 
 				<Titre nom="ACTUALITÉS"></Titre>
 

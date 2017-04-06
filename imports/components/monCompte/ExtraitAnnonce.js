@@ -19,11 +19,12 @@ export default class ExtraitAnnonce extends Component {
 							</Grid.Column>
 							<Grid.Column mobile={12} tablet={6} computer={6}>
 								<Card.Header>
-									Titre de mon annonce
+									<a href={"/annonces/"+this.props.donnees.titreDeLAnnonce} className="aSpe">
+											{this.props.donnees.titreDeLAnnonce}
+									</a>
 								</Card.Header>
 								<br/>
-								<Card.Meta>
-									Description
+								<Card.Meta>{this.props.donnees.descriptionDeLAnnonce.slice(0, 50)+" ..."}
 								</Card.Meta>
 								<Card.Description>
 									Date de mise en ligne
