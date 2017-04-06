@@ -17,7 +17,7 @@ export default class Footer extends Component {
 
 
 			<footer>
-				 <Segment inverted color='red' basic>
+				 <Segment className="footer" inverted color='red' basic>
 				 	<p className="tailletext2">
 					 	Système d'Echange Local de la Croix Rouge de Damvillers, 6 rue des Remparts 55150 DAMVILLERS
 

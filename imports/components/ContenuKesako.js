@@ -15,9 +15,9 @@ const ContenuKesako = () => (
 			    </p>
 
 			    <div className="ui grid middle centered">
-			    <a href="/images/cahier_des_charges_SEL_-_Feuille_1.pdf" target="_blank" > <Icon name='file pdf outline' size="big" color='red'/>RÈGLEMENT INTÉRIEUR</a>
-				<a href="/images/cahier_des_charges_SEL_-_Feuille_1.pdf" target="_blank" > <Icon name='file pdf outline' size="big" color='red'/>CHARTE</a>
-				<a href="/images/cahier_des_charges_SEL_-_Feuille_1.pdf" target="_blank" > <Icon name='file pdf outline' size="big" color='red'/>FICHE D'INSCRIPTION</a>
+			    <a href="/pdf/cahier_des_charges_SEL_-_Feuille_1.pdf" target="_blank" > <Icon name='file pdf outline' size="big" color='red'/>RÈGLEMENT INTÉRIEUR</a>
+				<a href="/pdf/cahier_des_charges_SEL_-_Feuille_1.pdf" target="_blank" > <Icon name='file pdf outline' size="big" color='red'/>CHARTE</a>
+				<a href="/pdf/cahier_des_charges_SEL_-_Feuille_1.pdf" target="_blank" > <Icon name='file pdf outline' size="big" color='red'/>FICHE D'INSCRIPTION</a>
 		  		</div>
 
 		  </Message>

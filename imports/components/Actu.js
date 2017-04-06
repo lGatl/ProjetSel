@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import { Segment, Header, Image,Button } from 'semantic-ui-react'
+import {createContainer} from 'meteor/react-meteor-data';
+import {menu} from '../API/menu.js'
 
-export default class EncartActu extends Component {
+class Act extends Component {
 constructor(){
 		super();
 		this.state={};
@@ -23,6 +25,7 @@ constructor(){
 	}
 	componentWillMount(){
 		this.getArticle(this.props.titre)
+		this.props.setActif('Actualites')
 
 	}
 
@@ -41,3 +44,10 @@ constructor(){
 		);
 	}
 }
+export default Actu = createContainer( ()=>{
+
+ 	return{
+		setActif:menu.setActif
+ 	}
+
+ } , Act );

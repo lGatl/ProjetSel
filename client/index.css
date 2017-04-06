@@ -1,31 +1,31 @@
 .logoSel{
-  width: 180px;
-  height: 150px;
-  float:left;
-  margin-left: 5px;
+	width: 180px;
+	height: 150px;
+	float:left;
+	margin-left: 5px;
 }
 
 footer{
-  margin-top:15px;
-  text-align: center;
+	margin-top:15px;
+	text-align: center;
 }
 
 .logo{
-  width:35px;
-  height:35px;
-  margin-right:5px;
+	width:35px;
+	height:35px;
+	margin-right:5px;
 }
 #tailletext{
-  font-size: 0.8em;
+	font-size: 0.8em;
 }
 
 .tailletext2 {
-  font-size: 1em;
+	font-size: 1em;
 }
 
 .TitrePage{
-  color: #db2828;
-  font-size: 22px;
+	color: #db2828;
+	font-size: 22px;
 }
 
 .segtitre {
@@ -33,59 +33,62 @@ footer{
 }
 
 .aSpe{
-  text-decoration: none;
-  color:black;
-  font-weight:bold;
+	text-decoration: none;
+	color:black;
+	font-weight:bold;
 
 }
 
 .titreHeader {
-  text-align: center;
-  align-items: center;
-  color: #A0309D;
-  margin-right: 50px;
-  border: 4px solid #00BD3F;
-  display: inline-block;
-  padding: 15px;
-  border-radius: 10px;
-  font-size: 25px;
+	text-align: center;
+	align-items: center;
+	color: #A0309D;
+	margin-right: 50px;
+	border: 4px solid #00BD3F;
+	display: inline-block;
+	padding: 15px;
+	border-radius: 10px;
+	font-size: 25px;
 }
 
 hr {
-  border-top: 2px solid #db2828;
+	border-top: 2px solid #db2828;
 }
 
 .navbar {
-  font-size: 1em;
+	font-size: 1em;
 }
 
 .croixrouge {
-  width: 130px;
-  height: 110px;
-  float: right;
-  margin-right: 10px;
-  margin-top: 10px;
+	width: 130px;
+	height: 110px;
+	float: right;
+	margin-right: 10px;
+	margin-top: 10px;
 }
 
 p {
-  font-size: 1.3em;
+	font-size: 1.3em;
 }
 
 #content{
-  margin-left: 45px !important;
-  margin-right: 45px !important;
+	margin-left: 45px !important;
+	margin-right: 45px !important;
 
 }
 .segactus {
-  margin-right: 45px !important;
-  margin-left: 45px !important;
+	margin-right: 45px !important;
+	margin-left: 45px !important;
 }
 
 .contact {
-  margin: 45px !important;
+	margin: 45px !important;
 }
 
 .segconnexion {
-  margin: 45px !important;
+	margin: 45px !important;
 }
-
+.footer{
+	position: absolute !important;
+	bottom: 0px !important;
+}
