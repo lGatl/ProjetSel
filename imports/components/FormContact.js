@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { Button, Form } from 'semantic-ui-react'
+import Titre from './Titre.js'
 
 export default class FormContact extends Component {
 
@@ -23,7 +24,9 @@ export default class FormContact extends Component {
 	render(){
 		return(
 			 <Form id="contact">
-				<label><h1>Formulaire de contact</h1></label>
+			 	<br/>
+				<Titre nom="FORMULAIRE DE CONTACT"></Titre>
+				<br/>
 					<Form.Input
 							label="Nom"
 							name="nom"

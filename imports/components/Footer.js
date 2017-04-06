@@ -18,13 +18,16 @@ export default class Footer extends Component {
 
 			<footer>
 				 <Segment inverted color='red' basic>
-				 	<p>
+				 	<p className="tailletext2">
 					 	Système d'Echange Local de la Croix Rouge de Damvillers, 6 rue des Remparts 55150 DAMVILLERS
+
+					 	<br/><br/>
 					 	<a href="http://www.twitter.com" target="_blank"> <img className="logo" src='images/TwitterBird.png'/> </a>
   						<a href="http://www.facebook.com" target="_blank"> <img className="logo" src='images/Facebook.png' /> </a>
   						<a href="http://www.croix-rouge.fr" target="_blank"> <img className="logo" src='images/croixrouge.jpg' /> </a>
 					 	<br/><br/>
 					 	<span id='tailletext'>Création du site par WebOgreen 2017</span>
+
 				 	</p>
 
   				</Segment>

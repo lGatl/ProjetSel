@@ -8,6 +8,7 @@ import Filtres from '../components/Filtres.js'
 import {createContainer} from 'meteor/react-meteor-data';
 import {menu} from '../API/menu.js'
 import {annonces} from '../API/annonces.js'
+import Titre from '../components/Titre.js'
 
 
 class Annonce extends Component {
@@ -40,9 +41,9 @@ class Annonce extends Component {
 	render(){
 		return (
 
-			<div className="">
-			<br/>
+			<div >
 
+				<Titre nom="ANNONCES"></Titre>
 			<Segment>
 			<Filtres option={this.state.option}></Filtres>
 			</Segment>

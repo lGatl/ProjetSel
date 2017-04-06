@@ -29,14 +29,10 @@ export default class ExtraitAnnonce extends Component {
 									Date de mise en ligne
 								</Card.Description>
 
-
 							</Grid.Column>
 							<Grid.Column mobile={12} tablet={6} computer={6} verticalAlign="bottom">
 
-
-
 							<Card.Content extra>
-
 									<div className='ui two buttons' >
 										<Button  color='green'>Approuver</Button>
 										<Button color='red'>Décliner</Button>

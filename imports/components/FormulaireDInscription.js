@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { Button, Form,Select,Rating } from 'semantic-ui-react'
 import {createContainer} from 'meteor/react-meteor-data';
 import {usr} from '../API/usr.js'
+import Titre from './Titre.js'
 
 class CreerUnCompt extends Component {
 
@@ -197,14 +198,14 @@ class CreerUnCompt extends Component {
 
 	render(){
 		titre=""
-		if(this.props.action=="editer"){titre=<h1>Editer un Compte</h1>}else{titre=<h1>Crer un Compte</h1>}
+		if(this.props.action=="editer"){titre=<Titre nom={"EDITER UN COMPTE"}></Titre>}else{titre=<Titre nom={"Créer un Compte".toUpperCase()}></Titre>}
 		if(this.props.usr.logged&&this.props.acces=="public"){
 			return(<div>Vous etes deja connecté!!</div>)
 		}else{
 		return(
-			<div>
+			<div className="contact">
 			 <Form id="contact">
-				<label>{titre}</label>
+				<label>{titre}</label> <br/>
 					<Form.Input
 						label="Email"
 						name="email"

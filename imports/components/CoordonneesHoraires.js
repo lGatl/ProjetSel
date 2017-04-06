@@ -12,7 +12,7 @@ export default class CoordonneesHoraires extends Component {
 			    <Segment textAlign="center" >
 			    	<Header as='h2'>{this.props.contenu.titre}</Header>
 			    	<p >
-				{this.props.contenu.details.map((detail) => <span key={detail}>{detail} <br/></span>)}
+				{this.props.contenu.details.map((detail,i) => <span key={detail,i}>{detail} <br/></span>)}
 				</p>
 			    </Segment>
 			</div>

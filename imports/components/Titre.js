@@ -6,8 +6,11 @@ import {Segment} from 'semantic-ui-react'
 export default class Titre extends Component {
 	render(){
 		return (
-		<Segment textAlign='center' basic>
-			<h1 className='TitrePage'>{this.props.nom}</h1>
+		<Segment className="segtitre" textAlign='center' basic>
+			<h1 className='TitrePage'>{typeof (this.props.nom) == 'object'?this.props.nom.map((no,i) => <span key={i}>{no} <br/></span>):this.props.nom}</h1>
+					<br/>
+					<hr/>
+					<br/>
 		</Segment>
     )
 }

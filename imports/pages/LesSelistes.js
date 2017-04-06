@@ -33,11 +33,11 @@ class LesSeliste extends Component {
 				return (
 
 
-					<div className="">
-						<Titre nom="Les sélistes"></Titre>
-						<hr/>
+					<div id="selistespage">
+						<Titre nom="LES SÉLISTES"></Titre>
+
 							<Filtres option={this.state.option}></Filtres>
-						 <Card.Group>
+						 <Card.Group className="ui grid middle centered">
 						{
 							this.props.usrs.map((utilisateur,i)=><CarteSeliste utilisateur={utilisateur} key={i}> </CarteSeliste>)
 					}

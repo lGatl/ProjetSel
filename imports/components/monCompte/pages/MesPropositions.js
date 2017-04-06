@@ -8,7 +8,7 @@ export default class MesPropositions extends Component {
 	render() {
 
 		return (
-			<MesAnnonces  titre="Mes propositions"></MesAnnonces>
+			<MesAnnonces  type="Mes propositions"></MesAnnonces>
 		)
 	}
 }

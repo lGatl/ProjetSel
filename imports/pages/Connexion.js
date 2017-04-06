@@ -36,7 +36,7 @@ class Connexio extends Component {
 			return(<div>Vous etes deja connecté!!!!</div>)
 		}else{
 			return(
-				<Form >
+				<Form className="segconnexion">
 					<Form.Input
 						name="email"
 						onChange={this.handleChange.bind(this)}
@@ -50,8 +50,9 @@ class Connexio extends Component {
 						label="Mot de passe"
 						type="password" />
 					<Button onClick={this.handleSubmit.bind(this)}>Connexion</Button>
-
+						<br/><br/><br/><br/><br/><br/><br/><br/><br/>
 				</Form>
+
 			);
 		}
 	}

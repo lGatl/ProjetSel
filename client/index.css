@@ -1,11 +1,8 @@
 .logoSel{
-  width: 250px;
-  height: 200px;
+  width: 180px;
+  height: 150px;
   float:left;
   margin-left: 5px;
-}
-body{
-
 }
 
 footer{
@@ -16,15 +13,23 @@ footer{
 .logo{
   width:35px;
   height:35px;
-  float:right;
   margin-right:5px;
 }
 #tailletext{
   font-size: 0.8em;
 }
 
+.tailletext2 {
+  font-size: 1em;
+}
+
 .TitrePage{
   color: #db2828;
+  font-size: 22px;
+}
+
+.segtitre {
+ padding:0px !important;
 }
 
 .aSpe{
@@ -43,7 +48,7 @@ footer{
   display: inline-block;
   padding: 15px;
   border-radius: 10px;
-  font-size: 40px;
+  font-size: 25px;
 }
 
 hr {
@@ -51,17 +56,39 @@ hr {
 }
 
 .navbar {
-  font-size: 1.5em;
+  font-size: 1.1em;
 }
 
 .croixrouge {
-  width: 170px;
-  height: 150px;
-  float:right;
+  width: 130px;
+  height: 110px;
+  float: right;
   margin-right: 10px;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 p {
   font-size: 1.3em;
+}
+
+#content{
+  margin-left: 45px !important;
+  margin-right: 45px !important;
+
+}
+.segactus {
+  margin-right: 45px !important;
+  margin-left: 45px !important;
+}
+
+.contact {
+  margin: 45px !important;
+}
+
+.segconnexion {
+  margin: 45px !important;
+}
+
+#selistespage {
+  margin: 45px !important;
 }

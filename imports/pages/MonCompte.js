@@ -3,6 +3,8 @@ import { Grid, Segment } from 'semantic-ui-react'
 
 import MenuMonCompt from '../components/monCompte/MenuMonCompt.js'
 
+import Titre from "../components/Titre.js"
+
 import Categories from '../components/monCompte/pages/Categories.js'
 import Configuration from '../components/monCompte/pages/Configuration.js'
 import DepotDemande from '../components/monCompte/pages/DepotDemande.js'
@@ -16,6 +18,7 @@ import MesPropositions from '../components/monCompte/pages/MesPropositions.js'
 import MonReleve from '../components/monCompte/pages/MonReleve.js'
 import Statistiques from '../components/monCompte/pages/Statistiques.js'
 import GererUnCompte from "../components/monCompte/pages/GererUnCompte.js"
+
 
 import {createContainer} from 'meteor/react-meteor-data';
 import {menu} from '../API/menu.js'
@@ -39,7 +42,7 @@ class MonCompt extends Component {
 				"Deposez une demande",
 				"Mes Offres",
 				"Mes Demandes",
-				"Mes Propositons"
+				"Mes Propositions"
 			];
 			this.menuAdministrationTitre="Mon Compte"
 			this.menuAdministration=[
@@ -63,7 +66,7 @@ class MonCompt extends Component {
 				if(nom=="Deposez une demande"){return(<DepotDemande></DepotDemande>)}
 				if(nom=="Mes Offres")			{return(<MesOffres></MesOffres>)}
 				if(nom=="Mes Demandes")		{return(<MesDemandes></MesDemandes>)}
-				if(nom=="Mes Propositons")		{return(<MesPropositions></MesPropositions>)}
+				if(nom=="Mes Propositions")		{return(<MesPropositions></MesPropositions>)}
 				if(nom=="Gerer les annonces")	{return(<GererAnnonces></GererAnnonces>)}
 				if(nom=="Categories")			{return( <Categories></Categories>)}
 				if(nom=="Gerer les actualités")	{return(<GererActu></GererActu>)}
@@ -77,8 +80,8 @@ class MonCompt extends Component {
 			if(this.props.loggedin){
 				return (
 
-			<div className="">
-				<h1>Mon Compte</h1>
+			<div>
+				<Titre nom={"MON COMPTE"}></Titre>
 				 <Grid>
 					 <Grid.Column mobile={6} tablet={4} computer={3}>
 						<MenuMonCompt contenu={this.contenu.bind(this)} titre="Mon Compte" menuMonCompte={this.menuMonCompte}></MenuMonCompt> <br/>
