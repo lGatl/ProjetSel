@@ -158,7 +158,7 @@ class Categorie extends Component {
 			<div>
 				<Titre1 nom="Créer une catégorie"></Titre1>
 					<Input labelPosition='right'
-							name="titreDeLaCategorie"
+							name="categorie"
 							type='text'
 							placeholder='Nom de la catégorie'
 							value={this.state.categorie}

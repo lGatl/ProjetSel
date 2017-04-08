@@ -1,3 +1,10 @@
+html, body {
+height: 100%!important;
+}
+.fixFoot{
+	height:0;
+}
+
 .logoSel{
 	width: 180px;
 	height: 150px;
@@ -6,8 +13,9 @@
 }
 
 footer{
-	margin-top:15px;
-	text-align: center;
+	margin-top:15px ;
+	text-align: center ;
+
 }
 
 .logo{
@@ -88,13 +96,3 @@ p {
 .segconnexion {
 	margin: 45px !important;
 }
-
-
-@media (min-height: 2000px) {
-	.cefooter{
-		position: absolute !important;
-		bottom: 0 !important;
-		width:100% !important;
-	}
-}
-

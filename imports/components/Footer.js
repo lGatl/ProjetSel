@@ -7,6 +7,11 @@ import { Segment } from 'semantic-ui-react'		//j'importe l'outil Segment de seme
 //On ne se pose pas de question il faut le faire a chaque fois
 export default class Footer extends Component {
 	//on pourrait preparer des variables ou meme un constructeur avant render
+
+
+
+
+
 	render(){//cette fonction est obligatoint pour un composent react
 		//on peut faire des calculs ici ils vont se realiser des qu'il faut actualiser, ... ils doivent donc etre legers
 		//Dans return, on doit mettre du jsx,
@@ -17,7 +22,7 @@ export default class Footer extends Component {
 
 
 			<footer>
-				 <Segment className="cefooter" inverted color='red' basic >
+				 <Segment inverted color='red' basic >
 				 	<p className="tailletext2">
 					 	Système d'Echange Local de la Croix Rouge de Damvillers, 6 rue des Remparts 55150 DAMVILLERS
 
@@ -36,3 +41,20 @@ export default class Footer extends Component {
 		);
 	}
 }
+/*
+	 <div class="ui inverted vertical footer segment">
+    <div class="ui container">
+      <div class="ui stackable inverted divided equal height stackable grid">
+        <div class="three wide column">
+          <h4 class="ui inverted header">About</h4>
+
+        </div>
+
+        <div class="seven wide column">
+          <h4 class="ui inverted header">Footer Header</h4>
+          <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+ */

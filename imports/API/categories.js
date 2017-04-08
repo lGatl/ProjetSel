@@ -33,7 +33,7 @@
 			}
 		})
 	}
-	const ajout=(cat)=>{
+	const ajout=(cat,cbk)=>{
 		Meteor.call('ajoutCategorie', cat ,(err,res)=>{
 			if(err||res==false){
 				Bert.alert({

@@ -3,10 +3,11 @@
 import Footer from '../components/Footer.js'; //voyez, j'importe mon fameux Footer
 import MenuS from '../components/Menu.js';
 import DerniereActuAnnonce from '../components/DerniereActuAnnonce.js';
-import { Grid } from 'semantic-ui-react'
+import { Grid,Segment } from 'semantic-ui-react'
 
 
  export const MainLayout = ({ content }) => {
+
  	var Contenu=""
  	var Annonce=""
  	var Actu=""
@@ -30,6 +31,7 @@ import { Grid } from 'semantic-ui-react'
 
 
 			</Grid.Column>
+
 		 	</Grid>
 		 )
  	}
@@ -43,9 +45,12 @@ import { Grid } from 'semantic-ui-react'
 	<MenuS></MenuS>
 
 		{Contenu}
-
+			<div className="fixFoot">
+			</div>
     	 <Footer></Footer>
 
    </div>
+
  );
+
 }

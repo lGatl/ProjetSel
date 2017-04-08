@@ -5,8 +5,6 @@ import { Header,Image } from 'semantic-ui-react'
 export default class HeaderS extends Component {
 
 	componentWillMount(){
-	document.getElementsByClassName("header")
-		console.log("document.getElementsByClassName(\"header\")", document.getElementsByClassName("monheader"));
 
 	}
 	render(){

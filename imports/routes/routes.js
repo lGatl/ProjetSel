@@ -24,6 +24,7 @@
 	 name: 'accueil',
 	 action: function() {
 		 mount(MainLayout, {content: <Accueil layout="actu"/>});
+
 	 }
  });
 
@@ -87,4 +88,5 @@ FlowRouter.route('/annonces/:titre', {
 		mount(MainLayout, { content: <AnnonceDesc titre={params.titre} layout="actu"/> });
 	},
 });
+
 

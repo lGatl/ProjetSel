@@ -4,7 +4,7 @@ import CoordonneesHoraires from '../components/CoordonneesHoraires.js';
 import {createContainer} from 'meteor/react-meteor-data';
 import { Grid } from 'semantic-ui-react'
 import {menu} from '../API/menu.js'
-
+/*__________~~~~~~~~MAIL JET~~~~~~~~~~____________*/
  class Contact extends Component {
 	constructor(){
 		super()
