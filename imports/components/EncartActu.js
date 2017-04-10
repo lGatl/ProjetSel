@@ -9,8 +9,8 @@ export default class EncartActu extends Component {
 		<div>
 		    <Segment compact>
 		    	<Image src='/assets/images/wireframe/image.png' size='small' wrapped />
-		      	<a href={"/articles/"+this.props.donnees.title}>
-		      		<Header as='h2'>{this.props.donnees.title}</Header>
+		      	<a href={"/articles/"+this.props.donnees.titre}>
+		      		<Header as='h2'>{this.props.donnees.titre}</Header>
 		      	</a>
 		      	<p>{this.props.donnees.description.slice(0, 50)+" ..."}</p>
 

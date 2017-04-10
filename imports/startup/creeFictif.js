@@ -24,10 +24,10 @@ import{annonces}from'../API/annonces.js'
 			if(err){console.log("errart"," ",err)}else{
 				if(res.length==0){
 					var obj=[
-						{title : "Webogreen en folie", description : "C'est la formidable histoire d'une classe de formation web composée de super codeurs fou, qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Publier",date:Date.now() },
-						{title : "un second article", description : "C'est la formidable histoire d'une classe de formation web composée de super codeurs fou, qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Publier" ,date:Date.now()},
-						{title : "un autre article", description : "C'est la formidable histoire d'une classe de formation web composée de super codeurs fou, qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Desactiver",date:Date.now() },
-						{title : "pas un autre article", description :"C'est la formidable histoire d'une classe de formation web composée de super codeurs fou, qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Publier",date:Date.now() },
+						{titre : "Webogreen en folie", description : "C'est la formidable histoire d'une classe de formation web composée de super codeurs fou, qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Publier",date:Date.now() },
+						{titre : "un second article", description : "C'est la formidable histoire d'une classe de formation web composée de super codeurs fou, qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Publier" ,date:Date.now()},
+						{titre : "un autre article", description : "C'est la formidable histoire d'une classe de formation web composée de super codeurs fou, qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Desactiver",date:Date.now() },
+						{titre : "pas un autre article", description :"C'est la formidable histoire d'une classe de formation web composée de super codeurs fou, qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Publier",date:Date.now() },
 
 					]
 					obj.map((ob)=>{
@@ -49,10 +49,10 @@ import{annonces}from'../API/annonces.js'
 				if(res.length==0){
 					var obj=[
 
-					{categorie : "cuisine", type : "offre", titreDeLAnnonce : "500 couverts", descriptionDeLAnnonce : "Besoin d'un cuisinier capable de gerer 500 couverts!", informationDeContact : "monmail@gmal.com", dateDeFin : "1/12/2017", etat : "Valider",utilisateur:username},
-						{categorie : "mecanique", type : "demande", titreDeLAnnonce : "Vidange", descriptionDeLAnnonce : "Qui veut venir me faire une petite vidange ?? ", informationDeContact : "tonmail@talmal.fr", dateDeFin : "25/04/2016", etat : "En Attente",utilisateur:username },
-						{categorie : "informatique", type : "offre", titreDeLAnnonce : "Ecran Bleu", descriptionDeLAnnonce : ":'( Je ne comprend pas qqn peut venir m'aider?", informationDeContact : "sonmail@caramal.rf", dateDeFin : "01/02/2018", etat : "Valider",utilisateur:username },
-						{categorie : "cheval", type : "demande", titreDeLAnnonce : "Pour steak", descriptionDeLAnnonce : "Nourrit a l'herbe toute sa vie, massé chaque jour", informationDeContact : "notremail@wanadoo.fr", dateDeFin : "15/12/2013", etat : "Refuser",utilisateur:username }
+					{categorie : "cuisine", type : "offre", titre : "500 couverts", description : "Besoin d'un cuisinier capable de gerer 500 couverts!", informationDeContact : "monmail@gmal.com", dateDeFin : "1/12/2017", etat : "Valider",utilisateur:username},
+						{categorie : "mecanique", type : "demande", titre : "Vidange", description : "Qui veut venir me faire une petite vidange ?? ", informationDeContact : "tonmail@talmal.fr", dateDeFin : "25/04/2016", etat : "En Attente",utilisateur:username },
+						{categorie : "informatique", type : "offre", titre : "Ecran Bleu", description : ":'( Je ne comprend pas qqn peut venir m'aider?", informationDeContact : "sonmail@caramal.rf", dateDeFin : "01/02/2018", etat : "Valider",utilisateur:username },
+						{categorie : "cheval", type : "demande", titre : "Pour steak", description : "Nourrit a l'herbe toute sa vie, massé chaque jour", informationDeContact : "notremail@wanadoo.fr", dateDeFin : "15/12/2013", etat : "Refuser",utilisateur:username }
 
 					]
 					obj.map((ob)=>{

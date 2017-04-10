@@ -23,7 +23,6 @@ class  AnnonceDes extends Component {
 					this.setState({annonce:res})
 					this.getUtilisateur(this.state.annonce.utilisateur)
 			}
-
 		})
 	}
 	getUtilisateur(usr){
@@ -39,10 +38,13 @@ class  AnnonceDes extends Component {
 	}
 
 	fiche(){
+			if(this.state.annonce.titre&&this.state.usr.username){
+				var date = new Date(this.state.annonce.date)
 
-			if(this.state.annonce.titreDeLAnnonce&&this.state.usr.username){
 		return(
 			<Segment>
+
+			{console.log("this.state.annonce.dateDeDebut", this.state.annonce)}
 				<Segment.Group horizontal >
 					<Segment >
 							<Item>
@@ -60,7 +62,10 @@ class  AnnonceDes extends Component {
 									<Table.Body>
 										<Table.Row>
 											<Table.Cell>Date de début</Table.Cell>
-											<Table.Cell>**/**/****</Table.Cell>
+											<Table.Cell>{
+												(date.getUTCDate()<10?"0"+date.getUTCDate():date.getUTCDate())+"/"+
+												((date.getUTCMonth() + 1)<10?"0"+(date.getUTCMonth() + 1):(date.getUTCMonth() + 1))
+												+"/"+date.getUTCFullYear()}</Table.Cell>
 										</Table.Row>
 										<Table.Row>
 											<Table.Cell>Date de Fin</Table.Cell>
@@ -74,8 +79,8 @@ class  AnnonceDes extends Component {
 								</Table>
 						</Segment>
 					<Segment >
-						<Titre1 nom={this.state.annonce.titreDeLAnnonce}/>
-						<span>{this.state.annonce.descriptionDeLAnnonce}</span>
+						<Titre1 nom={this.state.annonce.titre}/>
+						<span>{this.state.annonce.description}</span>
 					</Segment>
 				</Segment.Group>
 

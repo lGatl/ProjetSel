@@ -45,7 +45,7 @@
 				recup((res)=>{if(res){cbk(res)}else{}})
 				Bert.alert({
 					title:"Categorie sauvegardé",
-					message:"Votre annonce "+cat.titreDeLaCategorie+" a été sauvegardé" ,
+					message:"Votre annonce "+cat.titre+" a été sauvegardé" ,
 					type:'success'
 				})
 			}

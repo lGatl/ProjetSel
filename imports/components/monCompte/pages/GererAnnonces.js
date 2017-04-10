@@ -36,7 +36,7 @@ class GererAnnonce extends Component {
 									ann.utilisateur,
 									ann.type,
 									ann.categorie,
-									<a href={"/annonces/"+ann.titreDeLAnnonce} className="aSpe">{ann.titreDeLAnnonce}</a>
+									<a href={"/annonces/"+ann.titre} className="aSpe">{ann.titre}</a>
 								],etat: this.state.etat[i]}
 							)
 						}),

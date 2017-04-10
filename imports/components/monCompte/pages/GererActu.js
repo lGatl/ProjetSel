@@ -13,7 +13,7 @@ class GererAct extends Component {
 	constructor(){
 		super()
 		this.state={
-			title:"",
+			titre:"",
 			description:"",
 			etat:[],
 			html:"",
@@ -35,10 +35,10 @@ class GererAct extends Component {
 	ajoutArticle(e){
 		e.preventDefault();
 
-		if(this.state.title && this.state.description){
+		if(this.state.titre && this.state.description){
 			this.props.article.ajout(
 				{
-					title:this.state.title,
+					titre:this.state.titre,
 					description:this.state.description,
 					etat:"Desactiver",
 					date:Date.now()
@@ -48,7 +48,7 @@ class GererAct extends Component {
 
 				if(res){
 					this.setState({
-							title:"",
+							titre:"",
 							description:""
 					})
 					this.initEtat(res)
@@ -148,7 +148,7 @@ class GererAct extends Component {
 								{
 									tableau:[
 										date.getUTCDate()+"/"+(date.getUTCMonth() + 1) +"/"+date.getUTCFullYear(),
-										 	<a href={"/articles/"+art.title} className="aSpe">{art.title}</a>
+										 	<a href={"/articles/"+art.titre} className="aSpe">{art.titre}</a>
 									],
 									etat: this.state.etat[i]
 								}
@@ -185,7 +185,7 @@ class GererAct extends Component {
 
 					<Form.Input className="inputAj"
 						label="Titre de l'actualité"
-						name='title'
+						name='titre'
 						placeholder='Choisissez un titre'
 						value={this.state.title}
 						onChange={this.miseEnVar.bind(this)}/>

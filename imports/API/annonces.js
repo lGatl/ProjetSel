@@ -23,7 +23,7 @@
 				recup((res)=>{if(res){}else{}})
 				Bert.alert({
 					title:"Annonce modifiée",
-					message:"Votre annonce "+aSauv.titreDeLAnnonce+" a été modifiée" ,
+					message:"Votre annonce a été modifiée" ,
 					type:'success'
 				})
 
@@ -58,7 +58,7 @@
 				recup((res)=>{if(res){}else{}})
 				Bert.alert({
 					title:"Annonce sauvegardé",
-					message:"Votre annonce "+ann.titreDeLAnnonce+" a été sauvegardé" ,
+					message:"Votre annonce "+ann.titre+" a été sauvegardé" ,
 					type:'success'
 				})
 			}

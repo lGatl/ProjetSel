@@ -11,7 +11,7 @@
 			return Annonces.find().fetch()
 		},
 		getAnnonce: (titre)=>{
-			return Annonces.findOne({titreDeLAnnonce: titre});
+			return Annonces.findOne({titre: titre});
 		},
 		supprimeAnnonce:(id)=>{Annonces.remove({_id:id})},
 		ajoutAnnonce:(nvlAnnonce)=>{
@@ -19,8 +19,8 @@
 					Annonces.insert({
 						categorie:nvlAnnonce.categorie,
 						type: nvlAnnonce.type,
-						titreDeLAnnonce: nvlAnnonce.titreDeLAnnonce,
-						descriptionDeLAnnonce: nvlAnnonce.descriptionDeLAnnonce,
+						titre: nvlAnnonce.titre,
+						description: nvlAnnonce.description,
 						informationDeContact: nvlAnnonce.informationDeContact,
 						etat: nvlAnnonce.etat,
 						utilisateur:nvlAnnonce.utilisateur,
@@ -33,7 +33,7 @@
 			console.log(aSauv)
 				if(aSauv._id){
 					annonces=aSauv
-				}else{annonces=Annonces.findOne({"titreDeLAnnonce": aSauv.titreDeLAnnonce})}
+				}else{annonces=Annonces.findOne({"titre": aSauv.titre})}
 		Annonces.update({_id:annonces._id},{$set:aSauv})
 	}
 	})

@@ -48,7 +48,7 @@
 				recup((res)=>{if(res){cbk(res)}else{}})
 				Bert.alert({
 					title:"Article sauvegardé",
-					message:"Votre article "+art.title+" a été sauvegardé" ,
+					message:"Votre article "+art.titre+" a été sauvegardé" ,
 					type:'success'
 				})
 			}

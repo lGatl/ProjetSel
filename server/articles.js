@@ -10,11 +10,11 @@ Meteor.methods({
 	return Articles.find().fetch()
 	},
 	getArticle: (titre)=>{
-		return Articles.findOne({title: titre});
+		return Articles.findOne({titre: titre});
 	},
 	etArticle: (id)=>{
 
-		return Articles.findOne({title : "je suis  un titre"});
+		return Articles.findOne({titre : "je suis  un titre"});
 
 	},
 	testConnex:()=>{
@@ -24,14 +24,14 @@ Meteor.methods({
 	},
 	ajoutArticle:(nvlArticle)=>{
 		if (Meteor.userId()){
-			if(nvlArticle.title.length>0&&nvlArticle.description.length>0){
-				Articles.insert({title:nvlArticle.title,description:nvlArticle.description,etat:nvlArticle.etat,date:nvlArticle.date})
+			if(nvlArticle.titre.length>0&&nvlArticle.description.length>0){
+				Articles.insert({titre:nvlArticle.titre,description:nvlArticle.description,etat:nvlArticle.etat,date:nvlArticle.date})
 			}
 		}else{return false}
 	},
 	sauvegardeArticles:(aSauver)=>{
 		console.log("aSauver", aSauver);
-			articles=Articles.findOne({"title": aSauver.title})
+			articles=Articles.findOne({"titre": aSauver.titre})
 		Articles.update({_id:articles._id},{$set:aSauver})
 	},
 	supprimeArticle:(id)=>{Articles.remove({_id:id})}

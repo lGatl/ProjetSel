@@ -22,14 +22,14 @@ export default class EncartAnnonce extends Component {
 									{this.props.donnees.type+" - "+this.props.donnees.categorie}
 								</Card.Header>
 
-								<a href={"/annonces/"+this.props.donnees.titreDeLAnnonce}>
+								<a href={"/annonces/"+this.props.donnees.titre}>
 								<Header as="h2" >
-									{this.props.donnees.titreDeLAnnonce}
+									{this.props.donnees.titre}
 								</Header></a>
 
 								<br/>
 								<Card.Meta>
-									{this.props.donnees.descriptionDeLAnnonce.slice(0, 50)+" ..."}
+									{this.props.donnees.description.slice(0, 50)+" ..."}
 								</Card.Meta>
 								<Card.Description>
 									{this.props.donnees.dateDeFin}

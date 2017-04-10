@@ -7,20 +7,6 @@ import {menu} from '../API/menu.js'
 import {articles} from '../API/articles.js'
 
 class Actualite extends Component {
-	constructor(){
-		super()
-			this.state={
-			articles:[],
-			article:{}
-		}
-		this.nvlArticle={
-			title:"",
-			description:""
-		}
-	}
-
-
-
 
 componentWillMount(){
 

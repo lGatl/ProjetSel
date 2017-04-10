@@ -8,7 +8,7 @@
 			return Categories.find().fetch()
 		},
 		getCategorie: (titre)=>{
-			return Categories.findOne({titreDeLaCategorie: titre});
+			return Categories.findOne({titre: titre});
 		},
 		supprimeCategorie:(id)=>{Categories.remove({_id:id})},
 		ajoutCategorie:(nvlCategorie)=>{

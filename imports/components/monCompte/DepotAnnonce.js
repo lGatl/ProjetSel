@@ -13,8 +13,8 @@ class DepotAnnonc extends Component {
 
 		this.state = {
 			type:"",
-			titreDeLAnnonce:"",
-			descriptionDeLAnnonce:"",
+			titre:"",
+			description:"",
 			informationDeContact:"",
 			dateDeFin:"",
 			utilisateur:"",
@@ -37,8 +37,8 @@ class DepotAnnonc extends Component {
 	recup(donn){
 		this.setState({
 			type:donn.type,
-			titreDeLAnnonce:donn.titreDeLAnnonce,
-			descriptionDeLAnnonce:donn.descriptionDeLAnnonce,
+			titre:donn.titre,
+			description:donn.description,
 			informationDeContact:donn.informationDeContact,
 			dateDeFin:donn.dateDeFin,
 			utilisateur:donn.utilisateur,
@@ -78,8 +78,8 @@ class DepotAnnonc extends Component {
 		this.props.annonces.ajout(this.state)
 		this.setState( {
 			type:"",
-			titreDeLAnnonce:"",
-			descriptionDeLAnnonce:"",
+			titre:"",
+			description:"",
 			informationDeContact:"",
 			dateDeFin:"",
 			etat:"En Attente",
@@ -140,19 +140,19 @@ class DepotAnnonc extends Component {
 						/>
 					<Form.Input
 						label="Titre de l'annonce"
-						name='titreDeLAnnonce'
+						name='titre'
 						placeholder='Choisissez un titre'
 						onChange={this.change.bind(this)}
-						value={this.state.titreDeLAnnonce}
+						value={this.state.titre}
 					/>
 
 					<Form.TextArea
-						name='descriptionDeLAnnonce'
+						name='description'
 						label="Description de l'annonce"
 						placeholder='Presentez votre offre'
 						rows='3'
 						onChange={this.change.bind(this)}
-						value={this.state.descriptionDeLAnnonce}
+						value={this.state.description}
 					/>
 					<Form.TextArea
 						name='informationDeContact'

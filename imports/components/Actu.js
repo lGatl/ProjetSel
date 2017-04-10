@@ -35,7 +35,7 @@ constructor(){
 		<div>
 		    <Segment compact>
 		    	<Image src='/assets/images/wireframe/image.png' size='small' wrapped />
-		      	<Header as='h2'>{this.state.title}</Header>
+		      	<Header as='h2'>{this.state.titre}</Header>
 		      	<p>{this.state.description}</p>
 
 		    </Segment>

@@ -53,6 +53,7 @@ footer{
 	text-decoration: none;
 	color:black;
 	font-weight:bold;
+	margin-left:5px;
 
 }
 
@@ -73,7 +74,8 @@ hr {
 }
 
 .navbar {
-	font-size: 1em;
+	font-size: 1em!important;
+
 }
 
 .croixrouge {

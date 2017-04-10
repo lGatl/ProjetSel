@@ -17,7 +17,7 @@ class ExtraitAnnonc extends Component {
 		this.show = () => this.setState({ open: true })
 		this.handleConfirm = () => {
 			this.setState({ open: false,edit:false })
-			var titre = this.props.donnees.titreDeLAnnonce
+			var titre = this.props.donnees.titre
 			this.props.annonces.supprime(this.props.donnees._id,(err)=>{
 				if(err){}else{
 					Bert.alert({
@@ -73,12 +73,12 @@ class ExtraitAnnonc extends Component {
 							</Grid.Column>
 							<Grid.Column mobile={12} tablet={6} computer={6}>
 								<Card.Header>
-									<a href={"/annonces/"+this.props.donnees.titreDeLAnnonce} className="aSpe">
-											{this.props.donnees.titreDeLAnnonce}
+									<a href={"/annonces/"+this.props.donnees.titre} className="aSpe">
+											{this.props.donnees.titre}
 									</a> <span style={{color:etat.couleur,fontWeight:"bold"}}>{etat.etat}</span>
 								</Card.Header>
 								<br/>
-								<Card.Meta>{this.props.donnees.descriptionDeLAnnonce.slice(0, 50)+" ..."}
+								<Card.Meta>{this.props.donnees.description.slice(0, 50)+" ..."}
 								</Card.Meta>
 								<Card.Description>
 									Date de mise en ligne
@@ -103,7 +103,7 @@ class ExtraitAnnonc extends Component {
 										>Supprimer</Button>
 										<Confirm
 											open={this.state.open}
-											content={'Etes-vous sur de vouloir supprimer cet article : '+this.props.donnees.titreDeLAnnonce+" ?"}
+											content={'Etes-vous sur de vouloir supprimer cet article : '+this.props.donnees.titre+" ?"}
 											cancelButton='Non'
          										 confirmButton="OUI"
 											onCancel={this.handleCancel}
