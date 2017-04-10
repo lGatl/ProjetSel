@@ -85,34 +85,35 @@ class ExtraitAnnonc extends Component {
 								</Card.Description>
 
 							</Grid.Column>
-							<Grid.Column mobile={12} tablet={6} computer={6} verticalAlign="bottom">
-								<Card.Description>
-									<Label>18</Label>
-									<br/><br/><br/><br/><br/>
-								</Card.Description>
-							<Card.Content extra>
-									<div className='ui two buttons' >
-										<Button
-											color='green'
-											onClick={this.editer.bind(this)}
-										>Editer</Button>
+							<Grid.Column mobile={12} tablet={6} computer={6}  verticalAlign ="bottom" >
 
-										<Button
-											color='red'
-											onClick={this.supprimer.bind(this)}
-										>Supprimer</Button>
-										<Confirm
-											open={this.state.open}
-											content={'Etes-vous sur de vouloir supprimer cet article : '+this.props.donnees.titre+" ?"}
-											cancelButton='Non'
-         										 confirmButton="OUI"
-											onCancel={this.handleCancel}
-											onConfirm={this.handleConfirm}
-										/>
-									</div>
-								</Card.Content>
-							</Grid.Column>
-							<Label circular size='massive' color={'yellow'} key={'0'} attached="top right"></Label>
+										<Label className="labelAn" size="big">18</Label>
+
+								<Grid.Column mobile={12} tablet={12} computer={12}>
+									<Card.Content extra  >
+											<div className='ui two buttons'>
+												<Button
+													color='green'
+													onClick={this.editer.bind(this)}
+												>Editer</Button>
+
+												<Button
+													color='red'
+													onClick={this.supprimer.bind(this)}
+												>Supprimer</Button>
+												<Confirm
+													open={this.state.open}
+													content={'Etes-vous sur de vouloir supprimer cet article : '+this.props.donnees.titre+" ?"}
+													cancelButton='Non'
+		         										confirmButton="OUI"
+													onCancel={this.handleCancel}
+													onConfirm={this.handleConfirm}
+												/>
+											</div>
+										</Card.Content>
+									</Grid.Column>
+								</Grid.Column>
+								<Label circular size='massive' color={'yellow'} key={'0'} attached="top right"></Label>
 						</Grid>
 
 					</Card>

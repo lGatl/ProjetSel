@@ -8,7 +8,7 @@ height: 100%!important;
 }
 .Site-header,
 .Site-footer {
-  flex: none; /* 2 */
+  flex: none;
 }
 .bodyLay{
   flex: 1!important;
@@ -110,5 +110,8 @@ p {
 
 
 
+.labelAn{
+	margin-bottom: 20%!important;
 
 
+}

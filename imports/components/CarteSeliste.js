@@ -27,7 +27,10 @@ constructor(){
 						{this.props.utilisateur.profile.prenom+" "+this.props.utilisateur.profile.nom}
 					</Card.Header>
 							<Rating icon='star' disabled rating={this.props.utilisateur.profile.note} maxRating={5} />
+					<br/>
+					{this.props.utilisateur.username}
 					<Card.Description>
+
 						Catégiorie offre:
 						<ul>
 							<li>Mécanique</li>
