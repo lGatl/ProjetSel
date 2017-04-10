@@ -1,8 +1,17 @@
-html, body {
+html, body,#react-root{
 height: 100%!important;
 }
-.fixFoot{
-	height:0;
+.main-layout{
+	display: flex !important;
+	min-height: 100vh!important;
+	flex-direction: column!important;
+}
+.Site-header,
+.Site-footer {
+  flex: none; /* 2 */
+}
+.bodyLay{
+  flex: 1!important;
 }
 
 .logoSel{
@@ -96,3 +105,8 @@ p {
 .segconnexion {
 	margin: 45px !important;
 }
+
+
+
+
+

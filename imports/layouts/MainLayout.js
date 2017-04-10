@@ -41,12 +41,11 @@ import { Grid,Segment } from 'semantic-ui-react'
    <div className="main-layout">
 
 	<HeaderS></HeaderS>
-
+	<div className="bodyLay">
 	<MenuS></MenuS>
 
 		{Contenu}
-			<div className="fixFoot">
-			</div>
+		</div>
     	 <Footer></Footer>
 
    </div>
