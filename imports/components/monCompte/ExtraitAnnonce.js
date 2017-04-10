@@ -1,14 +1,68 @@
 
 import React, { Component } from 'react'
 
-import { Button, Card,Image,Grid,Label } from 'semantic-ui-react'
+import { Button, Card,Image,Grid,Label,Segment,Confirm } from 'semantic-ui-react'
+import {createContainer} from 'meteor/react-meteor-data';
+import {annonces} from '../../API/annonces.js'
 
 
+class ExtraitAnnonc extends Component {
+	constructor(){
+		super()
+		this.state = {
+			open: false,
+			edit:false
+		 }
 
-export default class ExtraitAnnonce extends Component {
+		this.show = () => this.setState({ open: true })
+		this.handleConfirm = () => {
+			this.setState({ open: false,edit:false })
+			var titre = this.props.donnees.titreDeLAnnonce
+			this.props.annonces.supprime(this.props.donnees._id,(err)=>{
+				if(err){}else{
+					Bert.alert({
+					title:"Annonce supprimée",
+					message:"Votre annonce "+titre+" a été supprimée" ,
+					type:'success'
+				})
 
+				}
+			})
+
+		}
+		this.handleCancel = () => this.setState({ open: false })
+	}
+
+	editer(){
+		var ann=this.props.donnees
+		if(this.state.edit){this.setState({edit: false})}else{
+			this.setState({edit:(
+				<div>
+					<br/>
+					<hr/>
+					<br/>
+					<DepotAnnonce type={ann.type} donnees={ann} zero={this.zero.bind(this)} action="Editer"></DepotAnnonce>
+					<br/>
+					<hr/>
+					<br/>
+				</div>
+			)})
+		}
+	}
+
+	zero(){
+		this.setState({edit: false})
+	}
+	supprimer(e){
+		e.preventDefault()
+		this.setState({ open: true })
+
+	}
 	render() {
-
+		etat={}
+			this.props.donnees.etat=="En Attente"?etat={etat:"En Attente",couleur:"blue"}:
+			this.props.donnees.etat=="Valider"?etat={etat:"Valide",couleur:"green"}:
+			this.props.donnees.etat=="Refuser"?etat={etat:"Refusée",couleur:"red"}:etat={}
 		return (
 			<div>
 				 <Card fluid>
@@ -21,7 +75,7 @@ export default class ExtraitAnnonce extends Component {
 								<Card.Header>
 									<a href={"/annonces/"+this.props.donnees.titreDeLAnnonce} className="aSpe">
 											{this.props.donnees.titreDeLAnnonce}
-									</a>
+									</a> <span style={{color:etat.couleur,fontWeight:"bold"}}>{etat.etat}</span>
 								</Card.Header>
 								<br/>
 								<Card.Meta>{this.props.donnees.descriptionDeLAnnonce.slice(0, 50)+" ..."}
@@ -32,11 +86,29 @@ export default class ExtraitAnnonce extends Component {
 
 							</Grid.Column>
 							<Grid.Column mobile={12} tablet={6} computer={6} verticalAlign="bottom">
-
+								<Card.Description>
+									<Label>18</Label>
+									<br/><br/><br/><br/><br/>
+								</Card.Description>
 							<Card.Content extra>
 									<div className='ui two buttons' >
-										<Button  color='green'>Approuver</Button>
-										<Button color='red'>Décliner</Button>
+										<Button
+											color='green'
+											onClick={this.editer.bind(this)}
+										>Editer</Button>
+
+										<Button
+											color='red'
+											onClick={this.supprimer.bind(this)}
+										>Supprimer</Button>
+										<Confirm
+											open={this.state.open}
+											content={'Etes-vous sur de vouloir supprimer cet article : '+this.props.donnees.titreDeLAnnonce+" ?"}
+											cancelButton='Non'
+         										 confirmButton="OUI"
+											onCancel={this.handleCancel}
+											onConfirm={this.handleConfirm}
+										/>
 									</div>
 								</Card.Content>
 							</Grid.Column>
@@ -44,8 +116,19 @@ export default class ExtraitAnnonce extends Component {
 						</Grid>
 
 					</Card>
-
+					<br/>
+					{this.state.edit}
 			</div>
 		)
 	}
 }
+export default ExtraitAnnonce = createContainer( ()=>{
+
+ 	return{
+
+ 		annonces:{
+ 			supprime:annonces.supprime,
+ 		}
+ 	}
+
+ } ,  ExtraitAnnonc );

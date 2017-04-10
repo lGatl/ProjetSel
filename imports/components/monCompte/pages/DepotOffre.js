@@ -14,7 +14,7 @@ export default class DepotOffre extends Component {
 	render() {
 
 		return (
-			<DepotAnnonce type={this.state.type}></DepotAnnonce>
+			<DepotAnnonce type={this.state.type} action="Deposer" ></DepotAnnonce>
 		)
 	}
 }

@@ -29,9 +29,12 @@
 					})
 			}else{return false}
 		},
-		sauvegardeAnnonces:(aSauver)=>{
-			annonces=Annonces.findOne({"titreDeLAnnonce": aSauver.titreDeLAnnonce})
-		Annonces.update({_id:annonces._id},{$set:aSauver})
+		sauvegardeAnnonces:(aSauv)=>{
+			console.log(aSauv)
+				if(aSauv._id){
+					annonces=aSauv
+				}else{annonces=Annonces.findOne({"titreDeLAnnonce": aSauv.titreDeLAnnonce})}
+		Annonces.update({_id:annonces._id},{$set:aSauv})
 	}
 	})
 

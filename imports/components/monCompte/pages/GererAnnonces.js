@@ -7,7 +7,7 @@ import TableauActions from '../TableauActions.js'
 import {createContainer} from 'meteor/react-meteor-data';
 import {annonces} from '../../../API/annonces.js'
 import {usr} from '../../../API/usr.js'
-import {menu} from '../../../API/menu.js'
+
 
 class GererAnnonce extends Component {
 	constructor(){
@@ -54,7 +54,7 @@ class GererAnnonce extends Component {
 	}
 		supprimeAnnonce(aSuppr){
 
-			this.props.annonces.supprime(aSuppr)
+			this.props.annonces.supprime(aSuppr,()=>{})
 		}
 
 	appliquer(e){
@@ -109,7 +109,7 @@ class GererAnnonce extends Component {
 			this.setState({etat:tab})
 	}
 	componentWillMount(){
-		this.props.setActif('Annonces')
+
 		this.props.annonces.recup((res)=>{
 			if(res){
 				this.initEtat(res)
@@ -147,8 +147,8 @@ export default GererAnnonces = createContainer( ()=>{
  		},
  		usr:{
  			get:usr.getUsr
- 		},
-		setActif:menu.setActif
+ 		}
+
  	}
 
  } , GererAnnonce );

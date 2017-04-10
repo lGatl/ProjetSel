@@ -32,6 +32,22 @@ class DepotAnnonc extends Component {
 		this.getCategories()
 		this.connecte()
 		this.setState({utilisateur:this.props.usr.usrCo})
+		if(this.props.donnees){this.recup(this.props.donnees)}
+	}
+	recup(donn){
+		this.setState({
+			type:donn.type,
+			titreDeLAnnonce:donn.titreDeLAnnonce,
+			descriptionDeLAnnonce:donn.descriptionDeLAnnonce,
+			informationDeContact:donn.informationDeContact,
+			dateDeFin:donn.dateDeFin,
+			utilisateur:donn.utilisateur,
+			etat:"En Attente",
+			categories:[],
+			categorie:donn.categorie,
+			_id:donn._id
+		})
+
 	}
 	connecte(){
 		Meteor.call('utilisateur',(err,res)=>{
@@ -73,7 +89,29 @@ class DepotAnnonc extends Component {
 		})
 		this.getCategories()
 	}
-
+	bouton(){
+		if(this.props.action=='Deposer'){
+			return(
+				<Button primary type='submit' onClick={this.valider.bind(this)}>Valider</Button>
+			)
+		}else{
+			return(
+				<div>
+					<Button primary type='submit' onClick={this.modifier.bind(this)}>Modifier</Button>
+					<Button primary type='submit' onClick={this.nePasEditer.bind(this)}>Ne pas Editer</Button>
+				</div>
+			)
+		}
+	}
+	modifier(e){
+		e.preventDefault()
+		this.props.annonces.sauve(this.state)
+		this.props.zero()
+	}
+	nePasEditer(e){
+		e.preventDefault()
+		this.props.zero()
+			}
 	change(e){
 			this.setState({
 				[e.target.name]:e.target.value
@@ -82,11 +120,10 @@ class DepotAnnonc extends Component {
 
 
 	render() {
-
 		return (
 			<div>
 
-				<Titre1 nom={"Déposer une "+this.props.type}></Titre1>
+				<Titre1 nom={this.props.action+" une "+this.props.type}></Titre1>
 				<br/>
 				<Label size='large' >{"Votre "+this.props.type}</Label>
 				<br/> <br/>
@@ -145,7 +182,7 @@ class DepotAnnonc extends Component {
 						size='small'
 					/>
 
-					<Button primary type='submit' onClick={this.valider.bind(this)}>Valider</Button>
+					{this.bouton()}
 
 				</Form>
 			</div>

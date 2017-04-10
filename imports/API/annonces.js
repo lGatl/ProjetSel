@@ -18,13 +18,21 @@
 	const sauve=(aSauv)=>{
 		Meteor.call('sauvegardeAnnonces',aSauv,(err,res)=>{
 			if(err){
-				console.log("err Sav")
+				console.log(err)
 			}else{
+				recup((res)=>{if(res){}else{}})
+				Bert.alert({
+					title:"Annonce modifiée",
+					message:"Votre annonce "+aSauv.titreDeLAnnonce+" a été modifiée" ,
+					type:'success'
+				})
+
 			}
 
 		})
 	}
-	const supprime=(aSuppr)=>{
+
+	const supprime=(aSuppr,cbk)=>{
 		Meteor.call('supprimeAnnonce', aSuppr ,(err,res)=>{
 			if(err){
 				Bert.alert({
@@ -33,6 +41,8 @@
 					type:'error'
 				})
 			}else{
+				recup((res)=>{if(res){}else{}})
+				cbk()
 			}
 		})
 	}

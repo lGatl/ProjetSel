@@ -5,6 +5,7 @@ import { Rating, Button, Table, Icon, Image as ImageComponent, Item, Label } fro
 import {createContainer} from 'meteor/react-meteor-data';
 import {annonces} from '../API/annonces.js'
 import {usr} from '../API/usr.js'
+import {menu} from '../API/menu.js'
 
 class  AnnonceDes extends Component {
 
@@ -33,6 +34,7 @@ class  AnnonceDes extends Component {
 		})
 	}
 	componentWillMount(){
+		this.props.setActif('Annonces')
 		this.getAnnonce(this.props.titre)
 	}
 
@@ -135,7 +137,8 @@ export default AnnonceDesc = createContainer( ()=>{
  		},
  		usr:{
  			recupNom:usr.recupNom
- 		}
+ 		},
+ 		setActif:menu.setActif
  	}
 
  } ,  AnnonceDes );
