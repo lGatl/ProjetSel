@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Segment } from 'semantic-ui-react'
 import Titre1 from './monCompte/Titre1.js'
-import { Rating, Button, Table, Icon, Image as ImageComponent, Item, Label } from 'semantic-ui-react'
+import { Rating, Button, Table, Icon, Image as ImageComponent, Item, Label,Input,TextArea,Container } from 'semantic-ui-react'
 import {createContainer} from 'meteor/react-meteor-data';
 import {annonces} from '../API/annonces.js'
 import {usr} from '../API/usr.js'
@@ -13,7 +13,9 @@ class  AnnonceDes extends Component {
 		super();
 		this.state={
 				annonce:{},
-				usr:{}
+				usr:{},
+				prix:0,
+				commentaire:""
 			};
 	}
 
@@ -25,6 +27,10 @@ class  AnnonceDes extends Component {
 			}
 		})
 	}
+	change(e){
+		e.preventDefault();
+		this.setState({[e.target.name]:e.target.value});
+	};
 	getUtilisateur(usr){
 		this.props.usr.recupNom(usr,(err,res)=>{
 			if(res){
@@ -42,86 +48,86 @@ class  AnnonceDes extends Component {
 				var date = new Date(this.state.annonce.date)
 
 		return(
-			<Segment>
 
-			{console.log("this.state.annonce.dateDeDebut", this.state.annonce)}
-				<Segment.Group horizontal >
-					<Segment >
+			<Table celled fixed textAlign="center">
+				<Table.Body>
+					<Table.Row>
+						<Table.Cell colSpan='2'>
 							<Item>
 								<Item.Image src='https://placehold.it/200x200' />
 							</Item>
+						</Table.Cell>
+						<Table.Cell colSpan='2' rowSpan='5'>
+							<span className="titreTableauAnn">{this.state.annonce.titre}</span><br/><br/>
 
-								<Table celled>
-									<Table.Header>
-										<Table.Row>
-											<Table.HeaderCell>{this.state.annonce.categorie}</Table.HeaderCell>
-											<Table.HeaderCell></Table.HeaderCell>
-										</Table.Row>
-									</Table.Header>
-
-									<Table.Body>
-										<Table.Row>
-											<Table.Cell>Date de début</Table.Cell>
-											<Table.Cell>{
-												(date.getUTCDate()<10?"0"+date.getUTCDate():date.getUTCDate())+"/"+
-												((date.getUTCMonth() + 1)<10?"0"+(date.getUTCMonth() + 1):(date.getUTCMonth() + 1))
-												+"/"+date.getUTCFullYear()}</Table.Cell>
-										</Table.Row>
-										<Table.Row>
-											<Table.Cell>Date de Fin</Table.Cell>
-											<Table.Cell>{this.state.annonce.dateDeFin}</Table.Cell>
-										</Table.Row>
-										<Table.Row>
-											<Table.Cell>Statut</Table.Cell>
-											<Table.Cell>Disponible</Table.Cell>
-										</Table.Row>
-									</Table.Body>
-								</Table>
-						</Segment>
-					<Segment >
-						<Titre1 nom={this.state.annonce.titre}/>
-						<span>{this.state.annonce.description}</span>
-					</Segment>
-				</Segment.Group>
+							 	{this.state.annonce.description}
 
 
-				<Table celled>
-						<Table.Header>
-							<Table.Row>
-								<Table.HeaderCell>Informations séliste</Table.HeaderCell>
-							</Table.Row>
-						</Table.Header>
+						</Table.Cell>
+					</Table.Row>
+					<Table.Row>
+						<Table.Cell className="titreTableau">Categorie</Table.Cell>
+						<Table.Cell>{this.state.annonce.categorie}</Table.Cell>
+					</Table.Row>
+					<Table.Row>
+						<Table.Cell className="titreTableau">Date de début</Table.Cell>
+						<Table.Cell>{
+							(date.getUTCDate()<10?"0"+date.getUTCDate():date.getUTCDate())+"/"+
+							((date.getUTCMonth() + 1)<10?"0"+(date.getUTCMonth() + 1):(date.getUTCMonth() + 1))
+							+"/"+date.getUTCFullYear()}</Table.Cell>
+					</Table.Row>
+					<Table.Row>
+						<Table.Cell className="titreTableau">Date de Fin</Table.Cell>
+						<Table.Cell>{this.state.annonce.dateDeFin}</Table.Cell>
+					</Table.Row>
 
-						<Table.Body>
-							<Table.Row>
-								<Table.Cell>{this.state.usr.profile.prenom+" "+this.state.usr.profile.nom} <Rating icon='star' disabled rating={this.state.usr.profile.note} maxRating={4} /></Table.Cell>
-							</Table.Row>
-							<Table.Row>
-								<Table.Cell>{this.state.usr.emails[0].address}</Table.Cell>
-							</Table.Row>
-						</Table.Body>
-					</Table>
+					<Table.Row>
+						<Table.Cell className="titreTableau">Statut</Table.Cell>
+						<Table.Cell></Table.Cell>
+					</Table.Row>
+					<Table.Row>
+						<Table.Cell className="titreTableau" colSpan='4'>Informations séliste</Table.Cell>
+					</Table.Row>
+					<Table.Row>
+						<Table.Cell colSpan='4'>{this.state.usr.profile.prenom+" "+this.state.usr.profile.nom} <Rating icon='star' disabled rating={this.state.usr.profile.note} maxRating={4} /></Table.Cell>
+					</Table.Row>
+					<Table.Row>
+						<Table.Cell colSpan='4'>{this.state.usr.emails[0].address}</Table.Cell>
+					</Table.Row>
+					<Table.Row>
+						<Table.Cell className="titreTableau" colSpan='4'>Proposition</Table.Cell>
+					</Table.Row>
+					<Table.Row>
+						<Table.Cell colSpan='1' >Faire une proposition</Table.Cell>
+						<Table.Cell colSpan='2'>Commentaire</Table.Cell>
+						<Table.Cell colSpan='1' rowSpan='2' textAlign='center'>
+							<Button>Valider</Button>
+						</Table.Cell>
+					</Table.Row>
+					<Table.Row>
+						<Table.Cell>
+							<Input fluid
+								name="prix"
+								placeholder='proposez un prix'
+								onChange={this.change.bind(this)}
+								value={this.state.prix}
+							/>
+							<Label>Seugnettes</Label>
+						</Table.Cell>
+						<Table.Cell colSpan='2'>
+							<TextArea
+								rows='5'
+								name="commentaire"
+								placeholder='Mettez un commentaire'
+								onChange={this.change.bind(this)}
+								value={this.state.commentaire}
+							/>
+						</Table.Cell>
 
-				<Titre1 nom="Proposition" />
+					</Table.Row>
+				</Table.Body>
+			</Table>
 
-				<Table celled>
-						<Table.Header>
-							<Table.Row>
-								<Table.HeaderCell>Faire une proposition</Table.HeaderCell>
-								<Table.HeaderCell>Commentaire</Table.HeaderCell>
-								<Table.HeaderCell></Table.HeaderCell>
-							</Table.Row>
-						</Table.Header>
-
-						<Table.Body>
-							<Table.Row>
-								<Table.Cell></Table.Cell>
-								<Table.Cell></Table.Cell>
-								<Table.Cell textAlign='center'><Button>Valider</Button></Table.Cell>
-							</Table.Row>
-						</Table.Body>
-					</Table>
-			</Segment>
 		)}
 	}
 

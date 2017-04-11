@@ -12,7 +12,7 @@ export default class EncartActu extends Component {
 		      	<a href={"/articles/"+this.props.donnees.titre}>
 		      		<Header as='h2'>{this.props.donnees.titre}</Header>
 		      	</a>
-		      	<p>{this.props.donnees.description.slice(0, 50)+" ..."}</p>
+		      	<p>{this.props.donnees.description.slice(0, 30)+" ..."}</p>
 
 		    </Segment>
 		</div>

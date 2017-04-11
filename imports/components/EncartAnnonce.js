@@ -29,7 +29,7 @@ export default class EncartAnnonce extends Component {
 
 								<br/>
 								<Card.Meta>
-									{this.props.donnees.description.slice(0, 50)+" ..."}
+									{this.props.donnees.description.slice(0, 30)+" ..."}
 								</Card.Meta>
 								<Card.Description>
 									{this.props.donnees.dateDeFin}

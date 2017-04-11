@@ -78,7 +78,7 @@ class ExtraitAnnonc extends Component {
 									</a> <span style={{color:etat.couleur,fontWeight:"bold"}}>{etat.etat}</span>
 								</Card.Header>
 								<br/>
-								<Card.Meta>{this.props.donnees.description.slice(0, 50)+" ..."}
+								<Card.Meta>{this.props.donnees.description.slice(0, 30)+" ..."}
 								</Card.Meta>
 								<Card.Description>
 									Date de mise en ligne
