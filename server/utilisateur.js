@@ -12,7 +12,6 @@ Meteor.methods({
 		utilisateur=Meteor.users.findOne({"username": aSauver.username})
 		Meteor.users.update({_id:utilisateur._id},{$set:aSauver})
 	},
-
 	utilisateur:(a)=>{
 		user=Meteor.users.findOne({_id: a})
 		return user

@@ -1,11 +1,8 @@
 
 const Articles = new Mongo.Collection("articles");
 
-const listeArticles = Articles.find().fetch()
-
 Meteor.methods({
 	listeArticles:()=>{
-		console.log('ListeArticles a été appelé')
 	/*throw new Metheor.Error(500, "Desolé")*/
 	return Articles.find().fetch()
 	},

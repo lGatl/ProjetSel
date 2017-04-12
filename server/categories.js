@@ -3,8 +3,6 @@
 	Meteor.methods({
 
 		listeCategories:()=>{
-			console.log('ListeCategories a été appelé')
-
 			return Categories.find().fetch()
 		},
 		getCategorie: (titre)=>{

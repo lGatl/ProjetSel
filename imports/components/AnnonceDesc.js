@@ -5,6 +5,7 @@ import { Rating, Button, Table, Icon, Image as ImageComponent, Item, Label,Input
 import {createContainer} from 'meteor/react-meteor-data';
 import {annonces} from '../API/annonces.js'
 import {usr} from '../API/usr.js'
+import {propositions} from '../API/propositions.js'
 import {menu} from '../API/menu.js'
 
 class  AnnonceDes extends Component {
@@ -36,6 +37,26 @@ class  AnnonceDes extends Component {
 			if(res){
 				this.setState({usr:res})
 			}
+		})
+	}
+
+	creeProp(){
+
+		this.props.propositions.ajout(
+			{
+				annonceId:this.state.annonce._id,
+				prix:this.state.prix,
+				commentaire:this.state.commentaire,
+				utilisateur:{
+					_id:this.props.usr.usrCo._id,
+					username:this.props.usr.usrCo.username,
+					note:this.props.usr.usrCo.profile.note
+				}
+			},(err)=>{}
+		)
+		this.setState({
+			prix:0,
+			commentaire:""
 		})
 	}
 	componentWillMount(){
@@ -89,7 +110,10 @@ class  AnnonceDes extends Component {
 						<Table.Cell className="titreTableau" colSpan='4'>Informations séliste</Table.Cell>
 					</Table.Row>
 					<Table.Row>
-						<Table.Cell colSpan='4'>{this.state.usr.profile.prenom+" "+this.state.usr.profile.nom} <Rating icon='star' disabled rating={this.state.usr.profile.note} maxRating={4} /></Table.Cell>
+						<Table.Cell colSpan='4'>
+							{this.state.usr.profile.prenom+" "+this.state.usr.profile.nom}
+						 	<Rating icon='star' disabled rating={this.state.usr.profile.note} maxRating={4} />
+						 </Table.Cell>
 					</Table.Row>
 					<Table.Row>
 						<Table.Cell colSpan='4'>{this.state.usr.emails[0].address}</Table.Cell>
@@ -101,7 +125,7 @@ class  AnnonceDes extends Component {
 						<Table.Cell colSpan='1' >Faire une proposition</Table.Cell>
 						<Table.Cell colSpan='2'>Commentaire</Table.Cell>
 						<Table.Cell colSpan='1' rowSpan='2' textAlign='center'>
-							<Button>Valider</Button>
+							<Button type="submit" onClick={this.creeProp.bind(this)}>Valider</Button>
 						</Table.Cell>
 					</Table.Row>
 					<Table.Row>
@@ -147,7 +171,11 @@ export default AnnonceDesc = createContainer( ()=>{
  			recup1:annonces.recup1
  		},
  		usr:{
- 			recupNom:usr.recupNom
+ 			recupNom:usr.recupNom,
+ 			usrCo:usr.usrCo.get()
+ 		},
+ 		propositions:{
+			ajout:propositions.ajout
  		},
  		setActif:menu.setActif
  	}

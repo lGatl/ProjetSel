@@ -112,9 +112,7 @@ h2{
 
 
 .labelAn{
-	margin-bottom: 20%!important;
-
-
+	margin-bottom: 15%!important;
 }
 .titreTableauAnn{
 	font-size: 2.5em;
@@ -123,5 +121,9 @@ h2{
 .titreTableau{
 	font-size: 1.1em;
 	font-weight: bold;
-	background:rgba(200,0,0,0.1);
+	background:rgba(219,40,40,0.2);
+}
+.button{
+	padding-right: 0 !important;
+	padding-left:0 !important;
 }
