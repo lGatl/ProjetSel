@@ -112,18 +112,19 @@ h2{
 
 
 .labelAn{
+	cursor: default!important;
+	user-select : none!important;
 	margin-bottom: 15%!important;
 }
 .titreTableauAnn{
 	font-size: 2.5em;
 	font-weight: bold;
+
 }
 .titreTableau{
 	font-size: 1.1em;
 	font-weight: bold;
-	background:rgba(219,40,40,0.2);
+	background:rgba(219,40,40,1);
+	color:white;
 }
-.button{
-	padding-right: 0 !important;
-	padding-left:0 !important;
-}
+

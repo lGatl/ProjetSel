@@ -9,11 +9,7 @@ Meteor.methods({
 	getProposition: (titre)=>{
 		return Propositions.findOne({titre: titre});
 	},
-	etProposition: (id)=>{
 
-		return Propositions.findOne({titre : "je suis  un titre"});
-
-	},
 	ajoutProposition:(nvlProposition)=>{
 		if (Meteor.userId()){
 
@@ -29,9 +25,7 @@ Meteor.methods({
 		}else{return false}
 	},
 	sauvegardePropositions:(aSauver)=>{
-		console.log("aSauver", aSauver);
-			prop=Propositions.findOne({"titre": aSauver.titre})
-		Propositions.update({_id:prop._id},{$set:aSauver})
+		Propositions.update({_id:aSauver._id},{$set:aSauver})
 	},
 	supprimeProposition:(id)=>{Propositions.remove({_id:id})}
 

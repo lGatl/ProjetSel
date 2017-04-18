@@ -19,12 +19,14 @@
 		Meteor.call('sauvegardePropositions',aSauv,(err,res)=>{
 			if(err){
 				console.log("err Sav")
-			}else{}
+			}else{
+				recup((res)=>{if(res){}else{}})
+			}
 
 		})
 
 	}
-	const supprime=(aSuppr)=>{
+	const supprime=(aSuppr,cbk)=>{
 		Meteor.call('supprimeProposition', aSuppr ,(err,res)=>{
 			if(err){
 				Bert.alert({
@@ -32,7 +34,15 @@
 					message:"Impossible de supprimer la proposition" ,
 					type:'error'
 				})
-			}else{}
+			}else{
+
+				Bert.alert({
+					title:"Proposition supprimée",
+					message:"Votre proposition a été supprimée" ,
+					type:'success'
+				})
+				recup((res)=>{if(res){cbk()}else{}})
+			}
 		})
 	}
 	const ajout=(prop,cbk)=>{

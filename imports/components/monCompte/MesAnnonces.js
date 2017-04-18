@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ExtraitAnnonce from './ExtraitAnnonce.js'
+import ExtraitProposition from './ExtraitProposition.js'
 import Titre1 from './Titre1.js'
 import {createContainer} from 'meteor/react-meteor-data';
 import {Segment} from 'semantic-ui-react'
@@ -10,28 +11,13 @@ import {propositions} from '../../API/propositions.js'
 import {usr} from '../../API/usr.js'
 import DepotAnnonce from './DepotAnnonce'
 
+
 /*Mes Offres et Mes Demandes et Mes Propositions*/
 
 class MesAnnonce extends Component {
-	constructor(){
-		super()
-		this.state={
-			prop:"",
-			ann:""
-		}
-	}
 
-	label(ann){
-		if(!this.state.prop){
-		this.setState({
-			prop:this.props.propositions.liste.map((proposition,i)=>{
-				if(proposition.annonceId==ann._id){
-					return(<ExtraitAnnonce donnees={ann} proposition={proposition}  moi={false} key={i}></ExtraitAnnonce>)
-				}
-		}),ann:ann._id
-		})
-		}else{this.setState({prop:"",ann:""})}
-	}
+
+
 	render() {
 
 		if(this.props.type=="proposition"){
@@ -45,7 +31,7 @@ class MesAnnonce extends Component {
 								this.props.propositions.liste.map((proposition,j)=>{
 									if(this.props.usr.usrCo._id==proposition.utilisateur._id){
 										if(proposition.annonceId==annonce._id){
-											return(<ExtraitAnnonce donnees={annonce} proposition={proposition}  moi={true} key={i}></ExtraitAnnonce>)
+											return(<ExtraitProposition donnees={annonce} proposition={proposition}  moi={true} key={i}></ExtraitProposition>)
 										}else{return <div></div>}
 									}
 								})
@@ -70,7 +56,7 @@ class MesAnnonce extends Component {
 										}
 									})
 									return(
-											<ExtraitAnnonce donnees={annonce} label={this.label.bind(this)} moi={true} propts={this.state} nbProp={nbProp} key={i}></ExtraitAnnonce>
+										<ExtraitAnnonce donnees={annonce} moi={true} propts={this.state} nbProp={nbProp} key={i}></ExtraitAnnonce>
 									)
 								}
 							}

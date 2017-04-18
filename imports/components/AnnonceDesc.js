@@ -54,10 +54,10 @@ class  AnnonceDes extends Component {
 				}
 			},(err)=>{}
 		)
-		this.setState({
+		/*this.setState({
 			prix:0,
 			commentaire:""
-		})
+		})*/
 	}
 	componentWillMount(){
 		this.props.setActif('Annonces')
