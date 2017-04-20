@@ -26,7 +26,7 @@ export default class Carousel extends Component {
 		 const style = {
 			width: '100%'
 		};
-		if(!anns.length==0){
+		if(anns.length>2){
 			return(
 				<div>
 					<ReactSwiper ref="reactSwiper" swipeOptions={{}}>

@@ -15,15 +15,27 @@ class Accuei extends Component {
 componentWillMount(){
 	this.props.setActif('Accueil')
 }
+carousel(){
+	var donnees=[]
+	var compt = 0
+	this.props.rev.map((donnee,i)=>{
+		if((donnee.etat=="Valider")&&compt<3){
+			compt++
+			donnees.push(donnee)
+
+		}
+	})
+	return(
+		<Carousel liste={donnees}></Carousel>
+	)
+}
 	render(){
 
 		return (
 			<div>
 
 				<Titre nom={["BIENVENUE "+this.props.prenom.toUpperCase()+ "! "," Partagez des services et des savoirs... Créez des liens"]} ></Titre>
-
-
-						<Carousel liste={this.props.liste.slice(0,3)}></Carousel>
+					{this.carousel()}
 					<br/>
 				<Titre nom="Trouvez un SEL près de chez vous ! C'est simple avec la carte des sélistes"></Titre>
 
@@ -38,7 +50,7 @@ componentWillMount(){
  	return{
  		prenom:usr.usrCo.get().profile.prenom,
  		setActif:menu.setActif,
- 		liste:annonces.liste.get()
+ 		rev:annonces.rev.get()
  			}
 
  } , Accuei );

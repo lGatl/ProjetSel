@@ -6,7 +6,6 @@ import MenuDeroulant from '../../MenuDeroulant.js';
 import TableauActions from '../TableauActions.js'
 import {createContainer} from 'meteor/react-meteor-data';
 import {annonces} from '../../../API/annonces.js'
-import {usr} from '../../../API/usr.js'
 
 
 class GererAnnonce extends Component {
@@ -33,7 +32,7 @@ class GererAnnonce extends Component {
 							return(
 								{tableau:[
 									"12/12/1122",
-									ann.utilisateur,
+									ann.utilisateur.username,
 									ann.type,
 									ann.categorie,
 									<a href={"/annonces/"+ann.titre} className="aSpe">{ann.titre}</a>
@@ -145,10 +144,6 @@ export default GererAnnonces = createContainer( ()=>{
  			supprime:annonces.supprime,
  			recup:annonces.recup
  		},
- 		usr:{
- 			get:usr.getUsr
- 		}
-
  	}
 
  } , GererAnnonce );

@@ -26,7 +26,7 @@
 
 	}
 	const getUsrCo=(cbk)=>{
-		usrCo.set({profile:{prenom:"Futur Seliste"}})
+		usrCo.set({profile:{prenom:"futur séliste"}})
 		Meteor.call('utilisateur',Meteor.userId(),(err,res)=>{
 			if(err){}else{
 				cbk(res)
@@ -88,6 +88,7 @@
 					type:'success'
 				})
 				getUsrs((err,res)=>{if(res){}})
+				getUsrCo((res)=>{})
 			}
 		})
 	}
@@ -133,7 +134,7 @@
 
 
 if(loggedin.get()){logged.set(true)}else{logged.set(false)}
-if(logged.get()){getUsrCo((err)=>{})}else{usrCo.set({profile:{prenom:"Futur Seliste"}})}
+if(logged.get()){getUsrCo((err)=>{})}else{usrCo.set({profile:{prenom:"futur séliste"}})}
 
 getUsrs((err)=>{})
 

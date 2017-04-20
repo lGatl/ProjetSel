@@ -15,11 +15,12 @@
 			}
 		})
 	}
-	const sauve=(aSauv)=>{
+	const sauve=(aSauv,cbk)=>{
 		Meteor.call('sauvegardePropositions',aSauv,(err,res)=>{
 			if(err){
 				console.log("err Sav")
 			}else{
+				cbk()
 				recup((res)=>{if(res){}else{}})
 			}
 

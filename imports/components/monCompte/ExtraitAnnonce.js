@@ -148,9 +148,7 @@ class ExtraitAnnonc extends Component {
 								</Grid.Column>
 								<Label circular size='massive' color={'yellow'} key={'0'} attached="top right"></Label>
 						</Grid>
-
 					</Card>
-
 					{this.state.edit}
 					{this.propositions()}
 			</div>

@@ -14,7 +14,6 @@ class  AnnonceDes extends Component {
 		super();
 		this.state={
 				annonce:{},
-				usr:{},
 				prix:0,
 				commentaire:""
 			};
@@ -24,7 +23,6 @@ class  AnnonceDes extends Component {
 		this.props.annonces.recup1(titre,(err,res)=>{
 				if(res){
 					this.setState({annonce:res})
-					this.getUtilisateur(this.state.annonce.utilisateur)
 			}
 		})
 	}
@@ -32,13 +30,7 @@ class  AnnonceDes extends Component {
 		e.preventDefault();
 		this.setState({[e.target.name]:e.target.value});
 	};
-	getUtilisateur(usr){
-		this.props.usr.recupNom(usr,(err,res)=>{
-			if(res){
-				this.setState({usr:res})
-			}
-		})
-	}
+
 
 	creeProp(){
 
@@ -65,13 +57,14 @@ class  AnnonceDes extends Component {
 	}
 
 	fiche(){
-			if(this.state.annonce.titre&&this.state.usr.username){
+			if(this.state.annonce.titre){
 				var date = new Date(this.state.annonce.date)
-
 		return(
-
 			<Table celled fixed textAlign="center">
 				<Table.Body>
+					<Table.Row>
+						<Table.Cell className="titreTableau" colSpan='4'>Informations de l'annonce</Table.Cell>
+					</Table.Row>
 					<Table.Row>
 						<Table.Cell colSpan='2'>
 							<Item>
@@ -87,23 +80,23 @@ class  AnnonceDes extends Component {
 						</Table.Cell>
 					</Table.Row>
 					<Table.Row>
-						<Table.Cell className="titreTableau">Categorie</Table.Cell>
+						<Table.Cell >Categorie</Table.Cell>
 						<Table.Cell>{this.state.annonce.categorie}</Table.Cell>
 					</Table.Row>
 					<Table.Row>
-						<Table.Cell className="titreTableau">Date de début</Table.Cell>
+						<Table.Cell >Date de début</Table.Cell>
 						<Table.Cell>{
 							(date.getUTCDate()<10?"0"+date.getUTCDate():date.getUTCDate())+"/"+
 							((date.getUTCMonth() + 1)<10?"0"+(date.getUTCMonth() + 1):(date.getUTCMonth() + 1))
 							+"/"+date.getUTCFullYear()}</Table.Cell>
 					</Table.Row>
 					<Table.Row>
-						<Table.Cell className="titreTableau">Date de Fin</Table.Cell>
+						<Table.Cell >Date de Fin</Table.Cell>
 						<Table.Cell>{this.state.annonce.dateDeFin}</Table.Cell>
 					</Table.Row>
 
 					<Table.Row>
-						<Table.Cell className="titreTableau">Statut</Table.Cell>
+						<Table.Cell >Statut</Table.Cell>
 						<Table.Cell></Table.Cell>
 					</Table.Row>
 					<Table.Row>
@@ -111,12 +104,12 @@ class  AnnonceDes extends Component {
 					</Table.Row>
 					<Table.Row>
 						<Table.Cell colSpan='4'>
-							{this.state.usr.profile.prenom+" "+this.state.usr.profile.nom}
-						 	<Rating icon='star' disabled rating={this.state.usr.profile.note} maxRating={4} />
+							{this.state.annonce.utilisateur.prenom+" "+this.state.annonce.utilisateur.nom}
+						 	<Rating icon='star' disabled rating={this.state.annonce.utilisateur.note} maxRating={4} />
 						 </Table.Cell>
 					</Table.Row>
 					<Table.Row>
-						<Table.Cell colSpan='4'>{this.state.usr.emails[0].address}</Table.Cell>
+						<Table.Cell colSpan='4'>{this.state.annonce.utilisateur.username}</Table.Cell>
 					</Table.Row>
 					<Table.Row>
 						<Table.Cell className="titreTableau" colSpan='4'>Proposition</Table.Cell>
@@ -181,3 +174,4 @@ export default AnnonceDesc = createContainer( ()=>{
  	}
 
  } ,  AnnonceDes );
+

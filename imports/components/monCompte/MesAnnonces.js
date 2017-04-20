@@ -31,7 +31,7 @@ class MesAnnonce extends Component {
 								this.props.propositions.liste.map((proposition,j)=>{
 									if(this.props.usr.usrCo._id==proposition.utilisateur._id){
 										if(proposition.annonceId==annonce._id){
-											return(<ExtraitProposition donnees={annonce} proposition={proposition}  moi={true} key={i}></ExtraitProposition>)
+											return(<ExtraitProposition donnees={annonce} proposition={proposition}  moi={true} key={i+" "+j}></ExtraitProposition>)
 										}else{return <div></div>}
 									}
 								})
@@ -47,7 +47,7 @@ class MesAnnonce extends Component {
 					<Titre1 nom={"Mes "+this.props.type+"s"}></Titre1>
 					{
 						this.props.annonces.liste.map((annonce,i)=>{
-							if(this.props.usr.usrCo.username==annonce.utilisateur){
+							if(this.props.usr.usrCo._id==annonce.utilisateur._id){
 								if(annonce.type==this.props.type){
 									var nbProp=0
 									this.props.propositions.liste.map((prop,j)=>{

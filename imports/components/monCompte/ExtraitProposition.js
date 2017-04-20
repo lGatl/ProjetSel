@@ -5,6 +5,7 @@ import { Button, Card,Image,Grid,Label,Segment,Confirm,Rating } from 'semantic-u
 import {createContainer} from 'meteor/react-meteor-data';
 import {annonces} from '../../API/annonces.js'
 import {propositions} from '../../API/propositions.js'
+import {usr} from '../../API/usr.js'
 
 class ExtraitPropositio extends Component {
 	constructor(){
@@ -15,6 +16,7 @@ class ExtraitPropositio extends Component {
 			text:"",
 			edit:false,
 			label:true
+
 
 		 }
 
@@ -30,7 +32,6 @@ class ExtraitPropositio extends Component {
 				text:text,
 				edit:false,
 		 	})
-
 		}
 
 		this.handleCancel = () =>{ this.setState({
@@ -59,7 +60,6 @@ class ExtraitPropositio extends Component {
 				<span >{this.props.proposition.commentaire}  </span> <br/><br/>
 			</div>
 		)
-
 	}
 
 
@@ -68,61 +68,108 @@ class ExtraitPropositio extends Component {
 		var valide=<div></div>
 		var refuse=<div></div>
 
-
 		if(this.props.moi==true){
-			nb="two"
 			if(this.props.proposition.etat=="Valide"){
-
 				valide=<Button name="effectuer" color='blue' onClick={this.boutonProp.bind(this)} >Effectué</Button>
-				nb="two"
 			}
-
 		}else{
 			if(this.props.proposition.etat=="En attente"){
 				valide=<Button name="valider" color='green' onClick={this.boutonProp.bind(this)} >Valider</Button>
 				refuse=<Button name="refuser" color='orange' onClick={this.boutonProp.bind(this)} >Refuser</Button>
-				nb="three"
 			}
 			if(this.props.proposition.etat=="Validé"){
 				valide=<Button name="effectuer" color='blue' onClick={this.boutonProp.bind(this)} >Effectué</Button>
-				nb="two"
 			}
 		}
 		return(
 			<div className={'ui three buttons'}>
 				{valide}
 				{refuse}
-				<Button name="supprimer"
+				<Button
+					name="supprimer"
 					color='red'
 					onClick={this.boutonProp.bind(this)}
 				>Supprimer</Button>
 			</div>
 		)
-
 	}
 	confirme(){
 		if(this.state.action=="supprimer"){
 			this.props.propositions.supprime(this.props.proposition._id,()=>{})
-
 		}else if(this.state.action=="valider") {
 			prop=this.props.proposition
 			prop.etat=("Validé")
-			this.props.propositions.sauve(prop)
+			this.props.propositions.sauve(prop,(res)=>{
+				if(res){
+					Bert.alert({
+						title:"Proposition validée",
+						message:"Cette proposition a été validée" ,
+						type:'success'
+					})
+				}
+			})
 		}else if(this.state.action=="refuser") {
 			prop=this.props.proposition
 			prop.etat=("Refuse")
-			this.props.propositions.sauve(prop)
+			this.props.propositions.sauve(prop,(res)=>{
+				if(res){
+					Bert.alert({
+						title:"Proposition refusée",
+						message:"Cette proposition a été refusée" ,
+						type:'success'
+					})
+				}
+			})
 		}else if(this.state.action=="effectuer") {
 			prop=this.props.proposition
 			prop.etat=("Effectué")
-			this.props.propositions.sauve(prop)
+			this.props.propositions.sauve(prop,(res)=>{
+
+				Bert.alert({
+					title:"Confirmation tache effectuée",
+					message:"Cette cette tache à bien été confirmée comme étant effectuée" ,
+					type:'success'
+				})
+			})
+
+
+			if(this.props.donnees.type=="offre"){
+				this.props.usr.getUsr(this.props.donnees.utilisateur._id,(res)=>{
+					if(res){var ut=res
+					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)+Number(prop.prix)
+						this.props.usr.changeCompte(ut)
+					}
+				})
+
+				this.props.usr.getUsr(prop.utilisateur._id,(res)=>{
+					if(res){var ut=res
+					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)-Number(prop.prix)
+					this.props.usr.changeCompte(ut)
+					}
+				})
+			}
+			if(this.props.donnees.type=="demande"){
+				this.props.usr.getUsr(this.props.donnees.utilisateur._id,(res)=>{
+					if(res){var ut=res
+					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)-Number(prop.prix)
+						this.props.usr.changeCompte(ut)
+					}
+				})
+
+				this.props.usr.getUsr(prop.utilisateur._id,(res)=>{
+					if(res){var ut=res
+					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)+Number(prop.prix)
+					this.props.usr.changeCompte(ut)
+					}
+				})
+			}
 		}
-			 this.setState({
-				open: false,
-				action:"",
-				text:"",
-				edit:false,
-		 	})
+		 this.setState({
+			open: false,
+			action:"",
+			text:"",
+			edit:false,
+	 	})
 	}
 
 	imgUsr(){
@@ -198,44 +245,38 @@ class ExtraitPropositio extends Component {
 			this.props.donnees.etat=="En Attente"?etat={etat:"En Attente",couleur:"blue"}:
 			this.props.donnees.etat=="Valider"?etat={etat:"Valide",couleur:"green"}:
 			this.props.donnees.etat=="Refuser"?etat={etat:"Refusée",couleur:"red"}:etat={}
-
-
 		return (
 			<div>
 			{this.br()}
 				 <Card fluid style={{marginBottom:0}}>
-
-						<Grid style={{marginBottom:0}}>
-							<Grid.Column mobile={7} tablet={6} computer={4}>
-								{this.imgUsr()}
-							</Grid.Column>
-							<Grid.Column mobile={7} tablet={10} computer={4}>
-								{this.refAnn()}
-								<Card.Description>
-									<span style={{fontWeight:"bold"}}>Date :</span>
-									{this.laDate()}
-									{this.prixEtat()}
-								</Card.Description>
-							</Grid.Column>
-							<Grid.Column mobile={16} tablet={16} computer={8}  verticalAlign ="bottom" >
-									{this.descLabel()}
-									{this.bouton()}
-									<Confirm
-											open={this.state.open}
-											content={this.state.text}
-											cancelButton='Non'
-											confirmButton="OUI"
-											onCancel={this.handleCancel}
-											onConfirm={this.confirme.bind(this)}
-										/>
-								</Grid.Column>
-								<Label circular size='massive' color={'yellow'} key={'0'} attached="top right"></Label>
-						</Grid>
-
-					</Card>
-
-					{this.state.edit}
-
+					<Grid style={{marginBottom:0}}>
+						<Grid.Column mobile={7} tablet={6} computer={4}>
+							{this.imgUsr()}
+						</Grid.Column>
+						<Grid.Column mobile={7} tablet={10} computer={4}>
+							{this.refAnn()}
+							<Card.Description>
+								<span style={{fontWeight:"bold"}}>Date :</span>
+								{this.laDate()}
+								{this.prixEtat()}
+							</Card.Description>
+						</Grid.Column>
+						<Grid.Column mobile={16} tablet={16} computer={8}  verticalAlign ="bottom" >
+							{this.descLabel()}
+							{this.bouton()}
+							<Confirm
+								open={this.state.open}
+								content={this.state.text}
+								cancelButton='Non'
+								confirmButton="OUI"
+								onCancel={this.handleCancel}
+								onConfirm={this.confirme.bind(this)}
+							/>
+						</Grid.Column>
+						<Label circular size='massive' color={'yellow'} key={'0'} attached="top right"></Label>
+					</Grid>
+				</Card>
+				{this.state.edit}
 			</div>
 		)
 	}
@@ -243,7 +284,6 @@ class ExtraitPropositio extends Component {
 export default ExtraitProposition = createContainer( ()=>{
 
  	return{
-
  		annonces:{
  			supprime:annonces.supprime,
  		},
@@ -251,8 +291,13 @@ export default ExtraitProposition = createContainer( ()=>{
  			supprime:propositions.supprime,
  			sauve:propositions.sauve,
  			liste:propositions.liste.get()
+ 		},
+		usr:{
+			usrCo:usr.usrCo.get(),
+			getUsr:usr.getUsr,
+			changeCompte:usr.changeCompte
 
- 		}
+		}
  	}
 
  } ,  ExtraitPropositio );

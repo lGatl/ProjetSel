@@ -17,7 +17,7 @@ class DepotAnnonc extends Component {
 			description:"",
 			informationDeContact:"",
 			dateDeFin:"",
-			utilisateur:"",
+			utilisateur:{username:"",_id:"",note:"",nom:"",prenom:""},
 			etat:"En Attente",
 			categories:[],
 			categorie:""
@@ -30,8 +30,14 @@ class DepotAnnonc extends Component {
 	componentWillMount(){
 		this.setState({type:this.props.type})
 		this.getCategories()
-		this.connecte()
-		this.setState({utilisateur:this.props.usr.usrCo})
+		this.setState({utilisateur:{
+			username:this.props.usr.usrCo.username,
+			_id:this.props.usr.usrCo._id,
+			note:this.props.usr.usrCo.profile.note,
+			nom:this.props.usr.usrCo.profile.nom,
+			prenom:this.props.usr.usrCo.profile.prenom,
+		}})
+
 		if(this.props.donnees){this.recup(this.props.donnees)}
 	}
 	recup(donn){
@@ -48,15 +54,6 @@ class DepotAnnonc extends Component {
 			_id:donn._id
 		})
 
-	}
-	connecte(){
-		Meteor.call('utilisateur',(err,res)=>{
-			if(err){
-
-			}else{
-				if(res){this.setState({utilisateur:res._id})}
-			}
-		})
 	}
 	getCategories(){
 		this.props.categories.recup((res)=>{
@@ -85,7 +82,13 @@ class DepotAnnonc extends Component {
 			etat:"En Attente",
 			categories:[],
 			categorie:"",
-			utilisateur:this.props.usr.usrCo
+			utilisateur:{
+				username:this.props.usr.usrCo.username,
+				_id:this.props.usr.usrCo._id,
+				note:this.props.usr.usrCo.profile.note,
+				nom:this.props.usr.usrCo.profile.nom,
+				prenom:this.props.usr.usrCo.profile.prenom,
+			}
 		})
 		this.getCategories()
 	}
@@ -201,7 +204,7 @@ export default DepotAnnonce = createContainer( ()=>{
  			supprime:annonces.supprime,
  			ajout:annonces.ajout
  		},
- 		usr:{usrCo:usr.usrCo.get().username}
+ 		usr:{usrCo:usr.usrCo.get()}
  	}
 
  } , DepotAnnonc );
