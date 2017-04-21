@@ -126,7 +126,7 @@ class ExtraitPropositio extends Component {
 			this.props.propositions.sauve(prop,(res)=>{	})
 
 
-			this.effectue(this.props.donnees.utilisateur,prop.utilisateur,prop.prix)
+			this.effectue(this.props.donnees.utilisateur,prop.utilisateur,prop.prix,{_id:this.props.donnees._id,titre:this.props.donnees.titre,categorie:this.props.donnees.categorie})
 		}
 
 		 this.setState({
@@ -136,8 +136,8 @@ class ExtraitPropositio extends Component {
 			edit:false,
 	 	})
 	}
-	effectue(utAn,utPr,prix){
-			this.props.effectue(utAn,utPr,prix)
+	effectue(utAn,utPr,prix,ann){
+			this.props.effectue(utAn,utPr,prix,ann)
 		}
 
 	imgUsr(){

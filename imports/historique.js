@@ -1,7 +1,7 @@
 
 	const liste=new ReactiveVar([])
 	const recup=(cbk)=>{
-		Meteor.call('listeCategories',(err,res)=>{
+		Meteor.call('listeHistoriques',(err,res)=>{
 			if(err){
 				cbk()
 				console.log('erreur dans recup')
@@ -14,7 +14,7 @@
 		})
 	}
 	const sauve=(aSauv)=>{
-		Meteor.call('sauvegardeCategorie',aSauv,(err,res)=>{
+		Meteor.call('sauvegardeHistorique',aSauv,(err,res)=>{
 			if(err){
 				console.log("err Sav")
 			}else{
@@ -22,11 +22,11 @@
 		})
 	}
 	const supprime=(aSuppr)=>{
-		Meteor.call('supprimeCategorie', aSuppr ,(err,res)=>{
+		Meteor.call('supprimeHistorique', aSuppr ,(err,res)=>{
 			if(err){
 				Bert.alert({
 					title:"Erreur",
-					message:"Impossible de supprimer la categorie" ,
+					message:"Impossible de supprimer l'Historique" ,
 					type:'error'
 				})
 			}else{
@@ -34,20 +34,15 @@
 		})
 	}
 	const ajout=(cat,cbk)=>{
-		Meteor.call('ajoutCategorie', cat ,(err,res)=>{
+		Meteor.call('ajoutHistorique', cat ,(err,res)=>{
 			if(err||res==false){
 				Bert.alert({
 					title:"Erreur",
-					message:"Impossible d'ajouter la categorie" ,
+					message:"Impossible d'ajouter à l'historique" ,
 					type:'error'
 				})
 			}else{
 				recup((res)=>{if(res){cbk(res)}else{}})
-				Bert.alert({
-					title:"Categorie sauvegardé",
-					message:"Votre categorie "+cat.titre+" a été sauvegardé" ,
-					type:'success'
-				})
 			}
 		})
 	}
@@ -55,7 +50,7 @@
 
 
 recup((res)=>{if(res){}})
-export const categories={
+export const historiques={
 	liste,
 	recup,
 	sauve,

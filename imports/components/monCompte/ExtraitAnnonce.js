@@ -82,7 +82,7 @@ class ExtraitAnnonc extends Component {
 		}
 	}
 
-	effectue(utAn,utPr,prix){
+	effectue(utAn,utPr,prix,ann){
 		if(this.props.donnees.type=="offre"){
 				this.props.usr.getUsr(utAn._id,(res)=>{
 					if(res){var ut=res
