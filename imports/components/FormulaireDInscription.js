@@ -72,7 +72,13 @@ class CreerUnCompt extends Component {
 	changeCompte(e){
 		e.preventDefault()
 
-		this.props.usr.changeCompte(this.recupState())
+		this.props.usr.changeCompte(this.recupState(),()=>{
+			Bert.alert({
+					title:"Sauvegarde effectuée",
+					message:"Vos modifications sur "+this.state.username+" ont été sauvegardées" ,
+					type:'success'
+				})
+		})
 		if(this.props.remiseA0){this.props.remiseA0()}
 	}
 	supprimeCompte(e){

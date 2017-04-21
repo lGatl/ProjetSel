@@ -29,8 +29,17 @@
 		usrCo.set({profile:{prenom:"futur séliste"}})
 		Meteor.call('utilisateur',Meteor.userId(),(err,res)=>{
 			if(err){}else{
-				cbk(res)
-				if(res){usrCo.set(res)}}
+				if(res){usrCo.set(res)}
+			cbk(res)
+			}
+			})
+	}
+	const getUsrConn=(cbk)=>{
+		usrCo.set({profile:{prenom:"futur séliste"}})
+		Meteor.call('utilisateur',Meteor.userId(),(err,res)=>{
+			if(err){}else{
+			cbk(res)
+			}
 			})
 	}
 	const recupNom=(utilisateur,cbk)=>{
@@ -74,7 +83,7 @@
 				if(res){usrs.set(res)}}
 			})
 	}
-	const changeCompte=(utilisateur)=>{
+	const changeCompte=(utilisateur,cbk)=>{
 			Meteor.call("sauvegardeUtilisateur",utilisateur, (err)=>{
 			if(err){
 				Bert.alert({
@@ -82,13 +91,10 @@
 					message:"Impossible de sauvegarder ces modifications" ,
 					type:'error'}
 			)}else{
-				Bert.alert({
-					title:"Sauvegarde effectuée",
-					message:"Vos modifications sur "+utilisateur.username+" ont été sauvegardées" ,
-					type:'success'
-				})
+					cbk()
+
 				getUsrs((err,res)=>{if(res){}})
-				getUsrCo((res)=>{})
+
 			}
 		})
 	}
@@ -146,6 +152,7 @@ export const usr={
 	co,
 	recupNom,
 	getUsrCo,
+	getUsrConn,
 	getUsr,
 	deco,
 	getUsrs,

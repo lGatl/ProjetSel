@@ -5,7 +5,6 @@ import { Button, Card,Image,Grid,Label,Segment,Confirm,Rating } from 'semantic-u
 import {createContainer} from 'meteor/react-meteor-data';
 import {annonces} from '../../API/annonces.js'
 import {propositions} from '../../API/propositions.js'
-import {usr} from '../../API/usr.js'
 
 class ExtraitPropositio extends Component {
 	constructor(){
@@ -41,6 +40,7 @@ class ExtraitPropositio extends Component {
 				edit:false,
 		 	})}
 	}
+
 	prixEtat(){
 		return(
 			<div>
@@ -123,47 +123,12 @@ class ExtraitPropositio extends Component {
 		}else if(this.state.action=="effectuer") {
 			prop=this.props.proposition
 			prop.etat=("Effectué")
-			this.props.propositions.sauve(prop,(res)=>{
-
-				Bert.alert({
-					title:"Confirmation tache effectuée",
-					message:"Cette cette tache à bien été confirmée comme étant effectuée" ,
-					type:'success'
-				})
-			})
+			this.props.propositions.sauve(prop,(res)=>{	})
 
 
-			if(this.props.donnees.type=="offre"){
-				this.props.usr.getUsr(this.props.donnees.utilisateur._id,(res)=>{
-					if(res){var ut=res
-					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)+Number(prop.prix)
-						this.props.usr.changeCompte(ut)
-					}
-				})
-
-				this.props.usr.getUsr(prop.utilisateur._id,(res)=>{
-					if(res){var ut=res
-					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)-Number(prop.prix)
-					this.props.usr.changeCompte(ut)
-					}
-				})
-			}
-			if(this.props.donnees.type=="demande"){
-				this.props.usr.getUsr(this.props.donnees.utilisateur._id,(res)=>{
-					if(res){var ut=res
-					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)-Number(prop.prix)
-						this.props.usr.changeCompte(ut)
-					}
-				})
-
-				this.props.usr.getUsr(prop.utilisateur._id,(res)=>{
-					if(res){var ut=res
-					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)+Number(prop.prix)
-					this.props.usr.changeCompte(ut)
-					}
-				})
-			}
+			this.effectue(this.props.donnees.utilisateur,prop.utilisateur,prop.prix)
 		}
+
 		 this.setState({
 			open: false,
 			action:"",
@@ -171,6 +136,9 @@ class ExtraitPropositio extends Component {
 			edit:false,
 	 	})
 	}
+	effectue(utAn,utPr,prix){
+			this.props.effectue(utAn,utPr,prix)
+		}
 
 	imgUsr(){
 		if(this.props.moi==true){
@@ -291,13 +259,8 @@ export default ExtraitProposition = createContainer( ()=>{
  			supprime:propositions.supprime,
  			sauve:propositions.sauve,
  			liste:propositions.liste.get()
- 		},
-		usr:{
-			usrCo:usr.usrCo.get(),
-			getUsr:usr.getUsr,
-			changeCompte:usr.changeCompte
+ 		}
 
-		}
  	}
 
  } ,  ExtraitPropositio );

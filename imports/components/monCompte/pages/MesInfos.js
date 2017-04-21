@@ -12,11 +12,16 @@ import {usr} from '../../../API/usr.js'
 			mesInfos:[],
 			mesSeugnettes:[]
 		}
-
-
 	}
-	recup(){
-				this.setState({mesInfos:[
+
+	render(){
+
+		return (
+
+
+			<div>
+				<Titre1 nom="Mes Informations"></Titre1>
+				<Lister donnees={[
 					{Nom:this.props.usr.profile.nom},
 					{Prenom:this.props.usr.profile.prenom},
 					{Mail:this.props.usr.emails[0].address},
@@ -25,27 +30,13 @@ import {usr} from '../../../API/usr.js'
 					{resp:this.props.usr.profile.respC},
 					{dateVal:this.props.usr.profile.dateValRespC},
 					{note:this.props.usr.profile.note}
-				]})
-				this.setState({mesSeugnettes:[
+				]}></Lister>
+				<Titre1 nom="Mes Seugnettes"></Titre1>
+				<Lister donnees={[
 				{Solde:this.props.usr.profile.soldeSeugnette},
 				{totalCredit:this.props.usr.profile.totalCredits},
 				{totalDebit:this.props.usr.profile.totalDebits}
-					]})
-
-	}
-	componentWillMount(){
-		this.recup()
-	}
-	render(){
-
-		return (
-
-
-			<div>
-				<Titre1 nom="Mes Informations"></Titre1>
-				<Lister donnees={this.state.mesInfos}></Lister>
-				<Titre1 nom="Mes Seugnettes"></Titre1>
-				<Lister donnees={this.state.mesSeugnettes}></Lister>
+					]}></Lister>
 			</div>
 
 		);
@@ -55,6 +46,7 @@ import {usr} from '../../../API/usr.js'
 
  export default MesInfos = createContainer( ()=>{
 
- 	return{usr:usr.usrCo.get()}
+ 	return{usr:usr.usrCo.get(),
+ 			getUsrCo:usr.getUsrCo}
 
  } , MesInfo );

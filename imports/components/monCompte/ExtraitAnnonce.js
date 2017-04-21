@@ -6,6 +6,7 @@ import {createContainer} from 'meteor/react-meteor-data';
 import {annonces} from '../../API/annonces.js'
 import {propositions} from '../../API/propositions.js'
 import ExtraitProposition from './ExtraitProposition.js'
+import {usr} from '../../API/usr.js'
 
 class ExtraitAnnonc extends Component {
 	constructor(){
@@ -38,12 +39,10 @@ class ExtraitAnnonc extends Component {
 	}
 
 
-	label(e){
-
-		if(this.state.prop==false&&this.props.nbProp>0){this.setState({prop:true})}else{this.setState({prop:false})}
-
-
-
+	label(){
+		if(this.state.prop==false&&this.props.nbProp>0){
+			this.setState({prop:true})}else{this.setState({prop:false})
+		}
 	}
 	propositions(){
 		if(this.state.prop==true)
@@ -52,7 +51,7 @@ class ExtraitAnnonc extends Component {
 				{
 					this.props.propositions.liste.map((proposition,i)=>{
 					if(proposition.annonceId==this.props.donnees._id){
-						return(<ExtraitProposition donnees={this.props.donnees} proposition={proposition} label={this.label.bind(this)}  moi={false} key={i}></ExtraitProposition>)
+						return(<ExtraitProposition donnees={this.props.donnees} proposition={proposition} effectue={this.effectue.bind(this)} moi={false} key={i}></ExtraitProposition>)
 				}
 			})}</Segment>)
 	}
@@ -83,6 +82,49 @@ class ExtraitAnnonc extends Component {
 		}
 	}
 
+	effectue(utAn,utPr,prix){
+		if(this.props.donnees.type=="offre"){
+				this.props.usr.getUsr(utAn._id,(res)=>{
+					if(res){var ut=res
+					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)+Number(prix)
+						this.props.usr.changeCompte(ut,()=>{
+							this.props.usr.getUsrCo(()=>{this.setState({prop:true})})})
+					}
+				})
+
+				this.props.usr.getUsr(utPr._id,(res)=>{
+					if(res){var ut=res
+					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)-Number(prix)
+					this.props.usr.changeCompte(ut,()=>{this.setState({prop:true})})
+					}
+				})
+				Bert.alert({
+					title:"Transaction effectuée",
+					message:utPr.username+"=>"+prix+" seugnettes =>"+utAn.username ,
+					type:'success'
+				})
+			}
+			if(this.props.donnees.type=="demande"){
+				this.props.usr.getUsr(utAn._id,(res)=>{
+					if(res){var ut=res
+					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)-Number(prix)
+						this.props.usr.changeCompte(ut,()=>{this.props.usr.getUsrCo(()=>{this.setState({prop:true})})})
+					}
+				})
+				this.props.usr.getUsr(utPr._id,(res)=>{
+					if(res){var ut=res
+					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)+Number(prix)
+					this.props.usr.changeCompte(ut,()=>{this.setState({prop:true})})
+					}
+				})
+				Bert.alert({
+					title:"Transaction effectuée",
+					message:utAn.username+"=>"+prix+" seugnettes =>"+utPr.username ,
+
+					type:'success'
+				})
+			}
+	}
 
 
 	zero(){
@@ -98,7 +140,6 @@ class ExtraitAnnonc extends Component {
 			this.props.donnees.etat=="En Attente"?etat={etat:"En Attente",couleur:"blue"}:
 			this.props.donnees.etat=="Valider"?etat={etat:"Valide",couleur:"green"}:
 			this.props.donnees.etat=="Refuser"?etat={etat:"Refusée",couleur:"red"}:etat={}
-
 
 		return (
 			<div>
@@ -167,7 +208,12 @@ export default ExtraitAnnonce = createContainer( ()=>{
  			sauve:propositions.sauve,
  			liste:propositions.liste.get()
 
- 		}
+ 		},
+ 		usr:{
+			getUsr:usr.getUsr,
+			changeCompte:usr.changeCompte,
+			getUsrCo:usr.getUsrCo
+		}
  	}
 
  } ,  ExtraitAnnonc );

@@ -2,11 +2,12 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { Search,Button} from 'semantic-ui-react'
 import FormulaireDInscription from '../../FormulaireDInscription.js'
+import {createContainer} from 'meteor/react-meteor-data';
 import Titre1 from '../Titre1.js'
+import {usr} from '../../../API/usr.js'
 
 
-
-export default class GererUnCompte extends Component {
+class GererUnCompt extends Component {
 
 	constructor(){
 		super()
@@ -40,16 +41,13 @@ export default class GererUnCompte extends Component {
 				}, 500)
 		}
 		this.RecupUtilisateur=()=>{
-			Meteor.call('utilisateurs',(err,res)=>{
-				if(err){
-					console.log("erreur utilisateurs")
-				}else{
-					this.reponse=res
+
+
+					this.reponse=this.props.usr.usrs
 					var tab=[]
 					this.reponse.map((rep,i)=>tab.push({key:i,title:rep.username}))
 					this.source=tab
-				}
-			})
+
 		}
 	}
 
@@ -84,7 +82,7 @@ export default class GererUnCompte extends Component {
 								onSearchChange={this.handleSearchChange}
 								results={results}
 								value={value}
-								{...this.props}
+
 							/>
 
 							{this.state.Comp}
@@ -98,3 +96,12 @@ export default class GererUnCompte extends Component {
 				)
 		}
 }
+ export default GererUnCompte = createContainer( ()=>{
+	 return {
+	 	usr:{
+				usrs:usr.usrs.get()
+	 	}
+	 };
+ } , GererUnCompt );
+
+
