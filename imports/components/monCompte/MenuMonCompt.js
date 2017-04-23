@@ -2,14 +2,18 @@
 import React, { Component } from 'react'
 import { Input, Menu } from 'semantic-ui-react'
 
-export default class MenuMonCompt extends Component {
+import {createContainer} from 'meteor/react-meteor-data';
+
+import {menu} from '../../API/menu.js'
+
+class MenuMonComp extends Component {
 
  constructor(){
 	super()
 	this.state = { activeItem: 'Mes informations' }
 
 	this.handleItemClick = (e, { name }) => {
-
+		this.props.menu.prop.set([])
 	this.setState({ activeItem: name })
 	this.props.contenu(name)
 }
@@ -20,6 +24,7 @@ export default class MenuMonCompt extends Component {
 
 		const { activeItem } = this.state;
 		const menuItem= this.props.menuMonCompte.map((menuM)=>{
+
 			return(
 				<Menu.Item key={menuM} name={menuM} active={activeItem ===menuM} onClick={this.handleItemClick} />
 			)
@@ -38,3 +43,12 @@ export default class MenuMonCompt extends Component {
 			)
 	}
 }
+export default MenuMonCompt = createContainer( ()=>{
+
+ 	return{
+		menu:{
+			prop:menu.prop
+		}
+ 	}
+
+ } ,  MenuMonComp);

@@ -7,6 +7,8 @@ import {annonces} from '../../API/annonces.js'
 import {propositions} from '../../API/propositions.js'
 import ExtraitProposition from './ExtraitProposition.js'
 import {usr} from '../../API/usr.js'
+import {menu} from '../../API/menu.js'
+
 
 class ExtraitAnnonc extends Component {
 	constructor(){
@@ -16,7 +18,6 @@ class ExtraitAnnonc extends Component {
 			edit:false,
 			label:true,
 			prop: false
-
 		 }
 
 		this.show = () => this.setState({ open: true })
@@ -37,12 +38,29 @@ class ExtraitAnnonc extends Component {
 
 		this.handleCancel = () => this.setState({ open: false })
 	}
-
+	 componentDidMount(){
+	 		if(this.props.menu.prop.get().indexOf(this.props.donnees._id)>=0){this.setState({prop:true})}
+		 }
 
 	label(){
+
 		if(this.state.prop==false&&this.props.nbProp>0){
-			this.setState({prop:true})}else{this.setState({prop:false})
+			this.setState({prop:true})
+			var tab=this.props.menu.prop.get()
+			if(tab.indexOf(this.props.donnees._id)==0){}else{tab.push(this.props.donnees._id)}
+				this.props.menu.prop.set(tab)
+		}else{
+			this.setState({prop:false})
+			var tab=this.props.menu.prop.get()
+			if(tab.indexOf(this.props.donnees._id)>=0){
+				if(tab.indexOf(this.props.donnees._id,-1)>=0){
+					tab.splice((1),1)
+				}else(tab.splice((0),1))
+
+			}else{}
+				this.props.menu.prop.set(tab)
 		}
+
 	}
 	propositions(){
 		if(this.state.prop==true)
@@ -51,7 +69,7 @@ class ExtraitAnnonc extends Component {
 				{
 					this.props.propositions.liste.map((proposition,i)=>{
 					if(proposition.annonceId==this.props.donnees._id){
-						return(<ExtraitProposition donnees={this.props.donnees} proposition={proposition} effectue={this.effectue.bind(this)} moi={false} key={i}></ExtraitProposition>)
+						return(<ExtraitProposition donnees={this.props.donnees} proposition={proposition}  moi={false} key={i}></ExtraitProposition>)
 				}
 			})}</Segment>)
 	}
@@ -81,51 +99,6 @@ class ExtraitAnnonc extends Component {
 			)})
 		}
 	}
-
-	effectue(utAn,utPr,prix,ann){
-		if(this.props.donnees.type=="offre"){
-				this.props.usr.getUsr(utAn._id,(res)=>{
-					if(res){var ut=res
-					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)+Number(prix)
-						this.props.usr.changeCompte(ut,()=>{
-							this.props.usr.getUsrCo(()=>{this.setState({prop:true})})})
-					}
-				})
-
-				this.props.usr.getUsr(utPr._id,(res)=>{
-					if(res){var ut=res
-					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)-Number(prix)
-					this.props.usr.changeCompte(ut,()=>{this.setState({prop:true})})
-					}
-				})
-				Bert.alert({
-					title:"Transaction effectuée",
-					message:utPr.username+"=>"+prix+" seugnettes =>"+utAn.username ,
-					type:'success'
-				})
-			}
-			if(this.props.donnees.type=="demande"){
-				this.props.usr.getUsr(utAn._id,(res)=>{
-					if(res){var ut=res
-					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)-Number(prix)
-						this.props.usr.changeCompte(ut,()=>{this.props.usr.getUsrCo(()=>{this.setState({prop:true})})})
-					}
-				})
-				this.props.usr.getUsr(utPr._id,(res)=>{
-					if(res){var ut=res
-					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)+Number(prix)
-					this.props.usr.changeCompte(ut,()=>{this.setState({prop:true})})
-					}
-				})
-				Bert.alert({
-					title:"Transaction effectuée",
-					message:utAn.username+"=>"+prix+" seugnettes =>"+utPr.username ,
-
-					type:'success'
-				})
-			}
-	}
-
 
 	zero(){
 		this.setState({edit: false})
@@ -212,7 +185,11 @@ export default ExtraitAnnonce = createContainer( ()=>{
  		usr:{
 			getUsr:usr.getUsr,
 			changeCompte:usr.changeCompte,
-			getUsrCo:usr.getUsrCo
+			getUsrCo:usr.getUsrCo,
+			usrCo:usr.usrCo.get()
+		},
+		menu:{
+			prop:menu.prop
 		}
  	}
 

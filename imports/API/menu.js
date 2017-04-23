@@ -1,4 +1,5 @@
 export const menu={
 	actif:new ReactiveVar('Acceuil'),
-	setActif:(item)=>{menu.actif.set(item)}
+	setActif:(item)=>{menu.actif.set(item)},
+	prop:new ReactiveVar([])
 }

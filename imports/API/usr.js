@@ -36,8 +36,9 @@
 	}
 	const getUsrConn=(cbk)=>{
 		usrCo.set({profile:{prenom:"futur séliste"}})
-		Meteor.call('utilisateur',Meteor.userId(),(err,res)=>{
+		Meteor.call('utilisateurCo',(err,res)=>{
 			if(err){}else{
+
 			cbk(res)
 			}
 			})

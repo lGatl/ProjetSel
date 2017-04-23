@@ -1,4 +1,4 @@
-	const Historiques = new Mongo.Collection("Historiques")
+	const Historiques = new Mongo.Collection("historiques")
 
 	Meteor.methods({
 

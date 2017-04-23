@@ -5,6 +5,9 @@ import { Button, Card,Image,Grid,Label,Segment,Confirm,Rating } from 'semantic-u
 import {createContainer} from 'meteor/react-meteor-data';
 import {annonces} from '../../API/annonces.js'
 import {propositions} from '../../API/propositions.js'
+import {usr} from '../../API/usr.js'
+import {menu} from '../../API/menu.js'
+import {historiques} from '../../API/historiques.js'
 
 class ExtraitPropositio extends Component {
 	constructor(){
@@ -126,7 +129,7 @@ class ExtraitPropositio extends Component {
 			this.props.propositions.sauve(prop,(res)=>{	})
 
 
-			this.effectue(this.props.donnees.utilisateur,prop.utilisateur,prop.prix,{_id:this.props.donnees._id,titre:this.props.donnees.titre,categorie:this.props.donnees.categorie})
+			this.effectue(this.props.donnees.utilisateur,prop.utilisateur,prop.prix,{_id:this.props.donnees._id,titre:this.props.donnees.titre,type:this.props.donnees.type,categorie:this.props.donnees.categorie})
 		}
 
 		 this.setState({
@@ -137,7 +140,79 @@ class ExtraitPropositio extends Component {
 	 	})
 	}
 	effectue(utAn,utPr,prix,ann){
-			this.props.effectue(utAn,utPr,prix,ann)
+			if(this.props.donnees.type=="offre"){
+			this.props.usr.getUsr(utAn._id,(res)=>{
+				if(res){var ut=res
+					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)-Number(prix)
+					this.props.usr.changeCompte(ut,()=>{
+						this.props.usr.getUsrCo(()=>{
+
+							}
+							)
+					})
+				}
+			})
+			this.props.usr.getUsr(utPr._id,(res)=>{
+				if(res){var ut=res
+					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)-Number(prix)
+					this.props.usr.changeCompte(ut,()=>{})
+				}
+			})
+			this.props.historiques.ajout(
+				{
+					date:Date.now(),
+					debiteur:{username:utAn.username,_id:utAn._id},
+					crediteur:{username:utPr.username,_id:utPr._id},
+					prix:prix,
+					annonce:ann
+				},
+				()=>{}
+			)
+
+			Bert.alert({
+				title:"Transaction effectuée",
+				message:utPr.username+"=>"+prix+" seugnettes =>"+utAn.username ,
+
+				type:'success'
+			})
+		}
+		if(this.props.donnees.type=="demande"){
+			this.props.usr.getUsr(utAn._id,(res)=>{
+				if(res){var ut=res
+					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)-Number(prix)
+					this.props.usr.changeCompte(ut,()=>{
+						this.props.usr.getUsrCo(()=>{
+
+							}
+							)
+
+					})
+				}
+			})
+			this.props.usr.getUsr(utPr._id,(res)=>{
+				if(res){var ut2=res
+					ut2.profile.soldeSeugnette=Number(ut2.profile.soldeSeugnette)+Number(prix)
+					this.props.usr.changeCompte(ut2,()=>{})
+				}
+			})
+			this.props.historiques.ajout(
+				{
+					date:Date.now(),
+					debiteur:{username:utPr.username,_id:utPr._id},
+					crediteur:{username:utAn.username,_id:utAn._id},
+					prix:prix,
+					annonce:ann
+				},
+				()=>{}
+			)
+
+			Bert.alert({
+				title:"Transaction effectuée",
+				message:utAn.username+"=>"+prix+" seugnettes =>"+utPr.username ,
+
+				type:'success'
+			})
+		}
 		}
 
 	imgUsr(){
@@ -259,7 +334,19 @@ export default ExtraitProposition = createContainer( ()=>{
  			supprime:propositions.supprime,
  			sauve:propositions.sauve,
  			liste:propositions.liste.get()
- 		}
+ 		},
+ 		usr:{
+			getUsr:usr.getUsr,
+			changeCompte:usr.changeCompte,
+			getUsrCo:usr.getUsrCo,
+			usrCo:usr.usrCo.get()
+		},
+		historiques:{
+			ajout:historiques.ajout
+		},
+		menu:{
+			prop:menu.prop
+		}
 
  	}
 

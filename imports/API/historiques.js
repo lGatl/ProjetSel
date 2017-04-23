@@ -33,8 +33,8 @@
 			}
 		})
 	}
-	const ajout=(cat,cbk)=>{
-		Meteor.call('ajoutHistorique', cat ,(err,res)=>{
+	const ajout=(hist,cbk)=>{
+		Meteor.call('ajoutHistorique', hist ,(err,res)=>{
 			if(err||res==false){
 				Bert.alert({
 					title:"Erreur",

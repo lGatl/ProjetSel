@@ -9,12 +9,14 @@ import {annonces} from '../../API/annonces.js'
 import {propositions} from '../../API/propositions.js'
 
 import {usr} from '../../API/usr.js'
+import {menu} from '../../API/menu.js'
 import DepotAnnonce from './DepotAnnonce'
 
 
 /*Mes Offres et Mes Demandes et Mes Propositions*/
 
 class MesAnnonce extends Component {
+
 
 
 
@@ -31,7 +33,7 @@ class MesAnnonce extends Component {
 								this.props.propositions.liste.map((proposition,j)=>{
 									if(utilisat._id==proposition.utilisateur._id){
 										if(proposition.annonceId==annonce._id){
-											return(<ExtraitProposition donnees={annonce} proposition={proposition}  moi={true} key={i+" "+j}></ExtraitProposition>)
+											return(<ExtraitProposition donnees={annonce} proposition={proposition} moi={true} key={i+" "+j}></ExtraitProposition>)
 										}else{return <div></div>}
 									}
 								})
@@ -56,7 +58,7 @@ class MesAnnonce extends Component {
 										}
 									})
 									return(
-										<ExtraitAnnonce donnees={annonce} moi={true} propts={this.state} nbProp={nbProp} key={i}></ExtraitAnnonce>
+										<ExtraitAnnonce donnees={annonce} moi={true}  nbProp={nbProp} key={i}></ExtraitAnnonce>
 									)
 								}
 							}
@@ -80,6 +82,10 @@ export default MesAnnonces = createContainer( ()=>{
  		},
  		usr:{usrCo:usr.usrCo.get(),
  			getUsrCo:usr.getUsrCo},
- 		propositions:{liste:propositions.liste.get()}
+ 		propositions:{liste:propositions.liste.get()},
+
+		menu:{
+			prop:menu.prop
+		}
 	}
  } , MesAnnonce );
