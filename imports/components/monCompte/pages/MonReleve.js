@@ -28,7 +28,7 @@ class MonRelev extends Component {
 
 			return(
 				<Tableau donnees={{
-					titres:["Date","Donneur","Catégorie","Titre de l'annonce","Nombre de seugnettes"],
+					titres:["Date","Donneur","Catégorie","Titre de l'annonce","Prix"],
 					contenu:debits
 				}}></Tableau>
 			)
@@ -52,8 +52,9 @@ class MonRelev extends Component {
 			})
 
 			return(
-				<Tableau donnees={{
-					titres:["Date","Donneur","Catégorie","Titre de l'annonce","Nombre de seugnettes"],
+				<Tableau
+				donnees={{
+					titres:["Date","Donneur","Catégorie","Titre de l'annonce","Prix"],
 					contenu:debits
 				}}></Tableau>
 			)
