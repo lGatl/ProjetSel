@@ -62,17 +62,17 @@ class  AnnonceDes extends Component {
 		return(
 			<Table celled fixed textAlign="center">
 				<Table.Body>
-					<Table.Row>
-						<Table.Cell className="titreTableau" colSpan='4'>Informations de l'annonce</Table.Cell>
+					<Table.Row className="titreTableau">
+						<Table.Cell  colSpan='4'>Informations de l'annonce</Table.Cell>
 					</Table.Row>
 					<Table.Row>
 						<Table.Cell colSpan='2'>
-							<Item>
-								<Item.Image src='https://placehold.it/200x200' />
+							<Item >
+								<Item.Image src='http://lorempixel.com/400/400' fluid />
 							</Item>
 						</Table.Cell>
 						<Table.Cell colSpan='2' rowSpan='5'>
-							<span className="titreTableauAnn">{this.state.annonce.titre}</span><br/><br/>
+							<span className="grosTitreTableauAnn">{this.state.annonce.titre}</span><br/><br/>
 
 							 	{this.state.annonce.description}
 
@@ -80,27 +80,28 @@ class  AnnonceDes extends Component {
 						</Table.Cell>
 					</Table.Row>
 					<Table.Row>
-						<Table.Cell >Categorie</Table.Cell>
+						<Table.Cell className="titreTableauAnn">Categorie</Table.Cell>
 						<Table.Cell>{this.state.annonce.categorie}</Table.Cell>
 					</Table.Row>
 					<Table.Row>
-						<Table.Cell >Date de début</Table.Cell>
+						<Table.Cell className="titreTableauAnn">Date de début</Table.Cell>
 						<Table.Cell>{
 							(date.getUTCDate()<10?"0"+date.getUTCDate():date.getUTCDate())+"/"+
 							((date.getUTCMonth() + 1)<10?"0"+(date.getUTCMonth() + 1):(date.getUTCMonth() + 1))
 							+"/"+date.getUTCFullYear()}</Table.Cell>
 					</Table.Row>
 					<Table.Row>
-						<Table.Cell >Date de Fin</Table.Cell>
+						<Table.Cell className="titreTableauAnn">Date de Fin</Table.Cell>
 						<Table.Cell>{this.state.annonce.dateDeFin}</Table.Cell>
 					</Table.Row>
 
 					<Table.Row>
-						<Table.Cell >Statut</Table.Cell>
-						<Table.Cell></Table.Cell>
+						<Table.Cell className="titreTableauAnn">Statut</Table.Cell>
+						<Table.Cell>{this.state.annonce.statut}</Table.Cell>
+
 					</Table.Row>
-					<Table.Row>
-						<Table.Cell className="titreTableau" colSpan='4'>Informations séliste</Table.Cell>
+					<Table.Row className="titreTableau">
+						<Table.Cell colSpan='4'>Informations séliste</Table.Cell>
 					</Table.Row>
 					<Table.Row>
 						<Table.Cell colSpan='4'>
@@ -111,13 +112,13 @@ class  AnnonceDes extends Component {
 					<Table.Row>
 						<Table.Cell colSpan='4'>{this.state.annonce.utilisateur.username}</Table.Cell>
 					</Table.Row>
-					<Table.Row>
-						<Table.Cell className="titreTableau" colSpan='4'>Proposition</Table.Cell>
+					<Table.Row className="titreTableau">
+						<Table.Cell colSpan='4'>Proposition</Table.Cell>
 					</Table.Row>
 					<Table.Row>
-						<Table.Cell colSpan='1' >Faire une proposition</Table.Cell>
-						<Table.Cell colSpan='2'>Commentaire</Table.Cell>
-						<Table.Cell colSpan='1' rowSpan='2' textAlign='center'>
+						<Table.Cell className="titreTableauAnn"colSpan='1' >Faire une proposition</Table.Cell>
+						<Table.Cell className="titreTableauAnn"colSpan='2'>Commentaire</Table.Cell>
+						<Table.Cell className="titreTableauAnn"colSpan='1' rowSpan='2' textAlign='center'>
 							<Button type="submit" onClick={this.creeProp.bind(this)}>Valider</Button>
 						</Table.Cell>
 					</Table.Row>

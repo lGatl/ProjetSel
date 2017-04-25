@@ -17,7 +17,9 @@ class MonRelev extends Component {
 				if(this.props.usr.usrCo._id==hist.debiteur._id){
 					var date = new Date(hist.date)
 					debits.push([
-						date.getUTCDate()+"/"+(date.getUTCMonth() + 1) +"/"+date.getUTCFullYear(),
+						(date.getUTCDate()<10?" 0"+date.getUTCDate():" "+date.getUTCDate())+"/"+
+										((date.getUTCMonth() + 1)<10?"0"+(date.getUTCMonth() + 1):(date.getUTCMonth() + 1))
+										+"/"+date.getUTCFullYear(),
 						hist.crediteur.username,
 						hist.annonce.categorie,
 						hist.annonce.titre,
@@ -42,7 +44,9 @@ class MonRelev extends Component {
 				if(this.props.usr.usrCo._id==hist.crediteur._id){
 					var date = new Date(hist.date)
 					debits.push([
-						date.getUTCDate()+"/"+(date.getUTCMonth() + 1) +"/"+date.getUTCFullYear(),
+						(date.getUTCDate()<10?" 0"+date.getUTCDate():" "+date.getUTCDate())+"/"+
+						((date.getUTCMonth() + 1)<10?"0"+(date.getUTCMonth() + 1):(date.getUTCMonth() + 1))
+						+"/"+date.getUTCFullYear(),
 						hist.debiteur.username,
 						hist.annonce.categorie,
 						hist.annonce.titre,

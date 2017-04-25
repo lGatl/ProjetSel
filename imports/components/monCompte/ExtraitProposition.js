@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 
 import { Button, Card,Image,Grid,Label,Segment,Confirm,Rating } from 'semantic-ui-react'
 import {createContainer} from 'meteor/react-meteor-data';
+import ImgSeu from './ImgSeu.js'
 import {annonces} from '../../API/annonces.js'
 import {propositions} from '../../API/propositions.js'
 import {usr} from '../../API/usr.js'
@@ -48,7 +49,7 @@ class ExtraitPropositio extends Component {
 		return(
 			<div>
 				<span  style={{fontWeight:"bold"}}>Prix :</span>
-				<span>{" "+this.props.proposition.prix+" seugnettes"}</span><br/>
+				<span>{" "+this.props.proposition.prix+" "}<ImgSeu /></span><br/>
 				<span  style={{fontWeight:"bold"}}>Etat :</span>
 				<span>{" "+this.props.proposition.etat}</span>
 			</div>
@@ -85,7 +86,7 @@ class ExtraitPropositio extends Component {
 			}
 		}
 		return(
-			<div className={'ui three buttons'}>
+			<div className={'ui three buttons'}  style={{verticalAlign:"bottom"}}>
 				{valide}
 				{refuse}
 				<Button
@@ -103,7 +104,10 @@ class ExtraitPropositio extends Component {
 			prop=this.props.proposition
 			prop.etat=("Validé")
 			this.props.propositions.sauve(prop,(res)=>{
+				console.log("re")
+					this.props.refuseTout(prop._id)
 				if(res){
+
 					Bert.alert({
 						title:"Proposition validée",
 						message:"Cette proposition a été validée" ,
@@ -217,7 +221,7 @@ class ExtraitPropositio extends Component {
 
 	imgUsr(){
 		if(this.props.moi==true){
-			return(<Image floated='left' size='medium' src='http://semantic-ui.com/images/avatar/large/steve.jpg' />)
+			return(<Image floated='left' size='medium'  src='http://lorempixel.com/500/500'  />)
 		}else{
 			if(this.props.proposition){
 				const proposition=this.props.proposition
@@ -253,7 +257,7 @@ class ExtraitPropositio extends Component {
 			<Card.Header>
 				<a href={"/annonces/"+this.props.donnees.titre} className="aSpe">
 						{this.props.donnees.titre}
-				</a> <span style={{color:etat.couleur,fontWeight:"bold"}}>{etat.etat}</span><br/><span style={{fontWeight:"bold"}}>Type :</span>{" "+this.props.donnees.type}
+				</a>
 			</Card.Header>
 			<br/>
 			<Card.Meta>{this.props.donnees.description.slice(0, 30)+" ..."}
@@ -284,19 +288,16 @@ class ExtraitPropositio extends Component {
 	}
 
 	render() {
-		etat={}
-			this.props.donnees.etat=="En Attente"?etat={etat:"En Attente",couleur:"blue"}:
-			this.props.donnees.etat=="Valider"?etat={etat:"Valide",couleur:"green"}:
-			this.props.donnees.etat=="Refuser"?etat={etat:"Refusée",couleur:"red"}:etat={}
+
 		return (
 			<div>
 			{this.br()}
 				 <Card fluid style={{marginBottom:0}}>
 					<Grid style={{marginBottom:0}}>
-						<Grid.Column mobile={7} tablet={6} computer={4}>
+						<Grid.Column style={{paddingBottom:0}} mobile={7} tablet={6} computer={4}>
 							{this.imgUsr()}
 						</Grid.Column>
-						<Grid.Column mobile={7} tablet={10} computer={4}>
+						<Grid.Column style={{paddingBottom:0}} mobile={7} tablet={10} computer={4}>
 							{this.refAnn()}
 							<Card.Description>
 								<span style={{fontWeight:"bold"}}>Date :</span>
@@ -304,9 +305,6 @@ class ExtraitPropositio extends Component {
 								{this.prixEtat()}
 							</Card.Description>
 						</Grid.Column>
-						<Grid.Column mobile={16} tablet={16} computer={8}  verticalAlign ="bottom" >
-							{this.descLabel()}
-							{this.bouton()}
 							<Confirm
 								open={this.state.open}
 								content={this.state.text}
@@ -315,8 +313,12 @@ class ExtraitPropositio extends Component {
 								onCancel={this.handleCancel}
 								onConfirm={this.confirme.bind(this)}
 							/>
+						<Grid.Column style={{paddingBottom:0}} mobile={16} tablet={16} computer={8}  verticalAlign ="bottom" >
+							{this.descLabel()}
+							{this.bouton()}
+
 						</Grid.Column>
-						<Label circular size='massive' color={'yellow'} key={'0'} attached="top right"></Label>
+
 					</Grid>
 				</Card>
 				{this.state.edit}

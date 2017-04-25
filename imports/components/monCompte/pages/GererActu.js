@@ -147,7 +147,9 @@ class GererAct extends Component {
 							return(
 								{
 									tableau:[
-										date.getUTCDate()+"/"+(date.getUTCMonth() + 1) +"/"+date.getUTCFullYear(),
+										(date.getUTCDate()<10?" 0"+date.getUTCDate():" "+date.getUTCDate())+"/"+
+										((date.getUTCMonth() + 1)<10?"0"+(date.getUTCMonth() + 1):(date.getUTCMonth() + 1))
+										+"/"+date.getUTCFullYear(),
 										 	<a href={"/articles/"+art.titre} className="aSpe">{art.titre}</a>
 									],
 									etat: this.state.etat[i]

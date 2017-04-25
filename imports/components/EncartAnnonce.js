@@ -7,7 +7,15 @@ import { Card,Image,Grid,Label,Header,Segment } from 'semantic-ui-react'
 export default class EncartAnnonce extends Component {
 
 	render() {
-
+		avencement={couleur:"green"}
+			if(this.props.propositions.length>0){
+				this.props.propositions.map((proposition,i)=>{
+					if(proposition.annonceId==this.props.donnees._id){
+						if(proposition.etat=="Validé"&&!(avencement.couleur=="red")){avencement={couleur:'orange'}}
+						if(proposition.etat=="Effectué"){avencement={couleur:'red'}}
+					}
+				})
+			}
 
 		return (
 			<div >
@@ -15,7 +23,7 @@ export default class EncartAnnonce extends Component {
 
 						<Grid >
 							<Grid.Column width={4}>
-								<Image floated='left' size='medium' src='http://semantic-ui.com/images/avatar/large/steve.jpg' />
+								<Image floated='left' size='medium' src='http://lorempixel.com/500/500' />
 							</Grid.Column>
 							<Grid.Column width={8}>
 								<Card.Header>
@@ -39,11 +47,12 @@ export default class EncartAnnonce extends Component {
 							</Grid.Column>
 
 
-							<Label circular size='massive' color={'yellow'} key={'0'} attached="top right"></Label>
+							<Label circular size='massive' color={avencement.couleur} key={'0'} attached="top right"></Label>
 
 
 						</Grid>
 					</Card>
+					<br/>
 
 			</div>
 		)

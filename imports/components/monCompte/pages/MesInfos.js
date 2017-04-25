@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Titre1 from '../Titre1.js'
 import Lister from '../Lister.js'
 import {createContainer} from 'meteor/react-meteor-data';
+
 import {usr} from '../../../API/usr.js'
 
 
@@ -33,7 +34,7 @@ import {usr} from '../../../API/usr.js'
 				]}></Lister>
 				<Titre1 nom="Mes Seugnettes"></Titre1>
 				<Lister donnees={[
-				{Solde:this.props.usr.profile.soldeSeugnette},
+				{Solde:this.props.usr.profile.soldeSeugnette },
 				{totalCredit:this.props.usr.profile.totalCredits},
 				{totalDebit:this.props.usr.profile.totalDebits}
 					]}></Lister>

@@ -62,6 +62,19 @@ class ExtraitAnnonc extends Component {
 		}
 
 	}
+	refuseTout(id){
+			this.props.propositions.liste.map((proposition,i)=>{
+					if(proposition.annonceId==this.props.donnees._id){
+					if(!(proposition._id==id)){
+
+						var prop=proposition
+						prop.etat=("Refuse")
+						this.props.propositions.sauve(prop,(res)=>{}
+						)
+					}
+				}
+			})
+	}
 	propositions(){
 		if(this.state.prop==true)
 			return(
@@ -69,7 +82,7 @@ class ExtraitAnnonc extends Component {
 				{
 					this.props.propositions.liste.map((proposition,i)=>{
 					if(proposition.annonceId==this.props.donnees._id){
-						return(<ExtraitProposition donnees={this.props.donnees} proposition={proposition}  moi={false} key={i}></ExtraitProposition>)
+						return(<ExtraitProposition donnees={this.props.donnees} proposition={proposition}  refuseTout={this.refuseTout.bind(this)} moi={false} key={i}></ExtraitProposition>)
 				}
 			})}</Segment>)
 	}
@@ -113,6 +126,17 @@ class ExtraitAnnonc extends Component {
 			this.props.donnees.etat=="En Attente"?etat={etat:"En Attente",couleur:"blue"}:
 			this.props.donnees.etat=="Valider"?etat={etat:"Valide",couleur:"green"}:
 			this.props.donnees.etat=="Refuser"?etat={etat:"Refusée",couleur:"red"}:etat={}
+		avencement={couleur:"green"}
+
+			if(this.props.nbProp>0){
+				this.props.propositions.liste.map((proposition,i)=>{
+					if(proposition.annonceId==this.props.donnees._id){
+						if(proposition.etat=="Validé"&&!(avencement.couleur=="red")){avencement={couleur:'orange'}}
+						if(proposition.etat=="Effectué"){avencement={couleur:'red'}}
+					}
+				})
+			}
+
 
 		return (
 			<div>
@@ -120,15 +144,17 @@ class ExtraitAnnonc extends Component {
 				 <Card fluid style={{marginBottom:0}}>
 
 						<Grid style={{marginBottom:0}}>
-							<Grid.Column mobile={7} tablet={6} computer={4}>
-								<Image floated='left' size='medium' src='http://semantic-ui.com/images/avatar/large/steve.jpg' />
+							<Grid.Column style={{paddingBottom:0}} mobile={7} tablet={6} computer={4}>
+								<Image floated='left' size='medium' src='http://lorempixel.com/500/500' />
 							</Grid.Column>
 							<Grid.Column mobile={7} tablet={10} computer={4}>
 								<div>
 									<Card.Header>
 										<a href={"/annonces/"+this.props.donnees.titre} className="aSpe">
 												{this.props.donnees.titre}
-										</a> <span style={{color:etat.couleur,fontWeight:"bold"}}>{etat.etat}</span><br/><span style={{fontWeight:"bold"}}>Type :</span>{" "+this.props.donnees.type}
+										</a> <span style={{color:etat.couleur,fontWeight:"bold"}}>{etat.etat}</span><br/>
+										<span style={{fontWeight:"bold"}}>Type :</span>{" "+this.props.donnees.type} <br/>
+										<span style={{fontWeight:"bold"}}>Categorie :</span>{" "+this.props.donnees.categorie}
 									</Card.Header>
 									<br/>
 									<Card.Meta>{this.props.donnees.description.slice(0, 30)+" ..."}
@@ -139,7 +165,7 @@ class ExtraitAnnonc extends Component {
 									{this.laDate()}
 								</Card.Description>
 							</Grid.Column>
-							<Grid.Column mobile={16} tablet={16} computer={8}  verticalAlign ="bottom" >
+							<Grid.Column style={{paddingBottom:0}} mobile={16} tablet={16} computer={8}  verticalAlign ="bottom" >
 								<Label className="labelAn" size="big" onClick={this.label.bind(this)}>{this.props.nbProp}</Label>
 									<div className={"ui two buttons"}>
 										<Button
@@ -160,7 +186,7 @@ class ExtraitAnnonc extends Component {
 										/>
 								</div>
 								</Grid.Column>
-								<Label circular size='massive' color={'yellow'} key={'0'} attached="top right"></Label>
+								<Label circular size='massive' color={avencement.couleur} key={'0'} attached="top right"></Label>
 						</Grid>
 					</Card>
 					{this.state.edit}

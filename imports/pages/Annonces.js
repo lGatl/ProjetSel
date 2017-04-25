@@ -8,7 +8,9 @@ import Filtres from '../components/Filtres.js'
 import {createContainer} from 'meteor/react-meteor-data';
 import {menu} from '../API/menu.js'
 import {annonces} from '../API/annonces.js'
+import {propositions} from '../API/propositions.js'
 import Titre from '../components/Titre.js'
+
 
 
 class Annonce extends Component {
@@ -52,17 +54,17 @@ class Annonce extends Component {
 					this.props.liste.map((annonce,i)=>{
 						if(annonce.etat=="Valider"){
 							if(this.state.actif=="toutes"){
-								return(<EncartAnnonce key={i} donnees={annonce}></EncartAnnonce>)
+								return(<EncartAnnonce key={i} donnees={annonce} propositions={this.props.propositions.liste}></EncartAnnonce>)
 							}
 
 							if(this.state.actif=="offres"){
 								if(annonce.type=="offre"){
-									return(<EncartAnnonce key={i} donnees={annonce}></EncartAnnonce>)
+									return(<EncartAnnonce key={i} donnees={annonce} propositions={this.props.propositions.liste}></EncartAnnonce>)
 								}
 							}
 							if(this.state.actif=="demandes"){
 								if(annonce.type=="demande"){
-									return(<EncartAnnonce key={i} donnees={annonce}></EncartAnnonce>)
+									return(<EncartAnnonce key={i} donnees={annonce}propositions={this.props.propositions.liste}></EncartAnnonce>)
 								}
 							}
 						}
@@ -78,6 +80,10 @@ class Annonce extends Component {
  export default Annonces = createContainer( ()=>{
 
  	return{
+		propositions:{
+ 			liste:propositions.liste.get()
+
+ 		},
  		setActif:menu.setActif,
  		liste:annonces.rev.get()
 	}

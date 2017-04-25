@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Segment, Rating,List } from 'semantic-ui-react'
+import ImgSeu from './ImgSeu.js'
 
 
 
@@ -21,9 +22,9 @@ export default class Lister extends Component {
 									cle=="totalCredit"?titre="Total crédit":
 									cle=="totalDebit"?titre="Total débit":""
 
-
+								if(cle=="Solde"||cle=="totalCredit"||cle=="totalDebit"){return(<List.Item key = {i}>{titre +" : "+val} <ImgSeu></ImgSeu> </List.Item>)}
 								if(cle!="note"){return(<List.Item key = {i}>{titre +" : "+val}</List.Item>)}
-									if(cle=="note"){return(<List.Item key={i}>Note: <Rating icon='star' disabled rating={val} maxRating={5} /></List.Item>)}
+								if(cle=="note"){return(<List.Item key={i}>Note: <Rating icon='star' disabled rating={val} maxRating={5} /></List.Item>)}
 
 					})
 					}

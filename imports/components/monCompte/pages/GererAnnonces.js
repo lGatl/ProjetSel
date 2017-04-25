@@ -29,9 +29,13 @@ class GererAnnonce extends Component {
 					donnees={{
 						titres:["Date","Séliste","Type","Catégorie","Titre de l'annonce"],
 						contenu:this.props.annonces.liste.map((ann,i)=>{
+							var date = new Date(ann.date)
+
 							return(
 								{tableau:[
-									"12/12/1122",
+									(date.getUTCDate()<10?" 0"+date.getUTCDate():" "+date.getUTCDate())+"/"+
+										((date.getUTCMonth() + 1)<10?"0"+(date.getUTCMonth() + 1):(date.getUTCMonth() + 1))
+										+"/"+date.getUTCFullYear(),
 									ann.utilisateur.username,
 									ann.type,
 									ann.categorie,
