@@ -6,17 +6,24 @@ import { Card,Image,Grid,Label,Header,Segment } from 'semantic-ui-react'
 
 export default class EncartAnnonce extends Component {
 
+	rnd(min, max) {
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min +1)) + min;
+	}
+
 	render() {
+
 			var date = new Date(Number(this.props.donnees.dateDeFin))
 		return (
 			<div >
 				 <Card fluid>
 
 						<Grid >
-							<Grid.Column width={4}>
-								<Image floated='left' size='medium' src='http://lorempixel.com/50/50' />
+							<Grid.Column width={6}>
+								<Image src={'images/'+this.rnd(1,16)+'.jpg'} style={{height:"200px",width:"200px"}} />
 							</Grid.Column>
-							<Grid.Column width={8}>
+							<Grid.Column width={6}>
 								<Card.Header>
 									{this.props.donnees.type+" - "+this.props.donnees.categorie}
 								</Card.Header>

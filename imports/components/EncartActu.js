@@ -3,6 +3,11 @@ import { Segment, Header, Image,Button,Grid } from 'semantic-ui-react'
 
 export default class EncartActu extends Component {
 
+	rnd(min, max) {
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min +1)) + min;
+	}
 
  render(){
 	return(
@@ -11,7 +16,7 @@ export default class EncartActu extends Component {
 				<Segment >
 				<Grid >
 					<Grid.Column width={8} style={{padding:0}}>
-						<Image floated='left' size='small' src='http://lorempixel.com/50/50' />
+						<Image src={'images/'+this.rnd(1,16)+'.jpg'} style={{height:"200px",width:"200px"}} />
 					</Grid.Column>
 					<Grid.Column width={8}>
 						<a href={"/articles/"+this.props.donnees.titre}>

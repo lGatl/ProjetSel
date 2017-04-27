@@ -5,7 +5,11 @@ import {articles} from '../API/articles.js'
 import {annonces} from '../API/annonces.js'
 
 class DerniereActuAnnonc extends Component {
-
+	rnd(min, max) {
+			min = Math.ceil(min);
+			max = Math.floor(max);
+			return Math.floor(Math.random() * (max - min +1)) + min;
+		}
  render(){
  	var donnees
 	this.props.titre=="Annonces"?donnees=this.props.annonces:donnees=this.props.articles
@@ -23,7 +27,7 @@ class DerniereActuAnnonc extends Component {
 
 									<Grid.Column width={16}  key={i} textAlign='center' style={{paddingLeft:"20%",paddingRight:"20%",paddingBottom:0}}>
 
-										<Image fluid src='http://lorempixel.com/20/20' />
+										<Image fluid src={'images/'+this.rnd(1,16)+'.jpg'} />
 										{
 											this.props.titre=="Annonces"?
 											<a className="aSpe" href={"/annonces/"+donnee.titre}>{donnee.titre}</a>:
