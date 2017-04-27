@@ -7,23 +7,14 @@ import { Card,Image,Grid,Label,Header,Segment } from 'semantic-ui-react'
 export default class EncartAnnonce extends Component {
 
 	render() {
-		avencement={couleur:"green"}
-			if(this.props.propositions.length>0){
-				this.props.propositions.map((proposition,i)=>{
-					if(proposition.annonceId==this.props.donnees._id){
-						if(proposition.etat=="Validé"&&!(avencement.couleur=="red")){avencement={couleur:'orange'}}
-						if(proposition.etat=="Effectué"){avencement={couleur:'red'}}
-					}
-				})
-			}
-
+			var date = new Date(Number(this.props.donnees.dateDeFin))
 		return (
 			<div >
 				 <Card fluid>
 
 						<Grid >
 							<Grid.Column width={4}>
-								<Image floated='left' size='medium' src='http://lorempixel.com/500/500' />
+								<Image floated='left' size='medium' src='http://lorempixel.com/50/50' />
 							</Grid.Column>
 							<Grid.Column width={8}>
 								<Card.Header>
@@ -40,14 +31,18 @@ export default class EncartAnnonce extends Component {
 									{this.props.donnees.description.slice(0, 30)+" ..."}
 								</Card.Meta>
 								<Card.Description>
-									{this.props.donnees.dateDeFin}
+									{
+										(date.getUTCDate()<10?" 0"+date.getUTCDate():" "+date.getUTCDate())+"/"+
+										((date.getUTCMonth() + 1)<10?"0"+(date.getUTCMonth() + 1):(date.getUTCMonth() + 1))
+										+"/"+date.getUTCFullYear()
+									}
 								</Card.Description>
 
 
 							</Grid.Column>
 
 
-							<Label circular size='massive' color={avencement.couleur} key={'0'} attached="top right"></Label>
+							<Label circular size='massive' color={this.props.donnees.avancement} key={'0'} attached="top right"></Label>
 
 
 						</Grid>

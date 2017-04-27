@@ -49,10 +49,10 @@ import{annonces}from'../API/annonces.js'
 				if(res.length==0){
 					var obj=[
 
-					{categorie : "cuisine", type : "offre", titre : "500 couverts", description : "Besoin d'un cuisinier capable de gerer 500 couverts!", informationDeContact : "monmail@gmal.com", dateDeFin : "1/12/2017", etat : "Valider",utilisateur:{username:usr.username,_id:usr._id,note:usr.profile.note,nom:usr.profile.nom,prenom:usr.profile.prenom}},
-						{categorie : "mecanique", type : "demande", titre : "Vidange", description : "Qui veut venir me faire une petite vidange ?? ", informationDeContact : "tonmail@talmal.fr", dateDeFin : "25/04/2016", etat : "En Attente",utilisateur:{username:usr.username,_id:usr._id,note:usr.profile.note,nom:usr.profile.nom,prenom:usr.profile.prenom} },
-						{categorie : "informatique", type : "offre", titre : "Ecran Bleu", description : ":'( Je ne comprend pas qqn peut venir m'aider?", informationDeContact : "sonmail@caramal.rf", dateDeFin : "01/02/2018", etat : "Valider",utilisateur:{username:usr.username,_id:usr._id,note:usr.profile.note,nom:usr.profile.nom,prenom:usr.profile.prenom} },
-						{categorie : "cheval", type : "demande", titre : "Pour steak", description : "Nourrit a l'herbe toute sa vie, massé chaque jour", informationDeContact : "notremail@wanadoo.fr", dateDeFin : "15/12/2013", etat : "Refuser",utilisateur:{username:usr.username,_id:usr._id,note:usr.profile.note,nom:usr.profile.nom,prenom:usr.profile.prenom} }
+					{categorie : "cuisine", type : "offre", titre : "500 couverts", description : "Besoin d'un cuisinier capable de gerer 500 couverts!", informationDeContact : "monmail@gmal.com", dateDeFin : "1/12/2017", etat : "Valider",avancement:"green",utilisateur:{username:usr.username,_id:usr._id,note:usr.profile.note,nom:usr.profile.nom,prenom:usr.profile.prenom}},
+						{categorie : "mecanique", type : "demande", titre : "Vidange", description : "Qui veut venir me faire une petite vidange ?? ", informationDeContact : "tonmail@talmal.fr", dateDeFin : "25/04/2016", etat : "En Attente",avancement:"green",utilisateur:{username:usr.username,_id:usr._id,note:usr.profile.note,nom:usr.profile.nom,prenom:usr.profile.prenom} },
+						{categorie : "informatique", type : "offre", titre : "Ecran Bleu", description : ":'( Je ne comprend pas qqn peut venir m'aider?", informationDeContact : "sonmail@caramal.rf", dateDeFin : "01/02/2018", etat : "Valider",avancement:"green",utilisateur:{username:usr.username,_id:usr._id,note:usr.profile.note,nom:usr.profile.nom,prenom:usr.profile.prenom} },
+						{categorie : "cheval", type : "demande", titre : "Pour steak", description : "Nourrit a l'herbe toute sa vie, massé chaque jour", informationDeContact : "notremail@wanadoo.fr", dateDeFin : "15/12/2013", etat : "Refuser",avancement:"green",utilisateur:{username:usr.username,_id:usr._id,note:usr.profile.note,nom:usr.profile.nom,prenom:usr.profile.prenom} }
 
 					]
 					obj.map((ob)=>{

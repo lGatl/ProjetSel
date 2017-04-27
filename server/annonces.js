@@ -17,17 +17,18 @@
 		supprimeAnnonce:(id)=>{Annonces.remove({_id:id})},
 		ajoutAnnonce:(nvlAnnonce)=>{
 			if (Meteor.userId()){
-					Annonces.insert({
-						categorie:nvlAnnonce.categorie,
-						type: nvlAnnonce.type,
-						titre: nvlAnnonce.titre,
-						description: nvlAnnonce.description,
-						informationDeContact: nvlAnnonce.informationDeContact,
-						etat: nvlAnnonce.etat,
-						utilisateur:nvlAnnonce.utilisateur,
-						date:Date.now(),
-						dateDeFin: nvlAnnonce.dateDeFin
-					})
+				Annonces.insert({
+					categorie:nvlAnnonce.categorie,
+					type: nvlAnnonce.type,
+					titre: nvlAnnonce.titre,
+					description: nvlAnnonce.description,
+					informationDeContact: nvlAnnonce.informationDeContact,
+					etat: nvlAnnonce.etat,
+					avancement: nvlAnnonce.avancement,
+					utilisateur:nvlAnnonce.utilisateur,
+					date:Date.now(),
+					dateDeFin: Date.parse(nvlAnnonce.dateDeFin)
+				})
 			}else{return false}
 		},
 		sauvegardeAnnonces:(aSauv)=>{

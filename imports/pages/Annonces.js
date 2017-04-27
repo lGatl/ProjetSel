@@ -10,6 +10,7 @@ import {menu} from '../API/menu.js'
 import {annonces} from '../API/annonces.js'
 import {propositions} from '../API/propositions.js'
 import Titre from '../components/Titre.js'
+import { Grid } from 'semantic-ui-react'
 
 
 
@@ -42,37 +43,43 @@ class Annonce extends Component {
 
 	render(){
 		return (
+			<div>
+			<Titre nom="ANNONCES"></Titre>
+				<Grid>
+					<Grid.Column mobile={16} tablet={16} computer={1} only="computer"></Grid.Column>
+					<Grid.Column mobile={16} tablet={16} computer={14}>
+						<Filtres option={this.state.option}></Filtres>
+					</Grid.Column>
+					<Grid.Column mobile={16} tablet={16} computer={1} only="computer"></Grid.Column>
+				</Grid>
+				<Grid>
+					<Grid.Column mobile={16} tablet={16} computer={2} only="computer"></Grid.Column>
+						<Grid.Column mobile={16} tablet={16} computer={12}>
 
-			<div >
+								<Onglets recup={this.recup.bind(this)}></Onglets>
+								{
+									this.props.liste.map((annonce,i)=>{
+										if(annonce.etat=="Valider"){
+											if(this.state.actif=="toutes"){
+												return(<EncartAnnonce key={i} donnees={annonce} propositions={this.props.propositions.liste}></EncartAnnonce>)
+											}
 
-				<Titre nom="ANNONCES"></Titre>
-			<Segment>
-			<Filtres option={this.state.option}></Filtres>
-			</Segment>
-				<Onglets recup={this.recup.bind(this)}></Onglets>
-				{
-					this.props.liste.map((annonce,i)=>{
-						if(annonce.etat=="Valider"){
-							if(this.state.actif=="toutes"){
-								return(<EncartAnnonce key={i} donnees={annonce} propositions={this.props.propositions.liste}></EncartAnnonce>)
-							}
-
-							if(this.state.actif=="offres"){
-								if(annonce.type=="offre"){
-									return(<EncartAnnonce key={i} donnees={annonce} propositions={this.props.propositions.liste}></EncartAnnonce>)
+											if(this.state.actif=="offres"){
+												if(annonce.type=="offre"){
+													return(<EncartAnnonce key={i} donnees={annonce} propositions={this.props.propositions.liste}></EncartAnnonce>)
+												}
+											}
+											if(this.state.actif=="demandes"){
+												if(annonce.type=="demande"){
+													return(<EncartAnnonce key={i} donnees={annonce}propositions={this.props.propositions.liste}></EncartAnnonce>)
+												}
+											}
+										}
+									})
 								}
-							}
-							if(this.state.actif=="demandes"){
-								if(annonce.type=="demande"){
-									return(<EncartAnnonce key={i} donnees={annonce}propositions={this.props.propositions.liste}></EncartAnnonce>)
-								}
-							}
-						}
-					})
-
-				}
-
-
+					</Grid.Column>
+				<Grid.Column mobile={16} tablet={16} computer={2} only="computer"></Grid.Column>
+			</Grid>
 			</div>
 		);
 	}

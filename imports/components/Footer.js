@@ -27,8 +27,8 @@ export default class Footer extends Component {
 					 	Système d'Echange Local de la Croix Rouge de Damvillers, 6 rue des Remparts 55150 DAMVILLERS
 
 					 	<br/><br/>
-					 	<a href="http://www.twitter.com" target="_blank"> <img className="logo" src='images/TwitterBird.png'/> </a>
-  						<a href="http://www.facebook.com" target="_blank"> <img className="logo" src='images/Facebook.png' /> </a>
+					 	<a href="http://www.meuse.fr" target="_blank"> <img className="logo" src='images/Logo-meuse.png' /> </a>
+					 	<a href="http://ml-nordmeusien.fr/" target="_blank"> <img className="logo" src='images/lMLNM.jpg' /> </a>
   						<a href="http://www.croix-rouge.fr" target="_blank"> <img className="logo" src='images/croixrouge.jpg' /> </a>
 					 	<br/><br/>
 					 	<span id='tailletext'>Création du site par WebOgreen 2017</span>

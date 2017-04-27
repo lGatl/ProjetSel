@@ -87,10 +87,12 @@ class MonCompt extends Component {
 						<MenuMonCompt contenu={this.contenu.bind(this)} titre="Mon Compte" menuMonCompte={this.menuMonCompte}></MenuMonCompt> <br/>
 						<MenuMonCompt contenu={this.contenu.bind(this)} titre="Administration" menuMonCompte={this.menuAdministration}></MenuMonCompt>
 					</Grid.Column>
+					<Grid.Column mobile={16} tablet={16} computer={1} only="computer"></Grid.Column>
 
-					<Grid.Column mobile={16} tablet={11} computer={11}>
+					<Grid.Column mobile={16} tablet={11} computer={10}>
 						{this.page(this.state.nom)}
 					</Grid.Column>
+					 <Grid.Column mobile={16} tablet={16} computer={2} only="computer"></Grid.Column>
 				</Grid>
 			</div>
 		);

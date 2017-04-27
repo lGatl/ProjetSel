@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import FormContact from '../components/FormContact.js';
 import CoordonneesHoraires from '../components/CoordonneesHoraires.js';
 import {createContainer} from 'meteor/react-meteor-data';
-import { Grid } from 'semantic-ui-react'
+import { Grid,Segment } from 'semantic-ui-react'
 import {menu} from '../API/menu.js'
 /*__________~~~~~~~~MAIL JET~~~~~~~~~~____________*/
  class Contact extends Component {
@@ -29,18 +29,18 @@ import {menu} from '../API/menu.js'
 	render(){
 		return (
 			<div>
-			<Grid>
-				<Grid.Column mobile={16} tablet={10} computer={10}>
-					<CoordonneesHoraires contenu={this.infos}></CoordonneesHoraires>
-				</Grid.Column>
-				<Grid.Column  mobile={16} tablet={6} computer={6} >
-					<CoordonneesHoraires contenu={this.horaires}></CoordonneesHoraires>
-				</Grid.Column>
-		 	</Grid>
 
-
-
-				<FormContact></FormContact>
+				<Segment.Group horizontal>
+						<Segment><CoordonneesHoraires contenu={this.infos}></CoordonneesHoraires></Segment>
+						<Segment><CoordonneesHoraires contenu={this.horaires}></CoordonneesHoraires></Segment>
+					</Segment.Group>
+				<Grid>
+					<Grid.Column mobile={16} tablet={16} computer={2} only="computer"></Grid.Column>
+					<Grid.Column mobile={16} tablet={16} computer={12}>
+						<FormContact></FormContact>
+					</Grid.Column>
+					<Grid.Column mobile={16} tablet={16} computer={2} only="computer"></Grid.Column>
+				</Grid>
 
 			</div>
 		);
@@ -48,8 +48,8 @@ import {menu} from '../API/menu.js'
 }
  export default Contacts = createContainer( ()=>{
 
- 	return{
- 		setActif:menu.setActif
- 			}
+	return{
+		setActif:menu.setActif
+			}
 
  } , Contact );

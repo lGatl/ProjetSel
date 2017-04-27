@@ -46,10 +46,6 @@ class  AnnonceDes extends Component {
 				}
 			},(err)=>{}
 		)
-		/*this.setState({
-			prix:0,
-			commentaire:""
-		})*/
 	}
 	componentWillMount(){
 		this.props.setActif('Annonces')
@@ -66,9 +62,9 @@ class  AnnonceDes extends Component {
 						<Table.Cell  colSpan='4'>Informations de l'annonce</Table.Cell>
 					</Table.Row>
 					<Table.Row>
-						<Table.Cell colSpan='2'>
+						<Table.Cell colSpan='2' style={{padding:0}}>
 							<Item >
-								<Item.Image src='http://lorempixel.com/400/400' fluid />
+								<Item.Image  src='http://lorempixel.com/350/350' fluid/>
 							</Item>
 						</Table.Cell>
 						<Table.Cell colSpan='2' rowSpan='5'>

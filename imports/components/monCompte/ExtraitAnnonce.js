@@ -81,7 +81,7 @@ class ExtraitAnnonc extends Component {
 			<Segment attached='top' style={{marginTop:0,backgroundColor:"rgba(240,40,40,0.3)"}} >
 				{
 					this.props.propositions.liste.map((proposition,i)=>{
-					if(proposition.annonceId==this.props.donnees._id){
+					if(proposition.annonceId==this.props.donnees._id&&!(proposition.etat=="Refuse")){
 						return(<ExtraitProposition donnees={this.props.donnees} proposition={proposition}  refuseTout={this.refuseTout.bind(this)} moi={false} key={i}></ExtraitProposition>)
 				}
 			})}</Segment>)
@@ -128,16 +128,6 @@ class ExtraitAnnonc extends Component {
 			this.props.donnees.etat=="Refuser"?etat={etat:"Refusée",couleur:"red"}:etat={}
 		avencement={couleur:"green"}
 
-			if(this.props.nbProp>0){
-				this.props.propositions.liste.map((proposition,i)=>{
-					if(proposition.annonceId==this.props.donnees._id){
-						if(proposition.etat=="Validé"&&!(avencement.couleur=="red")){avencement={couleur:'orange'}}
-						if(proposition.etat=="Effectué"){avencement={couleur:'red'}}
-					}
-				})
-			}
-
-
 		return (
 			<div>
 				<br/>
@@ -145,7 +135,7 @@ class ExtraitAnnonc extends Component {
 
 						<Grid style={{marginBottom:0}}>
 							<Grid.Column style={{paddingBottom:0}} mobile={7} tablet={6} computer={4}>
-								<Image floated='left' size='medium' src='http://lorempixel.com/500/500' />
+								<Image floated='left' size='medium' src='http://lorempixel.com/50/50' />
 							</Grid.Column>
 							<Grid.Column mobile={7} tablet={10} computer={4}>
 								<div>
@@ -186,7 +176,7 @@ class ExtraitAnnonc extends Component {
 										/>
 								</div>
 								</Grid.Column>
-								<Label circular size='massive' color={avencement.couleur} key={'0'} attached="top right"></Label>
+								<Label circular size='massive' color={this.props.donnees.avancement} key={'0'} attached="top right"></Label>
 						</Grid>
 					</Card>
 					{this.state.edit}

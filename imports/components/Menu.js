@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Segment } from 'semantic-ui-react'
+import { Menu, Segment,Image } from 'semantic-ui-react'
 import {createContainer} from 'meteor/react-meteor-data';
 import {usr} from '../API/usr.js'
 import {menu} from '../API/menu.js'
@@ -53,11 +53,11 @@ class MenuSS extends Component {
 		return (
 
 
-				<Menu className="ui grid middle centered" reversed stackable pointing secondary inverted color='red'>
+				<Menu className="ui grid middle centered"  reversed borderless stackable secondary inverted color='red' attached='bottom'>
 					{
 						liste.map((it,i)=>{
 							return(
-								<Menu.Item className="navbar" name={it.titre} href={it.href} key={i}  active={it.titre === this.props.actifMenu} onClick={this.handleItemClick.bind(this)} />
+								<Menu.Item name={it.titre} href={it.href} key={i} style={{margin:"1px",textAlign:"center"}}  active={it.titre === this.props.actifMenu} onClick={this.handleItemClick.bind(this)} />
 							)
 						})
 					}

@@ -19,6 +19,7 @@ class DepotAnnonc extends Component {
 			dateDeFin:"",
 			utilisateur:{username:"",_id:"",note:"",nom:"",prenom:""},
 			etat:"En Attente",
+			avancement:'green',
 			categories:[],
 			categorie:""
 		}
@@ -41,14 +42,16 @@ class DepotAnnonc extends Component {
 		if(this.props.donnees){this.recup(this.props.donnees)}
 	}
 	recup(donn){
+		date= new Date(donn.dateFin)
 		this.setState({
 			type:donn.type,
 			titre:donn.titre,
 			description:donn.description,
 			informationDeContact:donn.informationDeContact,
-			dateDeFin:donn.dateDeFin,
+			dateDeFin:date,
 			utilisateur:donn.utilisateur,
 			etat:"En Attente",
+			avancement:"green",
 			categories:[],
 			categorie:donn.categorie,
 			_id:donn._id
@@ -80,6 +83,7 @@ class DepotAnnonc extends Component {
 			informationDeContact:"",
 			dateDeFin:"",
 			etat:"En Attente",
+			avancement:"green",
 			categories:[],
 			categorie:"",
 			utilisateur:{

@@ -66,15 +66,20 @@ class ExtraitPropositio extends Component {
 		)
 	}
 
-
+//offre effectue=>proposeur
+//demande effectue=>annonceur
 	bouton(){
 		var nb=""
 		var valide=<div></div>
 		var refuse=<div></div>
+		var supprime=<div></div>
 
 		if(this.props.moi==true){
-			if(this.props.proposition.etat=="Valide"){
-				valide=<Button name="effectuer" color='blue' onClick={this.boutonProp.bind(this)} >Effectué</Button>
+			if(!(this.props.proposition.etat=="Validé")){
+				supprime=<Button name="supprimer" color='red' onClick={this.boutonProp.bind(this)}>Supprimer</Button>
+				if(this.props.donnees.type=="offre"){
+					valide=<Button name="effectuer" color='blue' onClick={this.boutonProp.bind(this)} >Effectué</Button>
+				}
 			}
 		}else{
 			if(this.props.proposition.etat=="En attente"){
@@ -82,18 +87,16 @@ class ExtraitPropositio extends Component {
 				refuse=<Button name="refuser" color='orange' onClick={this.boutonProp.bind(this)} >Refuser</Button>
 			}
 			if(this.props.proposition.etat=="Validé"){
-				valide=<Button name="effectuer" color='blue' onClick={this.boutonProp.bind(this)} >Effectué</Button>
+				if(this.props.donnees.type=="demande"){
+					valide=<Button name="effectuer" color='blue' onClick={this.boutonProp.bind(this)} >Effectué</Button>
+				}
 			}
 		}
 		return(
 			<div className={'ui three buttons'}  style={{verticalAlign:"bottom"}}>
 				{valide}
 				{refuse}
-				<Button
-					name="supprimer"
-					color='red'
-					onClick={this.boutonProp.bind(this)}
-				>Supprimer</Button>
+				{supprime}
 			</div>
 		)
 	}
@@ -104,8 +107,12 @@ class ExtraitPropositio extends Component {
 			prop=this.props.proposition
 			prop.etat=("Validé")
 			this.props.propositions.sauve(prop,(res)=>{
-				console.log("re")
 					this.props.refuseTout(prop._id)
+					var aCh={}
+					aCh=this.props.donnees
+					aCh.avancement='orange'
+					this.props.annonces.sauve(aCh)
+
 				if(res){
 
 					Bert.alert({
@@ -130,10 +137,10 @@ class ExtraitPropositio extends Component {
 		}else if(this.state.action=="effectuer") {
 			prop=this.props.proposition
 			prop.etat=("Effectué")
-			this.props.propositions.sauve(prop,(res)=>{	})
-
-
-			this.effectue(this.props.donnees.utilisateur,prop.utilisateur,prop.prix,{_id:this.props.donnees._id,titre:this.props.donnees.titre,type:this.props.donnees.type,categorie:this.props.donnees.categorie})
+			this.props.propositions.sauve(prop,(res)=>{
+					aCh=this.props.donnees
+					aCh.avancement='red'
+					this.props.annonces.sauve(aCh)	})
 		}
 
 		 this.setState({
@@ -149,10 +156,7 @@ class ExtraitPropositio extends Component {
 				if(res){var ut=res
 					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)-Number(prix)
 					this.props.usr.changeCompte(ut,()=>{
-						this.props.usr.getUsrCo(()=>{
-
-							}
-							)
+						this.props.usr.getUsrCo(()=>{})
 					})
 				}
 			})
@@ -185,11 +189,7 @@ class ExtraitPropositio extends Component {
 				if(res){var ut=res
 					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)-Number(prix)
 					this.props.usr.changeCompte(ut,()=>{
-						this.props.usr.getUsrCo(()=>{
-
-							}
-							)
-
+						this.props.usr.getUsrCo(()=>{})
 					})
 				}
 			})
@@ -221,7 +221,7 @@ class ExtraitPropositio extends Component {
 
 	imgUsr(){
 		if(this.props.moi==true){
-			return(<Image floated='left' size='medium'  src='http://lorempixel.com/500/500'  />)
+			return(<Image floated='left' size='medium'  src='http://lorempixel.com/50/50'  />)
 		}else{
 			if(this.props.proposition){
 				const proposition=this.props.proposition
@@ -331,6 +331,7 @@ export default ExtraitProposition = createContainer( ()=>{
  	return{
  		annonces:{
  			supprime:annonces.supprime,
+ 			sauve:annonces.sauve,
  		},
  		propositions:{
  			supprime:propositions.supprime,

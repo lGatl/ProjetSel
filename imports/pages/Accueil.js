@@ -35,11 +35,23 @@ carousel(){
 			<div>
 
 				<Titre nom={["BIENVENUE "+this.props.prenom.toUpperCase()+ "! "," Partagez des services et des savoirs... Créez des liens"]} ></Titre>
-					{this.carousel()}
+					<Grid>
+						<Grid.Column mobile={16} tablet={16} computer={2} only="computer"></Grid.Column>
+						<Grid.Column mobile={16} tablet={16} computer={12}>
+							{this.carousel()}
+						</Grid.Column>
+						<Grid.Column mobile={16} tablet={16} computer={2} only="computer"></Grid.Column>
+					</Grid>
 					<br/>
 				<Titre nom="Trouvez un SEL près de chez vous ! C'est simple avec la carte des sélistes"></Titre>
+				<Grid>
+					<Grid.Column mobile={16} tablet={16} computer={2} only="computer"></Grid.Column>
+					<Grid.Column mobile={16} tablet={16} computer={12}>
+						<GoogleMap></GoogleMap>
+					</Grid.Column>
+					<Grid.Column mobile={16} tablet={16} computer={2} only="computer"></Grid.Column>
+				</Grid>
 
-				<GoogleMap></GoogleMap>
 			</div>
 		);
 	}

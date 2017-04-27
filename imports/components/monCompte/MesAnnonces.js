@@ -53,7 +53,8 @@ class MesAnnonce extends Component {
 								if(annonce.type==this.props.type){
 									var nbProp=0
 									this.props.propositions.liste.map((prop,j)=>{
-										if(prop.annonceId==annonce._id){
+										if(prop.annonceId==annonce._id&&!(prop.etat=="Refuse")){
+
 											nbProp++
 										}
 									})

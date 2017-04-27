@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import CarteSeliste from '../components/CarteSeliste.js';
 import { Card } from 'semantic-ui-react'
-import { Segment } from 'semantic-ui-react'
+import { Segment,Grid } from 'semantic-ui-react'
 import Titre from '../components/Titre.js'
 import Filtres from '../components/Filtres.js'
 import {createContainer} from 'meteor/react-meteor-data';
@@ -35,14 +35,19 @@ class LesSeliste extends Component {
 
 					<div>
 						<Titre nom="LES SÉLISTES"></Titre>
+							<Grid>
+								<Grid.Column mobile={16} tablet={16} computer={2} only="computer"></Grid.Column>
+								<Grid.Column mobile={16} tablet={16} computer={12}>
+									<Filtres option={this.state.option}></Filtres>
 
-							<Filtres option={this.state.option}></Filtres>
-						 <Card.Group className="ui grid middle centered">
-						{
-							this.props.usrs.map((utilisateur,i)=><CarteSeliste utilisateur={utilisateur} key={i}> </CarteSeliste>)
-					}
-						 </Card.Group>
-
+									 <Card.Group className="ui grid middle centered">
+									{
+										this.props.usrs.map((utilisateur,i)=><CarteSeliste utilisateur={utilisateur} key={i}> </CarteSeliste>)
+									}
+									 </Card.Group>
+								</Grid.Column>
+							<Grid.Column mobile={16} tablet={16} computer={2} only="computer"></Grid.Column>
+						</Grid>
 
 					</div>
 				);

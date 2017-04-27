@@ -17,7 +17,7 @@ export default class Filtres extends Component {
 	render(){
 
 		return (
-		 <Segment>
+		 <Segment basic >
 			{
 				this.state.options.map((option,i)=>{
 						return(<MenuDeroulant key={option.titre} donnees={option}></MenuDeroulant>)
