@@ -27,7 +27,7 @@ class DerniereActuAnnonc extends Component {
 
 									<Grid.Column width={16}  key={i} textAlign='center' style={{paddingLeft:"20%",paddingRight:"20%",paddingBottom:0}}>
 
-										<Image fluid src={'images/'+this.rnd(1,16)+'.jpg'} />
+										<Image fluid src={'/images/'+this.rnd(1,16)+'.jpg'} />
 										{
 											this.props.titre=="Annonces"?
 											<a className="aSpe" href={"/annonces/"+donnee.titre}>{donnee.titre}</a>:

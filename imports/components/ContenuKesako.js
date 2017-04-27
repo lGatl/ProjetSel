@@ -22,7 +22,7 @@ const ContenuKesako = () => (
 
 		  </Message>
 		  <br/><br/>
-<Image centered src='images/pjsel.jpg'/>
+<Image centered src='/images/pjsel.jpg'/>
 
 
 	</div>

@@ -44,6 +44,11 @@ class ExtraitPropositio extends Component {
 				edit:false,
 		 	})}
 	}
+	rnd(min, max) {
+			min = Math.ceil(min);
+			max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min +1)) + min;
+	}
 
 	prixEtat(){
 		return(
@@ -221,7 +226,7 @@ class ExtraitPropositio extends Component {
 
 	imgUsr(){
 		if(this.props.moi==true){
-			return(<Image floated='left' size='medium'  src='http://lorempixel.com/50/50'  />)
+			return(<Image src={'/images/'+this.rnd(1,16)+'.jpg'} style={{height:"200px",width:"200px"}} />)
 		}else{
 			if(this.props.proposition){
 				const proposition=this.props.proposition

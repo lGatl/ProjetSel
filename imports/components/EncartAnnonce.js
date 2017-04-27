@@ -21,7 +21,7 @@ export default class EncartAnnonce extends Component {
 
 						<Grid >
 							<Grid.Column width={6}>
-								<Image src={'images/'+this.rnd(1,16)+'.jpg'} style={{height:"200px",width:"200px"}} />
+								<Image src={'/images/'+this.rnd(1,16)+'.jpg'} style={{height:"200px",width:"200px"}} />
 							</Grid.Column>
 							<Grid.Column width={6}>
 								<Card.Header>

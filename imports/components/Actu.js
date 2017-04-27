@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Segment, Header, Image,Button } from 'semantic-ui-react'
+import { Segment, Header, Image,Button, Grid } from 'semantic-ui-react'
 import {createContainer} from 'meteor/react-meteor-data';
 import {menu} from '../API/menu.js'
 
@@ -28,19 +28,28 @@ constructor(){
 		this.props.setActif('Actualites')
 
 	}
-
+	rnd(min, max) {
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min +1)) + min;
+	}
 
  render(){
  	return(
-		<div>
-		    <Segment compact>
-		    	<Image src='/assets/images/wireframe/image.png' size='small' wrapped />
-		      	<Header as='h2'>{this.state.titre}</Header>
-		      	<p>{this.state.description}</p>
 
-		    </Segment>
-		    <Button href="/actualites">Actualités</Button>
-		</div>
+
+		<Segment >
+				<Grid >
+					<Grid.Column width={8} style={{padding:0}}>
+						<Image src={'/images/'+this.rnd(1,16)+'.jpg'} style={{height:"200px",width:"200px"}} />
+					</Grid.Column>
+					<Grid.Column width={8}>
+
+							<Header as='h2'>{this.state.titre}</Header>
+							<p>{this.state.description}</p>
+					</Grid.Column>
+				</Grid>
+				</Segment>
 		);
 	}
 }

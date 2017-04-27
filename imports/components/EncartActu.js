@@ -16,7 +16,7 @@ export default class EncartActu extends Component {
 				<Segment >
 				<Grid >
 					<Grid.Column width={8} style={{padding:0}}>
-						<Image src={'images/'+this.rnd(1,16)+'.jpg'} style={{height:"200px",width:"200px"}} />
+						<Image src={'/images/'+this.rnd(1,16)+'.jpg'} style={{height:"100px",width:"100px"}} />
 					</Grid.Column>
 					<Grid.Column width={8}>
 						<a href={"/articles/"+this.props.donnees.titre}>

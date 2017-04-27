@@ -18,7 +18,11 @@ class  AnnonceDes extends Component {
 				commentaire:""
 			};
 	}
-
+	rnd(min, max) {
+			min = Math.ceil(min);
+			max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min +1)) + min;
+	}
 	getAnnonce(titre){
 		this.props.annonces.recup1(titre,(err,res)=>{
 				if(res){
@@ -64,7 +68,7 @@ class  AnnonceDes extends Component {
 					<Table.Row>
 						<Table.Cell colSpan='2' style={{padding:0}}>
 							<Item >
-								<Item.Image  src='http://lorempixel.com/350/350' fluid/>
+								<img src={'/images/'+this.rnd(1,16)+'.jpg'} style={{height:"200px",width:"200px"}} />
 							</Item>
 						</Table.Cell>
 						<Table.Cell colSpan='2' rowSpan='5'>

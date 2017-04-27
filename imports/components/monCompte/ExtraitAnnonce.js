@@ -38,6 +38,11 @@ class ExtraitAnnonc extends Component {
 
 		this.handleCancel = () => this.setState({ open: false })
 	}
+	rnd(min, max) {
+			min = Math.ceil(min);
+			max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min +1)) + min;
+	}
 	 componentDidMount(){
 	 		if(this.props.menu.prop.get().indexOf(this.props.donnees._id)>=0){this.setState({prop:true})}
 		 }
@@ -135,7 +140,7 @@ class ExtraitAnnonc extends Component {
 
 						<Grid style={{marginBottom:0}}>
 							<Grid.Column style={{paddingBottom:0}} mobile={7} tablet={6} computer={4}>
-								<Image floated='left' size='medium' src='http://lorempixel.com/50/50' />
+								<Image src={'/images/'+this.rnd(1,16)+'.jpg'} style={{height:"200px",width:"200px"}} />
 							</Grid.Column>
 							<Grid.Column mobile={7} tablet={10} computer={4}>
 								<div>

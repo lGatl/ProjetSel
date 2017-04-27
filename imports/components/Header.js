@@ -15,7 +15,7 @@ export default class HeaderS extends Component {
 					<Grid>
 						<Grid.Column   verticalAlign='middle' mobile={6} only="mobile"></Grid.Column>
 						<Grid.Column  verticalAlign='middle' mobile={4} tablet={2} computer={2}>
-							<Image  size='tiny' src='images/logo-seliste-1.png'/>
+							<Image  size='tiny' src='/images/logo-seliste-1.png'/>
 						</Grid.Column>
 						<Grid.Column   verticalAlign='middle' mobile={6} only="mobile"></Grid.Column>
 						<Grid.Column textAlign="center" verticalAlign='middle' mobile={16} tablet={12} computer={12}>
@@ -23,7 +23,7 @@ export default class HeaderS extends Component {
 						</Grid.Column>
 						<Grid.Column   verticalAlign='middle' mobile={6} only="mobile"></Grid.Column>
 						<Grid.Column  verticalAlign='middle' mobile={4} tablet={2} computer={2}>
-							<Image size='tiny' src='images/croixrouge.png' shape='rounded' />
+							<Image size='tiny' src='/images/croixrouge.png' shape='rounded' />
 						</Grid.Column>
 						<Grid.Column   verticalAlign='middle' mobile={6} only="mobile"></Grid.Column>
 					</Grid>
