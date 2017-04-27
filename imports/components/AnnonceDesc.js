@@ -15,7 +15,8 @@ class  AnnonceDes extends Component {
 		this.state={
 				annonce:{},
 				prix:0,
-				commentaire:""
+				commentaire:"",
+				image:""
 			};
 	}
 	rnd(min, max) {
@@ -50,10 +51,15 @@ class  AnnonceDes extends Component {
 				}
 			},(err)=>{}
 		)
+		this.setState({
+				prix:0,
+				commentaire:""
+				})
 	}
 	componentWillMount(){
 		this.props.setActif('Annonces')
 		this.getAnnonce(this.props.titre)
+		this.setState({image:'/images/'+this.rnd(1,16)+'.jpg'})
 	}
 
 	fiche(){
@@ -68,7 +74,7 @@ class  AnnonceDes extends Component {
 					<Table.Row>
 						<Table.Cell colSpan='2' style={{padding:0}}>
 							<Item >
-								<img src={'/images/'+this.rnd(1,16)+'.jpg'} style={{height:"200px",width:"200px"}} />
+								<img src={this.state.image} style={{height:"300px",width:"300px"}} />
 							</Item>
 						</Table.Cell>
 						<Table.Cell colSpan='2' rowSpan='5'>
