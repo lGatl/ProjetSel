@@ -8,7 +8,10 @@ constructor(){
 		super();
 		this.state={};
 	}
-
+	componentWillMount(){
+		this.getArticle(this.props.titre)
+	}
+	/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 	getArticle(titre){
 		Meteor.call('getArticle',titre,(err,res)=>{
 			if(err){
@@ -23,22 +26,38 @@ constructor(){
 			}
 		})
 	}
-	componentWillMount(){
-		this.getArticle(this.props.titre)
-		this.props.setActif('Actualites')
 
-	}
 	rnd(min, max) {
 		min = Math.ceil(min);
 		max = Math.floor(max);
 		return Math.floor(Math.random() * (max - min +1)) + min;
 	}
+	bouton(e){
+		e.preventDefault()
 
+			var href=""
+			var pre = this.props.menu.pre.get()
+				if(pre=="Accueil"){href="/"}
+				if(pre=="Kesako"){href="/kesako"}
+				if(pre=="Annonces"){href="/annonces"}
+				if(pre=="Actualites"){href="/actualites"}
+				if(pre=="Contact"){href="/contacts"}
+				if(pre=="MonCompte"){
+					href="/monCompte"
+					this.props.menu.pre.set()
+				}
+				if(pre=="MonCompte"&&this.props.menu.monCompte.get()==true){}else{this.props.menu.monCompte.set(false)}
+				if(pre=="LesSelistes"){href="/lesSelistes"}
+				if(pre=="Creer un compte"){href="/creerUnCompte"}
+				if(pre=="Connexion"){href="/connexion"}
+
+			FlowRouter.go(href)
+	}
  render(){
  	return(
 
-
-		<Segment >
+		<div>
+			<Segment >
 				<Grid >
 					<Grid.Column width={8} style={{padding:0}}>
 						<Image src={'/images/'+this.rnd(1,16)+'.jpg'} style={{height:"200px",width:"200px"}} />
@@ -49,14 +68,20 @@ constructor(){
 							<p>{this.state.description}</p>
 					</Grid.Column>
 				</Grid>
-				</Segment>
+			</Segment>
+			<Button onClick={this.bouton.bind(this)}>Retour</Button>
+		</div>
 		);
 	}
 }
 export default Actu = createContainer( ()=>{
 
  	return{
-		setActif:menu.setActif
+ 		menu:{
+			pre:menu.pre,
+			actif:menu.actif.get(),
+			monCompte:menu.monCompte
+		},
  	}
 
  } , Act );

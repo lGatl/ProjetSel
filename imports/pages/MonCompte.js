@@ -28,9 +28,14 @@ import {usr} from '../API/usr.js'
 class MonCompt extends Component {
 
 	componentWillMount(){
-		this.props.setActif('MonCompte')
-		this.setState({nom:"Mes informations"})
-
+		if(this.props.menu.pre.get()=="Actualites"&&this.props.menu.monCompte.get()==true){
+			this.setState({nom:"Gerer les actualités"})
+		}else if(this.props.menu.pre.get()=="Annonces"&&this.props.menu.monCompte.get()==true){
+			this.setState({nom:"Gerer les annonces"})
+		}else{
+			this.setState({nom:"Mes informations"})
+		}
+		this.props.menu.monCompte.set(false)
 	}
 		constructor(){
 			super()
@@ -87,12 +92,12 @@ class MonCompt extends Component {
 						<MenuMonCompt contenu={this.contenu.bind(this)} titre="Mon Compte" menuMonCompte={this.menuMonCompte}></MenuMonCompt> <br/>
 						<MenuMonCompt contenu={this.contenu.bind(this)} titre="Administration" menuMonCompte={this.menuAdministration}></MenuMonCompt>
 					</Grid.Column>
-					<Grid.Column mobile={16} tablet={16} computer={1} only="computer"></Grid.Column>
+					<Grid.Column mobile={16} tablet={1} computer={1} only="computer"></Grid.Column>
 
-					<Grid.Column mobile={16} tablet={11} computer={10}>
+					<Grid.Column mobile={16} tablet={10} computer={10}>
 						{this.page(this.state.nom)}
 					</Grid.Column>
-					 <Grid.Column mobile={16} tablet={16} computer={2} only="computer"></Grid.Column>
+					 <Grid.Column mobile={16} tablet={1} computer={2} only="computer"></Grid.Column>
 				</Grid>
 			</div>
 		);
@@ -105,8 +110,11 @@ class MonCompt extends Component {
 }
  var MonCompte = createContainer( ()=>{
 	 return {
+	 	menu:{
+			pre:menu.pre,
+			monCompte:menu.monCompte
+		},
 		 loggedin: Meteor.userId(),
-		 setActif:menu.setActif,
 		 usrCo:usr.usrCo.get()
 
 	 };

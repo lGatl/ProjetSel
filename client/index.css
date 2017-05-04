@@ -117,5 +117,15 @@ h2{
 	margin-bottom:-1px;
 
 }
+.titreActuMonC{
+	text-decoration: none;
+	color:black;
+	font-weight:bold;
+	margin-left:5px;
+}
+.titreActuMonC:hover{
+	color:blue;
+	cursor:pointer;
+}
 
 

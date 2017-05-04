@@ -6,7 +6,6 @@ import { Segment,Grid } from 'semantic-ui-react'
 import Titre from '../components/Titre.js'
 import Filtres from '../components/Filtres.js'
 import {createContainer} from 'meteor/react-meteor-data';
-import {menu} from '../API/menu.js'
 import {usr} from '../API/usr.js'
 
 
@@ -20,11 +19,6 @@ class LesSeliste extends Component {
 				{titre:"Les plus recents :",contenu:["< 1 semaine","< 2 semaines"]}]
 		}
 	}
-	componentWillMount(){
-		this.props.setActif('LesSelistes')
-
-	}
-
 
 	render(){
 
@@ -61,7 +55,6 @@ class LesSeliste extends Component {
  var LesSelistes = createContainer( ()=>{
 	 return {
 		 logged: usr.logged.get(),
-		 setActif:menu.setActif,
 		 usrs:usr.usrs.get()
 	 };
  } , LesSeliste );

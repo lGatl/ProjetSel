@@ -5,16 +5,12 @@ import Carousel from '../components/Carousel.js'
 import GoogleMap from '../components/GoogleMap.js'
 import {createContainer} from 'meteor/react-meteor-data';
 import {usr} from '../API/usr.js'
-import {menu} from '../API/menu.js'
 import {annonces} from '../API/annonces.js'
 import { Grid } from 'semantic-ui-react'
 
 
 class Accuei extends Component {
 
-componentWillMount(){
-	this.props.setActif('Accueil')
-}
 carousel(){
 	var donnees=[]
 	var compt = 0
@@ -61,7 +57,6 @@ carousel(){
 
  	return{
  		prenom:usr.usrCo.get().profile.prenom,
- 		setActif:menu.setActif,
  		rev:annonces.rev.get()
  			}
 

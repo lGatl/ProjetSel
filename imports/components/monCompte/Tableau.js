@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { Table } from 'semantic-ui-react'
+import ImgSeu from './ImgSeu.js'
 
 export default class Tableau extends Component {
 
@@ -19,7 +20,9 @@ export default class Tableau extends Component {
 					this.props.donnees.contenu.map((ligne,i)=>{
 						return(
 							<Table.Row key={i}>
-								{ligne.map((cellule,j)=><Table.Cell key={j}>{cellule}</Table.Cell>)}
+								{ligne.map((cellule,j)=>{
+									if(j==4){return(<Table.Cell key={j}>{cellule} <ImgSeu/></Table.Cell>)
+									}else{return(<Table.Cell key={j}>{cellule}</Table.Cell>)}})}
 							</Table.Row>
 						)
 					})

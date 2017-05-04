@@ -35,7 +35,27 @@ class  AnnonceDes extends Component {
 		e.preventDefault();
 		this.setState({[e.target.name]:e.target.value});
 	};
+bouton(e){
+		e.preventDefault()
 
+			var href=""
+			var pre = this.props.menu.pre.get()
+				if(pre=="Accueil"){href="/"}
+				if(pre=="Kesako"){href="/kesako"}
+				if(pre=="Annonces"){href="/annonces"}
+				if(pre=="Actualites"){href="/actualites"}
+				if(pre=="Contact"){href="/contacts"}
+				if(pre=="MonCompte"){
+					href="/monCompte"
+					this.props.menu.pre.set()
+				}
+				if(pre=="MonCompte"&&this.props.menu.monCompte.get()==true){}else{this.props.menu.monCompte.set(false)}
+				if(pre=="LesSelistes"){href="/lesSelistes"}
+				if(pre=="Creer un compte"){href="/creerUnCompte"}
+				if(pre=="Connexion"){href="/connexion"}
+
+			FlowRouter.go(href)
+	}
 
 	creeProp(){
 
@@ -57,7 +77,6 @@ class  AnnonceDes extends Component {
 				})
 	}
 	componentWillMount(){
-		this.props.setActif('Annonces')
 		this.getAnnonce(this.props.titre)
 		this.setState({image:'/images/'+this.rnd(1,16)+'.jpg'})
 	}
@@ -159,6 +178,8 @@ class  AnnonceDes extends Component {
 		return(
 			<div>
 				{this.fiche()}
+				<Button onClick={this.bouton.bind(this)}>Retour</Button>
+
 			</div>
 		)
 	}
@@ -177,7 +198,11 @@ export default AnnonceDesc = createContainer( ()=>{
  		propositions:{
 			ajout:propositions.ajout
  		},
- 		setActif:menu.setActif
+ 		menu:{
+			pre:menu.pre,
+			actif:menu.actif.get(),
+			monCompte:menu.monCompte
+		}
  	}
 
  } ,  AnnonceDes );

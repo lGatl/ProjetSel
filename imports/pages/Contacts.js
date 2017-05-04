@@ -3,7 +3,6 @@ import FormContact from '../components/FormContact.js';
 import CoordonneesHoraires from '../components/CoordonneesHoraires.js';
 import {createContainer} from 'meteor/react-meteor-data';
 import { Grid,Segment } from 'semantic-ui-react'
-import {menu} from '../API/menu.js'
 /*__________~~~~~~~~MAIL JET~~~~~~~~~~____________*/
  class Contact extends Component {
 	constructor(){
@@ -21,9 +20,6 @@ import {menu} from '../API/menu.js'
 			titre:"Horaires de permanence de la Croix Rouge",
 			details:["Mardi de 13h30 à 16h30 et le Vendredi de 10 h à 12h."]
 		}
-	}
-	componentWillMount(){
-		this.props.setActif('Contact')
 	}
 
 	render(){
@@ -49,7 +45,7 @@ import {menu} from '../API/menu.js'
  export default Contacts = createContainer( ()=>{
 
 	return{
-		setActif:menu.setActif
+
 			}
 
  } , Contact );

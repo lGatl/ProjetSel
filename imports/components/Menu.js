@@ -10,24 +10,38 @@ class MenuSS extends Component {
 		super()
 
 		this.listeMenu=[
-				{titre:"Accueil",href:"/",doitlog:"non"},
-				{titre:"Kesako",href:"/kesako",doitlog:"non"},
-				{titre:"Annonces",href:"/annonces",doitlog:"non"},
-				{titre:"Actualites",href:"/actualites",doitlog:"non"},
-				{titre:"Contact",href:"/contacts",doitlog:"non"},
-				{titre:"MonCompte",href:"/monCompte",doitlog:"oui"},
-				{titre:"LesSelistes",href:"/lesSelistes",doitlog:"oui"},
-				{titre:"Creer un compte",href:"/creerUnCompte",doitlog:"sans"},
-				{titre:"Connexion",href:"/connexion",doitlog:"sans"},
-				{titre:"Deconnexion",href:"/",doitlog:"oui"}
+				{titre:"Accueil",doitlog:"non"},
+				{titre:"Kesako",doitlog:"non"},
+				{titre:"Annonces",doitlog:"non"},
+				{titre:"Actualites",doitlog:"non"},
+				{titre:"Contact",doitlog:"non"},
+				{titre:"MonCompte",doitlog:"oui"},
+				{titre:"LesSelistes",doitlog:"oui"},
+				{titre:"Creer un compte",doitlog:"sans"},
+				{titre:"Connexion",doitlog:"sans"},
+				{titre:"Deconnexion",doitlog:"oui"}
 		]
 	}
 
 
 	handleItemClick (e, { name }){
+		e.preventDefault()
+
+		var href=""
+		if(name=="Accueil"){href="/"}
+		if(name=="Kesako"){href="/kesako"}
+		if(name=="Annonces"){href="/annonces"}
+		if(name=="Actualites"){href="/actualites"}
+		if(name=="Contact"){href="/contacts"}
+		if(name=="MonCompte"){href="/monCompte"}
+		if(name=="LesSelistes"){href="/lesSelistes"}
+		if(name=="Creer un compte"){href="/creerUnCompte"}
+		if(name=="Connexion"){href="/connexion"}
 		if(name=="Deconnexion"){
 			usr.deco()
 		}
+		this.props.menu.monCompte.set(false)
+		FlowRouter.go(href)
 	}
 
 	render(){
@@ -57,7 +71,7 @@ class MenuSS extends Component {
 					{
 						liste.map((it,i)=>{
 							return(
-								<Menu.Item name={it.titre} href={it.href} key={i} style={{margin:"1px",textAlign:"center"}}  active={it.titre === this.props.actifMenu} onClick={this.handleItemClick.bind(this)} />
+								<Menu.Item name={it.titre}  key={i} style={{margin:"1px",textAlign:"center"}}  active={it.titre === this.props.actifMenu} onClick={this.handleItemClick.bind(this)} />
 							)
 						})
 					}
@@ -72,7 +86,10 @@ class MenuSS extends Component {
 
 	 return {
 		loggedin:usr.logged.get(),
-		actifMenu:menu.actif.get()
+		actifMenu:menu.actif.get(),
+		menu:{
+			monCompte:menu.monCompte
+		}
 
 
 	 };

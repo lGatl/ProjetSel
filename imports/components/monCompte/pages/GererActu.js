@@ -3,6 +3,7 @@ import {markdown} from 'markdown';
 import { Dropdown, Button, Form, Input, TextArea,Icon,Segment,Label} from 'semantic-ui-react'
 import {createContainer} from 'meteor/react-meteor-data';
 import {articles} from '../../../API/articles.js'
+import {menu} from '../../../API/menu.js'
 
 import Titre1 from '../Titre1.js'
 import Titre2 from '../Titre2.js'
@@ -133,11 +134,13 @@ class GererAct extends Component {
 			}
 		})
 	}
+	titre(titre){
+		this.props.menu.monCompte.set(true)
+		FlowRouter.go('/articles/'+titre)
+	}
 	tableauActions(){
 
 		if(this.props.article.liste){
-
-
 			return(
 				<TableauActions
 					donnees={{
@@ -150,13 +153,12 @@ class GererAct extends Component {
 										(date.getUTCDate()<10?" 0"+date.getUTCDate():" "+date.getUTCDate())+"/"+
 										((date.getUTCMonth() + 1)<10?"0"+(date.getUTCMonth() + 1):(date.getUTCMonth() + 1))
 										+"/"+date.getUTCFullYear(),
-										 	<a href={"/articles/"+art.titre} className="aSpe">{art.titre}</a>
+										 	<span onClick={this.titre.bind(this,art.titre)} className="titreActuMonC">{art.titre}</span>
 									],
 									etat: this.state.etat[i]
 								}
 							)
 						}),
-
 						actions:{
 							titre:"Actions",
 							contenu:["Publier","Desactiver","Supprimer"]
@@ -183,7 +185,6 @@ class GererAct extends Component {
 
 				<Titre2 nom="Ajouter une nouvelle actualité"></Titre2>
 				<Form  onSubmit={this.handleSubmit}>
-
 
 					<Form.Input className="inputAj"
 						label="Titre de l'actualité"
@@ -220,7 +221,10 @@ class GererAct extends Component {
 export default GererActu = createContainer( ()=>{
 
  	return{
-
+		menu:{
+			pre:menu.pre,
+			monCompte:menu.monCompte
+		},
 		article:{
 			liste:articles.liste.get(),
 			sauve:articles.sauve,

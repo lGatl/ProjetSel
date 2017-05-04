@@ -6,6 +6,7 @@ import MenuDeroulant from '../../MenuDeroulant.js';
 import TableauActions from '../TableauActions.js'
 import {createContainer} from 'meteor/react-meteor-data';
 import {annonces} from '../../../API/annonces.js'
+import {menu} from '../../../API/menu.js'
 
 
 class GererAnnonce extends Component {
@@ -18,7 +19,10 @@ class GererAnnonce extends Component {
 			this.type={titre:"Type",contenu:["Offre","Demande"]}
 			this.etat={titre:"Etat",contenu:["scddcd","dsdfdsfds"]}
 	}
-
+	titre(titre){
+		this.props.menu.monCompte.set(true)
+		FlowRouter.go('/annonces/'+titre)
+	}
 
 		tableauActions(){
 
@@ -39,7 +43,7 @@ class GererAnnonce extends Component {
 									ann.utilisateur.username,
 									ann.type,
 									ann.categorie,
-									<a href={"/annonces/"+ann.titre} className="aSpe">{ann.titre}</a>
+									<span onClick={this.titre.bind(this,ann.titre)} className="titreActuMonC">{ann.titre}</span>
 								],etat: this.state.etat[i]}
 							)
 						}),
@@ -142,6 +146,10 @@ class GererAnnonce extends Component {
 export default GererAnnonces = createContainer( ()=>{
 
  	return{
+ 		menu:{
+			pre:menu.pre,
+			monCompte:menu.monCompte
+		},
  		annonces:{
  			liste:annonces.liste.get(),
  			sauve:annonces.sauve,

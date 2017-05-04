@@ -7,6 +7,8 @@ import {historiques} from '../../../API/historiques.js'
 import {usr} from '../../../API/usr.js'
 
 
+
+
 class MonRelev extends Component {
 
 	debits(){
@@ -70,7 +72,7 @@ class MonRelev extends Component {
 		return (
 			<div>
 
-				<Solde solde={this.props.usr.usrCo.profile.soldeSeugnette}></Solde> <br/> <br/><br/>
+				<Solde solde={this.props.usr.usrCo.profile.soldeSeugnette}> </Solde>  <br/> <br/><br/>
 				<Titre1 nom="Liste des débits"></Titre1>
 					{this.debits()}
 

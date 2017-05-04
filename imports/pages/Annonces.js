@@ -6,7 +6,6 @@ import EncartAnnonce from '../components/EncartAnnonce.js';
 import Onglets from '../components/Onglets.js'
 import Filtres from '../components/Filtres.js'
 import {createContainer} from 'meteor/react-meteor-data';
-import {menu} from '../API/menu.js'
 import {annonces} from '../API/annonces.js'
 import {propositions} from '../API/propositions.js'
 import Titre from '../components/Titre.js'
@@ -28,12 +27,6 @@ class Annonce extends Component {
 		}
 	}
 
-	componentWillMount(){
-
-		this.props.setActif('Annonces')
-
-
-	}
 	recup(actif){
 		this.setState({actif:actif})
 
@@ -91,7 +84,6 @@ class Annonce extends Component {
  			liste:propositions.liste.get()
 
  		},
- 		setActif:menu.setActif,
  		liste:annonces.rev.get()
 	}
  } , Annonce );
