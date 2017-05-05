@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Segment, Header, Image,Button, Grid } from 'semantic-ui-react'
 import {createContainer} from 'meteor/react-meteor-data';
 import {menu} from '../API/menu.js'
+import {markdown} from 'markdown';
 
 class Act extends Component {
 constructor(){
@@ -53,10 +54,17 @@ constructor(){
 
 			FlowRouter.go(href)
 	}
+	desctipt(){
+		if(this.state.description){return(<Segment basic dangerouslySetInnerHTML={ {__html:markdown.toHTML(this.state.description)} }/>)}
+
+
+	}
  render(){
  	return(
 
-		<div>
+		<Grid>
+		<Grid.Column mobile={16} tablet={16} computer={2} only="computer"></Grid.Column>
+		<Grid.Column mobile={16} tablet={16} computer={12}>
 			<Segment >
 				<Grid >
 					<Grid.Column width={8} style={{padding:0}}>
@@ -65,12 +73,14 @@ constructor(){
 					<Grid.Column width={8}>
 
 							<Header as='h2'>{this.state.titre}</Header>
-							<p>{this.state.description}</p>
+							{this.desctipt()}
 					</Grid.Column>
 				</Grid>
 			</Segment>
 			<Button onClick={this.bouton.bind(this)}>Retour</Button>
-		</div>
+		</Grid.Column>
+		<Grid.Column mobile={16} tablet={16} computer={2} only="computer"></Grid.Column>
+		</Grid>
 		);
 	}
 }

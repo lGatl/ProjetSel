@@ -26,10 +26,10 @@ import{propositions}from'../API/propositions.js'
 			if(err){console.log("errart"," ",err)}else{
 				if(res.length==0){
 					var obj=[
-						{titre : "Webogreen en folie", description : "C'est la formidable histoire d'une classe de formation web composée de super codeurs fou, qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Publier",date:Date.now() },
-						{titre : "un second article", description : "C'est la formidable histoire d'une classe de formation web composée de super codeurs fou, qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Publier" ,date:Date.now()},
-						{titre : "un autre article", description : "C'est la formidable histoire d'une classe de formation web composée de super codeurs fou, qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Desactiver",date:Date.now() },
-						{titre : "pas un autre article", description :"C'est la formidable histoire d'une classe de formation web composée de super codeurs fou, qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Publier",date:Date.now() },
+						{titre : "Webogreen en folie", description : "C'est la **formidable** histoire d'une classe de _formation_ web composée de *super codeurs* fou , qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Publier",date:Date.now() },
+						{titre : "un second article", description : "C'est la **formidable** histoire d'une classe de _formation_ web composée de *super codeurs* fou , qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Publier" ,date:Date.now()},
+						{titre : "un autre article", description : "C'est la **formidable** histoire d'une classe de _formation_ web composée de *super codeurs* fou , qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Desactiver",date:Date.now() },
+						{titre : "pas un autre article", description :"C'est la **formidable** histoire d'une classe de _formation_ web composée de *super codeurs* fou , qui travaillerent main dans la main pour creer un site internet genial pour la croix rouge de Verdun.", etat : "Publier",date:Date.now() },
 
 					]
 					obj.map((ob)=>{

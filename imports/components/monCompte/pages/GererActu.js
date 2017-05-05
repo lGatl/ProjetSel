@@ -5,6 +5,7 @@ import {createContainer} from 'meteor/react-meteor-data';
 import {articles} from '../../../API/articles.js'
 import {menu} from '../../../API/menu.js'
 
+
 import Titre1 from '../Titre1.js'
 import Titre2 from '../Titre2.js'
 
