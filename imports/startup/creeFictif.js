@@ -1,6 +1,8 @@
 
 import{usr}from'../API/usr.js'
 import{annonces}from'../API/annonces.js'
+import{propositions}from'../API/propositions.js'
+
 	const categories=()=>{
 		Meteor.call('listeCategories',(err,res)=>{
 			if(err){console.log("errcat"," ",err)}else{
@@ -38,30 +40,60 @@ import{annonces}from'../API/annonces.js'
 		})
 	}
 
-	const annoncs=(usr)=>{
+	const annoncs=(user)=>{
 
 
 		Meteor.call('listeAnnonces', (err,res)=>{
 
 			if(err){console.log("errann"," ",err)}else{
-				var utilisateur
 
 				if(res.length==0){
 					var obj=[
 
-					{categorie : "cuisine", type : "offre", titre : "500 couverts", description : "Besoin d'un cuisinier capable de gerer 500 couverts!", informationDeContact : "monmail@gmal.com", dateDeFin : "1/12/2017", etat : "Valider",avancement:"green",utilisateur:{username:usr.username,_id:usr._id,note:usr.profile.note,nom:usr.profile.nom,prenom:usr.profile.prenom}},
-						{categorie : "mecanique", type : "demande", titre : "Vidange", description : "Qui veut venir me faire une petite vidange ?? ", informationDeContact : "tonmail@talmal.fr", dateDeFin : "25/04/2016", etat : "En Attente",avancement:"green",utilisateur:{username:usr.username,_id:usr._id,note:usr.profile.note,nom:usr.profile.nom,prenom:usr.profile.prenom} },
-						{categorie : "informatique", type : "offre", titre : "Ecran Bleu", description : ":'( Je ne comprend pas qqn peut venir m'aider?", informationDeContact : "sonmail@caramal.rf", dateDeFin : "01/02/2018", etat : "Valider",avancement:"green",utilisateur:{username:usr.username,_id:usr._id,note:usr.profile.note,nom:usr.profile.nom,prenom:usr.profile.prenom} },
-						{categorie : "cheval", type : "demande", titre : "Pour steak", description : "Nourrit a l'herbe toute sa vie, massé chaque jour", informationDeContact : "notremail@wanadoo.fr", dateDeFin : "15/12/2013", etat : "Refuser",avancement:"green",utilisateur:{username:usr.username,_id:usr._id,note:usr.profile.note,nom:usr.profile.nom,prenom:usr.profile.prenom} }
+					{categorie : "cuisine", type : "offre", titre : "500 couverts", description : "Besoin d'un cuisinier capable de gerer 500 couverts!", informationDeContact : user.username, dateDeFin : "12/15/2017", etat : "Valider",avancement:"green",utilisateur:{username:user.username,_id:user._id,note:user.profile.note,nom:user.profile.nom,prenom:user.profile.prenom}},
+						{categorie : "mecanique", type : "demande", titre : "Vidange", description : "Qui veut venir me faire une petite vidange ?? ", informationDeContact : user.username, dateDeFin : "04/25/2016", etat : "Valider",avancement:"green",utilisateur:{username:user.username,_id:user._id,note:user.profile.note,nom:user.profile.nom,prenom:user.profile.prenom} },
+						{categorie : "informatique", type : "offre", titre : "Ecran Bleu", description : ":'( Je ne comprend pas qqn peut venir m'aider?", informationDeContact : user.username, dateDeFin : "01/02/2018", etat : "Valider",avancement:"green",utilisateur:{username:user.username,_id:user._id,note:user.profile.note,nom:user.profile.nom,prenom:user.profile.prenom} },
+						{categorie : "cheval", type : "demande", titre : "Pour steak", description : "Nourrit a l'herbe toute sa vie, massé chaque jour", informationDeContact : user.username, dateDeFin : "12/12/2013", etat : "En Attente",avancement:"green",utilisateur:{username:user.username,_id:user._id,note:user.profile.note,nom:user.profile.nom,prenom:user.profile.prenom} }
 
 					]
-					obj.map((ob)=>{
-					Meteor.call('ajoutAnnonce',ob,(erre,resp)=>console.log("annonce fictif cree"))
+					obj.map((ob,i)=>{
+						Meteor.call('ajoutAnnonce',ob,(erre,resp)=>{
+							console.log("annonce fictif cree")
+							if((obj.length-1)==i){
+								annonces.recup1("500 couverts",(err,res)=>{usr.recupNom("sangoku@DBZ.com",(err,rep)=>{
+
+									proposits(rep,res)
+									annonces.recup(()=>{})
+								})})
+							}
+						})
+
 					})
 				}
 			}
 		})
+
 	}
+
+
+	const proposits=(usr,ann)=>{
+				var obj=[
+					{ "annonceId" :ann._id, "prix" : "12", "commentaire" : " e gre ger gre grg erge greg e re gre gre gre ger greg re", "utilisateur" :{ "_id" : usr._id, "username" : usr.username, "note" : usr.profile.note }, "etat" : "Validé", "date" : 1493294170547 },
+					{ "annonceId" :ann._id, "prix" : "3", "commentaire" : "Ma proposition", "utilisateur" : { "_id" : usr._id, "username" :usr.username, "note" : usr.profile.note}, "etat" : "En attente", "date" : 1493298422778 },
+					{ "annonceId" : ann._id, "prix" : "12", "commentaire" : "e grgerg e re gr gregr re gre", "utilisateur" : { "_id" : usr._id,username:usr.username, "note" : usr.profile.note }, "etat" : "Refuse", "date" : 1493294443430 },
+					{ "annonceId" : ann._id, "prix" : "12", "commentaire" : " gr gge gre r g er gerg", "utilisateur" : { "_id" : usr._id, username:usr.username, "note" : usr.profile.note }, "etat" : "Refuse", "date" : 1493294551246 },
+					{ "annonceId" : ann._id, "prix" : "8", "commentaire" : " efzfez fze f zfezf z f ezf ez fezfez fe fzefe fz", "utilisateur" : { "_id" :usr._id, username:usr.username, "note" : usr.profile.note }, "etat" : "Validé", "date" : 1493294585583 },
+
+			]
+			obj.map((ob)=>{
+				propositions.ajout(ob,()=>{
+
+					console.log("propositions fictives crees")
+					propositions.recup(()=>{})
+				})
+			})
+	}
+
 	const utilisateur=()=>{
 
 		usr.getUsrs( (err,res)=>{
@@ -81,7 +113,7 @@ import{annonces}from'../API/annonces.js'
 								respC:true,
 								dateValRespC:"12/78/2154",
 								note:5,
-								soldeSeugnette:8542,
+								soldeSeugnette:120,
 								totalCredits:5487,
 								totalDebits:4561,
 								role:"se"
@@ -99,7 +131,7 @@ import{annonces}from'../API/annonces.js'
 								respC:true,
 								dateValRespC:"12/78/2154",
 								note:5,
-								soldeSeugnette:8542,
+								soldeSeugnette:120,
 								totalCredits:5487,
 								totalDebits:4561,
 								role:"se"
@@ -117,7 +149,7 @@ import{annonces}from'../API/annonces.js'
 								respC:true,
 								dateValRespC:"12/78/2154",
 								note:5,
-								soldeSeugnette:8542,
+								soldeSeugnette:120,
 								totalCredits:5487,
 								totalDebits:4561,
 								role:"mo"
@@ -135,7 +167,7 @@ import{annonces}from'../API/annonces.js'
 								respC:true,
 								dateValRespC:"12/78/2154",
 								note:5,
-								soldeSeugnette:8542,
+								soldeSeugnette:120,
 								totalCredits:5487,
 								totalDebits:4561,
 								role:"ad"
@@ -153,7 +185,7 @@ import{annonces}from'../API/annonces.js'
 				}
 			}
 		})
-
+		usr.getUsrs( (err,res)=>{})
 	}
 
 const connexion=()=>{
@@ -164,10 +196,10 @@ const connexion=()=>{
 
 
 
-const annoncess=(id)=>{
-	usr.getUsrCo((res)=>{	if(res){annoncs(res)}else{console.log("doit etre connecté pour generer auto des annonces")}})
+	const annoncess=(id)=>{
+		usr.getUsrCo((res)=>{	if(res){annoncs(res)}else{console.log("doit etre connecté pour generer auto des annonces")}})
 
-		}
+	}
 
 
 
@@ -175,3 +207,4 @@ utilisateur()
 categories()
 articles()
 annoncess()
+

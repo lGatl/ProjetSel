@@ -75,30 +75,60 @@ class ExtraitPropositio extends Component {
 //demande effectue=>annonceur
 	bouton(){
 		var nb=""
-		var valide=<div></div>
-		var refuse=<div></div>
-		var supprime=<div></div>
+		effectue=<Button name="effectuer" color='blue' onClick={this.boutonProp.bind(this)} >Effectué</Button>
+		var valide=<Button name="valider" color='green' onClick={this.boutonProp.bind(this)} >Valider</Button>
+		var refuse=<Button name="refuser" color='orange' onClick={this.boutonProp.bind(this)} >Refuser</Button>
+		var supprime=<Button name="supprimer" color='red' onClick={this.boutonProp.bind(this)}>Supprimer</Button>
 
 		if(this.props.moi==true){
-			if(!(this.props.proposition.etat=="Validé")){
-				supprime=<Button name="supprimer" color='red' onClick={this.boutonProp.bind(this)}>Supprimer</Button>
-				if(this.props.donnees.type=="offre"){
-					valide=<Button name="effectuer" color='blue' onClick={this.boutonProp.bind(this)} >Effectué</Button>
+			if(this.props.donnees.type=="offre"){
+				if((this.props.proposition.etat=="Validé")){
+					valide=<div></div>;refuse=<div></div>;supprime=<div></div>
+				}else if(this.props.proposition.etat=="En attente"){
+					effectue=<div></div>;valide=<div></div>;refuse=<div></div>;
+				}else if(this.props.proposition.etat=="Refuse"){
+					effectue=<div></div>;valide=<div></div>;refuse=<div></div>;
+				}else if(this.props.proposition.etat=="Effectué"){
+					effectue=<div></div>;valide=<div></div>;refuse=<div></div>;
+				}
+			}else if(this.props.donnees.type=="demande"){
+					if((this.props.proposition.etat=="Validé")){
+					effectue=<div></div>;valide=<div></div>;refuse=<div></div>;supprime=<div></div>
+				}else if(this.props.proposition.etat=="En attente"){
+					effectue=<div></div>;valide=<div></div>;refuse=<div></div>;
+				}else if(this.props.proposition.etat=="Refuse"){
+					effectue=<div></div>;valide=<div></div>;refuse=<div></div>;
+				}else if(this.props.proposition.etat=="Effectué"){
+					effectue=<div></div>;valide=<div></div>;refuse=<div></div>;
 				}
 			}
 		}else{
-			if(this.props.proposition.etat=="En attente"){
-				valide=<Button name="valider" color='green' onClick={this.boutonProp.bind(this)} >Valider</Button>
-				refuse=<Button name="refuser" color='orange' onClick={this.boutonProp.bind(this)} >Refuser</Button>
-			}
-			if(this.props.proposition.etat=="Validé"){
-				if(this.props.donnees.type=="demande"){
-					valide=<Button name="effectuer" color='blue' onClick={this.boutonProp.bind(this)} >Effectué</Button>
+			if(this.props.donnees.type=="offre"){
+				if((this.props.proposition.etat=="Validé")){
+					effectue=<div></div>;valide=<div></div>;refuse=<div></div>;supprime=<div></div>
+				}else if(this.props.proposition.etat=="En attente"){
+					effectue=<div></div>;supprime=<div></div>
+				}else if(this.props.proposition.etat=="Refuse"){
+					effectue=<div></div>;valide=<div></div>;refuse=<div></div>;supprime=<div></div>
+				}else if(this.props.proposition.etat=="Effectué"){
+					effectue=<div></div>;valide=<div></div>;refuse=<div></div>;supprime=<div></div>
+				}
+			}else if(this.props.donnees.type=="demande"){
+					if((this.props.proposition.etat=="Validé")){
+					valide=<div></div>;refuse=<div></div>;supprime=<div></div>
+				}else if(this.props.proposition.etat=="En attente"){
+					effectue=<div></div>;supprime=<div></div>
+				}else if(this.props.proposition.etat=="Refuse")	{
+					effectue=<div></div>;valide=<div></div>;refuse=<div></div>;supprime=<div></div>
+				}else if(this.props.proposition.etat=="Effectué"){
+					effectue=<div></div>;valide=<div></div>;refuse=<div></div>;supprime=<div></div>
 				}
 			}
 		}
+
 		return(
 			<div className={'ui three buttons'}  style={{verticalAlign:"bottom"}}>
+				{effectue}
 				{valide}
 				{refuse}
 				{supprime}
@@ -141,11 +171,13 @@ class ExtraitPropositio extends Component {
 			})
 		}else if(this.state.action=="effectuer") {
 			prop=this.props.proposition
+			this.effectue(this.props.donnees.utilisateur,prop.utilisateur,prop.prix,this.props.donnees)
 			prop.etat=("Effectué")
 			this.props.propositions.sauve(prop,(res)=>{
 					aCh=this.props.donnees
 					aCh.avancement='red'
 					this.props.annonces.sauve(aCh)	})
+
 		}
 
 		 this.setState({
@@ -159,7 +191,7 @@ class ExtraitPropositio extends Component {
 			if(this.props.donnees.type=="offre"){
 			this.props.usr.getUsr(utAn._id,(res)=>{
 				if(res){var ut=res
-					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)-Number(prix)
+					ut.profile.soldeSeugnette=Number(ut.profile.soldeSeugnette)+Number(prix)
 					this.props.usr.changeCompte(ut,()=>{
 						this.props.usr.getUsrCo(()=>{})
 					})
@@ -171,6 +203,7 @@ class ExtraitPropositio extends Component {
 					this.props.usr.changeCompte(ut,()=>{})
 				}
 			})
+
 			this.props.historiques.ajout(
 				{
 					date:Date.now(),
