@@ -1,13 +1,64 @@
-import React, {Component} from 'react'
-import { Segment } from 'semantic-ui-react'
+import React,{Component} from 'react'
+import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+
 
 export default class Map extends Component {
+/*map.setCenter(results[0].geometry.location);
+var marker = new google.maps.Marker({
+						map: map,
+						position: results[0].geometry.location
+				});
+*/
 
-	render(){
-		return(
-				<Segment basic>
-					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117645.10670456768!2d5.437583378923197!3d49.340523526598865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47eae43ce6bc4a89%3A0x40a5fb99a3ae190!2s55150+Damvillers!5e0!3m2!1sfr!2sfr!4v1487668147876" width="100%" height="600" frameBorder="0" allowFullScreen></iframe>
-				</Segment>
-		)
+
+
+
+	componentDidMount(){
+		map = new google.maps.Map(this.refs.map,{
+			center:{lat:48.873947,lng:2.295038},
+			zoom: 10
+		})
+		var marker = new google.maps.Marker({
+			position: {lat:48.873947,lng:2.295038},
+			map: map,
+			title: 'Hello World!'
+		});
+		var marker2 = new google.maps.Marker({
+			position: {lat:48.875000,lng:2.506000},
+			map: map,
+			title: 'gregregre'
+		});
+		 geocoder = new google.maps.Geocoder();
+		geocoder.geocode( { 'address': '3 Av. des Champs-Élysées, 75008 Paris-8E-Arrondissement, France'}, function handleResults(results, status) {
+			if (status == 'OK') {
+				console.log(results[0].geometry.location.lat())
+				console.log(results[0].geometry.location.lng())
+
+			} else {
+				alert('Geocode was not successful for the following reason: ' + status);
+			}
+		});
+		console.log(google.maps)
+		var tours = new google.maps.LatLng(47.390273,0.688834);
+		var lyon = new google.maps.LatLng(45.764859,4.835036);
+
+
+		console.log("distance",google.maps.geometry.spherical.computeDistanceBetween(tours, lyon)/1000);
+
+	}
+
+	render() {
+
+		const mapStyle = {
+			width: 500,
+			height: 300,
+			border: '1px solid black'
+		};
+
+		return (
+			<div ref="map" style={mapStyle}>I should be a map!</div>
+		);
 	}
 }
+
+
