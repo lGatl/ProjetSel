@@ -9,6 +9,7 @@ La Croix Rouge de Damvillers avec l’appui du Département et de la Mission Loc
 nous a contacté pour travailler ensemble sur une plateforme web pour le Système d’Echange Local (SEL).
 Essayant d'appliquer tout ce que nous étudions au mieux et afin de nous exercer, avec le plaisir d'avoir
 la possibilité d'*entrer dans le vif du sujet*,
-nous avançons dans la réaliton ce site internet...
+(1 personne étant affectée au code, 1 à la realisation des logo, et 7 à la maquette sur balsamiq ) nous avançons dans la réalisation de ce site internet...
+
 
 

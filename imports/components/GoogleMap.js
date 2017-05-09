@@ -51,7 +51,7 @@ var marker = new google.maps.Marker({
 
 		const mapStyle = {
 			width: 500,
-			height: 300,
+			height: 400,
 			border: '1px solid black'
 		};
 

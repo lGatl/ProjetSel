@@ -8,6 +8,7 @@ export default class MesDemandes extends Component {
 	render() {
 
 		return (
+
 			<MesAnnonces type="demande"></MesAnnonces>
 		)
 	}

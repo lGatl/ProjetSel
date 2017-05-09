@@ -64,7 +64,7 @@ constructor(){
 
 		<Grid>
 		<Grid.Column mobile={16} tablet={16} computer={2} only="computer"></Grid.Column>
-		<Grid.Column mobile={16} tablet={16} computer={12}>
+		<Grid.Column mobile={16} tablet={16} computer={13}>
 			<Segment >
 				<Grid >
 					<Grid.Column width={8} style={{padding:0}}>
@@ -79,7 +79,7 @@ constructor(){
 			</Segment>
 			<Button onClick={this.bouton.bind(this)}>Retour</Button>
 		</Grid.Column>
-		<Grid.Column mobile={16} tablet={16} computer={2} only="computer"></Grid.Column>
+		<Grid.Column mobile={16} tablet={16} computer={1} only="computer"></Grid.Column>
 		</Grid>
 		);
 	}
