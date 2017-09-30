@@ -32,7 +32,6 @@
 			}else{return false}
 		},
 		sauvegardeAnnonces:(aSauv)=>{
-			console.log(aSauv)
 				if(aSauv._id){
 					annonces=aSauv
 				}else{annonces=Annonces.findOne({"titre": aSauv.titre})}

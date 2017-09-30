@@ -27,7 +27,6 @@ Meteor.methods({
 		}else{return false}
 	},
 	sauvegardeArticles:(aSauver)=>{
-		console.log("aSauver", aSauver);
 			articles=Articles.findOne({"titre": aSauver.titre})
 		Articles.update({_id:articles._id},{$set:aSauver})
 	},
