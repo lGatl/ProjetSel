@@ -85,7 +85,7 @@ export default class FormContact extends Component {
 						 this.state.message
 					}>Envoyer</Button>
 			</Form>
-			)
+		)
 	}
 }
 
