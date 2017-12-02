@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ContenuKesako from '../components/ContenuKesako.js'
 import {createContainer} from 'meteor/react-meteor-data';
 
-class Kesako extends Component {
+class Kesak extends Component {
 	componentWillMount(){
 	}
 	render(){
@@ -15,3 +15,10 @@ class Kesako extends Component {
 		);
 	}
 }
+
+ export default Kesako = createContainer( ()=>{
+
+ 	return{
+ 			}
+
+ } , Kesak );

@@ -20,13 +20,11 @@
     "or": "^0.2.0",
     "react": "^15.4.2",
     "react-addons-pure-render-mixin": "^15.4.2",
+    "react-async-script-loader": "^0.2.2",
     "react-dom": "^15.4.2",
-<<<<<<< HEAD
     "react-fontawesome": "^1.6.1",
     "react-google-maps": "^6.3.0",
     "react-helmet": "^5.0.3",
-=======
->>>>>>> parent of 82bff76... carte google js + marqueur
     "react-komposer": "^2.0.0",
     "react-mounter": "^1.2.0",
     "react-rte": "^0.11.0",

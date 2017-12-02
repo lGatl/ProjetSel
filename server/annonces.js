@@ -1,21 +1,41 @@
-	const BD_ANNONCE = new Mongo.Collection("annonce")
+	const Annonces = new Mongo.Collection("annonces")
 
 	Meteor.methods({
-		addAnnonce:(obj)=>{
-			 
-			return BD_ANNONCE.insert(obj)
+		listeAnnonce:()=>{
+			return Articles.find().fetch()
 		},
-		getAnnonces:()=>{
-			return BD_ANNONCE.find().fetch()
+		listeAnnonces:()=>{
+
+			return Annonces.find().fetch()
 		},
-		get1Annonce: (obj)=>{
-			 return BD_ANNONCE.findOne(obj);
+		getAnnonce: (titre)=>{
+			return Annonces.findOne({titre: titre});
 		},
-		rmAnnonce:(obj)=>{
-			BD_ANNONCE.remove(obj)
+		getAnnonceId: (id)=>{
+			return Annonces.findOne({_id: id});
 		},
-		upAnnonce:(obj)=>{		
-			BD_ANNONCE.update({_id:obj._id},{$set:obj})
-		}
+		supprimeAnnonce:(id)=>{Annonces.remove({_id:id})},
+		ajoutAnnonce:(nvlAnnonce)=>{
+			if (Meteor.userId()){
+				Annonces.insert({
+					categorie:nvlAnnonce.categorie,
+					type: nvlAnnonce.type,
+					titre: nvlAnnonce.titre,
+					description: nvlAnnonce.description,
+					informationDeContact: nvlAnnonce.informationDeContact,
+					etat: nvlAnnonce.etat,
+					avancement: nvlAnnonce.avancement,
+					utilisateur:nvlAnnonce.utilisateur,
+					date:Date.now(),
+					dateDeFin: Date.parse(nvlAnnonce.dateDeFin)
+				})
+			}else{return false}
+		},
+		sauvegardeAnnonces:(aSauv)=>{
+				if(aSauv._id){
+					annonces=aSauv
+				}else{annonces=Annonces.findOne({"titre": aSauv.titre})}
+		Annonces.update({_id:annonces._id},{$set:aSauv})
+	}
 	})
 

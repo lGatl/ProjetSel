@@ -8,11 +8,7 @@ export default class Solde extends Component {
 		return (
 
 			<Segment floated='right'>
-<<<<<<< HEAD
 				{"Solde "+": "+this.props.solde }<ImgSeu></ImgSeu>
-=======
-				{this.props.solde +" "}<ImgSeu></ImgSeu>
->>>>>>> parent of 82bff76... carte google js + marqueur
 			</Segment>
 
 		);

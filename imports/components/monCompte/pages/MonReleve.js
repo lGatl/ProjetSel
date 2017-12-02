@@ -73,10 +73,10 @@ class MonRelev extends Component {
 			<div>
 
 				<Solde solde={this.props.usr.usrCo.profile.soldeSeugnette}> </Solde>  <br/> <br/><br/>
-				<Titre1 nom="Liste des débits"></Titre1>
+				<Titre1 nom="Les seugnettes en moins"></Titre1>
 					{this.debits()}
 
-				<Titre1 nom="Liste des crédits"></Titre1>
+				<Titre1 nom="les seugnettes en plus"></Titre1>
 				{this.credits()}
 			</div>
 
