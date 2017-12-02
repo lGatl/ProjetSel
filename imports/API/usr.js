@@ -1,6 +1,6 @@
 
 
-	const loggedin = new ReactiveVar(Meteor.userId())
+	const loggedin =new ReactiveVar(Meteor.userId())
 	const logged 	=new ReactiveVar()
 	 const usrCo 	= new ReactiveVar({profile:{prenom:"futur séliste"}})
 	 const usrs 	=  new ReactiveVar()
